@@ -1,0 +1,2 @@
+n,elapsed_ms,prime_digits,seed,mpfr,gmp,cflags,pythonhashseed
+100000000000000000000,1.244,22,1337,unknown,unknown,"",0

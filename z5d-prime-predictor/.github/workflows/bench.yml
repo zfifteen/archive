@@ -1,0 +1,54 @@
+name: bench
+
+on:
+  workflow_dispatch:
+  push:
+
+jobs:
+  big-n:
+    runs-on: macos-14
+    env:
+      Z5D_SEED: "1337"
+      MPFR_VERSION: "4.2.1"
+      GMP_VERSION: "6.3.0"
+      CFLAGS: "-O3 -march=x86-64-v3 -fno-omit-frame-pointer"
+      JAVA_TOOL_OPTIONS: "-Djava.util.concurrent.ForkJoinPool.common.parallelism=1"
+      PYTHONHASHSEED: "0"
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install deps
+        run: |
+          brew update
+          brew install cmake autoconf automake libtool python openjdk@17 gmp mpfr
+          python3 -m pip install --upgrade pip
+          python3 -m pip install -r requirements.txt || true
+
+      - name: Build (C/Java)
+        run: |
+          make clean || true
+          make CFLAGS="${CFLAGS}" || true
+          src/java/gradlew --no-daemon -p src/java clean build || true
+
+      - name: Run big-n benchmark (C)
+        run: bash scripts/benchmark_big_n.sh
+
+      - name: Run big-n benchmark (Python)
+        run: bash scripts/benchmark_big_n_python.sh
+
+      - name: Run big-n benchmark (Java)
+        run: bash scripts/benchmark_big_n_java.sh
+
+      - name: Compare implementations
+        run: bash scripts/compare_z5dp_implementations.sh
+
+      - name: Upload benchmark artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: bench-output
+          path: |
+            scripts/output/*.csv
+            scripts/output/*.jsonl
+            scripts/output/*.txt
+            scripts/output/*.envmeta
+          if-no-files-found: ignore

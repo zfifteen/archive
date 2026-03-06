@@ -1,0 +1,2 @@
+n,elapsed_ms,prime_digits,seed,mpfr,gmp,cflags
+100000000000000000000,33.274,22,1337,unknown,unknown,""
