@@ -1,0 +1,28 @@
+# macOS specific files
+.DS_Store
+
+# Gradle build artifacts
+.gradle/
+build/
+.gradle-user/
+
+# IntelliJ IDEA artifacts
+.idea/
+geofac.iml
+
+# Log files
+*.log
+
+# Snapshots directory
+.snapshots/
+
+# Results and proof pack artifacts
+results/
+experiments/*/results/
+experiments/*/*/results/
+
+# Python artifacts
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/

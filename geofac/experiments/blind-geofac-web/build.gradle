@@ -1,0 +1,45 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.2.0'
+    id 'io.spring.dependency-management' version '1.1.6'
+}
+
+group = 'com.geofac'
+version = '0.1.0-SNAPSHOT'
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter'
+    implementation 'org.apache.commons:commons-math3:3.6.1'
+    implementation 'ch.obermuhlner:big-math:2.3.2'
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+    testLogging {
+        showStandardStreams = true
+        events "passed", "failed", "skipped"
+    }
+    // Forward opt-in flags for long challenge IT and falsification IT
+    systemProperty "geofac.runLongChallengeIT", System.getProperty("geofac.runLongChallengeIT", "false")
+    // Forward triangle filter benchmark settings (Spring Boot property binding via system properties)
+    if (System.getProperty("geofac.triangle-filter-enabled") != null) {
+        systemProperty "geofac.triangle-filter-enabled", System.getProperty("geofac.triangle-filter-enabled")
+    }
+}
