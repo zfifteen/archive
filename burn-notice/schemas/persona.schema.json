@@ -1,0 +1,33 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://burn-notice.dev/schemas/persona.schema.json",
+  "title": "Persona",
+  "description": "Schema for persona configurations",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the persona"
+    },
+    "name": {
+      "type": "string",
+      "description": "Name of the persona"
+    },
+    "description": {
+      "type": "string",
+      "description": "Description of the persona's role and characteristics"
+    },
+    "systemPrompt": {
+      "type": "string",
+      "description": "System prompt defining the persona's behavior"
+    },
+    "traits": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "List of personality traits"
+    }
+  },
+  "required": ["id", "name", "systemPrompt"]
+}

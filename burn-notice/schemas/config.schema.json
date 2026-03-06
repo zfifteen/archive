@@ -1,0 +1,36 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://burn-notice.dev/schemas/config.schema.json",
+  "title": "Config",
+  "description": "Schema for model configuration",
+  "type": "object",
+  "properties": {
+    "provider": {
+      "type": "string",
+      "description": "The AI provider name",
+      "enum": ["google", "openai", "anthropic", "perplexity", "xai", "deepseek", "mistral"]
+    },
+    "model": {
+      "type": "string",
+      "description": "The model identifier"
+    },
+    "temperature": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 2,
+      "description": "Temperature parameter for response randomness"
+    },
+    "maxTokens": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Maximum number of tokens to generate"
+    },
+    "topP": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1,
+      "description": "Top-p sampling parameter"
+    }
+  },
+  "required": ["provider", "model"]
+}

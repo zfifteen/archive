@@ -1,0 +1,43 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://burn-notice.dev/meta/metrics.schema.json",
+  "title": "Metrics",
+  "description": "Schema for evaluation metrics",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the metric"
+    },
+    "name": {
+      "type": "string",
+      "description": "Name of the metric"
+    },
+    "description": {
+      "type": "string",
+      "description": "Description of what the metric measures"
+    },
+    "type": {
+      "type": "string",
+      "description": "Type of metric",
+      "enum": ["accuracy", "fluency", "coherence", "relevance", "custom"]
+    },
+    "scale": {
+      "type": "object",
+      "properties": {
+        "min": {
+          "type": "number"
+        },
+        "max": {
+          "type": "number"
+        }
+      },
+      "description": "The scale of the metric values"
+    },
+    "unit": {
+      "type": "string",
+      "description": "Unit of measurement"
+    }
+  },
+  "required": ["id", "name", "description", "type"]
+}

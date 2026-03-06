@@ -1,0 +1,30 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://burn-notice.dev/schemas/prompt.schema.json",
+  "title": "Prompt",
+  "description": "Schema for prompt definitions",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the prompt"
+    },
+    "name": {
+      "type": "string",
+      "description": "Human-readable name for the prompt"
+    },
+    "description": {
+      "type": "string",
+      "description": "Description of the prompt's purpose"
+    },
+    "content": {
+      "type": "string",
+      "description": "The actual prompt text"
+    },
+    "variables": {
+      "type": "object",
+      "description": "Variables to be substituted in the prompt"
+    }
+  },
+  "required": ["id", "name", "content"]
+}

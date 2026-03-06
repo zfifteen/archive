@@ -1,0 +1,43 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://burn-notice.dev/meta/techniques.schema.json",
+  "title": "Techniques",
+  "description": "Schema for prompt-engineering techniques",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the technique"
+    },
+    "name": {
+      "type": "string",
+      "description": "Name of the technique"
+    },
+    "description": {
+      "type": "string",
+      "description": "Description of the technique"
+    },
+    "category": {
+      "type": "string",
+      "description": "Category of the technique",
+      "enum": ["few-shot", "chain-of-thought", "role-playing", "format-control", "other"]
+    },
+    "examples": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "input": {
+            "type": "string"
+          },
+          "output": {
+            "type": "string"
+          }
+        },
+        "required": ["input", "output"]
+      },
+      "description": "Example applications of the technique"
+    }
+  },
+  "required": ["id", "name", "description", "category"]
+}
