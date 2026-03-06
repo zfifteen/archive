@@ -1,0 +1,101 @@
+=== Basic Statistics for Coverage Percentages ===
+count    57.000000
+mean     49.122807
+std      18.877491
+min       0.000000
+25%      37.500000
+50%      50.000000
+75%      62.500000
+max      87.500000
+Name: CoveragePercent, dtype: float64
+
+=== Classification Distribution (Threshold 37.5%) ===
+Classification
+Aligned        47
+Not Aligned    10
+Name: count, dtype: int64
+
+=== Coverage Distribution by Count ===
+AlignedCount
+0     1
+1     2
+2     7
+3    10
+4    17
+5    13
+6     4
+7     3
+Name: count, dtype: int64
+
+=== Percentage of Times Each Bit (H0-H7) is Set (Aligned) ===
+H0    56.140351
+H1    33.333333
+H2    36.842105
+H3    24.561404
+H4    29.824561
+H5    17.543860
+H6    38.596491
+H7    19.298246
+dtype: float64
+
+=== Top 10 Most Common Alignment Patterns ===
+AlignmentPattern
+101110      2
+10011010    2
+11001010    2
+11100       2
+10110110    2
+10          1
+11100110    1
+10100000    1
+110101      1
+10101110    1
+Name: count, dtype: int64
+
+=== Correlation between Input Length and Coverage Percent ===
+Correlation Coefficient: -0.013
+
+=== Average Coverage by Input Length Range ===
+Length Range | Average Coverage % | Count
+-------------|-------------------|------
+0-5 | 47.4 | 19
+6-10 | 51.7 | 30
+11-15 | 37.5 | 1
+16-20 | 50.0 | 5
+21-25 | 31.2 | 2
+
+=== Classification Counts by Input Length Range ===
+Classification  Aligned  Not Aligned
+LengthRange                         
+0-5                  15            4
+6-10                 26            4
+11-15                 1            0
+16-20                 4            1
+21-25                 1            1
+
+=== Top 10 Most Common States (Hex) ===
+StateHex
+0x2e2e2e2e2e2e2e2e    2
+0x9a9a9a9a9a9a9a9a    2
+0xcacacacacacacaca    2
+0x1c1c1c1c1c1c1c1c    2
+0xb6b6b6b6b6b6b6b6    2
+0x0202020202020202    1
+0xe6e6e6e6e6e6e6e6    1
+0xa0a0a0a0a0a0a0a0    1
+0x3535353535353535    1
+0xaeaeaeaeaeaeaeae    1
+Name: count, dtype: int64
+
+=== Visualizations Generated ===
+- coverage_distribution.png: Histogram of coverage percentages
+- bit_frequency.png: Bar chart of alignment frequency per bit position
+- coverage_vs_length.png: Scatter plot of coverage vs. input length
+
+=== Top 5 Most Common State Transitions (Hex) ===
+(0x0202020202020202, 0x6d6d6d6d6d6d6d6d)    1
+(0x6d6d6d6d6d6d6d6d, 0xe9e9e9e9e9e9e9e9)    1
+(0xf2f2f2f2f2f2f2f2, 0xefefefefefefefef)    1
+(0xefefefefefefefef, 0xa0a0a0a0a0a0a0a0)    1
+(0xa0a0a0a0a0a0a0a0, 0x3535353535353535)    1
+Name: count, dtype: int64

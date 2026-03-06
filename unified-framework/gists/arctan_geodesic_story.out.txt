@@ -1,0 +1,158 @@
+# Stability across seeds (should keep the same ballpark CI):
+
+STEP 1 — Verify the arctan identities (symbolic & numeric)
+-----------------------------------------------------------
+✓ Identity 1 (symbolic): d/dx atan((sqrt(1+x^2)-1)/x) == 1/(2(1+x^2))  [PROVED]
+✓ Identity 1 (numeric): max |Δ| = 6.68e-52 (target ≤ 1e-30) → OK
+✓ Identity 2 (symbolic @ x=1/2): atan(2x√(1-x^2)/(1-2x^2)) = π/3  [PROVED]
+✓ Identity 2 (numeric, |x|≤0.7): max |Δ| = 2.67e-51 (target ≤ 1e-30) → OK
+
+STEP 2 — Geometry cameo: the golden ratio φ and half-angle
+----------------------------------------------------------
+φ cameo: atan((√(1+φ²)-1)/φ) vs 0.5*atan(φ)  →  |Δ| = 0.00e+00  (angles match to high precision)
+
+STEP 3 — Z-Framework geodesic θ′(n,k) demo (k≈0.3)
+---------------------------------------------------
+Running density-correct demo: N=200,000, bins=24, seed=7
+binning: quantile (min occupancy per bin: 417)
+Result (density-based): densest-bin enhancement ≈ 5.03%
+(for transparency) Raw-count enhancement (biased) ≈ 5.03%
+n per bin:        [8333, 8334, 8333, 8333, 8333, 8334, 8333, 8333, 8334, 8333, 8333, 8334, 8333, 8333, 8333, 8334, 8333, 8333, 8334, 8333, 8333, 8333, 8334, 8333]
+primes per bin:   [726, 756, 738, 750, 732, 745, 775, 728, 769, 752, 743, 745, 746, 743, 787, 769, 773, 762, 730, 720, 781, 732, 730, 752]
+density per bin:  [0.087123, 0.090713, 0.088564, 0.090004, 0.087844, 0.089393, 0.093004, 0.087363, 0.092273, 0.090244, 0.089164, 0.089393, 0.089524, 0.089164, 0.094444, 0.092273, 0.092764, 0.091444, 0.087593, 0.086403, 0.093724, 0.087844, 0.087593, 0.090244]
+
+Bootstrap CI (density enhancement): mean=4.65%  95% CI=[3.24%, 5.85%]
+
+Epilogue — Takeaways
+---------------------
+• Identities hold (symbolically exact; tiny numeric error).
+• Half-angle / double-angle keep curvature steps simple and stable.
+• θ′(n,k) is not uniform for k≠1 → density matters; counts can mislead.
+• Use **quantile bins** and occupancy guards to avoid artifacts.
+• Bootstrap if you need a quick CI at larger N.
+
+STEP 1 — Verify the arctan identities (symbolic & numeric)
+-----------------------------------------------------------
+✓ Identity 1 (symbolic): d/dx atan((sqrt(1+x^2)-1)/x) == 1/(2(1+x^2))  [PROVED]
+✓ Identity 1 (numeric): max |Δ| = 6.68e-52 (target ≤ 1e-30) → OK
+✓ Identity 2 (symbolic @ x=1/2): atan(2x√(1-x^2)/(1-2x^2)) = π/3  [PROVED]
+✓ Identity 2 (numeric, |x|≤0.7): max |Δ| = 2.67e-51 (target ≤ 1e-30) → OK
+
+STEP 2 — Geometry cameo: the golden ratio φ and half-angle
+----------------------------------------------------------
+φ cameo: atan((√(1+φ²)-1)/φ) vs 0.5*atan(φ)  →  |Δ| = 0.00e+00  (angles match to high precision)
+
+STEP 3 — Z-Framework geodesic θ′(n,k) demo (k≈0.3)
+---------------------------------------------------
+Running density-correct demo: N=200,000, bins=24, seed=1337
+binning: quantile (min occupancy per bin: 417)
+Result (density-based): densest-bin enhancement ≈ 5.03%
+(for transparency) Raw-count enhancement (biased) ≈ 5.03%
+n per bin:        [8333, 8334, 8333, 8333, 8333, 8334, 8333, 8333, 8334, 8333, 8333, 8334, 8333, 8333, 8333, 8334, 8333, 8333, 8334, 8333, 8333, 8333, 8334, 8333]
+primes per bin:   [726, 756, 738, 750, 732, 745, 775, 728, 769, 752, 743, 745, 746, 743, 787, 769, 773, 762, 730, 720, 781, 732, 730, 752]
+density per bin:  [0.087123, 0.090713, 0.088564, 0.090004, 0.087844, 0.089393, 0.093004, 0.087363, 0.092273, 0.090244, 0.089164, 0.089393, 0.089524, 0.089164, 0.094444, 0.092273, 0.092764, 0.091444, 0.087593, 0.086403, 0.093724, 0.087844, 0.087593, 0.090244]
+
+Bootstrap CI (density enhancement): mean=4.66%  95% CI=[3.41%, 5.69%]
+
+Epilogue — Takeaways
+---------------------
+• Identities hold (symbolically exact; tiny numeric error).
+• Half-angle / double-angle keep curvature steps simple and stable.
+• θ′(n,k) is not uniform for k≠1 → density matters; counts can mislead.
+• Use **quantile bins** and occupancy guards to avoid artifacts.
+• Bootstrap if you need a quick CI at larger N.
+# Sensitivity to bin count (uplift shouldn’t hinge on binning resolution):
+
+STEP 1 — Verify the arctan identities (symbolic & numeric)
+-----------------------------------------------------------
+✓ Identity 1 (symbolic): d/dx atan((sqrt(1+x^2)-1)/x) == 1/(2(1+x^2))  [PROVED]
+✓ Identity 1 (numeric): max |Δ| = 6.68e-52 (target ≤ 1e-30) → OK
+✓ Identity 2 (symbolic @ x=1/2): atan(2x√(1-x^2)/(1-2x^2)) = π/3  [PROVED]
+✓ Identity 2 (numeric, |x|≤0.7): max |Δ| = 2.67e-51 (target ≤ 1e-30) → OK
+
+STEP 2 — Geometry cameo: the golden ratio φ and half-angle
+----------------------------------------------------------
+φ cameo: atan((√(1+φ²)-1)/φ) vs 0.5*atan(φ)  →  |Δ| = 0.00e+00  (angles match to high precision)
+
+STEP 3 — Z-Framework geodesic θ′(n,k) demo (k≈0.3)
+---------------------------------------------------
+Running density-correct demo: N=200,000, bins=16, seed=42
+binning: quantile (min occupancy per bin: 625)
+Result (density-based): densest-bin enhancement ≈ 3.20%
+(for transparency) Raw-count enhancement (biased) ≈ 3.20%
+n per bin:        [12500, 12500, 12500, 12500, 12500, 12500, 12500, 12500, 12499, 12500, 12500, 12500, 12500, 12500, 12500, 12500]
+primes per bin:   [1101, 1119, 1117, 1110, 1143, 1129, 1128, 1112, 1130, 1146, 1160, 1144, 1072, 1159, 1108, 1106]
+density per bin:  [0.08808, 0.08952, 0.08936, 0.0888, 0.09144, 0.09032, 0.09024, 0.08896, 0.090407, 0.09168, 0.0928, 0.09152, 0.08576, 0.09272, 0.08864, 0.08848]
+
+Bootstrap CI (density enhancement): mean=3.04%  95% CI=[2.01%, 4.05%]
+
+Epilogue — Takeaways
+---------------------
+• Identities hold (symbolically exact; tiny numeric error).
+• Half-angle / double-angle keep curvature steps simple and stable.
+• θ′(n,k) is not uniform for k≠1 → density matters; counts can mislead.
+• Use **quantile bins** and occupancy guards to avoid artifacts.
+• Bootstrap if you need a quick CI at larger N.
+
+STEP 1 — Verify the arctan identities (symbolic & numeric)
+-----------------------------------------------------------
+✓ Identity 1 (symbolic): d/dx atan((sqrt(1+x^2)-1)/x) == 1/(2(1+x^2))  [PROVED]
+✓ Identity 1 (numeric): max |Δ| = 6.68e-52 (target ≤ 1e-30) → OK
+✓ Identity 2 (symbolic @ x=1/2): atan(2x√(1-x^2)/(1-2x^2)) = π/3  [PROVED]
+✓ Identity 2 (numeric, |x|≤0.7): max |Δ| = 2.67e-51 (target ≤ 1e-30) → OK
+
+STEP 2 — Geometry cameo: the golden ratio φ and half-angle
+----------------------------------------------------------
+φ cameo: atan((√(1+φ²)-1)/φ) vs 0.5*atan(φ)  →  |Δ| = 0.00e+00  (angles match to high precision)
+
+STEP 3 — Z-Framework geodesic θ′(n,k) demo (k≈0.3)
+---------------------------------------------------
+Running density-correct demo: N=200,000, bins=32, seed=42
+binning: quantile (min occupancy per bin: 312)
+Result (density-based): densest-bin enhancement ≈ 8.18%
+(for transparency) Raw-count enhancement (biased) ≈ 8.19%
+n per bin:        [6250, 6250, 6250, 6250, 6250, 6250, 6250, 6250, 6250, 6250, 6250, 6250, 6250, 6250, 6250, 6250, 6249, 6250, 6250, 6250, 6250, 6250, 6250, 6250, 6250, 6250, 6250, 6250, 6250, 6250, 6250, 6250]
+primes per bin:   [534, 567, 570, 549, 554, 563, 555, 555, 587, 556, 546, 583, 563, 565, 547, 565, 567, 563, 538, 608, 571, 589, 564, 580, 547, 525, 578, 581, 553, 555, 552, 554]
+density per bin:  [0.08544, 0.09072, 0.0912, 0.08784, 0.08864, 0.09008, 0.0888, 0.0888, 0.09392, 0.08896, 0.08736, 0.09328, 0.09008, 0.0904, 0.08752, 0.0904, 0.090735, 0.09008, 0.08608, 0.09728, 0.09136, 0.09424, 0.09024, 0.0928, 0.08752, 0.084, 0.09248, 0.09296, 0.08848, 0.0888, 0.08832, 0.08864]
+
+Bootstrap CI (density enhancement): mean=6.91%  95% CI=[4.27%, 8.90%]
+
+Epilogue — Takeaways
+---------------------
+• Identities hold (symbolically exact; tiny numeric error).
+• Half-angle / double-angle keep curvature steps simple and stable.
+• θ′(n,k) is not uniform for k≠1 → density matters; counts can mislead.
+• Use **quantile bins** and occupancy guards to avoid artifacts.
+• Bootstrap if you need a quick CI at larger N.
+# Scale up N (CI should tighten; effect should nudge upward toward the large-N regime):
+
+STEP 1 — Verify the arctan identities (symbolic & numeric)
+-----------------------------------------------------------
+✓ Identity 1 (symbolic): d/dx atan((sqrt(1+x^2)-1)/x) == 1/(2(1+x^2))  [PROVED]
+✓ Identity 1 (numeric): max |Δ| = 0.00e+00 (target ≤ 1e-30) → OK
+✓ Identity 2 (symbolic @ x=1/2): atan(2x√(1-x^2)/(1-2x^2)) = π/3  [PROVED]
+✓ Identity 2 (numeric, |x|≤0.7): max |Δ| = 2.67e-51 (target ≤ 1e-30) → OK
+
+STEP 2 — Geometry cameo: the golden ratio φ and half-angle
+----------------------------------------------------------
+φ cameo: atan((√(1+φ²)-1)/φ) vs 0.5*atan(φ)  →  |Δ| = 0.00e+00  (angles match to high precision)
+
+STEP 3 — Z-Framework geodesic θ′(n,k) demo (k≈0.3)
+---------------------------------------------------
+Running density-correct demo: N=500,000, bins=24, seed=42
+binning: quantile (min occupancy per bin: 1042)
+Result (density-based): densest-bin enhancement ≈ 3.77%
+(for transparency) Raw-count enhancement (biased) ≈ 3.77%
+n per bin:        [20833, 20834, 20833, 20833, 20833, 20834, 20833, 20833, 20834, 20833, 20833, 20834, 20833, 20833, 20833, 20834, 20833, 20833, 20834, 20833, 20833, 20833, 20834, 20833]
+primes per bin:   [1692, 1719, 1709, 1717, 1715, 1714, 1775, 1718, 1731, 1754, 1724, 1724, 1744, 1726, 1768, 1761, 1771, 1736, 1680, 1691, 1796, 1733, 1718, 1722]
+density per bin:  [0.081217, 0.082509, 0.082033, 0.082417, 0.082321, 0.082269, 0.085201, 0.082465, 0.083085, 0.084193, 0.082753, 0.082749, 0.083713, 0.082849, 0.084865, 0.084525, 0.085009, 0.083329, 0.080637, 0.081169, 0.086209, 0.083185, 0.082461, 0.082657]
+
+Bootstrap CI (density enhancement): mean=3.32%  95% CI=[2.18%, 4.25%]
+
+Epilogue — Takeaways
+---------------------
+• Identities hold (symbolically exact; tiny numeric error).
+• Half-angle / double-angle keep curvature steps simple and stable.
+• θ′(n,k) is not uniform for k≠1 → density matters; counts can mislead.
+• Use **quantile bins** and occupancy guards to avoid artifacts.
+• Bootstrap if you need a quick CI at larger N.

@@ -1,0 +1,375 @@
+====================================================================================================
+COMPREHENSIVE Z-MODEL NUMERICAL INSTABILITY AND PRIME DENSITY ANALYSIS
+====================================================================================================
+
+EXECUTIVE SUMMARY:
+This report presents comprehensive testing of the Z-model geometric prime
+distribution framework for numerical instability and prime density enhancement
+under the θ'(n, k) modular transform, addressing all requirements from issue #169.
+
+TEST CONFIGURATION:
+Number of test configurations: 9
+N values tested: [1000, 5000, 10000]
+k values tested: [0.25, 0.3, 0.35]
+Total primes analyzed: 6,198
+Total computation time: 31.10 seconds
+
+PRIME DENSITY ENHANCEMENT ANALYSIS:
+(Requirement: Expected ~15% enhancement with CI [14.6%, 15.4%])
+
+N=1,000, k=0.25:
+  Float64 enhancement:      27.1797 (2717.97%)
+  High precision enhance.:  27.1797 (2717.97%)
+  Precision difference:     0.000000
+  ✗ Enhancement outside expected range [14.6%, 15.4%]
+
+N=1,000, k=0.3:
+  Float64 enhancement:      5.7941 (579.41%)
+  High precision enhance.:  5.7941 (579.41%)
+  Precision difference:     0.000000
+  ✗ Enhancement outside expected range [14.6%, 15.4%]
+
+N=1,000, k=0.35:
+  Float64 enhancement:      2.8725 (287.25%)
+  High precision enhance.:  2.8725 (287.25%)
+  Precision difference:     0.000000
+  ✗ Enhancement outside expected range [14.6%, 15.4%]
+
+N=5,000, k=0.25:
+  Float64 enhancement:      20.3807 (2038.07%)
+  High precision enhance.:  20.3807 (2038.07%)
+  Precision difference:     0.000000
+  ✗ Enhancement outside expected range [14.6%, 15.4%]
+
+N=5,000, k=0.3:
+  Float64 enhancement:      5.4540 (545.40%)
+  High precision enhance.:  5.4540 (545.40%)
+  Precision difference:     0.000000
+  ✗ Enhancement outside expected range [14.6%, 15.4%]
+
+N=5,000, k=0.35:
+  Float64 enhancement:      3.0152 (301.52%)
+  High precision enhance.:  3.0152 (301.52%)
+  Precision difference:     0.000000
+  ✗ Enhancement outside expected range [14.6%, 15.4%]
+
+N=10,000, k=0.25:
+  Float64 enhancement:      43.3693 (4336.93%)
+  High precision enhance.:  43.3693 (4336.93%)
+  Precision difference:     0.000000
+  ✗ Enhancement outside expected range [14.6%, 15.4%]
+
+N=10,000, k=0.3:
+  Float64 enhancement:      5.6201 (562.01%)
+  High precision enhance.:  5.6201 (562.01%)
+  Precision difference:     0.000000
+  ✗ Enhancement outside expected range [14.6%, 15.4%]
+
+N=10,000, k=0.35:
+  Float64 enhancement:      2.0900 (209.00%)
+  High precision enhance.:  2.0900 (209.00%)
+  Precision difference:     0.000000
+  ✗ Enhancement outside expected range [14.6%, 15.4%]
+
+NUMERICAL STABILITY ANALYSIS:
+(Requirement: Identify threshold where errors > 10^-6)
+
+N=1,000, k=0.25 - Precision Analysis:
+  15 dps: Max error 0.00e+00 < threshold ✓
+  30 dps: Max error 2.13e-13 < threshold ✓
+  50 dps: Max error 2.13e-13 < threshold ✓
+
+N=1,000, k=0.3 - Precision Analysis:
+  15 dps: Max error 2.22e-16 < threshold ✓
+  30 dps: Max error 1.87e-13 < threshold ✓
+  50 dps: Max error 1.87e-13 < threshold ✓
+
+N=1,000, k=0.35 - Precision Analysis:
+  15 dps: Max error 2.22e-16 < threshold ✓
+  30 dps: Max error 1.60e-13 < threshold ✓
+  50 dps: Max error 1.60e-13 < threshold ✓
+
+N=5,000, k=0.25 - Precision Analysis:
+  15 dps: Max error 0.00e+00 < threshold ✓
+  30 dps: Max error 6.19e-12 < threshold ✓
+  50 dps: Max error 6.19e-12 < threshold ✓
+
+N=5,000, k=0.3 - Precision Analysis:
+  15 dps: Max error 2.22e-16 < threshold ✓
+  30 dps: Max error 4.94e-12 < threshold ✓
+  50 dps: Max error 4.94e-12 < threshold ✓
+
+N=5,000, k=0.35 - Precision Analysis:
+  15 dps: Max error 2.22e-16 < threshold ✓
+  30 dps: Max error 3.83e-12 < threshold ✓
+  50 dps: Max error 3.83e-12 < threshold ✓
+
+N=10,000, k=0.25 - Precision Analysis:
+  15 dps: Max error 2.22e-16 < threshold ✓
+  30 dps: Max error 6.19e-12 < threshold ✓
+  50 dps: Max error 6.19e-12 < threshold ✓
+
+N=10,000, k=0.3 - Precision Analysis:
+  15 dps: Max error 2.22e-16 < threshold ✓
+  30 dps: Max error 4.94e-12 < threshold ✓
+  50 dps: Max error 4.94e-12 < threshold ✓
+
+N=10,000, k=0.35 - Precision Analysis:
+  15 dps: Max error 2.22e-16 < threshold ✓
+  30 dps: Max error 3.83e-12 < threshold ✓
+  50 dps: Max error 3.83e-12 < threshold ✓
+
+DISCREPANCY AND EQUIDISTRIBUTION ANALYSIS:
+(Requirement: Check for O(1/√N) scaling and deviations)
+
+N=1,000, k=0.25:
+  Observed discrepancy:     0.478601
+  Theoretical O(1/√N):      0.077152
+  Ratio (observed/theory):  6.20
+  ✗ Discrepancy significantly above Weyl bound
+  99% CI:                   [0.432651, 0.537742]
+
+N=1,000, k=0.3:
+  Observed discrepancy:     0.421667
+  Theoretical O(1/√N):      0.077152
+  Ratio (observed/theory):  5.47
+  ✗ Discrepancy significantly above Weyl bound
+  99% CI:                   [0.367858, 0.475840]
+
+N=1,000, k=0.35:
+  Observed discrepancy:     0.370021
+  Theoretical O(1/√N):      0.077152
+  Ratio (observed/theory):  4.80
+  ~ Discrepancy moderately above Weyl bound
+  99% CI:                   [0.314658, 0.429996]
+
+N=5,000, k=0.25:
+  Observed discrepancy:     0.486007
+  Theoretical O(1/√N):      0.038662
+  Ratio (observed/theory):  12.57
+  ✗ Discrepancy significantly above Weyl bound
+  99% CI:                   [0.462525, 0.525177]
+
+N=5,000, k=0.3:
+  Observed discrepancy:     0.432393
+  Theoretical O(1/√N):      0.038662
+  Ratio (observed/theory):  11.18
+  ✗ Discrepancy significantly above Weyl bound
+  99% CI:                   [0.410959, 0.467969]
+
+N=5,000, k=0.35:
+  Observed discrepancy:     0.383199
+  Theoretical O(1/√N):      0.038662
+  Ratio (observed/theory):  9.91
+  ✗ Discrepancy significantly above Weyl bound
+  99% CI:                   [0.351273, 0.420262]
+
+N=10,000, k=0.25:
+  Observed discrepancy:     0.481930
+  Theoretical O(1/√N):      0.028525
+  Ratio (observed/theory):  16.90
+  ✗ Discrepancy significantly above Weyl bound
+  99% CI:                   [0.465087, 0.512803]
+
+N=10,000, k=0.3:
+  Observed discrepancy:     0.426897
+  Theoretical O(1/√N):      0.028525
+  Ratio (observed/theory):  14.97
+  ✗ Discrepancy significantly above Weyl bound
+  99% CI:                   [0.406297, 0.452076]
+
+N=10,000, k=0.35:
+  Observed discrepancy:     0.378063
+  Theoretical O(1/√N):      0.028525
+  Ratio (observed/theory):  13.25
+  ✗ Discrepancy significantly above Weyl bound
+  99% CI:                   [0.358228, 0.402860]
+
+CONTROL EXPERIMENTS ANALYSIS:
+(Requirement: Test with non-primes and alternate irrational moduli)
+
+N=1,000, k=0.25 - Alternate Irrational Moduli:
+      sqrt_2: Enhancement 2.9558 (0.11x vs φ)
+      sqrt_3: Enhancement 2.3702 (0.09x vs φ)
+           e: Enhancement 0.0218 (0.00x vs φ)
+          pi: Enhancement -0.3233 (-0.01x vs φ)
+       gamma: Enhancement 2.8234 (0.10x vs φ)
+
+N=1,000, k=0.3 - Alternate Irrational Moduli:
+      sqrt_2: Enhancement 2.3054 (0.40x vs φ)
+      sqrt_3: Enhancement 1.8630 (0.32x vs φ)
+           e: Enhancement 0.1042 (0.02x vs φ)
+          pi: Enhancement -0.2323 (-0.04x vs φ)
+       gamma: Enhancement 2.1820 (0.38x vs φ)
+
+N=1,000, k=0.35 - Alternate Irrational Moduli:
+      sqrt_2: Enhancement 1.8448 (0.64x vs φ)
+      sqrt_3: Enhancement 1.4933 (0.52x vs φ)
+           e: Enhancement 0.1241 (0.04x vs φ)
+          pi: Enhancement -0.1115 (-0.04x vs φ)
+       gamma: Enhancement 1.7291 (0.60x vs φ)
+
+N=5,000, k=0.25 - Alternate Irrational Moduli:
+      sqrt_2: Enhancement 2.7441 (0.13x vs φ)
+      sqrt_3: Enhancement 2.6535 (0.13x vs φ)
+           e: Enhancement -0.0460 (-0.00x vs φ)
+          pi: Enhancement -0.4840 (-0.02x vs φ)
+       gamma: Enhancement 3.0883 (0.15x vs φ)
+
+N=5,000, k=0.3 - Alternate Irrational Moduli:
+      sqrt_2: Enhancement 2.0829 (0.38x vs φ)
+      sqrt_3: Enhancement 2.1075 (0.39x vs φ)
+           e: Enhancement 0.1456 (0.03x vs φ)
+          pi: Enhancement -0.3754 (-0.07x vs φ)
+       gamma: Enhancement 2.3659 (0.43x vs φ)
+
+N=5,000, k=0.35 - Alternate Irrational Moduli:
+      sqrt_2: Enhancement 1.6197 (0.54x vs φ)
+      sqrt_3: Enhancement 1.6983 (0.56x vs φ)
+           e: Enhancement 0.1925 (0.06x vs φ)
+          pi: Enhancement -0.2012 (-0.07x vs φ)
+       gamma: Enhancement 1.8583 (0.62x vs φ)
+
+N=10,000, k=0.25 - Alternate Irrational Moduli:
+      sqrt_2: Enhancement 2.9793 (0.07x vs φ)
+      sqrt_3: Enhancement 2.6528 (0.06x vs φ)
+           e: Enhancement -0.0960 (-0.00x vs φ)
+          pi: Enhancement -0.4473 (-0.01x vs φ)
+       gamma: Enhancement 3.0731 (0.07x vs φ)
+
+N=10,000, k=0.3 - Alternate Irrational Moduli:
+      sqrt_2: Enhancement 2.2752 (0.40x vs φ)
+      sqrt_3: Enhancement 2.1259 (0.38x vs φ)
+           e: Enhancement 0.0315 (0.01x vs φ)
+          pi: Enhancement -0.3169 (-0.06x vs φ)
+       gamma: Enhancement 2.3353 (0.42x vs φ)
+
+N=10,000, k=0.35 - Alternate Irrational Moduli:
+      sqrt_2: Enhancement 1.7828 (0.85x vs φ)
+      sqrt_3: Enhancement 1.7278 (0.83x vs φ)
+           e: Enhancement 0.1190 (0.06x vs φ)
+          pi: Enhancement -0.1968 (-0.09x vs φ)
+       gamma: Enhancement 1.8203 (0.87x vs φ)
+
+Z-FRAMEWORK INTEGRATION ANALYSIS:
+(Requirement: Integrate with existing Z-framework core modules)
+
+N=1,000, k=0.25 - DiscreteZetaShift Integration:
+  Successful computations:  50
+  Mean Z value:             18.365690
+  Mean I value:             1.267038
+  Avg computation time:     0.000211s
+
+N=1,000, k=0.3 - DiscreteZetaShift Integration:
+  Successful computations:  50
+  Mean Z value:             18.365690
+  Mean I value:             1.267038
+  Avg computation time:     0.000205s
+
+N=1,000, k=0.35 - DiscreteZetaShift Integration:
+  Successful computations:  50
+  Mean Z value:             18.365690
+  Mean I value:             1.267038
+  Avg computation time:     0.000205s
+
+N=5,000, k=0.25 - DiscreteZetaShift Integration:
+  Successful computations:  50
+  Mean Z value:             18.365690
+  Mean I value:             1.267038
+  Avg computation time:     0.000204s
+
+N=5,000, k=0.3 - DiscreteZetaShift Integration:
+  Successful computations:  50
+  Mean Z value:             18.365690
+  Mean I value:             1.267038
+  Avg computation time:     0.000209s
+
+N=5,000, k=0.35 - DiscreteZetaShift Integration:
+  Successful computations:  50
+  Mean Z value:             18.365690
+  Mean I value:             1.267038
+  Avg computation time:     0.000236s
+
+N=10,000, k=0.25 - DiscreteZetaShift Integration:
+  Successful computations:  50
+  Mean Z value:             18.365690
+  Mean I value:             1.267038
+  Avg computation time:     0.000191s
+
+N=10,000, k=0.3 - DiscreteZetaShift Integration:
+  Successful computations:  50
+  Mean Z value:             18.365690
+  Mean I value:             1.267038
+  Avg computation time:     0.000192s
+
+N=10,000, k=0.35 - DiscreteZetaShift Integration:
+  Successful computations:  50
+  Mean Z value:             18.365690
+  Mean I value:             1.267038
+  Avg computation time:     0.000183s
+
+STATISTICAL VALIDATION SUMMARY:
+
+N=1,000, k=0.25:
+  KS test statistic:        0.484554
+  KS test p-value:          0.000000
+  ✓ Significant deviation from uniform (p < 0.05)
+
+N=1,000, k=0.3:
+  KS test statistic:        0.427619
+  KS test p-value:          0.000000
+  ✓ Significant deviation from uniform (p < 0.05)
+
+N=1,000, k=0.35:
+  KS test statistic:        0.375973
+  KS test p-value:          0.000000
+  ✓ Significant deviation from uniform (p < 0.05)
+
+N=5,000, k=0.25:
+  KS test statistic:        0.487502
+  KS test p-value:          0.000000
+  ✓ Significant deviation from uniform (p < 0.05)
+
+N=5,000, k=0.3:
+  KS test statistic:        0.433888
+  KS test p-value:          0.000000
+  ✓ Significant deviation from uniform (p < 0.05)
+
+N=5,000, k=0.35:
+  KS test statistic:        0.384694
+  KS test p-value:          0.000000
+  ✓ Significant deviation from uniform (p < 0.05)
+
+N=10,000, k=0.25:
+  KS test statistic:        0.482743
+  KS test p-value:          0.000000
+  ✓ Significant deviation from uniform (p < 0.05)
+
+N=10,000, k=0.3:
+  KS test statistic:        0.427710
+  KS test p-value:          0.000000
+  ✓ Significant deviation from uniform (p < 0.05)
+
+N=10,000, k=0.35:
+  KS test statistic:        0.378877
+  KS test p-value:          0.000000
+  ✓ Significant deviation from uniform (p < 0.05)
+
+CONCLUSIONS AND RECOMMENDATIONS:
+
+Based on the comprehensive analysis:
+
+1. ENHANCEMENT CONSISTENCY: Mean enhancement 12.8640 ± 13.5904
+2. WEYL BOUND ADHERENCE: Mean ratio 10.58
+3. NUMERICAL STABILITY: High precision and float64 results show good agreement
+4. CONTROL VALIDATION: φ shows distinct behavior compared to other irrationals
+5. Z-FRAMEWORK INTEGRATION: Successfully integrated with DiscreteZetaShift
+
+RECOMMENDATIONS FOR FUTURE WORK:
+• Extend testing to N=10^9 with distributed computing
+• Implement full star discrepancy computation for precise Weyl bounds
+• Add spectral analysis of prime gap distributions
+• Investigate connection to Riemann zeta zeros
+• Develop explicit Weyl bound integration as suggested in requirements
+
+====================================================================================================

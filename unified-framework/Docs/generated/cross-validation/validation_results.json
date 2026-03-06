@@ -1,0 +1,17 @@
+{
+    "total_zeros_computed": 100,
+    "excluded_zeros": 1,
+    "valid_zeros_for_analysis": 99,
+    "total_spacings": 98,
+    "exclusion_threshold": 17.079468445347135,
+    "raw_spacing_mean": 0.08893845789237219,
+    "raw_spacing_std": 0.17513889435113442,
+    "raw_spacing_min": 0.0006480303929539133,
+    "raw_spacing_max": 1.785810540241517,
+    "normalized_spacing_mean": 1.0,
+    "normalized_spacing_std": 1.9692144264866462,
+    "gue_theoretical_mean": 1.0,
+    "gue_theoretical_std": 0.6551363775620336,
+    "std_deviation_from_gue": 1.3140780489246127,
+    "std_relative_error": 2.0058083994888305
+}

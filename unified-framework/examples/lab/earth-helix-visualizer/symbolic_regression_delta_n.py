@@ -1,0 +1,54 @@
+# symbolic_regression_delta_n.py
+
+import numpy as np
+from sympy import GoldenRatio, pi, E
+from pysr import PySRRegressor
+
+# -----------------------------
+# Step 1: Generate Data
+# -----------------------------
+n = np.arange(2, 1001)
+
+# Digit diversity proxy: number of unique digits in n
+def digit_diversity(n_val):
+    return len(set(str(n_val)))
+
+d_n = np.array([digit_diversity(i) for i in n])
+
+# Target Δₙ = d(n) · ln(n+1) / e²
+delta_n = d_n * np.log(n + 1) / float(E)**2
+
+# -----------------------------
+# Step 2: Prepare Feature Matrix
+# -----------------------------
+X = np.column_stack([
+    n,                          # Raw n
+    np.log(n),                  # log(n)
+    np.sqrt(n),                 # sqrt(n)
+    d_n,                        # digit diversity
+    n % float(GoldenRatio),     # fractional part {n/φ}
+])
+
+y = delta_n
+
+# -----------------------------
+# Step 3: Symbolic Regression
+# -----------------------------
+model = PySRRegressor(
+    niterations=100,
+    binary_operators=["+", "-", "*", "/", "^"],
+    unary_operators=["log", "sqrt", "exp", "sin", "cos"],
+    constraints={'^': (-1, 1)},
+    extra_sympy_mappings={"phi": GoldenRatio, "pi": pi, "e": E},
+    model_selection="best",
+    verbosity=1,
+    progress=True,
+)
+
+model.fit(X, y)
+
+# -----------------------------
+# Step 4: Display Results
+# -----------------------------
+print("\nBest symbolic expressions found:")
+print(model)

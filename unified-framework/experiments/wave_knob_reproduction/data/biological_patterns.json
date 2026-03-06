@@ -1,0 +1,22 @@
+{
+  "sequence_length": 5000,
+  "scan_parameters": {
+    "window_range": [
+      20,
+      100,
+      10
+    ],
+    "step_range": [
+      5,
+      25,
+      5
+    ]
+  },
+  "scan_results": {
+    "motif": {
+      "total_scans": 32,
+      "correlations": {
+        "R_vs_count": {
+          "correlation": 0.6018001950591412,
+          "p_value": 0.00026887352840441206,
+          "significant": 

@@ -1,0 +1,44 @@
+{
+  "test_summary": {
+    "test_case_id": "TC-INST-01",
+    "description": "Scale Escalation - Asymptotic Convergence Validation",
+    "overall_status": "FAILED",
+    "convergence_achieved": false,
+    "pass_rate": 0.25,
+    "total_tests": 4,
+    "passed_tests": 1,
+    "final_enhancement": 15.825057372526272,
+    "target_proximity": 0.12505737252627291,
+    "target_enhancement": 15.7,
+    "timestamp": "2025-08-09T10:12:20.310357"
+  },
+  "individual_results": [
+    {
+      "N": 5000,
+      "num_primes": 669,
+      "prime_ratio": 0.1338,
+      "k_star": 3.2,
+      "enhancement": 37.10728048161708,
+      "ci_lower": -6.203903929627826,
+      "ci_upper": 5.24165970216273,
+      "stability_analysis": {
+        "max_deviation": 0.0,
+        "mean_deviation": 0.0,
+        "stability_ok": true,
+        "sample_size": 50
+      },
+      "weyl_analysis": {
+        "discrepancy_bound": 0.11698649953246879,
+        "first_term": 0.0014947683109118087,
+        "second_term": 0.09549173122155698,
+        "third_term": 0.02
+      },
+      "control_analysis": {
+        "random_enhancement": 17.48235294117648,
+        "composite_enhancement": 5.1919999999999975,
+        "random_sample_size": 2500,
+        "composite_sample_size": 2500
+      },
+      "validation_checks": {
+        "enhancement_in_target": false,
+        "ci_contains_target": 

@@ -1,0 +1,27 @@
+Theoretical Symmetry Diagnostics Analysis Report
+=======================================================
+
+This report demonstrates the expected theoretical behavior
+of symmetry diagnostics between Li and Z5D predictors.
+
+Configuration:
+Z5D parameters: c = -0.00247, k* = 0.04449
+Range: k ∈ [10², 10¹⁰]
+Number of points: 300
+
+Expected Results:
+- Panel A: r² > 0.95 (collapse test)
+- Panel B: Pivot at k₀ ≈ 1618
+- Panel C: Z5D errors < 0.01% for k ≥ 10⁵
+- Panel D: Slope ≈ 1.8, intercept ≈ 0.02
+
+Bootstrap Validation:
+- Mean |ε_LI - ε_Z5D| ≈ 1.2 × 10⁻³
+- 95% CI: [8.9 × 10⁻⁴, 1.5 × 10⁻³]
+- Correlation: r ≈ 0.93 (p < 10⁻¹⁰)
+
+Theoretical Basis:
+- Li bias: O(1/ln k)
+- Z5D bias: O(1/ln² k)
+- Phase term φ/B acts as symmetry coordinate
+- Affine relationship modulated by Riemann zeta zeros

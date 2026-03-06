@@ -1,0 +1,50 @@
+{
+  "test_configuration": {
+    "N_values": [
+      1000,
+      5000,
+      10000
+    ],
+    "k_values": [
+      0.25,
+      0.3,
+      0.35
+    ],
+    "num_bootstrap": 50,
+    "precision_threshold": 1e-06,
+    "alternate_irrationals": {
+      "sqrt_2": 1.4142135623730951,
+      "sqrt_3": 1.7320508075688772,
+      "e": 2.718281828459045,
+      "pi": 3.141592653589793,
+      "gamma": 0.5772156649015329
+    }
+  },
+  "results": [
+    {
+      "N": 1000,
+      "k": 0.25,
+      "num_primes": 168,
+      "basic_float64": {
+        "enhancement": 27.17967753462689,
+        "discrepancy": 0.47860125936710335,
+        "ks_statistic": 0.48455364031948434,
+        "ks_p_value": 7.658139718745806e-37,
+        "computation_time": 0.31528282165527344
+      },
+      "basic_high_precision": {
+        "enhancement": 27.17967753638222,
+        "discrepancy": 0.4786012593671201,
+        "ks_statistic": 0.4845536403195011,
+        "ks_p_value": 7.658139718698553e-37,
+        "computation_time": 0.5993180274963379
+      },
+      "control_experiments": {
+        "sqrt_2": {
+          "irrational_value": 1.4142135623730951,
+          "enhancement": 2.9558229056745677,
+          "discrepancy": 0.49760056477325737,
+          "ks_statistic": 0.5035529457256384,
+          "ks_p_value": 5.884811806277731e-40,
+          "kl_divergence": 0.7168825041239923,
+          "transformed_data": 

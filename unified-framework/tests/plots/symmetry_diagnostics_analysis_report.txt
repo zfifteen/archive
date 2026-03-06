@@ -1,0 +1,21 @@
+Symmetry Diagnostics Analysis Report
+==================================================
+
+Basic Statistics:
+Number of k values tested: 200
+Range: k ∈ [100, 1e+10]
+Mean Li error: 0.000707
+Mean Z5D error: 0.000071
+Mean error reduction: 10.00x
+
+Panel A - Collapse Test Analysis:
+Correlation coefficient (r): -0.108049
+Coefficient of determination (r²): 0.011674
+Target achieved (r² > 0.95): NO
+
+Panel B - Pivot Symmetry Analysis:
+Theoretical pivot k₀: 1618
+Panel D - Affine Alignment Analysis:
+Regression slope: 10.000 (target ≈ 1.8)
+Regression intercept: -0.000000 (target ≈ 0.02)
+Correlation: 1.000000

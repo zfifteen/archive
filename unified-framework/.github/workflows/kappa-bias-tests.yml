@@ -1,0 +1,50 @@
+name: κ-Bias Tests
+
+on:
+  push:
+    branches: [ copilot/implement-k-biased-integration ]
+    paths:
+      - 'src/core/divisor_density.py'
+      - 'src/core/z_5d_enhanced.py'
+      - 'tests/test_kappa_bias.py'
+      - 'examples/kappa_stadlmann_demo.py'
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'src/core/divisor_density.py'
+      - 'src/core/z_5d_enhanced.py'
+      - 'tests/test_kappa_bias.py'
+      - 'examples/kappa_stadlmann_demo.py'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      
+      - name: Install dependencies
+        run: |
+          pip install mpmath sympy scipy numpy pytest matplotlib scikit-learn pandas statsmodels
+      
+      - name: Run κ-bias tests
+        run: |
+          pytest tests/test_kappa_bias.py -v --tb=short
+      
+      - name: Run Stadlmann regression tests
+        run: |
+          pytest tests/test_stadlmann_integration.py -v --tb=short
+      
+      - name: Run demo benchmark
+        run: |
+          python examples/kappa_stadlmann_demo.py --n 100000 --replicates 10 --out kappa_benchmark.csv --quiet
+      
+      - name: Upload benchmark results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: kappa-benchmark-results
+          path: kappa_benchmark.csv

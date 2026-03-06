@@ -1,0 +1,75 @@
+{
+  "extended_analysis": true,
+  "ranges": [
+    {
+      "n_min": 2,
+      "n_max": 49,
+      "n_primes": 15,
+      "n_composites": 33,
+      "prime_mean_kappa": 0.7391150530901279,
+      "composite_mean_kappa": 2.2522583140606045,
+      "separation_ratio": 3.047236427731047,
+      "optimal_threshold": 1.1256872400688767,
+      "accuracy": 0.9375,
+      "prime_ci": [
+        0.5958494929223297,
+        0.8763504573766973
+      ],
+      "composite_ci": [
+        1.9025144024625327,
+        2.630888631322365
+      ],
+      "hypothesis_pass": false
+    },
+    {
+      "n_min": 2,
+      "n_max": 100,
+      "n_primes": 25,
+      "n_composites": 74,
+      "prime_mean_kappa": 0.90651243436824,
+      "composite_mean_kappa": 3.061915158735083,
+      "separation_ratio": 3.3776868828820534,
+      "optimal_threshold": 1.2464840229470056,
+      "accuracy": 0.9595959595959596,
+      "prime_ci": [
+        0.7885589342714173,
+        1.010453041046761
+      ],
+      "composite_ci": [
+        2.6995657638572608,
+        3.426426306490675
+      ],
+      "hypothesis_pass": false
+    },
+    {
+      "n_min": 50,
+      "n_max": 100,
+      "n_primes": 10,
+      "n_composites": 41,
+      "prime_mean_kappa": 1.157608506285408,
+      "composite_mean_kappa": 3.713590180058444,
+      "separation_ratio": 3.207984530085044,
+      "optimal_threshold": 2.1284589425668825,
+      "accuracy": 1.0,
+      "prime_ci": [
+        1.1269609101072953,
+        1.1886522818822858
+      ],
+      "composite_ci": [
+        3.2281523927251143,
+        4.215872234990247
+      ],
+      "hypothesis_pass": false
+    }
+  ],
+  "n_bootstrap": 1000,
+  "summary": {
+    "total_ranges": 3,
+    "passing_ranges": 0,
+    "pass_rate": 0.0,
+    "avg_prime_kappa": 0.9344119979145921,
+    "avg_composite_kappa": 3.0092545509513773,
+    "avg_separation": 3.210969280232715,
+    "avg_accuracy": 0.9656986531986531
+  }
+}

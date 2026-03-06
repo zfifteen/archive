@@ -1,0 +1,238 @@
+Vortex O values: [0.01824863266305322]
+Sample generated key: bd557ff104f70a9c39ecbb8677c31d94
+Wave-Knob Scanner initialized
+Precision: 150 decimal places
+Wheel modulus: 210
+Target k: 10000000000000000000000000000000000000000000000000004871502746169252088872296091142828433481010249728.0
+Running auto-tune scan (target count: 15)
+Auto-tune completed:
+  Locked: True
+  Iterations: 24
+  Final R*: 451.000000
+  Prime count: 15
+  Primality tests: 11508
+  Elapsed time: 1.999s
+{
+  "k": 1e+100,
+  "z5d_prediction": 2.347125735865764e+102,
+  "target_count": 15,
+  "iterations": 24,
+  "locked": true,
+  "final_window": 902,
+  "final_step": 2,
+  "final_R": 451.0,
+  "prime_count": 15,
+  "primes_found": [
+    2347125735865764178036135909936302071965422425978615974280662181896908091268136273855946283663014038043,
+    2347125735865764178036135909936302071965422425978615974280662181896908091268136273855946283663014084663,
+    2347125735865764178036135909936302071965422425978615974280662181896908091268136273855946283663013995203,
+    2347125735865764178036135909936302071965422425978615974280662181896908091268136273855946283663014108603,
+    2347125735865764178036135909936302071965422425978615974280662181896908091268136273855946283663014109863,
+    2347125735865764178036135909936302071965422425978615974280662181896908091268136273855946283663014111123,
+    2347125735865764178036135909936302071965422425978615974280662181896908091268136273855946283663013977983,
+    2347125735865764178036135909936302071965422425978615974280662181896908091268136273855946283663013959083,
+    2347125735865764178036135909936302071965422425978615974280662181896908091268136273855946283663014157323,
+    2347125735865764178036135909936302071965422425978615974280662181896908091268136273855946283663014193443,
+    2347125735865764178036135909936302071965422425978615974280662181896908091268136273855946283663013900703,
+    2347125735865764178036135909936302071965422425978615974280662181896908091268136273855946283663014204363,
+    2347125735865764178036135909936302071965422425978615974280662181896908091268136273855946283663013874243,
+    2347125735865764178036135909936302071965422425978615974280662181896908091268136273855946283663014234603,
+    2347125735865764178036135909936302071965422425978615974280662181896908091268136273855946283663013863743
+  ],
+  "convergence_history": [
+    {
+      "iteration": 1,
+      "window": 64,
+      "step": 2,
+      "R": 32.0,
+      "prime_count": 0,
+      "adjustment": "expand_window"
+    },
+    {
+      "iteration": 2,
+      "window": 96,
+      "step": 2,
+      "R": 48.0,
+      "prime_count": 2,
+      "adjustment": "fine_expand"
+    },
+    {
+      "iteration": 3,
+      "window": 115,
+      "step": 2,
+      "R": 57.5,
+      "prime_count": 2,
+      "adjustment": "fine_expand"
+    },
+    {
+      "iteration": 4,
+      "window": 138,
+      "step": 2,
+      "R": 69.0,
+      "prime_count": 1,
+      "adjustment": "fine_expand"
+    },
+    {
+      "iteration": 5,
+      "window": 165,
+      "step": 2,
+      "R": 82.5,
+      "prime_count": 1,
+      "adjustment": "fine_expand"
+    },
+    {
+      "iteration": 6,
+      "window": 198,
+      "step": 2,
+      "R": 99.0,
+      "prime_count": 2,
+      "adjustment": "fine_expand"
+    },
+    {
+      "iteration": 7,
+      "window": 237,
+      "step": 2,
+      "R": 118.5,
+      "prime_count": 7,
+      "adjustment": "fine_expand"
+    },
+    {
+      "iteration": 8,
+      "window": 284,
+      "step": 2,
+      "R": 142.0,
+      "prime_count": 2,
+      "adjustment": "fine_expand"
+    },
+    {
+      "iteration": 9,
+      "window": 340,
+      "step": 2,
+      "R": 170.0,
+      "prime_count": 7,
+      "adjustment": "fine_expand"
+    },
+    {
+      "iteration": 10,
+      "window": 408,
+      "step": 2,
+      "R": 204.0,
+      "prime_count": 11,
+      "adjustment": "fine_expand"
+    },
+    {
+      "iteration": 11,
+      "window": 489,
+      "step": 2,
+      "R": 244.5,
+      "prime_count": 10,
+      "adjustment": "fine_expand"
+    },
+    {
+      "iteration": 12,
+      "window": 586,
+      "step": 2,
+      "R": 293.0,
+      "prime_count": 7,
+      "adjustment": "fine_expand"
+    },
+    {
+      "iteration": 13,
+      "window": 703,
+      "step": 2,
+      "R": 351.5,
+      "prime_count": 12,
+      "adjustment": "fine_expand"
+    },
+    {
+      "iteration": 14,
+      "window": 843,
+      "step": 2,
+      "R": 421.5,
+      "prime_count": 17,
+      "adjustment": "shrink_window"
+    },
+    {
+      "iteration": 15,
+      "window": 564,
+      "step": 2,
+      "R": 282.0,
+      "prime_count": 9,
+      "adjustment": "fine_expand"
+    },
+    {
+      "iteration": 16,
+      "window": 676,
+      "step": 2,
+      "R": 338.0,
+      "prime_count": 14,
+      "adjustment": "fine_expand"
+    },
+    {
+      "iteration": 17,
+      "window": 811,
+      "step": 2,
+      "R": 405.5,
+      "prime_count": 18,
+      "adjustment": "shrink_window"
+    },
+    {
+      "iteration": 18,
+      "window": 543,
+      "step": 2,
+      "R": 271.5,
+      "prime_count": 6,
+      "adjustment": "fine_expand"
+    },
+    {
+      "iteration": 19,
+      "window": 651,
+      "step": 2,
+      "R": 325.5,
+      "prime_count": 14,
+      "adjustment": "fine_expand"
+    },
+    {
+      "iteration": 20,
+      "window": 781,
+      "step": 2,
+      "R": 390.5,
+      "prime_count": 18,
+      "adjustment": "shrink_window"
+    },
+    {
+      "iteration": 21,
+      "window": 523,
+      "step": 2,
+      "R": 261.5,
+      "prime_count": 14,
+      "adjustment": "fine_expand"
+    },
+    {
+      "iteration": 22,
+      "window": 627,
+      "step": 2,
+      "R": 313.5,
+      "prime_count": 9,
+      "adjustment": "fine_expand"
+    },
+    {
+      "iteration": 23,
+      "window": 752,
+      "step": 2,
+      "R": 376.0,
+      "prime_count": 11,
+      "adjustment": "fine_expand"
+    },
+    {
+      "iteration": 24,
+      "window": 902,
+      "step": 2,
+      "R": 451.0,
+      "prime_count": 15,
+      "adjustment": "none"
+    }
+  ],
+  "total_primality_tests": 11508,
+  "elapsed_time": 1.9986941814422607
+}

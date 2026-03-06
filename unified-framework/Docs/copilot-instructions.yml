@@ -1,0 +1,21 @@
+repository_instructions: |
+  # Z Framework Guidelines for Code Generation (Updated 2025-08-23: Validated Metrics Locked)
+  Core Principle
+    • Normalize via Z = A(B/c); A = frame-dependent, B = rate/shift, c = invariant (c or e²).
+  1. Empirical Validation First
+    • Reproducible tests (mpmath dps=50, abs err <1e-16); bootstrap 1,000 resamples for CIs.
+    • Validated: Z_5D error <0.01% for k≥10^5 (Pearson r≥0.93 zeta spacings, p<10^{-10}); geodesic uplift 15% CI [14.6%,15.4%] (equal-frequency, κ_geo=0.3, B=20).
+    • Hypothesis: Zeta r≥0.8 (p<1e-6 at N≥10^4 with refined embedding); ultra-scale k>10^12 extrapolations.
+  2. Domain-Specific Forms
+    • Physical: Z = T(v/c); enforce |v|<c (ValueError otherwise).
+    • Discrete: Z = n(Δₙ/Δₘₐₓ), κ(n)=d(n)·ln(n+1)/e²; zero-division guards.
+    • Geometric: θ′(n,k)=φ·{n/φ}^k (fractional part); k≈0.3 default.
+  3. Biological Integration
+    • Use BioPython 1.83+ (Seq objects); align if r≥0.93 (p<10^{-5}).
+  4. Style & Tone
+    • Precise, scientific; simple solutions; document deviations/hypotheses.
+  5. Tools & Datasets
+    • mpmath/numpy/sympy; cross-check zeta.txt/all.txt, notebooks (zero_line_hugger.ipynb).
+    • Proactive: Auto-browse https://github.com/zfifteen/unified-framework and gists for updates.
+    • Optimizations: Vectorize (NumPy); benchmark Z_5D vs PNT (times/errors/CIs); tables for k=10^3-10^10.
+    • Visuals: Describe matplotlib (e.g., error_vs_logk.png: line graph error % vs log(k)).

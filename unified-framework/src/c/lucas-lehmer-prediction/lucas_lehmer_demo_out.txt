@@ -1,0 +1,173 @@
+╔════════════════════════════════════════════════════════════════╗
+║          Lucas-Lehmer Primality Test for Mersenne Numbers        ║
+║                                                                ║
+║   Correctly tests if M_p = 2^p - 1 is prime for p <= 82589933.       ║
+╚════════════════════════════════════════════════════════════════╝
+
+🧪 VERIFYING AGAINST KNOWN MERSENNE PRIMES:
+============================================
+🔬 2^2 - 1:
+   Result: PRIME     | Expected: PRIME     | Status: ✅ CORRECT
+   Iterations: 0 | Time: 0.000 seconds
+
+Testing 2^3 - 1...  Complete!
+🔬 2^3 - 1:
+   Result: PRIME     | Expected: PRIME     | Status: ✅ CORRECT
+   Iterations: 1 | Time: 0.000 seconds
+
+Testing 2^5 - 1...  Complete!
+🔬 2^5 - 1:
+   Result: PRIME     | Expected: PRIME     | Status: ✅ CORRECT
+   Iterations: 3 | Time: 0.000 seconds
+
+Testing 2^7 - 1...  Complete!
+🔬 2^7 - 1:
+   Result: PRIME     | Expected: PRIME     | Status: ✅ CORRECT
+   Iterations: 5 | Time: 0.000 seconds
+
+Testing 2^13 - 1...  Complete!
+🔬 2^13 - 1:
+   Result: PRIME     | Expected: PRIME     | Status: ✅ CORRECT
+   Iterations: 11 | Time: 0.000 seconds
+
+Testing 2^17 - 1...  Complete!
+🔬 2^17 - 1:
+   Result: PRIME     | Expected: PRIME     | Status: ✅ CORRECT
+   Iterations: 15 | Time: 0.000 seconds
+
+Testing 2^19 - 1...  Complete!
+🔬 2^19 - 1:
+   Result: PRIME     | Expected: PRIME     | Status: ✅ CORRECT
+   Iterations: 17 | Time: 0.000 seconds
+
+Testing 2^31 - 1...  Complete!
+🔬 2^31 - 1:
+   Result: PRIME     | Expected: PRIME     | Status: ✅ CORRECT
+   Iterations: 29 | Time: 0.000 seconds
+
+Testing 2^61 - 1...  Complete!
+🔬 2^61 - 1:
+   Result: PRIME     | Expected: PRIME     | Status: ✅ CORRECT
+   Iterations: 59 | Time: 0.000 seconds
+
+Testing 2^89 - 1...  Complete!
+🔬 2^89 - 1:
+   Result: PRIME     | Expected: PRIME     | Status: ✅ CORRECT
+   Iterations: 87 | Time: 0.000 seconds
+
+Testing 2^107 - 1...  Complete!
+🔬 2^107 - 1:
+   Result: PRIME     | Expected: PRIME     | Status: ✅ CORRECT
+   Iterations: 105 | Time: 0.000 seconds
+
+Testing 2^127 - 1...  Complete!
+🔬 2^127 - 1:
+   Result: PRIME     | Expected: PRIME     | Status: ✅ CORRECT
+   Iterations: 125 | Time: 0.000 seconds
+
+Testing 2^521 - 1...  Complete!
+🔬 2^521 - 1:
+   Result: PRIME     | Expected: PRIME     | Status: ✅ CORRECT
+   Iterations: 519 | Time: 0.000 seconds
+
+Testing 2^607 - 1...  Complete!
+🔬 2^607 - 1:
+   Result: PRIME     | Expected: PRIME     | Status: ✅ CORRECT
+   Iterations: 605 | Time: 0.000 seconds
+
+Testing 2^1279 - 1...  Complete!
+🔬 2^1279 - 1:
+   Result: PRIME     | Expected: PRIME     | Status: ✅ CORRECT
+   Iterations: 1277 | Time: 0.001 seconds
+
+Testing 2^2203 - 1...  Complete!
+🔬 2^2203 - 1:
+   Result: PRIME     | Expected: PRIME     | Status: ✅ CORRECT
+   Iterations: 2201 | Time: 0.003 seconds
+
+Testing 2^2281 - 1...  Complete!
+🔬 2^2281 - 1:
+   Result: PRIME     | Expected: PRIME     | Status: ✅ CORRECT
+   Iterations: 2279 | Time: 0.004 seconds
+
+Testing 2^3217 - 1...  Complete!
+🔬 2^3217 - 1:
+   Result: PRIME     | Expected: PRIME     | Status: ✅ CORRECT
+   Iterations: 3215 | Time: 0.008 seconds
+
+Testing 2^4253 - 1...  Complete!
+🔬 2^4253 - 1:
+   Result: PRIME     | Expected: PRIME     | Status: ✅ CORRECT
+   Iterations: 4251 | Time: 0.021 seconds
+
+Testing 2^4423 - 1...  Complete!
+🔬 2^4423 - 1:
+   Result: PRIME     | Expected: PRIME     | Status: ✅ CORRECT
+   Iterations: 4421 | Time: 0.021 seconds
+
+Testing 2^9689 - 1...  Complete!
+🔬 2^9689 - 1:
+   Result: PRIME     | Expected: PRIME     | Status: ✅ CORRECT
+   Iterations: 9687 | Time: 0.134 seconds
+
+Testing 2^9941 - 1...  Complete!
+🔬 2^9941 - 1:
+   Result: PRIME     | Expected: PRIME     | Status: ✅ CORRECT
+   Iterations: 9939 | Time: 0.140 seconds
+
+Testing 2^11213 - 1... 0%..9%..19%..29%..39%..49%..59%..69%..79%..89%..99%.. Complete!
+🔬 2^11213 - 1:
+   Result: PRIME     | Expected: PRIME     | Status: ✅ CORRECT
+   Iterations: 11211 | Time: 0.196 seconds
+
+Testing 2^19937 - 1... 0%..9%..19%..29%..39%..49%..59%..69%..79%..89%..99%.. Complete!
+🔬 2^19937 - 1:
+   Result: PRIME     | Expected: PRIME     | Status: ✅ CORRECT
+   Iterations: 19935 | Time: 0.859 seconds
+
+Testing 2^21701 - 1... 0%..10%..20%..30%..40%..50%..60%..70%..80%..90%.. Complete!
+🔬 2^21701 - 1:
+   Result: PRIME     | Expected: PRIME     | Status: ✅ CORRECT
+   Iterations: 21699 | Time: 1.069 seconds
+
+Testing 2^23209 - 1... 0%..9%..19%..29%..39%..49%..59%..69%..79%..89%..99%.. Complete!
+🔬 2^23209 - 1:
+   Result: PRIME     | Expected: PRIME     | Status: ✅ CORRECT
+   Iterations: 23207 | Time: 1.333 seconds
+
+Testing 2^44497 - 1... 0%..9%..19%..29%..39%..49%..59%..69%..79%..89%..99%.. Complete!
+🔬 2^44497 - 1:
+   Result: PRIME     | Expected: PRIME     | Status: ✅ CORRECT
+   Iterations: 44495 | Time: 6.467 seconds
+
+Testing 2^86243 - 1... 0%..9%..19%..29%..39%..49%..59%..69%..79%..89%..99%.. Complete!
+🔬 2^86243 - 1:
+   Result: PRIME     | Expected: PRIME     | Status: ✅ CORRECT
+   Iterations: 86241 | Time: 26.123 seconds
+
+Testing 2^110503 - 1... 0%..9%..19%..29%..39%..49%..59%..69%..79%..89%..99%.. Complete!
+🔬 2^110503 - 1:
+   Result: PRIME     | Expected: PRIME     | Status: ✅ CORRECT
+   Iterations: 110501 | Time: 47.820 seconds
+
+Testing 2^132049 - 1... 0%..9%..19%..29%..39%..49%..59%..69%..79%..89%..99%.. Complete!
+🔬 2^132049 - 1:
+   Result: PRIME     | Expected: PRIME     | Status: ✅ CORRECT
+   Iterations: 132047 | Time: 71.030 seconds
+
+Testing 2^216091 - 1... 0%..10%..20%..30%..40%..50%..60%..70%..80%..90%.. Complete!
+🔬 2^216091 - 1:
+   Result: PRIME     | Expected: PRIME     | Status: ✅ CORRECT
+   Iterations: 216089 | Time: 209.341 seconds
+
+Testing 2^756839 - 1... 0%..9%..19%..29%..39%..49%..59%..69%..79%..89%..99%.. Complete!
+🔬 2^756839 - 1:
+   Result: PRIME     | Expected: PRIME     | Status: ✅ CORRECT
+   Iterations: 756837 | Time: 3172.442 seconds
+
+Testing 2^859433 - 1... 0%..9%..19%..29%..39%..49%..59%..69%..79%..89%..99%.. Complete!
+🔬 2^859433 - 1:
+   Result: PRIME     | Expected: PRIME     | Status: ✅ CORRECT
+   Iterations: 859431 | Time: 3851.081 seconds
+
+Testing 2^1257787 - 1... 0%..9%..19%..29%..39%..49%..59%..69%..79%..

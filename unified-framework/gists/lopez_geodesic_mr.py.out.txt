@@ -1,0 +1,62 @@
+Range [1000001, 3000001], m=4, tested=1000001
+Geodesic-only: acc=1.000000, FP=0, FN=0, avg_bases=0.71, avg_squarings=0.53
+Standard S64:  acc=1.000000, (provably correct <2^64), avg_bases=1.82, avg_squarings=1.25
+Elapsed: 8.430s
+Range [10000001, 12000001], m=4, tested=1000001
+Geodesic-only: acc=0.999999, FP=1, FN=0, avg_bases=0.67, avg_squarings=0.50
+Standard S64:  acc=1.000000, (provably correct <2^64), avg_bases=1.66, avg_squarings=1.15
+First failures (n, truth_is_prime, geo_result, witnesses):
+   (11710379, False, True, [])
+Elapsed: 8.627s
+Range [10000001, 12000001], m=4, tested=1000001
+Geodesic-only: acc=0.999999, FP=1, FN=0, avg_bases=0.67, avg_squarings=0.50
+Standard S64:  acc=1.000000, (provably correct <2^64), avg_bases=1.66, avg_squarings=1.15
+First failures (n, truth_is_prime, geo_result, witnesses):
+   (11710379, False, True, [])
+Elapsed: 8.808s
+Range [100000001, 102000001], m=4, tested=1000001
+Geodesic-only: acc=1.000000, FP=0, FN=0, avg_bases=0.62, avg_squarings=0.48
+Standard S64:  acc=1.000000, (provably correct <2^64), avg_bases=1.49, avg_squarings=1.05
+Elapsed: 9.190s
+Range [1000000001, 1002000001], m=4, tested=1000001
+Geodesic-only: acc=1.000000, FP=0, FN=0, avg_bases=0.59, avg_squarings=0.46
+Standard S64:  acc=1.000000, (provably correct <2^64), avg_bases=1.36, avg_squarings=0.97
+Elapsed: 9.846s
+Range [10000000001, 10002000001], m=4, tested=1000001
+Geodesic-only: acc=0.999999, FP=1, FN=0, avg_bases=0.56, avg_squarings=0.44
+Standard S64:  acc=1.000000, (provably correct <2^64), avg_bases=1.25, avg_squarings=0.90
+First failures (n, truth_is_prime, geo_result, witnesses):
+   (10001240281, False, True, [])
+Elapsed: 17.249s
+Range [100000000001, 100002000001], m=4, tested=1000001
+Geodesic-only: acc=1.000000, FP=0, FN=0, avg_bases=0.53, avg_squarings=0.43
+Standard S64:  acc=1.000000, (provably correct <2^64), avg_bases=1.16, avg_squarings=0.84
+Elapsed: 18.236s
+Range [1000000000001, 1000002000001], m=4, tested=1000001
+Geodesic-only: acc=1.000000, FP=0, FN=0, avg_bases=0.51, avg_squarings=0.42
+Standard S64:  acc=1.000000, (provably correct <2^64), avg_bases=1.09, avg_squarings=0.80
+Elapsed: 19.276s
+Range [10000000000001, 10000002000001], m=4, tested=1000001
+Geodesic-only: acc=1.000000, FP=0, FN=0, avg_bases=0.50, avg_squarings=0.41
+Standard S64:  acc=1.000000, (provably correct <2^64), avg_bases=1.03, avg_squarings=0.76
+Elapsed: 20.431s
+Range [100000000000001, 100000002000001], m=4, tested=1000001
+Geodesic-only: acc=1.000000, FP=0, FN=0, avg_bases=0.48, avg_squarings=0.40
+Standard S64:  acc=1.000000, (provably correct <2^64), avg_bases=0.98, avg_squarings=0.72
+Elapsed: 21.595s
+Range [1000000000000001, 1000000002000001], m=4, tested=1000001
+Geodesic-only: acc=1.000000, FP=0, FN=0, avg_bases=0.47, avg_squarings=0.39
+Standard S64:  acc=1.000000, (provably correct <2^64), avg_bases=0.93, avg_squarings=0.70
+Elapsed: 22.573s
+Range [10000000000000001, 10000000002000001], m=4, tested=1000001
+Geodesic-only: acc=1.000000, FP=0, FN=0, avg_bases=0.46, avg_squarings=0.39
+Standard S64:  acc=1.000000, (provably correct <2^64), avg_bases=0.90, avg_squarings=0.68
+Elapsed: 37.918s
+Range [100000000000000001, 100000000002000001], m=4, tested=1000001
+Geodesic-only: acc=1.000000, FP=0, FN=0, avg_bases=0.45, avg_squarings=0.38
+Standard S64:  acc=1.000000, (provably correct <2^64), avg_bases=0.86, avg_squarings=0.65
+Elapsed: 38.803s
+Range [1000000000000000001, 1000000000002000001], m=4, tested=1000001
+Geodesic-only: acc=1.000000, FP=0, FN=0, avg_bases=0.44, avg_squarings=0.38
+Standard S64:  acc=1.000000, (provably correct <2^64), avg_bases=0.83, avg_squarings=0.63
+Elapsed: 28.836s

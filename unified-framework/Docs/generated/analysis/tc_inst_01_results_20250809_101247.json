@@ -1,0 +1,367 @@
+{
+  "test_summary": {
+    "test_case_id": "TC-INST-01",
+    "description": "Scale Escalation - Asymptotic Convergence Validation",
+    "overall_status": "FAILED",
+    "convergence_achieved": false,
+    "pass_rate": 0.25,
+    "total_tests": 4,
+    "passed_tests": 1,
+    "final_enhancement": 15.825057372526272,
+    "target_proximity": 0.12505737252627291,
+    "target_enhancement": 15.7,
+    "timestamp": "2025-08-09T10:12:47.118802"
+  },
+  "individual_results": [
+    {
+      "N": 5000,
+      "num_primes": 669,
+      "prime_ratio": 0.1338,
+      "k_star": 3.2,
+      "enhancement": 37.10728048161708,
+      "ci_lower": -5.940528702759809,
+      "ci_upper": 5.0322248591674,
+      "stability_analysis": {
+        "max_deviation": 0.0,
+        "mean_deviation": 0.0,
+        "stability_ok": true,
+        "sample_size": 50
+      },
+      "weyl_analysis": {
+        "discrepancy_bound": 0.11698649953246879,
+        "first_term": 0.0014947683109118087,
+        "second_term": 0.09549173122155698,
+        "third_term": 0.02
+      },
+      "control_analysis": {
+        "random_enhancement": 17.48235294117648,
+        "composite_enhancement": 5.1919999999999975,
+        "random_sample_size": 2500,
+        "composite_sample_size": 2500
+      },
+      "validation_checks": {
+        "enhancement_in_target": false,
+        "ci_contains_target": false,
+        "precision_ok": true,
+        "controls_lower": true
+      },
+      "validation_passed": false,
+      "computation_time": 0.10509538650512695,
+      "k_optimization": {
+        "k_star": 3.2,
+        "best_enhancement": 37.10728048161708,
+        "k_sweep_results": [
+          {
+            "k": 3.2,
+            "enhancement": 37.10728048161708
+          },
+          {
+            "k": 3.22,
+            "enhancement": 31.457952721031944
+          },
+          {
+            "k": 3.24,
+            "enhancement": 25.703030049033988
+          },
+          {
+            "k": 3.2600000000000002,
+            "enhancement": 28.097373478539406
+          },
+          {
+            "k": 3.2800000000000002,
+            "enhancement": 19.839523930394556
+          },
+          {
+            "k": 3.3000000000000003,
+            "enhancement": 20.98085272973165
+          },
+          {
+            "k": 3.3200000000000003,
+            "enhancement": 22.144130159825234
+          },
+          {
+            "k": 3.3400000000000003,
+            "enhancement": 30.58470111889939
+          },
+          {
+            "k": 3.3600000000000003,
+            "enhancement": 30.58470111889939
+          },
+          {
+            "k": 3.3800000000000003,
+            "enhancement": 24.539113104135524
+          },
+          {
+            "k": 3.4000000000000004,
+            "enhancement": 31.86494328673174
+          }
+        ]
+      }
+    },
+    {
+      "N": 10000,
+      "num_primes": 1229,
+      "prime_ratio": 0.1229,
+      "k_star": 3.2,
+      "enhancement": 26.88991572173991,
+      "ci_lower": -4.119303775330326,
+      "ci_upper": 4.980076338065516,
+      "stability_analysis": {
+        "max_deviation": 0.0,
+        "mean_deviation": 0.0,
+        "stability_ok": true,
+        "sample_size": 50
+      },
+      "weyl_analysis": {
+        "discrepancy_bound": 0.08587881682530864,
+        "first_term": 0.0008136696501220504,
+        "second_term": 0.06506514717518658,
+        "third_term": 0.02
+      },
+      "control_analysis": {
+        "random_enhancement": 16.277163120567383,
+        "composite_enhancement": 3.509696969696976,
+        "random_sample_size": 5000,
+        "composite_sample_size": 5000
+      },
+      "validation_checks": {
+        "enhancement_in_target": false,
+        "ci_contains_target": false,
+        "precision_ok": true,
+        "controls_lower": true
+      },
+      "validation_passed": false,
+      "computation_time": 0.17640376091003418,
+      "k_optimization": {
+        "k_star": 3.2,
+        "best_enhancement": 26.88991572173991,
+        "k_sweep_results": [
+          {
+            "k": 3.2,
+            "enhancement": 26.88991572173991
+          },
+          {
+            "k": 3.22,
+            "enhancement": 24.29820992676974
+          },
+          {
+            "k": 3.24,
+            "enhancement": 17.856246625552274
+          },
+          {
+            "k": 3.2600000000000002,
+            "enhancement": 22.805778589741628
+          },
+          {
+            "k": 3.2800000000000002,
+            "enhancement": 18.968098008812206
+          },
+          {
+            "k": 3.3000000000000003,
+            "enhancement": 15.676059216640507
+          },
+          {
+            "k": 3.3200000000000003,
+            "enhancement": 20.10112751365802
+          },
+          {
+            "k": 3.3400000000000003,
+            "enhancement": 20.037615547759746
+          },
+          {
+            "k": 3.3600000000000003,
+            "enhancement": 20.319393988012706
+          },
+          {
+            "k": 3.3800000000000003,
+            "enhancement": 22.516823816589294
+          },
+          {
+            "k": 3.4000000000000004,
+            "enhancement": 22.43318824207857
+          }
+        ]
+      }
+    },
+    {
+      "N": 25000,
+      "num_primes": 2762,
+      "prime_ratio": 0.11048,
+      "k_star": 3.2,
+      "enhancement": 13.76550786284952,
+      "ci_lower": -2.5712663389880666,
+      "ci_upper": 4.198036683622907,
+      "stability_analysis": {
+        "max_deviation": 0.0,
+        "mean_deviation": 0.0,
+        "stability_ok": true,
+        "sample_size": 50
+      },
+      "weyl_analysis": {
+        "discrepancy_bound": 0.0691717138624326,
+        "first_term": 0.0003620564808110065,
+        "second_term": 0.04880965738162159,
+        "third_term": 0.02
+      },
+      "control_analysis": {
+        "random_enhancement": 11.810064516129035,
+        "composite_enhancement": 3.509696969696976,
+        "random_sample_size": 5000,
+        "composite_sample_size": 5000
+      },
+      "validation_checks": {
+        "enhancement_in_target": true,
+        "ci_contains_target": false,
+        "precision_ok": true,
+        "controls_lower": true
+      },
+      "validation_passed": true,
+      "computation_time": 0.3765113353729248,
+      "k_optimization": {
+        "k_star": 3.2,
+        "best_enhancement": 13.76550786284952,
+        "k_sweep_results": [
+          {
+            "k": 3.2,
+            "enhancement": 13.76550786284952
+          },
+          {
+            "k": 3.22,
+            "enhancement": 10.378658095053073
+          },
+          {
+            "k": 3.24,
+            "enhancement": 13.1381245474294
+          },
+          {
+            "k": 3.2600000000000002,
+            "enhancement": 11.741357577708051
+          },
+          {
+            "k": 3.2800000000000002,
+            "enhancement": 10.119497958650602
+          },
+          {
+            "k": 3.3000000000000003,
+            "enhancement": 10.8753620564808
+          },
+          {
+            "k": 3.3200000000000003,
+            "enhancement": 9.158391523147971
+          },
+          {
+            "k": 3.3400000000000003,
+            "enhancement": 9.709696530840624
+          },
+          {
+            "k": 3.3600000000000003,
+            "enhancement": 9.854432278242795
+          },
+          {
+            "k": 3.3800000000000003,
+            "enhancement": 10.437214412344877
+          },
+          {
+            "k": 3.4000000000000004,
+            "enhancement": 11.153245169404313
+          }
+        ]
+      }
+    },
+    {
+      "N": 50000,
+      "num_primes": 5133,
+      "prime_ratio": 0.10266,
+      "k_star": 3.4000000000000004,
+      "enhancement": 15.825057372526272,
+      "ci_lower": -2.4054983264319327,
+      "ci_upper": 3.4514448362266377,
+      "stability_analysis": {
+        "max_deviation": 0.0,
+        "mean_deviation": 0.0,
+        "stability_ok": true,
+        "sample_size": 50
+      },
+      "weyl_analysis": {
+        "discrepancy_bound": 0.0535198323705318,
+        "first_term": 0.0001948178453146308,
+        "second_term": 0.03332501452521717,
+        "third_term": 0.02
+      },
+      "control_analysis": {
+        "random_enhancement": 17.30733390854184,
+        "composite_enhancement": 4.277735849056598,
+        "random_sample_size": 5000,
+        "composite_sample_size": 5000
+      },
+      "validation_checks": {
+        "enhancement_in_target": true,
+        "ci_contains_target": false,
+        "precision_ok": true,
+        "controls_lower": false
+      },
+      "validation_passed": false,
+      "computation_time": 0.6760969161987305,
+      "k_optimization": {
+        "k_star": 3.4000000000000004,
+        "best_enhancement": 15.825057372526272,
+        "k_sweep_results": [
+          {
+            "k": 3.2,
+            "enhancement": 14.437426075999138
+          },
+          {
+            "k": 3.22,
+            "enhancement": 13.158659942916195
+          },
+          {
+            "k": 3.24,
+            "enhancement": 14.006290354473627
+          },
+          {
+            "k": 3.2600000000000002,
+            "enhancement": 12.815987390772673
+          },
+          {
+            "k": 3.2800000000000002,
+            "enhancement": 14.903669626539948
+          },
+          {
+            "k": 3.3000000000000003,
+            "enhancement": 13.568669795982915
+          },
+          {
+            "k": 3.3200000000000003,
+            "enhancement": 12.426444844854553
+          },
+          {
+            "k": 3.3400000000000003,
+            "enhancement": 12.053313032749164
+          },
+          {
+            "k": 3.3600000000000003,
+            "enhancement": 11.994492395986565
+          },
+          {
+            "k": 3.3800000000000003,
+            "enhancement": 11.700903678384318
+          },
+          {
+            "k": 3.4000000000000004,
+            "enhancement": 15.825057372526272
+          }
+        ]
+      }
+    }
+  ],
+  "validation_details": {
+    "target_enhancement": 15.7,
+    "precision_threshold": 1e-06,
+    "N_values_tested": [
+      5000,
+      10000,
+      25000,
+      50000
+    ]
+  }
+}

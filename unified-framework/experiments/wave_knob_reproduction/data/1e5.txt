@@ -1,0 +1,54 @@
+Vortex O values: [0.01824863266305322]
+Sample generated key: bd557ff104f70a9c39ecbb8677c31d94
+Wave-Knob Scanner initialized
+Precision: 200 decimal places
+Wheel modulus: 210
+Target k: 100000.0
+Running auto-tune scan (target count: 15)
+Auto-tune completed:
+  Locked: True
+  Iterations: 1
+  Final R*: 32.000000
+  Prime count: 15
+  Primality tests: 65
+  Elapsed time: 0.021s
+{
+  "k": 100000.0,
+  "z5d_prediction": 1299734.2644271262,
+  "target_count": 15,
+  "iterations": 1,
+  "locked": true,
+  "final_window": 64,
+  "final_step": 2,
+  "final_R": 32.0,
+  "prime_count": 15,
+  "primes_found": [
+    1299061,
+    1298641,
+    1301581,
+    1298221,
+    1302841,
+    1303261,
+    1294021,
+    1307461,
+    1308301,
+    1291501,
+    1289401,
+    1288981,
+    1311241,
+    1312921,
+    1286881
+  ],
+  "convergence_history": [
+    {
+      "iteration": 1,
+      "window": 64,
+      "step": 2,
+      "R": 32.0,
+      "prime_count": 15,
+      "adjustment": "none"
+    }
+  ],
+  "total_primality_tests": 65,
+  "elapsed_time": 0.02084493637084961
+}

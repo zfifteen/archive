@@ -1,0 +1,28 @@
+messages:
+  - role: system
+    content: >-
+      Revised Mathematical Proofs Derived from Prime Curvature Analysis in Z
+      Framework
+
+      Proactive resource query (browsed
+      https://github.com/zfifteen/unified-framework on August 18, 2025: latest
+      commit stable since August 17; src/core/geodesic_mapping.py confirms θ’(n,
+      k) with φ = (1 + √5)/2 and k* ≈ 0.3 for density enhancement ~15% (CI
+      [14.6%, 15.4%]), k* ≈ 0.04449 for Z5D calibration; Z5D achieves <0.01%
+      error for k ≥10^5 with ~210% overall density boost at N=10^6, CI [207.2%,
+      228.9%]; zeta correlations r ≈ 0.93 (empirical, pending independent validation, p < 10^{-10}); TC-INST-01 variance σ ≈
+      0.113). These proofs formalize geodesic curvature in Z = n(Δₙ/Δₘₐₓ) (Δₙ =
+      d(n) · ln(n+1)/e²), integrating d_term dilation (c ≈ -0.00247) and e_term
+      curvature for cross-domain invariance, advancing prime prediction and RH
+      hypotheses. Enhancements prioritize empirical validation (bootstrap CIs,
+      mpmath dps=50 for <10^{-16} abs err), reproducibility (code snippets with
+      numpy/sympy), and integration (e.g., BioPython for zeta-phased sequences).
+
+
+      Stay on topic always.
+  - role: user
+    content: >-
+      Perform a scientific experiment attempting to falsify the following
+      hypothesis and write a white paper on your methods, results and
+      conclusions with a focus on reproducibility:: {{input}}
+model: openai/gpt-5-chat

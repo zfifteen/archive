@@ -1,0 +1,62 @@
+{
+  "Comprehensive Validation Report": {
+    "timestamp": "2025-08-08T21:41:29.002551",
+    "dataset_info": {
+      "n_max": 1000,
+      "n_primes": 168,
+      "n_composites": 831
+    },
+    "statistical_claims_validation": {
+      "pearson_correlation": {
+        "claimed": "r \u2248 0.93",
+        "observed": "r = -0.0099",
+        "p_value": "9.2223e-01",
+        "confidence_interval_95": [
+          -0.20450086050608904,
+          0.1752347951547399
+        ],
+        "validation_status": "\u2717 NOT VALIDATED"
+      },
+      "ks_statistic": {
+        "claimed": "KS \u2248 0.04",
+        "observed": "KS = 0.0632",
+        "p_value": "6.0572e-01",
+        "validation_status": "\u2717 NOT VALIDATED"
+      },
+      "chiral_distinction": {
+        "claimed": "> 0.45",
+        "observed": "0.0022",
+        "cohens_d": "0.0257",
+        "validation_status": "\u2717 NOT VALIDATED"
+      },
+      "optimal_k_star": {
+        "claimed": "k* \u2248 0.3",
+        "observed": "k* = 0.100",
+        "max_enhancement": "464.3%",
+        "multiple_testing_p": "N/A",
+        "validation_status": "\u2717 NOT VALIDATED"
+      }
+    },
+    "robustness_tests": {
+      "permutation_test_p_value": "N/A",
+      "bootstrap_confidence_intervals": "Computed for all correlations",
+      "multiple_testing_correction": "Applied to k* parameter search"
+    },
+    "raw_data_files_generated": [
+      "k_values.npy - Parameter sweep values",
+      "max_enhancements.npy - Enhancement values for each k",
+      "prime_curvature_values.npy - Curvature values for primes",
+      "composite_curvature_values.npy - Curvature values for composites",
+      "zeta_spacing_unfolded.npy - Unfolded zeta zero spacings",
+      "prime_chiral_distances.npy - Chiral distance values for primes",
+      "composite_chiral_distances.npy - Chiral distance values for composites",
+      "correlation_data.json - Complete correlation analysis data"
+    ],
+    "reproducibility_code": {
+      "pearson_correlation": "r, p = stats.pearsonr(a, b)",
+      "ks_test": "ks_stat, p = ks_2samp(prime_vals, composite_vals)",
+      "cohens_d": "d = (x.mean() - y.mean()) / pooled_std",
+      "bootstrap_ci": "ci = np.percentile(bootstrap_rs, [2.5, 97.5])"
+    }
+  }
+}

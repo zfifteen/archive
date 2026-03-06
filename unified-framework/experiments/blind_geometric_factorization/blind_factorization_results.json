@@ -1,0 +1,105 @@
+{
+  "experiment": "blind_geometric_factorization",
+  "description": "Blind factorization using PR-123/969 scaling",
+  "results": [
+    {
+      "N": "35",
+      "success": true,
+      "p": "5",
+      "q": "7",
+      "mode": "blind",
+      "iterations": 1,
+      "candidates_evaluated": 1,
+      "high_resonance_candidates": 1,
+      "execution_time_seconds": 1.8358230590820312e-05,
+      "timestamp": "2025-11-24T22:46:58.934052Z",
+      "parameters": {
+        "bit_length": 6,
+        "threshold": 1.1521928094887364,
+        "k_shift": 0.30139497504449014,
+        "sample_count": 5000,
+        "precision": 224,
+        "kappa_estimated": 0.3,
+        "phase_drift": 0.02
+      }
+    },
+    {
+      "N": "51959",
+      "success": true,
+      "p": "223",
+      "q": "233",
+      "mode": "blind",
+      "iterations": 4,
+      "candidates_evaluated": 4,
+      "high_resonance_candidates": 0,
+      "execution_time_seconds": 2.86102294921875e-05,
+      "timestamp": "2025-11-24T22:46:58.934101Z",
+      "parameters": {
+        "bit_length": 16,
+        "threshold": 1.010689059560852,
+        "k_shift": 0.33101601848544426,
+        "sample_count": 8000,
+        "precision": 264,
+        "kappa_estimated": 0.3,
+        "phase_drift": 0.02
+      }
+    },
+    {
+      "N": "2147673613",
+      "success": true,
+      "p": "46337",
+      "q": "46349",
+      "mode": "blind",
+      "iterations": 4,
+      "candidates_evaluated": 4,
+      "high_resonance_candidates": 3,
+      "execution_time_seconds": 1.71661376953125e-05,
+      "timestamp": "2025-11-24T22:46:58.934165Z",
+      "parameters": {
+        "bit_length": 32,
+        "threshold": 0.9106890595608519,
+        "k_shift": 0.35194906333835463,
+        "sample_count": 16000,
+        "precision": 328,
+        "kappa_estimated": 0.35333333333333333,
+        "phase_drift": 0.02387231126825427
+      }
+    },
+    {
+      "N": "140737507264631",
+      "success": true,
+      "p": "11863279",
+      "q": "11863289",
+      "mode": "blind",
+      "iterations": 4,
+      "candidates_evaluated": 4,
+      "high_resonance_candidates": 4,
+      "execution_time_seconds": 1.3828277587890625e-05,
+      "timestamp": "2025-11-24T22:46:58.934210Z",
+      "parameters": {
+        "bit_length": 48,
+        "threshold": 0.8521928094887363,
+        "k_shift": 0.3641941096032212,
+        "sample_count": 24000,
+        "precision": 392,
+        "kappa_estimated": 0.38,
+        "phase_drift": 0.04820021775474414
+      }
+    }
+  ],
+  "gate_127_complexity": {
+    "bit_length": 127,
+    "sqrt_N": 11727095627827384440,
+    "worst_case_operations": 11727095627827384440,
+    "average_case_operations": 3424484724,
+    "worst_case_time_seconds": 1172709562782.7385,
+    "worst_case_time_formatted": "37186.4 years",
+    "average_case_time_formatted": "5.7 minutes",
+    "feasible": false
+  },
+  "summary": {
+    "tests_run": 4,
+    "successful": 4,
+    "gate_127_feasible": false
+  }
+}

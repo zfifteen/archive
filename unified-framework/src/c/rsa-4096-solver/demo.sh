@@ -1,0 +1,1 @@
+    MODULUS=$(echo "ibase=16; $(cat test_modulus_hex.txt | tr 'a-z' 'A-Z')" | bc | tr -d '\\')

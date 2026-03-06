@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grok-Style AI Chat (Flask)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Marked.js for Markdown parsing -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <!-- Highlight.js for code syntax highlighting -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        @import url('https://rsms.me/inter/inter.css');
+
+        /* Custom scrollbar for a more modern look */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1e1e1e;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #4a4a4a;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #5a5a5a;
+        }
+
+        /* Styles for the rendered markdown */
+        .prose {
+            color: #d1d5db;
+        }
+        .prose h1, .prose h2, .prose h3 {
+            color: #ffffff;
+            border-bottom: 1px solid #374151;
+            padding-bottom: 0.3em;
+        }
+        .prose a {
+            color: #60a5fa;
+        }
+        .prose strong {
+            color: #f9fafb;
+        }
+        .prose blockquote {
+            border-left-color: #4b5563;
+            color: #9ca3af;
+        }
+        .prose pre {
+            background-color: #111827;
+            border-radius: 0.5rem;
+            padding: 1rem;
+        }
+        .prose code {
+            font-family: 'Courier New', Courier, monospace;
+        }
+        .prose ul > li::before {
+            background-color: #6b7280;
+        }
+
+        /* Clipboard button */
+        .clipboard-btn {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            opacity: 0.4;
+            font-size: 14px;
+            color: #9ca3af;
+            padding: 4px;
+            border-radius: 4px;
+            transition: opacity 0.2s;
+        }
+        .clipboard-btn:hover {
+            opacity: 1;
+            background-color: #374151;
+        }
+
+    </style>
+</head>
+<body class="bg-gray-900 text-white flex flex-col h-screen antialiased">
+
+<header class="bg-gray-800/50 border-b border-gray-700 p-4 shadow-lg backdrop-blur-sm">
+    <div class="flex items-center justify-between max-w-6xl mx-auto">
+        <h1 class="text-xl font-bold tracking-wider">Hard Grok</h1>
+        <select id="model-selector" class="bg-gray-700 text-white rounded px-3 py-2 text-sm border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500">
+            <option value="grok-code-fast-1">grok-code-fast-1 - Fast coding (256k context)</option>
+            <option value="grok-4">grok-4 - Flagship with tools (256k context)</option>
+            <option value="grok-4-fast-reasoning">grok-4-fast-reasoning - Cost-efficient reasoning (2M context)</option>
+            <option value="grok-4-fast-non-reasoning">grok-4-fast-non-reasoning - Cost-efficient non-reasoning (2M context)</option>
+            <option value="grok-3">grok-3 - Enterprise-focused (132k context)</option>
+            <option value="grok-3-mini">grok-3-mini - Lightweight reasoning (132k context)</option>
+            <option value="grok-2-image-1212">grok-2-image-1212 - Image generation (131k context)</option>
+        </select>
+    </div>
+</header>
+
+<main id="chat-container" class="flex-1 overflow-y-auto p-6 space-y-6">
+    <!-- Chat messages will be appended here -->
+    <!-- Initial greeting will be loaded from Grok -->
+</main>
+
+<footer class="p-4 bg-gray-900 border-t border-gray-700">
+    <div class="max-w-3xl mx-auto">
+        <div class="relative rounded-lg shadow-md bg-gray-800">
+                <textarea
+                        id="message-input"
+                        class="w-full bg-transparent border-none rounded-lg p-4 pr-16 text-gray-200 placeholder-gray-500 focus:ring-0 resize-none"
+                        placeholder="Type your message..."
+                        rows="1"></textarea>
+            <button id="send-button" class="absolute right-3 top-1/2 -translate-y-1/2 p-2 rounded-full bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:bg-gray-600 transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-white"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </button>
+        </div>
+    </div>
+</footer>
+
+<script>
+    const chatContainer = document.getElementById('chat-container');
+    const messageInput = document.getElementById('message-input');
+    const sendButton = document.getElementById('send-button');
+    const modelSelector = document.getElementById('model-selector');
+
+    let chatHistory = [];
+    let currentModel = localStorage.getItem('selectedModel') || 'grok-code-fast-1';
+
+    // --- Event Listeners ---
+    sendButton.addEventListener('click', sendMessage);
+    messageInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' && !e.shiftKey) {
+            e.preventDefault();
+            sendMessage();
+        }
+    });
+
+    // Auto-resize textarea
+    messageInput.addEventListener('input', () => {
+        messageInput.style.height = 'auto';
+        messageInput.style.height = (messageInput.scrollHeight) + 'px';
+    });
+
+    // Model selector change handler
+    modelSelector.addEventListener('change', (e) => {
+        currentModel = e.target.value;
+        localStorage.setItem('selectedModel', currentModel);
+    });
+
+    // Load initial greeting from Grok on page load
+    window.addEventListener('load', async () => {
+        // Set dropdown to saved model
+        modelSelector.value = currentModel;
+
+        const loadingIndicator = displayLoadingIndicator();
+        try {
+            const initialGreeting = await getGrokResponse([]);
+            loadingIndicator.remove();
+            chatHistory.push({ role: "model", content: initialGreeting });
+            displayMessage('model', initialGreeting);
+        } catch (error) {
+            console.error("Failed to load initial greeting:", error);
+            loadingIndicator.remove();
+            displayMessage('model', "Hello! I'm Hard Grok. How can I help you today?");
+        }
+    });
+
+    // --- Core Functions ---
+    async function sendMessage() {
+        const userMessage = messageInput.value.trim();
+
+        // Proceed without validating user input
+
+        displayMessage('user', userMessage);
+        messageInput.value = '';
+        messageInput.style.height = 'auto';
+
+        // Push raw user input directly into chat history
+        // Push user input directly without altering or validating it
+        chatHistory.push({ role: "user", content: userMessage });
+
+        const loadingIndicator = displayLoadingIndicator();
+        sendButton.disabled = true;
+
+        try {
+            // Get the combined response content
+            const response = await getGrokResponse(chatHistory);
+            const content = response?.content || "No response received";
+            loadingIndicator.remove();
+
+            // Display as a single message bubble
+            chatHistory.push({ role: "model", content: content });
+            displayMessage('model', content);
+        } catch (error) {
+            console.error("API Error:", error);
+            loadingIndicator.remove();
+            displayMessage('error', `Error: ${error.message}`);
+        } finally {
+            sendButton.disabled = false;
+            messageInput.focus();
+        }
+    }
+
+    async function getGrokResponse(history) {
+        // This function now calls our Flask backend instead of x.ai directly
+        const response = await fetch('/chat', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                history: history,
+                model: currentModel
+            })
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+            // The backend forwards the error message from the API
+            throw new Error(data.error || 'An unknown error occurred.');
+        }
+
+        // Return full payload so caller can destructure tool_output & text_content
+        return data;
+    }
+
+    // --- UI Functions (identical to the previous version) ---
+    function displayMessage(role, content) {
+        const messageWrapper = document.createElement('div');
+        const icon = document.createElement('div');
+        icon.className = 'w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm flex-shrink-0';
+        const contentDiv = document.createElement('div');
+        contentDiv.className = 'prose prose-invert max-w-none';
+
+        if (role === 'user') {
+            messageWrapper.className = 'relative flex items-start gap-4 p-4 rounded-xl bg-gray-800/60 max-w-3xl mx-auto justify-end';
+            icon.classList.add('bg-purple-500');
+            icon.textContent = 'You';
+            const p = document.createElement('p');
+            p.textContent = content;
+            contentDiv.appendChild(p);
+
+            // Add clipboard button
+            const clipboardBtn = document.createElement('button');
+            clipboardBtn.className = 'clipboard-btn';
+            clipboardBtn.innerHTML = '📋';
+            clipboardBtn.title = 'Copy';
+            clipboardBtn.setAttribute('data-content', content);
+            clipboardBtn.setAttribute('onclick', 'navigator.clipboard.writeText(this.dataset.content)');
+
+            messageWrapper.append(clipboardBtn, contentDiv, icon);
+        } else if (role === 'model') {
+            messageWrapper.className = 'relative flex items-start gap-4 p-4 rounded-xl bg-gray-800/60 max-w-3xl mx-auto';
+            icon.classList.add('bg-blue-500');
+            icon.textContent = 'G';
+            contentDiv.innerHTML = marked.parse(content);
+            contentDiv.querySelectorAll('pre code').forEach((block) => {
+                hljs.highlightElement(block);
+            });
+
+            // Add clipboard button
+            const clipboardBtn = document.createElement('button');
+            clipboardBtn.className = 'clipboard-btn';
+            clipboardBtn.innerHTML = '📋';
+            clipboardBtn.title = 'Copy';
+            clipboardBtn.setAttribute('data-content', content);
+            clipboardBtn.setAttribute('onclick', 'navigator.clipboard.writeText(this.dataset.content)');
+
+            messageWrapper.append(clipboardBtn, icon, contentDiv);
+        } else { // Error case
+            messageWrapper.className = 'relative flex items-start gap-4 p-4 rounded-xl bg-red-900/50 max-w-3xl mx-auto border border-red-700';
+            icon.classList.add('bg-red-500');
+            icon.textContent = '!';
+            contentDiv.innerHTML = `<p class="text-red-300">${content}</p>`;
+
+            // Add clipboard button
+            const clipboardBtn = document.createElement('button');
+            clipboardBtn.className = 'clipboard-btn';
+            clipboardBtn.innerHTML = '📋';
+            clipboardBtn.title = 'Copy';
+            clipboardBtn.setAttribute('data-content', content);
+            clipboardBtn.setAttribute('onclick', 'navigator.clipboard.writeText(this.dataset.content)');
+
+            messageWrapper.append(clipboardBtn, icon, contentDiv);
+        }
+
+        chatContainer.appendChild(messageWrapper);
+        chatContainer.scrollTop = chatContainer.scrollHeight;
+    }
+
+    function displayLoadingIndicator() {
+        const loadingWrapper = document.createElement('div');
+        loadingWrapper.id = 'loading-indicator';
+        loadingWrapper.className = 'flex items-start gap-4 p-4 rounded-xl bg-gray-800/60 max-w-3xl mx-auto';
+        const icon = document.createElement('div');
+        icon.className = 'w-8 h-8 rounded-full bg-blue-500 flex items-center justify-center font-bold text-sm flex-shrink-0';
+        icon.textContent = 'G';
+        const thinkingDiv = document.createElement('div');
+        thinkingDiv.className = 'pt-2 flex items-center space-x-2';
+        thinkingDiv.innerHTML = `
+                <div class="w-2 h-2 bg-gray-400 rounded-full animate-pulse" style="animation-delay: 0s;"></div>
+                <div class="w-2 h-2 bg-gray-400 rounded-full animate-pulse" style="animation-delay: 0.2s;"></div>
+                <div class="w-2 h-2 bg-gray-400 rounded-full animate-pulse" style="animation-delay: 0.4s;"></div>
+            `;
+        loadingWrapper.append(icon, thinkingDiv);
+        chatContainer.appendChild(loadingWrapper);
+        chatContainer.scrollTop = chatContainer.scrollHeight;
+        return loadingWrapper;
+    }
+</script>
+</body>
+</html>

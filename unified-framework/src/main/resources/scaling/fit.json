@@ -1,0 +1,43 @@
+{
+  "metadata": {
+    "source": "PR-123 resonance-recalibration experiment",
+    "date": "2025-11-24",
+    "description": "Fitted scaling parameters for threshold and k-shift"
+  },
+  "threshold": {
+    "formula": "T(N) = 0.92 - 0.10 * log2(bitLen/30)",
+    "base": 0.92,
+    "coefficient": -0.10,
+    "reference": 30
+  },
+  "k_shift": {
+    "formula": "k(N) = 0.35 + 0.0302 * ln(bitLen/30)",
+    "base": 0.35,
+    "coefficient": 0.0302,
+    "reference": 30
+  },
+  "samples": {
+    "formula": "samples(N) = round(30000 * (bitLen/60))",
+    "base": 30000,
+    "reference": 60,
+    "minimum": 5000
+  },
+  "phase_drift": [
+    {
+      "bitLength": 30,
+      "drift": 0.02
+    },
+    {
+      "bitLength": 60,
+      "drift": 0.05
+    },
+    {
+      "bitLength": 127,
+      "drift": 0.08
+    },
+    {
+      "bitLength": 256,
+      "drift": 0.12
+    }
+  ]
+}

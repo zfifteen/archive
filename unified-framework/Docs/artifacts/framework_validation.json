@@ -1,0 +1,182 @@
+{
+  "metadata": {
+    "timestamp": "2025-08-27T15:22:50.582879",
+    "random_seed": 42,
+    "constants": {
+      "PHI": 1.618033988749895,
+      "OPTIMAL_K": 0.3,
+      "E_SQUARED": 7.38905609893065
+    },
+    "version": "1.0.0"
+  },
+  "results": {
+    "statistical_results": {
+      "mean_fidelity": 0.9999999999999996,
+      "std_fidelity": 3.123786972820329e-16,
+      "fidelity_95_ci": [
+        0.9999999999999991,
+        1.0
+      ],
+      "mean_improvement_percent": 31.59348070302873,
+      "max_improvement_percent": 50.0,
+      "improvement_95_ci": [
+        0.03602441754184043,
+        50.0
+      ],
+      "pass_rate_f095": 1.0,
+      "variance_under_threshold": true
+    },
+    "framework_validation": {
+      "meets_fidelity_target": true,
+      "meets_variance_target": true,
+      "shows_significant_enhancement": true,
+      "achieves_20_percent_peak": true,
+      "optimal_k_confirmed": true
+    },
+    "test_configuration": {
+      "total_tests": 144,
+      "n_trials_requested": 50,
+      "k_parameter": 0.3,
+      "angle_range": [
+        0.1,
+        6.283185307179586
+      ],
+      "position_range": [
+        21,
+        861
+      ],
+      "random_seed": 42,
+      "angle_count": 12,
+      "position_count": 12,
+      "parameter_grid_size": 144
+    },
+    "raw_results": [
+      {
+        "theta": 0.1,
+        "n_position": 103,
+        "k_parameter": 0.3,
+        "fidelity_standard": 0.999600053330489,
+        "fidelity_enhanced": 1.0,
+        "enhancement_factor": 0.00040010669084949643,
+        "enhancement_percent": 0.04001066908494964,
+        "passes_threshold": true,
+        "geodesic_value": 0.818161063869057,
+        "is_optimal_k": true
+      },
+      {
+        "theta": 0.1,
+        "n_position": 436,
+        "k_parameter": 0.3,
+        "fidelity_standard": 0.999600053330489,
+        "fidelity_enhanced": 1.0,
+        "enhancement_factor": 0.00040010669084949643,
+        "enhancement_percent": 0.04001066908494964,
+        "passes_threshold": true,
+        "geodesic_value": 1.2613441201105906,
+        "is_optimal_k": true
+      },
+      {
+        "theta": 0.1,
+        "n_position": 861,
+        "k_parameter": 0.3,
+        "fidelity_standard": 0.9994938354239212,
+        "fidelity_enhanced": 1.0,
+        "enhancement_factor": 0.0005064209084031907,
+        "enhancement_percent": 0.05064209084031907,
+        "passes_threshold": true,
+        "geodesic_value": 1.546993844657585,
+        "is_optimal_k": true
+      },
+      {
+        "theta": 0.1,
+        "n_position": 271,
+        "k_parameter": 0.3,
+        "fidelity_standard": 0.9997750168744935,
+        "fidelity_enhanced": 1.0,
+        "enhancement_factor": 0.00022503375430383822,
+        "enhancement_percent": 0.02250337543038382,
+        "passes_threshold": true,
+        "geodesic_value": 1.0936501768327866,
+        "is_optimal_k": true
+      },
+      {
+        "theta": 0.1,
+        "n_position": 107,
+        "k_parameter": 0.3,
+        "fidelity_standard": 0.9994938354239212,
+        "fidelity_enhanced": 1.0,
+        "enhancement_factor": 0.0005064209084031907,
+        "enhancement_percent": 0.05064209084031907,
+        "passes_threshold": true,
+        "geodesic_value": 0.827566255144282,
+        "is_optimal_k": true
+      },
+      {
+        "theta": 0.1,
+        "n_position": 72,
+        "k_parameter": 0.3,
+        "fidelity_standard": 0.9994938354239212,
+        "fidelity_enhanced": 1.0,
+        "enhancement_factor": 0.0005064209084031907,
+        "enhancement_percent": 0.05064209084031907,
+        "passes_threshold": true,
+        "geodesic_value": 0.7348308642401891,
+        "is_optimal_k": true
+      },
+      {
+        "theta": 0.1,
+        "n_position": 701,
+        "k_parameter": 0.3,
+        "fidelity_standard": 0.9994938354239212,
+        "fidelity_enhanced": 1.0,
+        "enhancement_factor": 0.0005064209084031907,
+        "enhancement_percent": 0.05064209084031907,
+        "passes_threshold": true,
+        "geodesic_value": 1.4544642321353634,
+        "is_optimal_k": true
+      },
+      {
+        "theta": 0.1,
+        "n_position": 21,
+        "k_parameter": 0.3,
+        "fidelity_standard": 0.999600053330489,
+        "fidelity_enhanced": 1.0,
+        "enhancement_factor": 0.00040010669084949643,
+        "enhancement_percent": 0.04001066908494964,
+        "passes_threshold": true,
+        "geodesic_value": 0.5077540880151009,
+        "is_optimal_k": true
+      },
+      {
+        "theta": 0.1,
+        "n_position": 615,
+        "k_parameter": 0.3,
+        "fidelity_standard": 0.9996937812617446,
+        "fidelity_enhanced": 1.0,
+        "enhancement_factor": 0.0003063125368939855,
+        "enhancement_percent": 0.03063125368939855,
+        "passes_threshold": true,
+        "geodesic_value": 1.3984604062942763,
+        "is_optimal_k": true
+      },
+      {
+        "theta": 0.1,
+        "n_position": 122,
+        "k_parameter": 0.3,
+        "fidelity_standard": 0.9997750168744935,
+        "fidelity_enhanced": 1.0,
+        "enhancement_factor": 0.00022503375430383822,
+        "enhancement_percent": 0.02250337543038382,
+        "passes_threshold": true,
+        "geodesic_value": 0.8607867819661922,
+        "is_optimal_k": true
+      }
+    ],
+    "threshold_validation": {
+      "fidelity_threshold": true,
+      "variance_threshold": true,
+      "improvement_threshold": true,
+      "pass_rate_threshold": true
+    }
+  }
+}

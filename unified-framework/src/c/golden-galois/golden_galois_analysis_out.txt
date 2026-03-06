@@ -1,0 +1,21 @@
+🌟 Multi-Base Golden Analysis and Galois Link
+=============================================
+
+📐 φ (Golden ratio)
+   Value: 1.61803398874989484820458683436563811772030917980576
+   Precision: 256 bits
+
+📚 Quick demonstration (use --help for more options):
+
+Golden ratio values:
+   φ = 2
+   Silver = 2
+   Tribonacci = 2
+
+Quick Mersenne analysis (M₅, p=31):
+   Galois invariant: Yes
+   Geometric point: No
+   Cross-correlation: 1
+
+💡 Try: ./bin/golden_galois_analysis --validate --verbose
+💡 Try: ./bin/golden_galois_analysis --ratio phi --mersenne 127 --galois --verbose

@@ -1,0 +1,29 @@
+Predictions in High-Precision Mode:
+Input k: 1000000000000000
+FFT-zeta enhanced Z5D prediction enabled
+Z5D prediction: 37125133196465568
+Found prime: 37125133196465557 (diff -9)
+FFT-zeta enhanced Z5D prediction (rounded): 37125133196465568
+Refined p_1000000000000000: 37125133196465557
+
+Input k: 10000000000000000
+FFT-zeta enhanced Z5D prediction enabled
+Z5D prediction: 394911514682028160
+Found prime: 394911514682028139 (diff -19)
+FFT-zeta enhanced Z5D prediction (rounded): 394911514682028160
+Refined p_10000000000000000: 394911514682028139
+
+Input k: 1000000000000000000
+FFT-zeta enhanced Z5D prediction enabled
+Z5D prediction: 44211933152759775232
+Found prime: 44211933152759775281 (diff +45)
+FFT-zeta enhanced Z5D prediction (rounded): 44211933152759775232
+Refined p_1000000000000000000: 44211933152759775281
+
+Input k: 10000000000000000000
+FFT-zeta enhanced Z5D prediction enabled
+Z5D prediction: 465675315732479475712
+Found prime: 465675315732479475703 (diff -7)
+FFT-zeta enhanced Z5D prediction (rounded): 465675315732479475712
+Refined p_10000000000000000000: 465675315732479475703
+

@@ -1,0 +1,10 @@
+# Optional dependencies for Real LLM Validation
+# Install with: pip install -r requirements-llm.txt
+
+# API Clients
+openai>=1.0.0          # For GPT-4o and xAI (Grok) - OpenAI-compatible API
+anthropic>=0.18.0      # For Claude-3.5-Sonnet
+
+# Note: Core experiment and analysis code works without these dependencies.
+# They are only required for running real LLM experiments (Phase 2).
+# The simulation (Phase 1) requires no additional dependencies.

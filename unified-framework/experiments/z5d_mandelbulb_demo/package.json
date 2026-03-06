@@ -1,0 +1,36 @@
+{
+  "name": "z5d-mandelbulb-demo",
+  "version": "1.0.0",
+  "description": "Real-time ray-traced Mandelbulb using Z5D curvature-guided adaptive marching",
+  "main": "index.html",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "serve": "python -m http.server 8000"
+  },
+  "keywords": [
+    "mandelbulb",
+    "ray-tracing",
+    "webgpu",
+    "fractal",
+    "z5d",
+    "real-time",
+    "graphics"
+  ],
+  "author": "Dionisio Alberto Lopez III",
+  "license": "MIT",
+  "devDependencies": {
+    "vite": "^5.0.0"
+  },
+  "dependencies": {
+    "three": "^0.150.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zfifteen/unified-framework.git",
+    "directory": "experiments/z5d_mandelbulb_demo"
+  },
+  "homepage": "https://github.com/zfifteen/unified-framework/tree/main/experiments/z5d_mandelbulb_demo"
+}

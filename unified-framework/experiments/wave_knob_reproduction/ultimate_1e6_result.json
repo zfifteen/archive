@@ -1,0 +1,40 @@
+{
+  "k": 1000000.0,
+  "z5d_prediction": 15484039.819474505,
+  "target_count": 15,
+  "iterations": 1,
+  "locked": true,
+  "final_window": 64,
+  "final_step": 2,
+  "final_R": 32.0,
+  "prime_count": 15,
+  "primes_found": [
+    15484141,
+    15485401,
+    15486241,
+    15478681,
+    15478261,
+    15477841,
+    15490861,
+    15477421,
+    15492121,
+    15493381,
+    15495481,
+    15496321,
+    15471961,
+    15497161,
+    15471121
+  ],
+  "convergence_history": [
+    {
+      "iteration": 1,
+      "window": 64,
+      "step": 2,
+      "R": 32.0,
+      "prime_count": 15,
+      "adjustment": "none"
+    }
+  ],
+  "total_primality_tests": 65,
+  "elapsed_time": 0.00802922248840332
+}

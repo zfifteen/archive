@@ -1,0 +1,14 @@
+🔄 Testing Geometric Scaling with Hexagram Mutations:
+
+Overall success rate: 30.0%
+
+🔍 Testing Z5D θ' Shortcut on small semiprimes:
+Z5D success rate: 66.7%
+
+🔐 Theoretical RSA-4096 Framework:
+  - N ≈ 2^4096, sqrt(N) ≈ 2^2048
+  - Hexagram state space: 64 states for branching
+  - Weyl trials: floor(φ * prev + hex_int) % sqrt(N)
+  - Pruning: Yang-balance heuristic (target ~0.618)
+  - Convergence: gcd(N, trial) in ~1000 steps (φ^11)
+  - Security: Relies on φ-chaos for unpredictability

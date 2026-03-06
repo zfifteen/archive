@@ -1,0 +1,17 @@
+# Z5D Video Test Experiment Dependencies
+# 
+# This file lists the specific dependencies required for the Z5D video generation experiment.
+# The main script will automatically install these if not present.
+
+moviepy>=1.0.3
+# MoviePy is the primary library for video generation and editing
+# - Provides text rendering capabilities
+# - Supports MP4 output with various codecs
+# - Handles video composition and effects
+# - Automatically manages FFmpeg dependencies
+
+# Note: FFmpeg will be automatically installed by moviepy if not present on the system
+# Additional system packages that may be required on some systems:
+# - Ubuntu/Debian: sudo apt install ffmpeg
+# - macOS: brew install ffmpeg  
+# - Windows: Download from https://ffmpeg.org/

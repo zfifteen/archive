@@ -1,0 +1,34 @@
+    if (golden_spiral_search(&params, spiral_cands, 100, &found) == 0) {
+        for(int i = 0; i < found && count < MAX_CANDIDATES; i++) {
+            mpfr_t cand_mpfr;
+            mpfr_init(cand_mpfr);
+            mpfr_set(cand_mpfr, spiral_cands[i].value, MPFR_RNDN);
+            if (mpfr_integer_p(cand_mpfr)) {
+                mpz_t cand_z;
+                mpz_init(cand_z);
+                mpfr_get_z(cand_z, cand_mpfr, MPFR_RNDN);
+                if (is_prime(cand_z)) {
+                    mpfr_t p_mpfr;
+                    mpfr_init(p_mpfr);
+                    mpfr_set_z(p_mpfr, cand_z, MPFR_RNDN);
+                    double theta_p = compute_geometric_coordinate(p_mpfr, k);
+                    mpfr_clear(p_mpfr);
+                    if (circ_dist(theta_p, theta_N) <= eps) {
+                        int duplicate = 0;
+                        for(int j = 0; j < count; j++) {
+                            if (mpz_cmp(candidates[j], cand_z) == 0) {
+                                duplicate = 1;
+                                break;
+                            }
+                        }
+                        if (!duplicate) {
+                            mpz_set(candidates[count], cand_z);
+                            count++;
+                        }
+                    }
+                }
+                mpz_clear(cand_z);
+            }
+            mpfr_clear(cand_mpfr);
+        }
+    }

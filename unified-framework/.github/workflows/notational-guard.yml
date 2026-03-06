@@ -1,0 +1,45 @@
+name: Notational Guard
+on: [pull_request]
+jobs:
+  scan:
+    runs-on: self-hosted
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fail on banned phrases in core user-facing files
+        run: |
+          # Get the list of files changed in this PR
+          # Find merge base with main branch, fallback to sensible defaults
+          BASE_COMMIT=$(git merge-base HEAD main 2>/dev/null || git merge-base HEAD HEAD~10 2>/dev/null || echo "HEAD~1")
+          
+          # Get list of changed files that still exist
+          CHANGED_FILES=$(git diff --name-only $BASE_COMMIT...HEAD | xargs -I {} sh -c 'test -f "{}" && echo "{}"' || true)
+          
+          # If no files changed, pass the check
+          if [ -z "$CHANGED_FILES" ]; then
+            echo "No files changed in PR, skipping notation check"
+            exit 0
+          fi
+          
+          echo "Checking notation violations in PR files: $CHANGED_FILES"
+          
+          # Check for notation violations only in changed files
+          echo "$CHANGED_FILES" | xargs -r git grep -nE '(mod φ|mod phi|\\\\bmod \\\\varphi|\(n mod φ\)|\(n \\\\bmod \\\\varphi\))' | grep -v fractional | grep -v 'workflows/notational-guard.yml' > /tmp/mod_violations || true
+          echo "$CHANGED_FILES" | xargs -r git grep -nE '(0-5|15(\\.8)?)% (prime|density)' | grep -v 'canonical benchmark' > /tmp/percent_violations || true  
+          echo "$CHANGED_FILES" | xargs -r git grep -nE 'r\\s*≈\\s*0\\.93' | grep -v 'empirical, pending independent validation' | grep -v 'workflows/notational-guard.yml' > /tmp/corr_violations || true
+          
+          # Display violations found for debugging
+          if [ -s /tmp/mod_violations ]; then
+            echo "mod φ violations found:"
+            cat /tmp/mod_violations
+          fi
+          if [ -s /tmp/percent_violations ]; then
+            echo "percentage violations found:"
+            cat /tmp/percent_violations
+          fi
+          if [ -s /tmp/corr_violations ]; then
+            echo "correlation violations found:"
+            cat /tmp/corr_violations
+          fi
+          
+          # Fail if any unfixed violations found
+          [ ! -s /tmp/mod_violations ] && [ ! -s /tmp/percent_violations ] && [ ! -s /tmp/corr_violations ]

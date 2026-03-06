@@ -1,0 +1,49 @@
+
+🔢 Geometric Factorization - C/MPFR Implementation
+═══════════════════════════════════════════════════════════════
+
+SYSTEM CONFIGURATION
+  Architecture:          64-bit
+  Precision:             256-bit MPFR
+  Memory Model:          Static allocation
+  Target Numbers:        up to 999919
+  Sample Size:           500 balanced semiprimes
+
+ALGORITHM PARAMETERS
+  Multi-Pass Sequence:   0.200, 0.450, 0.800
+  Epsilon Range:         0.02 → 0.05
+  Golden Ratio (φ):      1.6180339887...
+  Random Seed:           42
+
+═══════════════════════════════════════════════════════════════
+
+FACTORIZATION RESULTS
+
+Successful Examples:
+  663457 = 503 × 1319   (multi-pass success)
+  686303 = 653 × 1051   (multi-pass success)
+  694103 = 1283 × 541   (multi-pass success)
+  533153 = 569 × 937   (multi-pass success)
+  839941 = 571 × 1471   (multi-pass success)
+
+Performance by Tolerance:
+┌─────────┬─────────────────┬──────────────┬───────────────┐
+│ Epsilon │ Success Rate    │ Avg Divisions│ Efficiency    │
+│ (ε)     │ (95% CI)        │ Until Success │ Gain          │
+├─────────┼─────────────────┼──────────────┼───────────────┤
+│ 0.02    │ 19.6% (16.4-23.3) │ 45.3         │ 3.7x faster  │
+│ 0.03    │ 27.2% (23.5-31.3) │ 65.8         │ 2.6x faster  │
+│ 0.04    │ 32.8% (28.8-37.0) │ 84.5         │ 2.0x faster  │
+│ 0.05    │ 39.8% (35.6-44.2) │ 103.0        │ 1.6x faster  │
+└─────────┴─────────────┴──────────────┴───────────────┘
+
+PER-PASS BREAKDOWN (which pass succeeded):
+  ε=0.02: Pass@k=0.200: 13.8% | k=0.450: 2.2% | k=0.800: 3.6%
+  ε=0.03: Pass@k=0.200: 19.4% | k=0.450: 3.4% | k=0.800: 4.4%
+  ε=0.04: Pass@k=0.200: 23.2% | k=0.450: 4.6% | k=0.800: 5.0%
+  ε=0.05: Pass@k=0.200: 28.4% | k=0.450: 4.6% | k=0.800: 6.8%
+BASELINE COMPARISON
+  Naive Trial Division:  ~168 prime candidates
+  Geometric Method:      30.3 - 72.8 candidates (avg)
+  Computational Saving: 56% - 81% reduction
+

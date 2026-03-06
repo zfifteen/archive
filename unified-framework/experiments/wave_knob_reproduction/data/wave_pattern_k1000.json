@@ -1,0 +1,627 @@
+{
+  "scan_type": "r_sweep",
+  "k": 1000.0,
+  "window_range": [
+    2,
+    20,
+    2
+  ],
+  "step_range": [
+    1,
+    6,
+    1
+  ],
+  "total_scans": 45,
+  "resonance_valleys": 5,
+  "results": [
+    {
+      "k": 1000.0,
+      "z5d_prediction": 7830.649339435743,
+      "window": 2,
+      "step": 1,
+      "R": 2.0,
+      "prime_count": 0,
+      "primes_found": [],
+      "is_resonance_valley": false
+    },
+    {
+      "k": 1000.0,
+      "z5d_prediction": 7830.649339435743,
+      "window": 2,
+      "step": 2,
+      "R": 1.0,
+      "prime_count": 0,
+      "primes_found": [],
+      "is_resonance_valley": false
+    },
+    {
+      "k": 1000.0,
+      "z5d_prediction": 7830.649339435743,
+      "window": 2,
+      "step": 3,
+      "R": 0.6666666666666666,
+      "prime_count": 1,
+      "primes_found": [
+        7841
+      ],
+      "is_resonance_valley": true
+    },
+    {
+      "k": 1000.0,
+      "z5d_prediction": 7830.649339435743,
+      "window": 2,
+      "step": 4,
+      "R": 0.5,
+      "prime_count": 0,
+      "primes_found": [],
+      "is_resonance_valley": false
+    },
+    {
+      "k": 1000.0,
+      "z5d_prediction": 7830.649339435743,
+      "window": 2,
+      "step": 5,
+      "R": 0.4,
+      "prime_count": 0,
+      "primes_found": [],
+      "is_resonance_valley": false
+    },
+    {
+      "k": 1000.0,
+      "z5d_prediction": 7830.649339435743,
+      "window": 4,
+      "step": 1,
+      "R": 4.0,
+      "prime_count": 3,
+      "primes_found": [
+        7879,
+        7789,
+        7759
+      ],
+      "is_resonance_valley": false
+    },
+    {
+      "k": 1000.0,
+      "z5d_prediction": 7830.649339435743,
+      "window": 4,
+      "step": 2,
+      "R": 2.0,
+      "prime_count": 2,
+      "primes_found": [
+        7853,
+        7793
+      ],
+      "is_resonance_valley": false
+    },
+    {
+      "k": 1000.0,
+      "z5d_prediction": 7830.649339435743,
+      "window": 4,
+      "step": 3,
+      "R": 1.3333333333333333,
+      "prime_count": 1,
+      "primes_found": [
+        7949
+      ],
+      "is_resonance_valley": true
+    },
+    {
+      "k": 1000.0,
+      "z5d_prediction": 7830.649339435743,
+      "window": 4,
+      "step": 4,
+      "R": 1.0,
+      "prime_count": 1,
+      "primes_found": [
+        7951
+      ],
+      "is_resonance_valley": true
+    },
+    {
+      "k": 1000.0,
+      "z5d_prediction": 7830.649339435743,
+      "window": 4,
+      "step": 5,
+      "R": 0.8,
+      "prime_count": 0,
+      "primes_found": [],
+      "is_resonance_valley": false
+    },
+    {
+      "k": 1000.0,
+      "z5d_prediction": 7830.649339435743,
+      "window": 6,
+      "step": 1,
+      "R": 6.0,
+      "prime_count": 3,
+      "primes_found": [
+        7841,
+        7901,
+        7691
+      ],
+      "is_resonance_valley": false
+    },
+    {
+      "k": 1000.0,
+      "z5d_prediction": 7830.649339435743,
+      "window": 6,
+      "step": 2,
+      "R": 3.0,
+      "prime_count": 2,
+      "primes_found": [
+        7963,
+        7723
+      ],
+      "is_resonance_valley": false
+    },
+    {
+      "k": 1000.0,
+      "z5d_prediction": 7830.649339435743,
+      "window": 6,
+      "step": 3,
+      "R": 2.0,
+      "prime_count": 2,
+      "primes_found": [
+        7937,
+        7757
+      ],
+      "is_resonance_valley": false
+    },
+    {
+      "k": 1000.0,
+      "z5d_prediction": 7830.649339435743,
+      "window": 6,
+      "step": 4,
+      "R": 1.5,
+      "prime_count": 0,
+      "primes_found": [],
+      "is_resonance_valley": false
+    },
+    {
+      "k": 1000.0,
+      "z5d_prediction": 7830.649339435743,
+      "window": 6,
+      "step": 5,
+      "R": 1.2,
+      "prime_count": 2,
+      "primes_found": [
+        7853,
+        7703
+      ],
+      "is_resonance_valley": false
+    },
+    {
+      "k": 1000.0,
+      "z5d_prediction": 7830.649339435743,
+      "window": 8,
+      "step": 1,
+      "R": 8.0,
+      "prime_count": 7,
+      "primes_found": [
+        7829,
+        7919,
+        7949,
+        8009,
+        8039
+      ],
+      "is_resonance_valley": false
+    },
+    {
+      "k": 1000.0,
+      "z5d_prediction": 7830.649339435743,
+      "window": 8,
+      "step": 2,
+      "R": 4.0,
+      "prime_count": 3,
+      "primes_found": [
+        7951,
+        8011,
+        7591
+      ],
+      "is_resonance_valley": false
+    },
+    {
+      "k": 1000.0,
+      "z5d_prediction": 7830.649339435743,
+      "window": 8,
+      "step": 3,
+      "R": 2.6666666666666665,
+      "prime_count": 2,
+      "primes_found": [
+        7927,
+        8017
+      ],
+      "is_resonance_valley": false
+    },
+    {
+      "k": 1000.0,
+      "z5d_prediction": 7830.649339435743,
+      "window": 8,
+      "step": 4,
+      "R": 2.0,
+      "prime_count": 2,
+      "primes_found": [
+        7841,
+        8081
+      ],
+      "is_resonance_valley": false
+    },
+    {
+      "k": 1000.0,
+      "z5d_prediction": 7830.649339435743,
+      "window": 8,
+      "step": 5,
+      "R": 1.6,
+      "prime_count": 1,
+      "primes_found": [
+        7993
+      ],
+      "is_resonance_valley": true
+    },
+    {
+      "k": 1000.0,
+      "z5d_prediction": 7830.649339435743,
+      "window": 10,
+      "step": 1,
+      "R": 10.0,
+      "prime_count": 12,
+      "primes_found": [
+        7877,
+        7817,
+        7907,
+        7937,
+        7757
+      ],
+      "is_resonance_valley": false
+    },
+    {
+      "k": 1000.0,
+      "z5d_prediction": 7830.649339435743,
+      "window": 10,
+      "step": 2,
+      "R": 5.0,
+      "prime_count": 4,
+      "primes_found": [
+        7789,
+        7669,
+        8089,
+        7549
+      ],
+      "is_resonance_valley": false
+    },
+    {
+      "k": 1000.0,
+      "z5d_prediction": 7830.649339435743,
+      "window": 10,
+      "step": 3,
+      "R": 3.3333333333333335,
+      "prime_count": 4,
+      "primes_found": [
+        7853,
+        7673,
+        8123,
+        7583
+      ],
+      "is_resonance_valley": false
+    },
+    {
+      "k": 1000.0,
+      "z5d_prediction": 7830.649339435743,
+      "window": 10,
+      "step": 4,
+      "R": 2.5,
+      "prime_count": 0,
+      "primes_found": [],
+      "is_resonance_valley": false
+    },
+    {
+      "k": 1000.0,
+      "z5d_prediction": 7830.649339435743,
+      "window": 10,
+      "step": 5,
+      "R": 2.0,
+      "prime_count": 1,
+      "primes_found": [
+        7681
+      ],
+      "is_resonance_valley": true
+    },
+    {
+      "k": 1000.0,
+      "z5d_prediction": 7830.649339435743,
+      "window": 12,
+      "step": 1,
+      "R": 12.0,
+      "prime_count": 9,
+      "primes_found": [
+        7867,
+        7927,
+        7717,
+        7687,
+        8017
+      ],
+      "is_resonance_valley": false
+    },
+    {
+      "k": 1000.0,
+      "z5d_prediction": 7830.649339435743,
+      "window": 12,
+      "step": 2,
+      "R": 6.0,
+      "prime_count": 5,
+      "primes_found": [
+        7841,
+        7901,
+        8081,
+        7541,
+        7481
+      ],
+      "is_resonance_valley": false
+    },
+    {
+      "k": 1000.0,
+      "z5d_prediction": 7830.649339435743,
+      "window": 12,
+      "step": 3,
+      "R": 4.0,
+      "prime_count": 3,
+      "primes_found": [
+        7933,
+        7753,
+        7573
+      ],
+      "is_resonance_valley": false
+    },
+    {
+      "k": 1000.0,
+      "z5d_prediction": 7830.649339435743,
+      "window": 12,
+      "step": 4,
+      "R": 3.0,
+      "prime_count": 4,
+      "primes_found": [
+        7727,
+        8087,
+        7607,
+        7487
+      ],
+      "is_resonance_valley": false
+    },
+    {
+      "k": 1000.0,
+      "z5d_prediction": 7830.649339435743,
+      "window": 12,
+      "step": 5,
+      "R": 2.4,
+      "prime_count": 2,
+      "primes_found": [
+        7699,
+        7549
+      ],
+      "is_resonance_valley": false
+    },
+    {
+      "k": 1000.0,
+      "z5d_prediction": 7830.649339435743,
+      "window": 14,
+      "step": 1,
+      "R": 14.0,
+      "prime_count": 14,
+      "primes_found": [
+        7853,
+        7883,
+        7823,
+        7793,
+        7703
+      ],
+      "is_resonance_valley": false
+    },
+    {
+      "k": 1000.0,
+      "z5d_prediction": 7830.649339435743,
+      "window": 14,
+      "step": 2,
+      "R": 7.0,
+      "prime_count": 5,
+      "primes_found": [
+        7919,
+        8039,
+        7559,
+        8219,
+        7499
+      ],
+      "is_resonance_valley": false
+    },
+    {
+      "k": 1000.0,
+      "z5d_prediction": 7830.649339435743,
+      "window": 14,
+      "step": 3,
+      "R": 4.666666666666667,
+      "prime_count": 5,
+      "primes_found": [
+        7741,
+        8011,
+        8101,
+        7561,
+        8191
+      ],
+      "is_resonance_valley": false
+    },
+    {
+      "k": 1000.0,
+      "z5d_prediction": 7830.649339435743,
+      "window": 14,
+      "step": 4,
+      "R": 3.5,
+      "prime_count": 2,
+      "primes_found": [
+        7717,
+        7477
+      ],
+      "is_resonance_valley": false
+    },
+    {
+      "k": 1000.0,
+      "z5d_prediction": 7830.649339435743,
+      "window": 14,
+      "step": 5,
+      "R": 2.8,
+      "prime_count": 3,
+      "primes_found": [
+        7841,
+        7691,
+        7541
+      ],
+      "is_resonance_valley": false
+    },
+    {
+      "k": 1000.0,
+      "z5d_prediction": 7830.649339435743,
+      "window": 16,
+      "step": 1,
+      "R": 16.0,
+      "prime_count": 13,
+      "primes_found": [
+        7873,
+        7933,
+        7753,
+        7963,
+        7723
+      ],
+      "is_resonance_valley": false
+    },
+    {
+      "k": 1000.0,
+      "z5d_prediction": 7830.649339435743,
+      "window": 16,
+      "step": 2,
+      "R": 8.0,
+      "prime_count": 7,
+      "primes_found": [
+        7907,
+        7727,
+        8087,
+        7607,
+        8147
+      ],
+      "is_resonance_valley": false
+    },
+    {
+      "k": 1000.0,
+      "z5d_prediction": 7830.649339435743,
+      "window": 16,
+      "step": 3,
+      "R": 5.333333333333333,
+      "prime_count": 4,
+      "primes_found": [
+        7759,
+        7669,
+        8209,
+        7489
+      ],
+      "is_resonance_valley": false
+    },
+    {
+      "k": 1000.0,
+      "z5d_prediction": 7830.649339435743,
+      "window": 16,
+      "step": 4,
+      "R": 4.0,
+      "prime_count": 2,
+      "primes_found": [
+        7853,
+        8093
+      ],
+      "is_resonance_valley": false
+    },
+    {
+      "k": 1000.0,
+      "z5d_prediction": 7830.649339435743,
+      "window": 16,
+      "step": 5,
+      "R": 3.2,
+      "prime_count": 2,
+      "primes_found": [
+        8009,
+        7559
+      ],
+      "is_resonance_valley": false
+    },
+    {
+      "k": 1000.0,
+      "z5d_prediction": 7830.649339435743,
+      "window": 18,
+      "step": 1,
+      "R": 18.0,
+      "prime_count": 15,
+      "primes_found": [
+        7741,
+        7951,
+        7681,
+        8011,
+        7621
+      ],
+      "is_resonance_valley": false
+    },
+    {
+      "k": 1000.0,
+      "z5d_prediction": 7830.649339435743,
+      "window": 18,
+      "step": 2,
+      "R": 9.0,
+      "prime_count": 8,
+      "primes_found": [
+        7717,
+        8017,
+        7537,
+        7477,
+        7417
+      ],
+      "is_resonance_valley": false
+    },
+    {
+      "k": 1000.0,
+      "z5d_prediction": 7830.649339435743,
+      "window": 18,
+      "step": 3,
+      "R": 6.0,
+      "prime_count": 4,
+      "primes_found": [
+        7841,
+        8111,
+        7481,
+        8291
+      ],
+      "is_resonance_valley": false
+    },
+    {
+      "k": 1000.0,
+      "z5d_prediction": 7830.649339435743,
+      "window": 18,
+      "step": 4,
+      "R": 4.5,
+      "prime_count": 3,
+      "primes_found": [
+        7963,
+        7723,
+        7603
+      ],
+      "is_resonance_valley": false
+    },
+    {
+      "k": 1000.0,
+      "z5d_prediction": 7830.649339435743,
+      "window": 18,
+      "step": 5,
+      "R": 3.6,
+      "prime_count": 3,
+      "primes_found": [
+        8147,
+        7547,
+        8297
+      ],
+      "is_resonance_valley": false
+    }
+  ]
+}

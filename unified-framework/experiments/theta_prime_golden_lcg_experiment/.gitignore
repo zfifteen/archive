@@ -1,0 +1,28 @@
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Results and plots (regenerated on run)
+# results/
+# plots/
+
+# Keep results for demonstration
+!results/experiment_results.json
+!results/experiment_summary.txt
+
+# Virtual environments
+venv/
+env/
+ENV/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db

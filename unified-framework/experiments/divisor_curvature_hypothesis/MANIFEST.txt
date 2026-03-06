@@ -1,0 +1,55 @@
+Divisor-Based Curvature Hypothesis Experiment
+==============================================
+
+Directory: experiments/divisor_curvature_hypothesis/
+
+Files:
+------
+README.md                   - Comprehensive experiment documentation
+EXPERIMENT_SUMMARY.md       - Executive summary with full results
+run_experiment.py           - Main experiment script
+extended_analysis.py        - Multi-range robustness testing
+visualize.py                - Visualization generation script  
+test_all.py                 - Comprehensive test suite
+results.json                - Experiment results (n=2-49)
+extended_results.json       - Multi-range analysis results
+plots/                      - Generated visualizations
+  ├── curvature_analysis.png    - Main results visualization
+  └── golden_ratio_test.png     - Golden ratio equidistribution test
+
+Key Results:
+------------
+✓ Prime mean κ: 0.739 (target: 0.74)
+✓ Composite mean κ: 2.252 (target: 2.25)
+✓ Separation ratio: 3.05x (target: ~3x)
+✓ Classification accuracy: 93.8% (target: ≥83%)
+✓ Bootstrap validation: 95% CI confirms significance
+✓ Golden ratio test: χ² = 0.200 (excellent uniformity)
+
+Usage:
+------
+# Run main experiment
+python run_experiment.py
+
+# Run with custom parameters
+python run_experiment.py --n-min 2 --n-max 100 --bootstrap 5000 --output my_results.json
+
+# Run extended analysis
+python extended_analysis.py --output extended.json
+
+# Generate visualizations
+python visualize.py --input results.json --output-dir plots
+
+# Run all tests
+python test_all.py
+
+Dependencies:
+-------------
+- Python 3.8+
+- matplotlib (for visualizations)
+- numpy (for visualizations)
+- Standard library: math, json, pathlib, random, argparse
+
+References:
+-----------
+See README.md and EXPERIMENT_SUMMARY.md for complete references.

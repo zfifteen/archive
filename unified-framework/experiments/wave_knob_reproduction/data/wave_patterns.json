@@ -1,0 +1,9 @@
+{
+  "k": "1000",
+  "total_scans": 45,
+  "resonance_valleys": 5,
+  "correlations": {
+    "R_vs_count": {
+      "r": 0.9634307264457209,
+      "p": 3.198550900156064e-26,
+      "target_met": 

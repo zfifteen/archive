@@ -1,0 +1,36 @@
+Plot Generation Summary
+======================
+
+Generated: 2025-08-18 07:18:20
+Total plots: 22
+Successful generators: 6
+Failed generators: 2
+Total time: 16.00 seconds
+
+Generated Plots:
+  - z5d_absolute_errors.png
+  - z5d_relative_errors.png
+  - z5d_improvement_factors.png
+  - z5d_predictions_vs_ground_truth.png
+  - z5d_comprehensive_summary.png
+  - z5d_parameter_space_3d.png
+  - symmetry_diagnostics_figure_x.png
+  - theoretical_symmetry_diagnostics_figure_x.png
+  - symmetry_diagnostics_analysis_report.txt
+  - theoretical_symmetry_analysis_report.txt
+  - interactive_helix_main.html
+  - quantum_correlations.html
+  - helix_parameter_sweep.html
+  - density_enhancement_analysis.png
+  - geodesic_curvature_analysis.png
+  - prime_distribution_enhancement.png
+  - performance_comparison.png
+  - scaling_analysis.png
+  - memory_usage_analysis.png
+  - correlation_matrix.png
+  - distribution_analysis.png
+  - bootstrap_confidence_intervals.png
+
+Failed Generators:
+  - topology_suite: No module named 'pandas'
+  - numerical_validation: No module named 'sklearn'

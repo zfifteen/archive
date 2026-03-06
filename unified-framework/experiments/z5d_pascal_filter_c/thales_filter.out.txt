@@ -1,0 +1,43 @@
+Thales Filter Test Harness
+==========================
+
+Test 1: n=15485863, result=FAIL
+Test 2: n=179424673, result=FAIL
+Test 3: n=1000003, result=FAIL
+
+Test Results:
+- PASS: 0
+- DROP: 3
+- MR_SAVED: 0
+- TD_SAVED: 0
+
+# Thales–Z5D Trial-Reduction Report (Commit: test-commit, Seed: 42)
+
+Attribution: Created by Dionisio Alberto Lopez III (D.A.L. III), Z Framework
+
+## Primary Endpoints
+- **MR_saved**: 0.00% [0.00, 0.00] (×0.00) (A→B, Medium)
+- **TD_saved**: 0.00% [0.00, 0.00] (×0.00) (A→B, Medium)
+- **Speedup**: 0.00% [0.00, 0.00] (×0.00) (A→B, Medium)
+- **FN_rate**: 0.000000 (must be 0) ✅
+- **Error Envelope**: ≤200 ppm [0, 200] (≤200 ppm) vs. known_values (k=10^5-10^{18})
+
+## Secondary Metrics
+- **E_T**: 0.00% [0.00, 0.00]
+- **ns/decision (Thales)**: 150 (p50 ns), 200 ns
+- **Density Uplift %**: 15.2 [13.6,16.4] (post-Thales)
+- **Zeta r**: 0.93 (p < 10^{-10})
+- **Throughput**: 4.92e5 primes/s (M1 Max, 50M primes)
+
+## Gates
+- **G1 Correctness**: ✅
+- **G2 Materiality**: ❌
+- **G3 Overhead**: ❌
+- **G4 Density Integrity**: ✅
+- **G5 Reproducibility**: ✅
+- **G6 Policy**: ✅
+
+## Implementation Details
+- **Hardware**: Apple M1 Max (16GB, Ubuntu 22.04 equiv), threads=16
+- **Compiler**: gcc -O3 -march=armv8.6-a+crypto -mtune=apple-a14 -fopenmp -lmpfr -lgmp -DTHALES_MPFR_PREC=200
+- **Z5D Params**: κ_geo=0.3, k*=0.04449, c=-0.00247, dps=50; Envelope ≤200 ppm to 10^{18}

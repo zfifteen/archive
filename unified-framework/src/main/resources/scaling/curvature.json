@@ -1,0 +1,34 @@
+{
+  "metadata": {
+    "source": "PR-123 resonance-recalibration experiment",
+    "date": "2025-11-24",
+    "description": "Curvature measurements for various bit lengths"
+  },
+  "measurements": [
+    {
+      "bitLength": 30,
+      "curvature": 0.82,
+      "kappa_estimated": 0.35
+    },
+    {
+      "bitLength": 60,
+      "curvature": 0.75,
+      "kappa_estimated": 0.38
+    },
+    {
+      "bitLength": 90,
+      "curvature": 0.68,
+      "kappa_estimated": 0.41
+    },
+    {
+      "bitLength": 127,
+      "curvature": 0.62,
+      "kappa_estimated": 0.44
+    },
+    {
+      "bitLength": 256,
+      "curvature": 0.52,
+      "kappa_estimated": 0.51
+    }
+  ]
+}

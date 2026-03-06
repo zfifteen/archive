@@ -1,0 +1,155 @@
+{
+  "gene_name": "BRCA1_Human",
+  "description": "BRCA1 DNA repair associated (RefSeq: NM_007294.4)",
+  "clinical_relevance": "Mutations increase breast and ovarian cancer risk",
+  "source": "NCBI RefSeq",
+  "refseq_id": "NM_007294.4",
+  "sequence_length": 510,
+  "sequence": "ATGGATTTATCTGCTCTTCGCGTTGAAGAAGTACAAAATGTCATTAATGCTATGCAGAAAATCTTAGAGTGTCCCATCTGTCTGGAGTTGATCAAGGAACCTGTCTCCACAAAGTGTGACCACATATTTTGCAAATTTTGCATGCTGAAACTTCTCAACCAGAAGAAAGGGCCTTCACAGTGTCCTTTATGTAAGAATGATATAACCAAAAGGAGCCTACAAGAAAGTACGAGATTTAGTCAACTTGTTGAAGAGCTATTGAAAATCATTTGTGCTTTTCAGCTTGACACAGGTTTGGAGTATGCAAACAGCTATAATTTTGCAAAAAAGGAAAATAACTGCCCCTAGTCTGATAAACTTCGTATAATGTATGCTATACGAAGTTATTAGAAGATAGAATACGGCATATACCGCTCAAGAGATGCCAAAAGAAGTAGAGTCCAGACAATCGGTAACATGGAAGATAACAGAAGATCCAGATGTTCTTTGATGAAAGAGTGGAACGCTGGA",
+  "analysis_results": [
+    {
+      "position": 60,
+      "original_base": "A",
+      "mutated_base": "C",
+      "delta_f1": 27.024618179140706,
+      "delta_peaks": 41,
+      "delta_entropy": 2.6058034837734425,
+      "composite_score": 43.605803581576055,
+      "z_factor": 3.619019179671839e-09,
+      "zeta_shift": 0.933556227083912,
+      "spectral_order_base": 394.82643426136946,
+      "spectral_order_mut": 405.53856369798547
+    },
+    {
+      "position": 60,
+      "original_base": "A",
+      "mutated_base": "G",
+      "delta_f1": 28.082727554016266,
+      "delta_peaks": 39,
+      "delta_entropy": 2.4577867155900748,
+      "composite_score": 41.45778681722201,
+      "z_factor": 3.619019179671839e-09,
+      "zeta_shift": 0.933556227083912,
+      "spectral_order_base": 394.82643426136946,
+      "spectral_order_mut": 404.93008543420103
+    },
+    {
+      "position": 40,
+      "original_base": "T",
+      "mutated_base": "G",
+      "delta_f1": 1.9161030429828165,
+      "delta_peaks": 31,
+      "delta_entropy": 1.9910736296223348,
+      "composite_score": 32.99107363243634,
+      "z_factor": 1.4686081955907396e-09,
+      "zeta_shift": 0.8330336560930927,
+      "spectral_order_base": 394.82643426136946,
+      "spectral_order_mut": 402.2204296750865
+    },
+    {
+      "position": 60,
+      "original_base": "A",
+      "mutated_base": "T",
+      "delta_f1": 24.079311995222874,
+      "delta_peaks": 30,
+      "delta_entropy": 2.622586180768053,
+      "composite_score": 32.622586267911544,
+      "z_factor": 3.619019179671839e-09,
+      "zeta_shift": 0.933556227083912,
+      "spectral_order_base": 394.82643426136946,
+      "spectral_order_mut": 405.6075552484309
+    },
+    {
+      "position": 420,
+      "original_base": "G",
+      "mutated_base": "A",
+      "delta_f1": -9.07120024412934,
+      "delta_peaks": 31,
+      "delta_entropy": 1.2650020744046344,
+      "composite_score": 32.26500437163177,
+      "z_factor": 2.5324401110680106e-07,
+      "zeta_shift": 0.9427061076129469,
+      "spectral_order_base": 394.82643426136946,
+      "spectral_order_mut": 402.4703773308433
+    },
+    {
+      "position": 40,
+      "original_base": "T",
+      "mutated_base": "A",
+      "delta_f1": 0.3940485236722834,
+      "delta_peaks": 30,
+      "delta_entropy": 2.17882703468392,
+      "composite_score": 32.17882703526262,
+      "z_factor": 1.4686081955907396e-09,
+      "zeta_shift": 0.8330336560930927,
+      "spectral_order_base": 394.82643426136946,
+      "spectral_order_mut": 402.9176654755518
+    },
+    {
+      "position": 420,
+      "original_base": "G",
+      "mutated_base": "C",
+      "delta_f1": -4.785730260327346,
+      "delta_peaks": 27,
+      "delta_entropy": 1.2876533961492953,
+      "composite_score": 28.287654608106823,
+      "z_factor": 2.5324401110680106e-07,
+      "zeta_shift": 0.9427061076129469,
+      "spectral_order_base": 394.82643426136946,
+      "spectral_order_mut": 402.6072509513439
+    },
+    {
+      "position": 480,
+      "original_base": "T",
+      "mutated_base": "A",
+      "delta_f1": 2.962272272611739,
+      "delta_peaks": 27,
+      "delta_entropy": 0.6600404249055885,
+      "composite_score": 27.66004140443862,
+      "z_factor": 3.3066947904274536e-07,
+      "zeta_shift": 0.91908030979589,
+      "spectral_order_base": 394.82643426136946,
+      "spectral_order_mut": 398.9027563184906
+    },
+    {
+      "position": 420,
+      "original_base": "G",
+      "mutated_base": "T",
+      "delta_f1": -2.354072807643287,
+      "delta_peaks": 24,
+      "delta_entropy": 1.1368371356411444,
+      "composite_score": 25.136837731795985,
+      "z_factor": 2.5324401110680106e-07,
+      "zeta_shift": 0.9427061076129469,
+      "spectral_order_base": 394.82643426136946,
+      "spectral_order_mut": 401.69592366374405
+    },
+    {
+      "position": 40,
+      "original_base": "T",
+      "mutated_base": "C",
+      "delta_f1": 5.1028181970953215,
+      "delta_peaks": 21,
+      "delta_entropy": 2.1093034888199753,
+      "composite_score": 23.109303496314016,
+      "z_factor": 1.4686081955907396e-09,
+      "zeta_shift": 0.8330336560930927,
+      "spectral_order_base": 394.82643426136946,
+      "spectral_order_mut": 402.65948477765323
+    }
+  ],
+  "summary_statistics": {
+    "total_mutations": 78,
+    "score_range": [
+      -74.25095311444282,
+      43.605803581576055
+    ],
+    "mean_score": -13.713968311307273,
+    "score_std": 26.448457135915792
+  },
+  "data_provenance": {
+    "data_type": "authentic_human_dna",
+    "ethical_compliance": "NCBI RefSeq public sequences",
+    "privacy_status": "no_personal_data"
+  }
+}

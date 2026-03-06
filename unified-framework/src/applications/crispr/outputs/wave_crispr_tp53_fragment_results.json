@@ -1,0 +1,147 @@
+{
+  "gene_name": "TP53_Fragment",
+  "description": "TP53 (Tumor protein p53) - Tumor suppressor",
+  "clinical_relevance": "Mutations involved in majority of human cancers",
+  "sequence_length": 159,
+  "analysis_results": [
+    {
+      "position": 20,
+      "original_base": "T",
+      "mutated_base": "C",
+      "delta_f1": 3.0109231509259566,
+      "delta_peaks": 9,
+      "delta_entropy": 0.6683508266763809,
+      "composite_score": 9.66835083248576,
+      "z_factor": 1.9294349432239585e-09,
+      "zeta_shift": 0.5870303688481482,
+      "spectral_order_base": 122.8479805315967,
+      "spectral_order_mut": 124.88278961968393
+    },
+    {
+      "position": 20,
+      "original_base": "T",
+      "mutated_base": "A",
+      "delta_f1": 7.48393552507096,
+      "delta_peaks": 7,
+      "delta_entropy": 0.8353520220205368,
+      "composite_score": 7.8353520364603035,
+      "z_factor": 1.9294349432239585e-09,
+      "zeta_shift": 0.5870303688481482,
+      "spectral_order_base": 122.8479805315967,
+      "spectral_order_mut": 125.39122850603586
+    },
+    {
+      "position": 80,
+      "original_base": "T",
+      "mutated_base": "C",
+      "delta_f1": -10.950102655489903,
+      "delta_peaks": 5,
+      "delta_entropy": 0.9119567788919625,
+      "composite_score": 5.911957104859271,
+      "z_factor": 2.9768424838312503e-08,
+      "zeta_shift": 0.9334852350955645,
+      "spectral_order_base": 122.8479805315967,
+      "spectral_order_mut": 126.8555282276963
+    },
+    {
+      "position": 20,
+      "original_base": "T",
+      "mutated_base": "G",
+      "delta_f1": -5.327253208161729,
+      "delta_peaks": 4,
+      "delta_entropy": 0.7877906517239097,
+      "composite_score": 4.787790662002498,
+      "z_factor": 1.9294349432239585e-09,
+      "zeta_shift": 0.5870303688481482,
+      "spectral_order_base": 122.8479805315967,
+      "spectral_order_mut": 125.2464268469989
+    },
+    {
+      "position": 0,
+      "original_base": "A",
+      "mutated_base": "C",
+      "delta_f1": -7.739366985854797,
+      "delta_peaks": 1,
+      "delta_entropy": 1.7877948321966812,
+      "composite_score": 2.7877948321966812,
+      "z_factor": 0.0,
+      "zeta_shift": 0.9755767280122588,
+      "spectral_order_base": 122.8479805315967,
+      "spectral_order_mut": 124.08718547895347
+    },
+    {
+      "position": 0,
+      "original_base": "A",
+      "mutated_base": "G",
+      "delta_f1": 11.500924503878563,
+      "delta_peaks": 2,
+      "delta_entropy": -0.05246565897812161,
+      "composite_score": 1.9475343410218784,
+      "z_factor": 0.0,
+      "zeta_shift": 0.9755767280122588,
+      "spectral_order_base": 122.8479805315967,
+      "spectral_order_mut": 122.8116141079998
+    },
+    {
+      "position": 0,
+      "original_base": "A",
+      "mutated_base": "T",
+      "delta_f1": 4.615871498499072,
+      "delta_peaks": 0,
+      "delta_entropy": 1.8845210534560977,
+      "composite_score": 1.8845210534560977,
+      "z_factor": 0.0,
+      "zeta_shift": 0.9755767280122588,
+      "spectral_order_base": 122.8479805315967,
+      "spectral_order_mut": 124.15423098650567
+    },
+    {
+      "position": 80,
+      "original_base": "T",
+      "mutated_base": "G",
+      "delta_f1": -28.943474747610157,
+      "delta_peaks": -1,
+      "delta_entropy": 0.8146537916137149,
+      "composite_score": -0.18534534678463255,
+      "z_factor": 2.9768424838312503e-08,
+      "zeta_shift": 0.9334852350955645,
+      "spectral_order_base": 122.8479805315967,
+      "spectral_order_mut": 126.4279351975043
+    },
+    {
+      "position": 80,
+      "original_base": "T",
+      "mutated_base": "A",
+      "delta_f1": -15.471350178303068,
+      "delta_peaks": -2,
+      "delta_entropy": 0.7868405583340419,
+      "composite_score": -1.2131589811082333,
+      "z_factor": 2.9768424838312503e-08,
+      "zeta_shift": 0.9334852350955645,
+      "spectral_order_base": 122.8479805315967,
+      "spectral_order_mut": 126.30571135802973
+    },
+    {
+      "position": 100,
+      "original_base": "C",
+      "mutated_base": "G",
+      "delta_f1": 13.659597067138941,
+      "delta_peaks": -2,
+      "delta_entropy": 0.07874585901904396,
+      "composite_score": -1.921253650634899,
+      "z_factor": 3.589754914809899e-08,
+      "zeta_shift": 0.9240423328601483,
+      "spectral_order_base": 122.8479805315967,
+      "spectral_order_mut": 123.21140216117179
+    }
+  ],
+  "summary_statistics": {
+    "total_mutations": 24,
+    "score_range": [
+      -25.282628576502283,
+      9.66835083248576
+    ],
+    "mean_score": -5.901731517550708,
+    "score_std": 9.452887260697638
+  }
+}

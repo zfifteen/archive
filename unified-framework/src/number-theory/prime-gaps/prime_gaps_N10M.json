@@ -1,0 +1,48 @@
+{
+  "analysis_parameters": {
+    "limit": 10000000,
+    "memory_limit_mb": 1000,
+    "sample_rate": 0.01,
+    "total_gaps_processed": 664578,
+    "sample_size": 6463,
+    "analysis_time_seconds": 2.980656862258911
+  },
+  "overall_statistics": {
+    "total_gaps": 664578,
+    "gap_mean": 15.047126146216096,
+    "gap_std": 12.569700527410175,
+    "gap_min": 1,
+    "gap_max": 154
+  },
+  "sampled_statistics": {
+    "sample_size": 6463,
+    "sample_gap_mean": 14.731858270153179,
+    "sample_gap_std": 12.41795173758467,
+    "sample_gap_median": 12.0,
+    "sample_gap_min": 2,
+    "sample_gap_max": 148
+  },
+  "low_kappa_analysis": {
+    "kappa_threshold": 12.667283396734675,
+    "low_kappa_count": 1616,
+    "low_kappa_fraction": 0.2500386817267523,
+    "low_kappa_gap_mean": 13.607673267326733,
+    "low_kappa_gap_std": 11.810049443319102,
+    "curvature_stats": {
+      "mean": 13.341385886598278,
+      "std": 1.5736099780342945,
+      "median": 13.819487858462328
+    },
+    "frame_shift_stats": {
+      "mean": 1.3472040023608725,
+      "std": 0.2284520353388119,
+      "median": 1.4075667851069034
+    }
+  },
+  "plot_files": [
+    "billion_analysis_10M_distribution.png",
+    "billion_analysis_10M_vs_position.png",
+    "billion_analysis_10M_low_kappa_clustering.png",
+    "billion_analysis_10M_curvature_distribution.png"
+  ]
+}

@@ -1,0 +1,100 @@
+{
+  "validation_timestamp": "2025-09-27T14:46:05.819253",
+  "framework_config": {
+    "max_k": 500,
+    "bootstrap_samples": 100,
+    "random_seed": 42,
+    "semiprime_count": 951
+  },
+  "test_ranges": [
+    {
+      "k_range": [
+        5,
+        10,
+        15,
+        20,
+        25
+      ],
+      "bootstrap_baseline": {
+        "error": "insufficient_data",
+        "sample_size": 5
+      },
+      "bootstrap_z5d": {
+        "error": "insufficient_data",
+        "sample_size": 5
+      }
+    },
+    {
+      "k_range": [
+        20,
+        40,
+        60,
+        80,
+        100
+      ],
+      "bootstrap_baseline": {
+        "error": "insufficient_data",
+        "sample_size": 5
+      },
+      "bootstrap_z5d": {
+        "error": "insufficient_data",
+        "sample_size": 5
+      }
+    },
+    {
+      "k_range": [
+        50,
+        100,
+        150,
+        200
+      ],
+      "bootstrap_baseline": {
+        "error": "insufficient_data",
+        "sample_size": 4
+      },
+      "bootstrap_z5d": {
+        "error": "insufficient_data",
+        "sample_size": 4
+      }
+    }
+  ],
+  "parameter_optimization": {
+    "success": true,
+    "optimal_parameters": {
+      "c": -0.01,
+      "k_star": 0.1,
+      "beta": 30.34
+    },
+    "initial_parameters": {
+      "c": -0.00247,
+      "k_star": 0.3,
+      "beta": 30.34
+    },
+    "initial_error": 0.190525380984472,
+    "final_error": 0.14303274256316295,
+    "improvement_ratio": 1.3320403256641493,
+    "optimization_message": "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL",
+    "sample_size": 10,
+    "iterations": 2
+  },
+  "cross_validation": {
+    "error": "insufficient_data",
+    "sample_size": 9
+  },
+  "density_enhancement": {
+    "sample_size": 19,
+    "actual_density": 0.06597222222222222,
+    "theoretical_density": 0.0018949006135329134,
+    "enhancement_ratio": 34.815663550407265,
+    "enhancement_percentage": 3381.5663550407266,
+    "bootstrap_enhancement_mean": 36.60780100350768,
+    "bootstrap_enhancement_std": 2.3696286075015514,
+    "enhancement_ci_95": [
+      34.815663550407265,
+      43.2205646210906
+    ],
+    "mean_gap": 16.0,
+    "gap_variability": 0.3040524899859672
+  },
+  "summary_statistics": {}
+}

@@ -1,0 +1,112 @@
+{
+  "summary": {
+    "total_tests": 5,
+    "falsified_tests": 1,
+    "supported_tests": 4,
+    "falsification_rate": 0.2,
+    "status": "PARTIAL_FALSIFICATION"
+  },
+  "tests": {
+    "independence": {
+      "test_name": "Independence Test",
+      "n_samples": 100,
+      "theta_low": 0.51,
+      "theta_high": 0.56,
+      "mean_rel_diff": 0.008394736759166148,
+      "std_rel_diff": 0.0004620410887178425,
+      "max_rel_diff": 0.00891386516421604,
+      "threshold": 0.0001,
+      "falsified": false,
+      "interpretation": "SUPPORTED: dist_level significantly affects predictions"
+    },
+    "monotonicity": {
+      "test_name": "Monotonicity Test",
+      "k_value": 100000,
+      "n_levels": 10,
+      "theta_min": 0.51,
+      "theta_max": 0.6,
+      "monotonic": true,
+      "monotonic_increasing": true,
+      "monotonic_decreasing": false,
+      "direction_changes": 0,
+      "predictions": [
+        1301672.0838581305,
+        1303609.903289135,
+        1305547.7227201394,
+        1307485.5421511438,
+        1309423.3615821481,
+        1311361.1810131527,
+        1313299.000444157,
+        1315236.8198751616,
+        1317174.639306166,
+        1319112.4587371706
+      ],
+      "theta_values": [
+        0.51,
+        0.52,
+        0.53,
+        0.54,
+        0.55,
+        0.5599999999999999,
+        0.57,
+        0.58,
+        0.59,
+        0.6
+      ],
+      "falsified": false,
+      "interpretation": "SUPPORTED: Monotonic relationship consistent with 'dial' metaphor"
+    },
+    "claimed_boost": {
+      "test_name": "Claimed Boost Validation",
+      "n_primes": 10000,
+      "n_bootstrap": 1000,
+      "baseline_theta": 0.51,
+      "stadlmann_theta": 0.525,
+      "mean_boost_pct": 0.20251166621595063,
+      "ci_lower_pct": 0.20209648392637744,
+      "ci_upper_pct": 0.20294138047381177,
+      "claimed_range": [
+        1.0,
+        2.0
+      ],
+      "claimed_ci": [
+        0.8,
+        2.2
+      ],
+      "mean_in_range": false,
+      "ci_overlaps": false,
+      "falsified": true,
+      "interpretation": "FALSIFIED: Measured boost 0.20% (CI [0.20%, 0.20%]) does not match claimed range"
+    },
+    "scale_invariance": {
+      "test_name": "Scale Invariance Test",
+      "scales": [
+        10000,
+        100000,
+        1000000
+      ],
+      "baseline_theta": 0.51,
+      "stadlmann_theta": 0.525,
+      "rel_diffs_by_scale": {
+        "10000": 0.0017870085137407204,
+        "100000": 0.00223307327748103,
+        "1000000": 0.0026788881827340878
+      },
+      "coefficient_of_variation": 0.1630586596197537,
+      "falsified": false,
+      "interpretation": "SUPPORTED: Low variation (CV=0.163) suggests scale-invariant effects"
+    },
+    "randomness": {
+      "test_name": "Randomness Test",
+      "k_value": 100000,
+      "stadlmann_theta": 0.525,
+      "n_random": 20,
+      "similar_count": 0,
+      "similar_fraction": 0.0,
+      "similarity_threshold": 0.0001,
+      "falsified": false,
+      "interpretation": "SUPPORTED: Only 0.0% of random \u03b8 values equally good - \u03b8=0.525 appears special"
+    }
+  },
+  "status": "PARTIAL_FALSIFICATION"
+}

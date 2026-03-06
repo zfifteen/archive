@@ -1,0 +1,57 @@
+{
+  "total_plots": 57,
+  "interactive_plots": 22,
+  "static_plots": 35,
+  "categories": {
+    "root": {
+      "total": 5,
+      "interactive": 0,
+      "static": 5
+    },
+    "z5d_enhanced": {
+      "total": 8,
+      "interactive": 3,
+      "static": 5
+    },
+    "statistical_analysis": {
+      "total": 2,
+      "interactive": 0,
+      "static": 2
+    },
+    "topology_suite": {
+      "total": 4,
+      "interactive": 4,
+      "static": 0
+    },
+    "interactive_3d": {
+      "total": 3,
+      "interactive": 3,
+      "static": 0
+    },
+    "comprehensive_3d": {
+      "total": 25,
+      "interactive": 12,
+      "static": 13
+    },
+    "geodesic_mapping": {
+      "total": 2,
+      "interactive": 0,
+      "static": 2
+    },
+    "performance_benchmarks": {
+      "total": 2,
+      "interactive": 0,
+      "static": 2
+    },
+    "z5d_analysis": {
+      "total": 6,
+      "interactive": 0,
+      "static": 6
+    }
+  },
+  "file_types": {
+    "png": 35,
+    "html": 22
+  },
+  "validation_time": "2025-08-14T23:40:37.675329"
+}

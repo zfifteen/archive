@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unified Framework - Plot Gallery</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #7f8c8d;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+        
+        .stats {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .stat-item {
+            display: inline-block;
+            margin: 0 20px;
+            padding: 10px;
+        }
+        
+        .stat-number {
+            font-size: 2em;
+            font-weight: bold;
+            color: #3498db;
+        }
+        
+        .stat-label {
+            font-size: 0.9em;
+            color: #7f8c8d;
+            text-transform: uppercase;
+        }
+        
+        .plot-group {
+            margin-bottom: 40px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .group-header {
+            background: #3498db;
+            color: white;
+            padding: 15px 20px;
+            margin: 0;
+            font-size: 1.3em;
+            font-weight: bold;
+        }
+        
+        .group-content {
+            padding: 20px;
+        }
+        
+        .plot-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .plot-item {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            background: #fafafa;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .plot-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .plot-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+        
+        .plot-type {
+            font-size: 0.8em;
+            color: #7f8c8d;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+        
+        .plot-link {
+            display: inline-block;
+            background: #3498db;
+            color: white;
+            padding: 8px 16px;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background 0.2s;
+        }
+        
+        .plot-link:hover {
+            background: #2980b9;
+        }
+        
+        .interactive-badge {
+            background: #e74c3c;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.7em;
+            margin-left: 10px;
+        }
+        
+        .static-badge {
+            background: #27ae60;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.7em;
+            margin-left: 10px;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #e0e0e0;
+            color: #7f8c8d;
+        }
+        
+        .description {
+            background: #e8f6ff;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            border-left: 4px solid #3498db;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎨 Unified Framework Plot Gallery</h1>
+        <p class="subtitle">Comprehensive 2D and 3D Visualizations for Mathematical Analysis</p>
+        
+        <div class="description">
+            <strong>About this Gallery:</strong> This collection contains copious 2D and 3D plots generated 
+            for all testing components of the Unified Framework, including Z5D predictor analysis, 
+            interactive 3D helical visualizations, modular topology analysis, geodesic mapping, 
+            and cross-domain physical-discrete connections.
+        </div>
+        
+        <div class="stats">
+            <div class="stat-item">
+                <div class="stat-number">58</div>
+                <div class="stat-label">Total Plots</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">9</div>
+                <div class="stat-label">Categories</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">23</div>
+                <div class="stat-label">Interactive</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">35</div>
+                <div class="stat-label">Static</div>
+            </div>
+        </div>
+
+        <div class="plot-group">
+            <h2 class="group-header">Comprehensive 3D Mathematical Visualizations</h2>
+            <div class="group-content">
+                <div class="plot-grid">
+
+                    <div class="plot-item">
+                        <div class="plot-title">Helical Embeddings/Prime Helix 3D K 0.1<span class="interactive-badge">Interactive</span></div>
+                        <div class="plot-type">HTML File</div>
+                        <a href="comprehensive_3d/helical_embeddings/prime_helix_3d_k_0.1.html" class="plot-link" target="_blank">View Plot</a>
+                    </div>
+
+                    <div class="plot-item">
+                        <div class="plot-title">Helical Embeddings/Prime Helix 3D K 0.1<span class="static-badge">Static</span></div>
+                        <div class="plot-type">PNG File</div>
+                        <a href="comprehensive_3d/helical_embeddings/prime_helix_3d_k_0.1.png" class="plot-link" target="_blank">View Plot</a>
+                    </div>
+
+                    <div class="plot-item">
+                        <div class="plot-title">Helical Embeddings/Prime Helix 3D K 0.3<span class="interactive-badge">Interactive</span></div>
+                        <div class="plot-type">HTML File</div>
+                        <a href="comprehensive_3d/helical_embeddings/prime_helix_3d_k_0.3.html" class="plot-link" target="_blank">View Plot</a>
+                    </div>
+
+                    <div class="plot-item">
+                        <div class="plot-title">Helical Embeddings/Prime Helix 3D K 0.3<span class="static-badge">Static</span></div>
+                        <div class="plot-type">PNG File</div>
+                        <a href="comprehensive_3d/helical_embeddings/prime_helix_3d_k_0.3.png" class="plot-link" target="_blank">View Plot</a>
+                    </div>
+
+                    <div class="plot-item">
+                        <div class="plot-title">Helical Embeddings/Prime Helix 3D K 0.5<span class="interactive-badge">Interactive</span></div>
+                        <div class="plot-type">HTML File</div>
+                        <a href="comprehensive_3d/helical_embeddings/prime_helix_3d_k_0.5.html" class="plot-link" target="_blank">View Plot</a>
+                    </div>
+
+                    <div class="plot-item">
+                        <div class="plot-title">Helical Embeddings/Prime Helix 3D K 0.5<span class="static-badge">Static</span></div>
+                        <div class="plot-type">PNG File</div>
+                        <a href="comprehensive_3d/helical_embeddings/prime_helix_3d_k_0.5.png" class="plot-link" target="_blank">View Plot</a>
+                    </div>
+
+                    <div class="plot-item">
+                        <div class="plot-title">Helical Embeddings/Prime Helix 3D K 0.7<span class="interactive-badge">Interactive</span></div>
+                        <div class="plot-type">HTML File</div>
+                        <a href="comprehensive_3d/helical_embeddings/prime_helix_3d_k_0.7.html" class="plot-link" target="_blank">View Plot</a>
+                    </div>
+
+                    <div class="plot-item">
+                        <div class="plot-title">Helical Embeddings/Prime Helix 3D K 0.7<span class="static-badge">Static</span></div>
+                        <div class="plot-type">PNG File</div>
+                        <a href="comprehensive_3d/helical_embeddings/prime_helix_3d_k_0.7.png" class="plot-link" target="_blank">View Plot</a>
+                    </div>
+
+                    <div class="plot-item">
+                        <div class="plot-title">Modular Topology/Modular Topology Mod 11 3D<span class="interactive-badge">Interactive</span></div>
+                        <div class="plot-type">HTML File</div>
+                        <a href="comprehensive_3d/modular_topology/modular_topology_mod_11_3d.html" class="plot-link" target="_blank">View Plot</a>
+                    </div>
+
+                    <div class="plot-item">
+                        <div class="plot-title">Modular Topology/Modular Topology Mod 11 3D<span class="static-badge">Static</span></div>
+                        <div class="plot-type">PNG File</div>
+                        <a href="comprehensive_3d/modular_topology/modular_topology_mod_11_3d.png" class="plot-link" target="_blank">View Plot</a>
+                    </div>
+
+                    <div class="plot-item">
+                        <div class="plot-title">Modular Topology/Modular Topology Mod 13 3D<span class="interactive-badge">Interactive</span></div>
+                        <div class="plot-type">HTML File</div>
+                        <a href="comprehensive_3d/modular_topology/modular_topology_mod_13_3d.html" class="plot-link" target="_blank">View Plot</a>
+                    </div>
+
+                    <div class="plot-item">
+                        <div class="plot-title">Modular Topology/Modular Topology Mod 13 3D<span class="static-badge">Static</span></div>
+                        <div class="plot-type">PNG File</div>
+                        <a href="comprehensive_3d/modular_topology/modular_topology_mod_13_3d.png" class="plot-link" target="_blank">View Plot</a>
+                    </div>
+
+                    <div class="plot-item">
+                        <div class="plot-title">Modular Topology/Modular Topology Mod 17 3D<span class="interactive-badge">Interactive</span></div>
+                        <div class="plot-type">HTML File</div>
+                        <a href="comprehensive_3d/modular_topology/modular_topology_mod_17_3d.html" class="plot-link" target="_blank">View Plot</a>
+                    </div>
+
+                    <div class="plot-item">
+                        <div class="plot-title">Modular Topology/Modular Topology Mod 17 3D<span class="static-badge">Static</span></div>
+                        <div class="plot-type">PNG File</div>
+                        <a href="comprehensive_3d/modular_topology/modular_topology_mod_17_3d.png" class="plot-link" target="_blank">View Plot</a>
+                    </div>
+
+                    <div class="plot-item">
+                        <div class="plot-title">Modular Topology/Modular Topology Mod 7 3D<span class="interactive-badge">Interactive</span></div>
+                        <div class="plot-type">HTML File</div>
+                        <a href="comprehensive_3d/modular_topology/modular_topology_mod_7_3d.html" class="plot-link" target="_blank">View Plot</a>
+                    </div>
+
+                    <div class="plot-item">
+                        <div class="plot-title">Modular Topology/Modular Topology Mod 7 3D<span class="static-badge">Static</span></div>
+                        <div class="plot-type">PNG File</div>
+                        <a href="comprehensive_3d/modular_topology/modular_topology_mod_7_3d.png" class="plot-link" target="_blank">View Plot</a>
+                    </div>
+
+                    <div class="plot-item">
+                        <div class="plot-title">Physical Discrete/Physical Discrete Bridge 3D<span class="interactive-badge">Interactive</span></div>
+                        <div class="plot-type">HTML File</div>
+                        <a href="comprehensive_3d/physical_discrete/physical_discrete_bridge_3d.html" class="plot-link" target="_blank">View Plot</a>
+                    </div>
+
+                    <div class="plot-item">
+                        <div class="plot-title">Physical Discrete/Physical Discrete Bridge 3D<span class="static-badge">Static</span></div>
+                        <div class="plot-type">PNG File</div>
+                        <a href="comprehensive_3d/physical_discrete/physical_discrete_bridge_3d.png" class="plot-link" target="_blank">View Plot</a>
+                    </div>
+
+                    <div class="plot-item">
+                        <div class="plot-title">Physical Discrete/Relativistic Transformations 3D<span class="interactive-badge">Interactive</span></div>
+                        <div class="plot-type">HTML File</div>
+                        <a href="comprehensive_3d/physical_discrete/relativistic_transformations_3d.html" class="plot-link" target="_blank">View Plot</a>
+                    </div>
+
+                    <div class="plot-item">
+                        <div class="plot-title">Prime Distributions/Prime Density 3D<span class="static-badge">Static</span></div>
+                        <div class="plot-type">PNG File</div>
+                        <a href="comprehensive_3d/prime_distributions/prime_density_3d.png" class="plot-link" target="_blank">View Plot</a>
+                    </div>
+
+                    <div class="plot-item">
+                        <div class="plot-title">Prime Distributions/Prime Gaps 3D<span class="static-badge">Static</span></div>
+                        <div class="plot-type">PNG File</div>
+                        <a href="comprehensive_3d/prime_distributions/prime_gaps_3d.png" class="plot-link" target="_blank">View Plot</a>
+                    </div>
+
+                    <div class="plot-item">
+                        <div class="plot-title">Prime Distributions/Prime Spiral 3D<span class="interactive-badge">Interactive</span></div>
+                        <div class="plot-type">HTML File</div>
+                        <a href="comprehensive_3d/prime_distributions/prime_spiral_3d.html" class="plot-link" target="_blank">View Plot</a>
+                    </div>
+
+                    <div class="plot-item">
+                        <div class="plot-title">Prime Distributions/Prime Spiral 3D<span class="static-badge">Static</span></div>
+                        <div class="plot-type">PNG File</div>
+                        <a href="comprehensive_3d/prime_distributions/prime_spiral_3d.png" class="plot-link" target="_blank">View Plot</a>
+                    </div>
+
+                    <div class="plot-item">
+                        <div class="plot-title">Riemann Zeta/Riemann Zeta Zeros 3D<span class="interactive-badge">Interactive</span></div>
+                        <div class="plot-type">HTML File</div>
+                        <a href="comprehensive_3d/riemann_zeta/riemann_zeta_zeros_3d.html" class="plot-link" target="_blank">View Plot</a>
+                    </div>
+
+                    <div class="plot-item">
+                        <div class="plot-title">Riemann Zeta/Riemann Zeta Zeros 3D<span class="static-badge">Static</span></div>
+                        <div class="plot-type">PNG File</div>
+                        <a href="comprehensive_3d/riemann_zeta/riemann_zeta_zeros_3d.png" class="plot-link" target="_blank">View Plot</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="plot-group">
+            <h2 class="group-header">Geodesic Mapping and Density Enhancement</h2>
+            <div class="group-content">
+                <div class="plot-grid">
+
+                    <div class="plot-item">
+                        <div class="plot-title">Density Enhancement Analysis<span class="static-badge">Static</span></div>
+                        <div class="plot-type">PNG File</div>
+                        <a href="geodesic_mapping/density_enhancement_analysis.png" class="plot-link" target="_blank">View Plot</a>
+                    </div>
+
+                    <div class="plot-item">
+                        <div class="plot-title">Geodesic Curvature Analysis<span class="static-badge">Static</span></div>
+                        <div class="plot-type">PNG File</div>
+                        <a href="geodesic_mapping/geodesic_curvature_analysis.png" class="plot-link" target="_blank">View Plot</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="plot-group">
+            <h2 class="group-header">Interactive 3D Helix Visualizations</h2>
+            <div class="group-content">
+                <div class="plot-grid">
+
+                    <div class="plot-item">
+                        <div class="plot-title">Helix Parameter Sweep<span class="interactive-badge">Interactive</span></div>
+                        <div class="plot-type">HTML File</div>
+                        <a href="interactive_3d/helix_parameter_sweep.html" class="plot-link" target="_blank">View Plot</a>
+                    </div>
+
+                    <div class="plot-item">
+                        <div class="plot-title">Interactive Helix Main<span class="interactive-badge">Interactive</span></div>
+                        <div class="plot-type">HTML File</div>
+                        <a href="interactive_3d/interactive_helix_main.html" class="plot-link" target="_blank">View Plot</a>
+                    </div>
+
+                    <div class="plot-item">
+                        <div class="plot-title">Quantum Correlations<span class="interactive-badge">Interactive</span></div>
+                        <div class="plot-type">HTML File</div>
+                        <a href="interactive_3d/quantum_correlations.html" class="plot-link" target="_blank">View Plot</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="plot-group">
+            <h2 class="group-header">Performance Benchmark Analysis</h2>
+            <div class="group-content">
+                <div class="plot-grid">
+
+                    <div class="plot-item">
+                        <div class="plot-title">Performance Comparison<span class="static-badge">Static</span></div>
+                        <div class="plot-type">PNG File</div>
+                        <a href="performance_benchmarks/performance_comparison.png" class="plot-link" target="_blank">View Plot</a>
+                    </div>
+
+                    <div class="plot-item">
+                        <div class="plot-title">Scaling Analysis<span class="static-badge">Static</span></div>
+                        <div class="plot-type">PNG File</div>
+                        <a href="performance_benchmarks/scaling_analysis.png" class="plot-link" target="_blank">View Plot</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="plot-group">
+            <h2 class="group-header">Statistical Analysis and Correlations</h2>
+            <div class="group-content">
+                <div class="plot-grid">
+
+                    <div class="plot-item">
+                        <div class="plot-title">Correlation Matrix<span class="static-badge">Static</span></div>
+                        <div class="plot-type">PNG File</div>
+                        <a href="statistical_analysis/correlation_matrix.png" class="plot-link" target="_blank">View Plot</a>
+                    </div>
+
+                    <div class="plot-item">
+                        <div class="plot-title">Distribution Analysis<span class="static-badge">Static</span></div>
+                        <div class="plot-type">PNG File</div>
+                        <a href="statistical_analysis/distribution_analysis.png" class="plot-link" target="_blank">View Plot</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="plot-group">
+            <h2 class="group-header">Modular Topology Analysis</h2>
+            <div class="group-content">
+                <div class="plot-grid">
+
+                    <div class="plot-item">
+                        <div class="plot-title">3D Helical Embedding<span class="interactive-badge">Interactive</span></div>
+                        <div class="plot-type">HTML File</div>
+                        <a href="topology_suite/3d_helical_embedding.html" class="plot-link" target="_blank">View Plot</a>
+                    </div>
+
+                    <div class="plot-item">
+                        <div class="plot-title">5D Projection<span class="interactive-badge">Interactive</span></div>
+                        <div class="plot-type">HTML File</div>
+                        <a href="topology_suite/5d_projection.html" class="plot-link" target="_blank">View Plot</a>
+                    </div>
+
+                    <div class="plot-item">
+                        <div class="plot-title">Anomaly Detection<span class="interactive-badge">Interactive</span></div>
+                        <div class="plot-type">HTML File</div>
+                        <a href="topology_suite/anomaly_detection.html" class="plot-link" target="_blank">View Plot</a>
+                    </div>
+
+                    <div class="plot-item">
+                        <div class="plot-title">Cluster Analysis<span class="interactive-badge">Interactive</span></div>
+                        <div class="plot-type">HTML File</div>
+                        <a href="topology_suite/cluster_analysis.html" class="plot-link" target="_blank">View Plot</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="plot-group">
+            <h2 class="group-header">Core Z5D Analysis</h2>
+            <div class="group-content">
+                <div class="plot-grid">
+
+                    <div class="plot-item">
+                        <div class="plot-title">Z5D Absolute Errors<span class="static-badge">Static</span></div>
+                        <div class="plot-type">PNG File</div>
+                        <a href="z5d_absolute_errors.png" class="plot-link" target="_blank">View Plot</a>
+                    </div>
+
+                    <div class="plot-item">
+                        <div class="plot-title">Z5D Comprehensive Summary<span class="static-badge">Static</span></div>
+                        <div class="plot-type">PNG File</div>
+                        <a href="z5d_comprehensive_summary.png" class="plot-link" target="_blank">View Plot</a>
+                    </div>
+
+                    <div class="plot-item">
+                        <div class="plot-title">Z5D Improvement Factors<span class="static-badge">Static</span></div>
+                        <div class="plot-type">PNG File</div>
+                        <a href="z5d_improvement_factors.png" class="plot-link" target="_blank">View Plot</a>
+                    </div>
+
+                    <div class="plot-item">
+                        <div class="plot-title">Z5D Predictions Vs Ground Truth<span class="static-badge">Static</span></div>
+                        <div class="plot-type">PNG File</div>
+                        <a href="z5d_predictions_vs_ground_truth.png" class="plot-link" target="_blank">View Plot</a>
+                    </div>
+
+                    <div class="plot-item">
+                        <div class="plot-title">Z5D Relative Errors<span class="static-badge">Static</span></div>
+                        <div class="plot-type">PNG File</div>
+                        <a href="z5d_relative_errors.png" class="plot-link" target="_blank">View Plot</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="plot-group">
+            <h2 class="group-header">Z5D Scientific Test Bed Results</h2>
+            <div class="group-content">
+                <div class="plot-grid">
+
+                    <div class="plot-item">
+                        <div class="plot-title">Z5D Absolute Errors<span class="static-badge">Static</span></div>
+                        <div class="plot-type">PNG File</div>
+                        <a href="z5d_analysis/z5d_absolute_errors.png" class="plot-link" target="_blank">View Plot</a>
+                    </div>
+
+                    <div class="plot-item">
+                        <div class="plot-title">Z5D Comprehensive Summary<span class="static-badge">Static</span></div>
+                        <div class="plot-type">PNG File</div>
+                        <a href="z5d_analysis/z5d_comprehensive_summary.png" class="plot-link" target="_blank">View Plot</a>
+                    </div>
+
+                    <div class="plot-item">
+                        <div class="plot-title">Z5D Improvement Factors<span class="static-badge">Static</span></div>
+                        <div class="plot-type">PNG File</div>
+                        <a href="z5d_analysis/z5d_improvement_factors.png" class="plot-link" target="_blank">View Plot</a>
+                    </div>
+
+                    <div class="plot-item">
+                        <div class="plot-title">Z5D Parameter Space 3D<span class="static-badge">Static</span></div>
+                        <div class="plot-type">PNG File</div>
+                        <a href="z5d_analysis/z5d_parameter_space_3d.png" class="plot-link" target="_blank">View Plot</a>
+                    </div>
+
+                    <div class="plot-item">
+                        <div class="plot-title">Z5D Predictions Vs Ground Truth<span class="static-badge">Static</span></div>
+                        <div class="plot-type">PNG File</div>
+                        <a href="z5d_analysis/z5d_predictions_vs_ground_truth.png" class="plot-link" target="_blank">View Plot</a>
+                    </div>
+
+                    <div class="plot-item">
+                        <div class="plot-title">Z5D Relative Errors<span class="static-badge">Static</span></div>
+                        <div class="plot-type">PNG File</div>
+                        <a href="z5d_analysis/z5d_relative_errors.png" class="plot-link" target="_blank">View Plot</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="plot-group">
+            <h2 class="group-header">Enhanced Z5D Visualization Suite</h2>
+            <div class="group-content">
+                <div class="plot-grid">
+
+                    <div class="plot-item">
+                        <div class="plot-title">Accuracy Convergence Analysis<span class="static-badge">Static</span></div>
+                        <div class="plot-type">PNG File</div>
+                        <a href="z5d_enhanced/accuracy_convergence_analysis.png" class="plot-link" target="_blank">View Plot</a>
+                    </div>
+
+                    <div class="plot-item">
+                        <div class="plot-title">Calibration Sensitivity Analysis<span class="static-badge">Static</span></div>
+                        <div class="plot-type">PNG File</div>
+                        <a href="z5d_enhanced/calibration_sensitivity_analysis.png" class="plot-link" target="_blank">View Plot</a>
+                    </div>
+
+                    <div class="plot-item">
+                        <div class="plot-title">Comparative Analysis<span class="static-badge">Static</span></div>
+                        <div class="plot-type">PNG File</div>
+                        <a href="z5d_enhanced/comparative_analysis.png" class="plot-link" target="_blank">View Plot</a>
+                    </div>
+
+                    <div class="plot-item">
+                        <div class="plot-title">Error Distribution Analysis<span class="static-badge">Static</span></div>
+                        <div class="plot-type">PNG File</div>
+                        <a href="z5d_enhanced/error_distribution_analysis.png" class="plot-link" target="_blank">View Plot</a>
+                    </div>
+
+                    <div class="plot-item">
+                        <div class="plot-title">Parameter Sensitivity 3D<span class="interactive-badge">Interactive</span></div>
+                        <div class="plot-type">HTML File</div>
+                        <a href="z5d_enhanced/parameter_sensitivity_3d.html" class="plot-link" target="_blank">View Plot</a>
+                    </div>
+
+                    <div class="plot-item">
+                        <div class="plot-title">Parameter Space 3D<span class="static-badge">Static</span></div>
+                        <div class="plot-type">PNG File</div>
+                        <a href="z5d_enhanced/parameter_space_3d.png" class="plot-link" target="_blank">View Plot</a>
+                    </div>
+
+                    <div class="plot-item">
+                        <div class="plot-title">Parameter Space 3D Interactive<span class="interactive-badge">Interactive</span></div>
+                        <div class="plot-type">HTML File</div>
+                        <a href="z5d_enhanced/parameter_space_3d_interactive.html" class="plot-link" target="_blank">View Plot</a>
+                    </div>
+
+                    <div class="plot-item">
+                        <div class="plot-title">Prediction Surface 3D<span class="interactive-badge">Interactive</span></div>
+                        <div class="plot-type">HTML File</div>
+                        <a href="z5d_enhanced/prediction_surface_3d.html" class="plot-link" target="_blank">View Plot</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>Generated on 2025-08-14 23:39:36</p>
+            <p>Unified Framework - Comprehensive Mathematical Visualization Suite</p>
+        </div>
+    </div>
+</body>
+</html>

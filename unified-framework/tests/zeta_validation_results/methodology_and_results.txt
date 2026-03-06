@@ -1,0 +1,44 @@
+Riemann Zeta Zeros Validation: Methodology and Results
+============================================================
+
+METHODOLOGY:
+------------
+1. High-precision computation of 1000 Riemann zeta zeros
+   - Used mpmath library with 50 decimal precision
+   - Computed imaginary parts of non-trivial zeros
+
+2. Unfolding transformation applied:
+   - Formula: tilde_t = t / (2π log(t / (2π e)))
+   - Purpose: Normalize average spacing to unity for universal analysis
+
+3. Spacing statistics analysis:
+   - Computed nearest neighbor spacings
+   - Normalized to unit mean
+   - Compared to GUE (Gaussian Unitary Ensemble) predictions
+
+RESULTS:
+--------
+total_zeros_computed: 1000
+excluded_zeros: 1
+valid_zeros_for_analysis: 999
+total_spacings: 998
+exclusion_threshold: 17.079468
+raw_spacing_mean: 0.043803
+raw_spacing_std: 0.021473
+raw_spacing_min: 0.000553
+raw_spacing_max: 0.152667
+normalized_spacing_mean: 1.000000
+normalized_spacing_std: 0.490208
+gue_theoretical_mean: 1.000000
+gue_theoretical_std: 0.655136
+std_deviation_from_gue: 0.164928
+std_relative_error: 0.251746
+
+FILES GENERATED:
+----------------
+- Raw zeros: riemann_zeta_zeros_1000.csv
+- Unfolded zeros: unfolded_zeta_zeros.csv
+- Spacings: spacing_statistics.csv
+- Results: validation_results.json
+- Visualization: zeta_zeros_analysis.png
+- This report: methodology_and_results.txt

@@ -1,0 +1,10 @@
+./bin/z5d_mersenne 1e1
+./bin/z5d_mersenne 1e5
+./bin/z5d_mersenne 1e10
+./bin/z5d_mersenne 1e50
+./bin/z5d_mersenne 1e100
+./bin/z5d_mersenne 1e600
+./bin/z5d_mersenne 1e700
+./bin/z5d_mersenne 1e800
+./bin/z5d_mersenne 1e900
+./bin/z5d_mersenne 1e1233

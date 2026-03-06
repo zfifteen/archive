@@ -1,0 +1,195 @@
+Hardware Overview (TEST RESULTS ARE SINGLE CORE ONLY):
+
+  Model Name:	MacBook Pro
+  Model Identifier:	MacBookPro18,2
+  Model Number:	MK1A3LL/A
+  Chip:	Apple M1 Max
+  Total Number of Cores:	10 (8 performance and 2 efficiency)
+  Memory:	32 GB
+  System Firmware Version:	11881.140.96
+  OS Loader Version:	11881.140.96
+==========================================
+./bin/benchmark_z5d
+Z5D Performance Benchmark
+========================
+25,000,000 predictions in 0.984 seconds
+Average: 9.84 μs per prediction
+velocityworks@MacBook-Pro c % ./bin/test_z5d
+Z5D Prime Predictor - Tests (v1.1)
+==================================
+Z5D Prime Predictor - C Implementation v1.3.0-bugfixed (Bug-Fixed)
+==========================================
+
+Formula: p_Z5D(k) = p_PNT(k) + c·d(k)·p_PNT(k) + k*·e(k)·p_PNT(k)
+With geodesic modulation: e(k) *= kappa_geo · (ln(k+1)/e²)
+
+Where:
+  p_PNT(k) = k * (ln(k) + ln(ln(k)) - 1 + (ln(ln(k)) - 2)/ln(k))
+  d(k)     = (ln(p_PNT(k)) / e^4)^2 if ln(p) > 0 else 0
+  e(k)     = (k^2 + k + 2) / (k * (k + 1) * (k + 2))
+  Curvature Proxy: kappa_geo * (ln(k+1)/e^2) * e(k)
+
+Default Parameters:
+  c  = -0.00247 (dilation calibration)
+  k* = 0.04449 (curvature calibration)
+  kappa_geo = 0.30000 (geodesic exponent for ~15% enhancement)
+
+Scale-specific Calibrations:
+  Scale 1: c=-0.00247, k*=0.04449, kappa_geo_factor=0.30000
+  Scale 2: c=-0.00037, k*=-0.11446, kappa_geo_factor=0.24270
+  Scale 3: c=-0.00010, k*=-0.15000, kappa_geo_factor=0.15000
+  Scale 4: c=-0.00002, k*=-0.10000, kappa_geo_factor=0.09990
+
+Features:
+  - Double-precision arithmetic
+  - Automatic parameter selection with kappa_geo
+  - Numerical stability guards (fixed log-space for ultra k)
+  - Zero-division protection (ln_pnt <=0 guard)
+  - Domain validation
+  - 5D Curvature Proxy for validation
+  - Optimizations: Inlines, log caching, array lookups
+
+
+== API Signatures ==
+✓ z5d_prime(k,0,0,kappa_geo,1) returns finite positive
+✓ z5d_prime_extended returns success
+✓ extended fields populated
+
+== KNOWN Set Coverage (exact list) ==
+Total entries: 50
+✓ predict k=50000 -> finite
+✓ rel_err(k=50000) = 0.000364 (<= tol 0.0500)
+✓ predict k=60000 -> finite
+✓ rel_err(k=60000) = 0.000942 (<= tol 0.0500)
+✓ predict k=70000 -> finite
+✓ rel_err(k=70000) = 0.000171 (<= tol 0.0500)
+✓ predict k=80000 -> finite
+✓ rel_err(k=80000) = 0.000434 (<= tol 0.0500)
+✓ predict k=90000 -> finite
+✓ rel_err(k=90000) = 0.000447 (<= tol 0.0500)
+✓ predict k=100000 -> finite
+✓ rel_err(k=100000) = 0.000331 (<= tol 0.0500)
+✓ predict k=110000 -> finite
+✓ rel_err(k=110000) = 0.000287 (<= tol 0.0500)
+✓ predict k=120000 -> finite
+✓ rel_err(k=120000) = 0.000356 (<= tol 0.0500)
+✓ predict k=130000 -> finite
+✓ rel_err(k=130000) = 0.000420 (<= tol 0.0500)
+✓ predict k=140000 -> finite
+✓ rel_err(k=140000) = 0.000201 (<= tol 0.0500)
+✓ predict k=500000 -> finite
+✓ rel_err(k=500000) = 0.000012 (<= tol 0.0300)
+✓ predict k=600000 -> finite
+✓ rel_err(k=600000) = 0.000017 (<= tol 0.0300)
+✓ predict k=700000 -> finite
+✓ rel_err(k=700000) = 0.000096 (<= tol 0.0300)
+✓ predict k=800000 -> finite
+✓ rel_err(k=800000) = 0.000047 (<= tol 0.0300)
+✓ predict k=900000 -> finite
+✓ rel_err(k=900000) = 0.000084 (<= tol 0.0300)
+✓ predict k=1000000 -> finite
+✓ rel_err(k=1000000) = 0.000180 (<= tol 0.0300)
+✓ predict k=1100000 -> finite
+✓ rel_err(k=1100000) = 0.000033 (<= tol 0.0300)
+✓ predict k=1200000 -> finite
+✓ rel_err(k=1200000) = 0.000040 (<= tol 0.0300)
+✓ predict k=1300000 -> finite
+✓ rel_err(k=1300000) = 0.000093 (<= tol 0.0300)
+✓ predict k=1400000 -> finite
+✓ rel_err(k=1400000) = 0.000033 (<= tol 0.0300)
+✓ predict k=5000000 -> finite
+✓ rel_err(k=5000000) = 0.000101 (<= tol 0.0200)
+✓ predict k=6000000 -> finite
+✓ rel_err(k=6000000) = 0.000070 (<= tol 0.0200)
+✓ predict k=7000000 -> finite
+✓ rel_err(k=7000000) = 0.000129 (<= tol 0.0200)
+✓ predict k=8000000 -> finite
+✓ rel_err(k=8000000) = 0.000135 (<= tol 0.0200)
+✓ predict k=9000000 -> finite
+✓ rel_err(k=9000000) = 0.000118 (<= tol 0.0200)
+✓ predict k=10000000 -> finite
+✓ rel_err(k=10000000) = 0.000079 (<= tol 0.0200)
+✓ predict k=11000000 -> finite
+✓ rel_err(k=11000000) = 0.000124 (<= tol 0.0200)
+✓ predict k=12000000 -> finite
+✓ rel_err(k=12000000) = 0.000122 (<= tol 0.0200)
+✓ predict k=13000000 -> finite
+✓ rel_err(k=13000000) = 0.000120 (<= tol 0.0200)
+✓ predict k=14000000 -> finite
+✓ rel_err(k=14000000) = 0.000150 (<= tol 0.0200)
+✓ predict k=50000000 -> finite
+✓ rel_err(k=50000000) = 0.000099 (<= tol 0.0150)
+✓ predict k=60000000 -> finite
+✓ rel_err(k=60000000) = 0.000100 (<= tol 0.0150)
+✓ predict k=70000000 -> finite
+✓ rel_err(k=70000000) = 0.000097 (<= tol 0.0150)
+✓ predict k=80000000 -> finite
+✓ rel_err(k=80000000) = 0.000096 (<= tol 0.0150)
+✓ predict k=90000000 -> finite
+✓ rel_err(k=90000000) = 0.000094 (<= tol 0.0150)
+✓ predict k=100000000 -> finite
+✓ rel_err(k=100000000) = 0.000090 (<= tol 0.0150)
+✓ predict k=110000000 -> finite
+✓ rel_err(k=110000000) = 0.000085 (<= tol 0.0150)
+✓ predict k=120000000 -> finite
+✓ rel_err(k=120000000) = 0.000079 (<= tol 0.0150)
+✓ predict k=130000000 -> finite
+✓ rel_err(k=130000000) = 0.000084 (<= tol 0.0150)
+✓ predict k=140000000 -> finite
+✓ rel_err(k=140000000) = 0.000084 (<= tol 0.0150)
+✓ predict k=1000000000 -> finite
+✓ rel_err(k=1000000000) = 0.000040 (<= tol 0.0100)
+✓ predict k=10000000000 -> finite
+✓ rel_err(k=10000000000) = 0.000004 (<= tol 0.0100)
+✓ predict k=100000000000 -> finite
+✓ rel_err(k=100000000000) = 0.000039 (<= tol 0.0100)
+✓ predict k=1000000000000 -> finite
+✓ rel_err(k=1000000000000) = 0.000071 (<= tol 0.0100)
+✓ predict k=10000000000000 -> finite
+✓ rel_err(k=10000000000000) = 0.000002 (<= tol 0.0100)
+✓ predict k=100000000000000 -> finite
+✓ rel_err(k=100000000000000) = 0.000011 (<= tol 0.0100)
+✓ predict k=1000000000000000 -> finite
+✓ rel_err(k=1000000000000000) = 0.000017 (<= tol 0.0100)
+✓ predict k=10000000000000000 -> finite
+✓ rel_err(k=10000000000000000) = 0.000012 (<= tol 0.0100)
+✓ predict k=100000000000000000 -> finite
+✓ rel_err(k=100000000000000000) = 0.000007 (<= tol 0.0100)
+✓ predict k=1000000000000000000 -> finite
+✓ rel_err(k=1000000000000000000) = 0.000003 (<= tol 0.0100)
+-- stats: mean_rel=0.000137  max_rel=0.000942  (N=50)
+
+== Performance (smoke) ==
+10000 predictions in 0.001 s (0.10 us/call)
+✓ average < 2000 microseconds per call
+
+== Mersenne Reverse Detection ==
+✓ mersenne_reverse_detect(3) -> 2 (3 = 2^2 - 1)
+✓ mersenne_reverse_detect(7) -> 3 (7 = 2^3 - 1)
+✓ mersenne_reverse_detect(31) -> 5 (31 = 2^5 - 1)
+✓ mersenne_reverse_detect(127) -> 7 (127 = 2^7 - 1)
+✓ mersenne_reverse_detect(2047) -> 0 (2047 = 2^11 - 1 (composite, 2047 = 23 × 89))
+✓ mersenne_reverse_detect(2) -> 0 (2 (not in Mersenne form))
+✓ mersenne_reverse_detect(0) -> 0 (0 (edge case))
+✓ mersenne_reverse_detect(1) -> 0 (1 (edge case))
+✓ mersenne_reverse_detect(4) -> 0 (4 (not Mersenne))
+✓ mersenne_reverse_detect(8) -> 0 (8 (not Mersenne))
+✓ mersenne_reverse_detect(15) -> 0 (15 = 2^4 - 1 (composite exponent))
+✓ mersenne_reverse_detect(63) -> 0 (63 = 2^6 - 1 (composite exponent))
+✓ mersenne_reverse_detect(255) -> 0 (255 = 2^8 - 1 (composite exponent))
+✓ mersenne_reverse_detect(511) -> 0 (511 = 2^9 - 1 (composite exponent))
+✓ mersenne_reverse_detect(1023) -> 0 (1023 = 2^10 - 1 (composite exponent))
+✓ mersenne_reverse_detect(8191) -> 13 (8191 = 2^13 - 1)
+-- Property-based verification --
+✓ Property test: 2^2 - 1 = 3 -> detected p = 2
+✓ Property test: 2^3 - 1 = 7 -> detected p = 3
+✓ Property test: 2^5 - 1 = 31 -> detected p = 5
+✓ Property test: 2^7 - 1 = 127 -> detected p = 7
+✓ Property test: 2^13 - 1 = 8191 -> detected p = 13
+✓ Property test: 2^17 - 1 = 131071 -> detected p = 17
+✓ Property test: 2^19 - 1 = 524287 -> detected p = 19
+✓ Property test: 2^31 - 1 = 2147483647 -> detected p = 31
+
+========================================
+TEST SUMMARY: 128 run, 128 passed, 0 failed
+========================================

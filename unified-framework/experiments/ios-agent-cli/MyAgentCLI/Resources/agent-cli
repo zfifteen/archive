@@ -1,0 +1,32 @@
+#!/bin/sh
+# agent-cli - Simple JSON-based agent command interface
+# Usage: agent-cli '{"op":"echo","text":"hello"}'
+
+# Read JSON input from argument or stdin
+if [ $# -gt 0 ]; then
+    INPUT="$1"
+else
+    read INPUT
+fi
+
+# Parse the JSON (simple approach using grep/sed for MVP)
+# Extract the "op" field
+OP=$(echo "$INPUT" | grep -o '"op"[[:space:]]*:[[:space:]]*"[^"]*"' | sed 's/.*"\([^"]*\)".*/\1/')
+
+# Extract the "text" field
+TEXT=$(echo "$INPUT" | grep -o '"text"[[:space:]]*:[[:space:]]*"[^"]*"' | sed 's/.*"\([^"]*\)".*/\1/')
+
+# Process commands
+case "$OP" in
+    "echo")
+        # Return the text as result
+        if [ -n "$TEXT" ]; then
+            echo "{\"ok\":true,\"result\":\"$TEXT\"}"
+        else
+            echo "{\"ok\":false,\"error\":\"No text provided\"}"
+        fi
+        ;;
+    *)
+        echo "{\"ok\":false,\"error\":\"Unknown operation: $OP\"}"
+        ;;
+esac

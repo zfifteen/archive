@@ -1,0 +1,108 @@
+{
+  "mcpServers": {
+    "bash-server": {
+      "url": "http://127.0.0.1:8000",
+      "name": "Bash Server",
+      "description": "MCP server providing bash, python, gh CLI execution and filesystem operations",
+      "version": "1.0.0",
+      "protocol": "http",
+      "capabilities": {
+        "tools": [
+          {
+            "name": "bash",
+            "description": "Execute bash command",
+            "inputSchema": {
+              "type": "object",
+              "properties": {
+                "command": {
+                  "type": "string",
+                  "description": "Bash command to execute"
+                }
+              },
+              "required": ["command"]
+            }
+          },
+          {
+            "name": "python",
+            "description": "Execute Python code",
+            "inputSchema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "string",
+                  "description": "Python code to execute"
+                }
+              },
+              "required": ["code"]
+            }
+          },
+          {
+            "name": "gh",
+            "description": "Execute GitHub CLI command",
+            "inputSchema": {
+              "type": "object",
+              "properties": {
+                "args": {
+                  "type": "string",
+                  "description": "GitHub CLI arguments"
+                }
+              },
+              "required": ["args"]
+            }
+          },
+          {
+            "name": "read_file",
+            "description": "Read file contents",
+            "inputSchema": {
+              "type": "object",
+              "properties": {
+                "path": {
+                  "type": "string",
+                  "description": "File path"
+                }
+              },
+              "required": ["path"]
+            }
+          },
+          {
+            "name": "write_file",
+            "description": "Write file contents",
+            "inputSchema": {
+              "type": "object",
+              "properties": {
+                "path": {
+                  "type": "string",
+                  "description": "File path"
+                },
+                "content": {
+                  "type": "string",
+                  "description": "File content"
+                }
+              },
+              "required": ["path", "content"]
+            }
+          },
+          {
+            "name": "list_dir",
+            "description": "List directory contents",
+            "inputSchema": {
+              "type": "object",
+              "properties": {
+                "path": {
+                  "type": "string",
+                  "description": "Directory path"
+                }
+              },
+              "required": ["path"]
+            }
+          }
+        ]
+      },
+      "endpoints": {
+        "initialize": "/initialize",
+        "tools_list": "/tools/list",
+        "tools_call": "/tools/call"
+      }
+    }
+  }
+}

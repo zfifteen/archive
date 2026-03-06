@@ -1,0 +1,42 @@
+{
+  "experiment_metadata": {
+    "timestamp": "2025-09-27 14:49:49",
+    "methodology": "Z5D adapted for semiprime prediction",
+    "semiprimes_generated": 7461,
+    "test_points": 20,
+    "test_ranges": 3
+  },
+  "performance_summary": {
+    "enhanced_baseline_error_pct": 17.04575907222682,
+    "z5d_enhanced_error_pct": 15.17595886028749,
+    "improvement_ratio": 1.1585163623742143,
+    "z5d_outperforms_pct": 65.0,
+    "z5d_sub_5_percent_rate": 0.0
+  },
+  "statistical_validation": {
+    "bootstrap_samples": 1000,
+    "bootstrap_ci_95": [
+      14.056954870027127,
+      16.218425455825415
+    ],
+    "ci_width_pct": 2.1614705857982877
+  },
+  "density_analysis": {
+    "enhancement_percentage": 104.38519027241449,
+    "enhancement_ci": [
+      104.38519027241449,
+      159.16342692998438
+    ]
+  },
+  "correlation_analysis": {
+    "theoretical_correlation_r": 0.9993678789071712,
+    "correlation_p_value": 6.979908285868548e-13,
+    "strong_correlation": true
+  },
+  "success_criteria": {
+    "z5d_shows_improvement": true,
+    "meaningful_enhancement": true,
+    "statistical_robustness": false,
+    "density_enhancement_positive": true
+  }
+}

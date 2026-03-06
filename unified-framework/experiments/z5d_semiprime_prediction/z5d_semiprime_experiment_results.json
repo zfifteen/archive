@@ -1,0 +1,97 @@
+{
+  "experiment_info": {
+    "timestamp": "2025-09-27 14:49:24",
+    "semiprimes_generated": 23378,
+    "limit": 100000,
+    "test_range": "k=1000 to 10000",
+    "bootstrap_samples": 1000
+  },
+  "performance_metrics": {
+    "z5d_mean_error_percent": 5740.293642742927,
+    "baseline_mean_error_percent": 1.0112362249909848,
+    "improvement_ratio": 0.00017616454626313827,
+    "bootstrap_ci_95": [
+      3787.5365183996946,
+      7901.178752774682
+    ],
+    "sub_1_percent_rate": 0.0
+  },
+  "correlation_analysis": {
+    "zeta_correlation_r": -0.9877558589208242,
+    "zeta_correlation_p": 0.09972485456449907,
+    "correlation_target_met": true
+  },
+  "hypothesis_validation": {
+    "target_error_05_percent": false,
+    "target_improvement_100x": false,
+    "target_correlation_092": true,
+    "overall_success": false
+  },
+  "detailed_results": [
+    {
+      "k": 1000,
+      "predicted": -31499.550011457526,
+      "actual": 3595,
+      "error": 976.2044509445765
+    },
+    {
+      "k": 2000,
+      "predicted": -140091.2242288713,
+      "actual": 7453,
+      "error": 1979.6622062105364
+    },
+    {
+      "k": 3000,
+      "predicted": -329884.02502777457,
+      "actual": 11465,
+      "error": 2977.3137813150856
+    },
+    {
+      "k": 4000,
+      "predicted": -602976.067267092,
+      "actual": 15591,
+      "error": 3967.462428754358
+    },
+    {
+      "k": 5000,
+      "predicted": -960815.6220108524,
+      "actual": 19643,
+      "error": 4991.38941104135
+    },
+    {
+      "k": 6000,
+      "predicted": -1404511.8703834733,
+      "actual": 23921,
+      "error": 5971.459681382356
+    },
+    {
+      "k": 7000,
+      "predicted": -1934964.2482429943,
+      "actual": 28073,
+      "error": 6992.616564823832
+    },
+    {
+      "k": 8000,
+      "predicted": -2552929.3079406414,
+      "actual": 32243,
+      "error": 8017.778457155479
+    },
+    {
+      "k": 9000,
+      "predicted": -3259059.908185151,
+      "actual": 36591,
+      "error": 9006.725446653962
+    },
+    {
+      "k": 10000,
+      "predicted": -5078494.497331578,
+      "actual": 40882,
+      "error": 12522.323999147739
+    }
+  ],
+  "runtime_performance": {
+    "generation_time_s": 0.008558034896850586,
+    "bootstrap_time_s": 0.0008609294891357422,
+    "total_test_points": 10
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "original": {
+    "beta": 0.0001691199191649082,
+    "metric_improvement": {
+      "rmse_delta": -0.12954087638539583,
+      "medae_delta": -0.11332776427298086,
+      "baseline_rmse": 2.5989676548950336e-08,
+      "corrected_rmse": 0.12954090237507238,
+      "baseline_medae": 9.968061931431293e-10,
+      "corrected_medae": 0.11332776526978705
+    },
+    "n": 11,
+    "n_train": 41,
+    "notes": "Form: multiplicative, holdout: 20.0%"
+  },
+  "bootstrap": {
+    "n_bootstrap": 1000,
+    "beta_mean": 0.0001653092435526427,
+    "beta_std": 0.00016211048919749442,
+    "beta_ci": [
+      -0.0001455538470254468,
+      0.0004530439767390683
+    ],
+    "rmse_delta_mean": -0.14746645287131793,
+    "rmse_delta_std": 0.09791282497887499,
+    "rmse_delta_ci": [
+      -0.3454482379212889,
+      -0.007390958707192369
+    ],
+    "medae_delta_mean": -0.1364716675351374,
+    "medae_delta_ci": [
+      -0.3396932916382866,
+      -0.007046011708371238
+    ],
+    "p_value": 0.0,
+    "significance": true
+  }
+}

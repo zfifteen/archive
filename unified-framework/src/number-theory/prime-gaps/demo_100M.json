@@ -1,0 +1,43 @@
+{
+  "analysis_parameters": {
+    "limit": 100000000,
+    "memory_limit_mb": 2000,
+    "sample_rate": 0.001,
+    "total_gaps_processed": 5761454,
+    "sample_size": 5598,
+    "analysis_time_seconds": 28.965832710266113
+  },
+  "overall_statistics": {
+    "total_gaps": 5761454,
+    "gap_mean": 17.3567274858048,
+    "gap_std": 14.802893822165297,
+    "gap_min": 1,
+    "gap_max": 220
+  },
+  "sampled_statistics": {
+    "sample_size": 5598,
+    "sample_gap_mean": 17.48588781707753,
+    "sample_gap_std": 15.012656237037206,
+    "sample_gap_median": 12.0,
+    "sample_gap_min": 2,
+    "sample_gap_max": 128
+  },
+  "low_kappa_analysis": {
+    "kappa_threshold": 16.30896406470046,
+    "low_kappa_count": 1400,
+    "low_kappa_fraction": 0.2500893176134334,
+    "low_kappa_gap_mean": 16.467142857142857,
+    "low_kappa_gap_std": 14.119553022352386,
+    "curvature_stats": {
+      "mean": 17.026261647960855,
+      "std": 1.6849440897189687,
+      "median": 17.523641034104642
+    },
+    "frame_shift_stats": {
+      "mean": 1.3402602122429021,
+      "std": 0.23304106725374304,
+      "median": 1.4027476061823188
+    }
+  },
+  "plot_files": []
+}

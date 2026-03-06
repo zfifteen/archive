@@ -1,0 +1,36 @@
+# Build artifacts
+build/
+bin/
+*.o
+*.a
+*.so
+*.dylib
+
+# Executables
+xai_chat_client
+mock_xai_server
+
+# Debug files
+*.dSYM/
+*.su
+*.core
+
+# Editor files
+*.swp
+*.swo
+*~
+.DS_Store
+
+# IDE files
+.vscode/
+.idea/
+*.sublime-*
+
+# Test output
+*.log
+*.txt
+test_output/
+
+# Temporary files
+tmp/
+temp/

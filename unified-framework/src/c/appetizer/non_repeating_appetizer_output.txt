@@ -1,0 +1,79 @@
+SHA-256 Constants Geometric Predictability Demo (Appetizer)
+==========================================================
+
+=== A: Standard View (Raw Constants) ===
+Initial Hash Values (fractional parts of square roots of primes):
+-------------------------------------------------------------
+H0 (sqrt(2)): 0x6a09e667
+H1 (sqrt(3)): 0xbb67ae85
+H2 (sqrt(5)): 0x3c6ef372
+H3 (sqrt(7)): 0xa54ff53a
+H4 (sqrt(11)): 0x510e527f
+H5 (sqrt(13)): 0x9b05688c
+H6 (sqrt(17)): 0x1f83d9ab
+H7 (sqrt(19)): 0x5be0cd19
+
+First 16 Round Constants (fractional parts of cube roots of primes):
+------------------------------------------------------------------
+K0 (cube root of 2): 0x428a2f98
+K1 (cube root of 3): 0x71374491
+K2 (cube root of 5): 0xb5c0fbcf
+K3 (cube root of 7): 0xe9b5dba5
+K4 (cube root of 11): 0x3956c25b
+K5 (cube root of 13): 0x59f111f1
+K6 (cube root of 17): 0x923f82a4
+K7 (cube root of 19): 0xab1c5ed5
+K8 (cube root of 23): 0xd807aa98
+K9 (cube root of 29): 0x12835b01
+K10 (cube root of 31): 0x243185be
+K11 (cube root of 37): 0x550c7dc3
+K12 (cube root of 41): 0x72be5d74
+K13 (cube root of 43): 0x80deb1fe
+K14 (cube root of 47): 0x9bdc06a7
+K15 (cube root of 53): 0xc19bf174
+Summary: In standard view, constants appear random and unrelated.
+
+=== B: Geometric Lens (Bounds Analysis with k* = 0.03000) ===
+Analyzing fractional parts against geometric bounds using k*...
+Width Factor: 0.300 (optimized for effective coverage)
+
+Fractional Parts of Initial Hash Values and Predicted Bounds (Circular Distance):
+-------------------------------------------------------------------------------
+H0 (prime=2): Frac=0.414214, Predicted Center=0.177410, Width=0.464836, Within Bounds=No
+H1 (prime=3): Frac=0.732051, Predicted Center=0.815444, Width=0.483119, Within Bounds=Yes
+H2 (prime=5): Frac=0.236068, Predicted Center=0.836757, Width=0.451607, Within Bounds=No
+H3 (prime=7): Frac=0.645751, Predicted Center=0.690714, Width=0.469370, Within Bounds=Yes
+H4 (prime=11): Frac=0.316625, Predicted Center=0.135840, Width=0.482142, Within Bounds=Yes
+H5 (prime=13): Frac=0.605551, Predicted Center=0.774456, Width=0.438754, Within Bounds=Yes
+H6 (prime=17): Frac=0.123106, Predicted Center=0.940074, Width=0.475607, Within Bounds=Yes
+H7 (prime=19): Frac=0.358899, Predicted Center=0.479595, Width=0.481097, Within Bounds=Yes
+Summary for Initial Hash Values (Circular): 6/8 within predicted bounds (75.0% coverage)
+
+Fractional Parts of First 16 Round Constants and Predicted Bounds (Circular Distance):
+------------------------------------------------------------------------------------
+K0 (prime=2): Frac=0.259921, Predicted Center=0.115026, Width=0.464836, Within Bounds=Yes
+K1 (prime=3): Frac=0.442250, Predicted Center=0.488179, Width=0.483119, Within Bounds=Yes
+K2 (prime=5): Frac=0.709976, Predicted Center=0.003925, Width=0.451607, Within Bounds=No
+K3 (prime=7): Frac=0.912931, Predicted Center=0.388216, Width=0.469370, Within Bounds=No
+K4 (prime=11): Frac=0.223980, Predicted Center=0.976740, Width=0.482142, Within Bounds=No
+K5 (prime=13): Frac=0.351335, Predicted Center=0.218652, Width=0.438754, Within Bounds=Yes
+K6 (prime=17): Frac=0.571282, Predicted Center=0.638391, Width=0.475607, Within Bounds=Yes
+K7 (prime=19): Frac=0.668402, Predicted Center=0.824594, Width=0.481097, Within Bounds=Yes
+K8 (prime=23): Frac=0.843867, Predicted Center=0.162408, Width=0.463520, Within Bounds=No
+K9 (prime=29): Frac=0.072317, Predicted Center=0.604966, Width=0.484245, Within Bounds=No
+K10 (prime=31): Frac=0.141381, Predicted Center=0.739365, Width=0.459362, Within Bounds=No
+K11 (prime=37): Frac=0.332222, Predicted Center=0.112184, Width=0.483341, Within Bounds=Yes
+K12 (prime=41): Frac=0.448217, Predicted Center=0.339803, Width=0.469927, Within Bounds=Yes
+K13 (prime=43): Frac=0.503398, Predicted Center=0.448350, Width=0.477430, Within Bounds=Yes
+K14 (prime=47): Frac=0.608826, Predicted Center=0.656204, Width=0.443033, Within Bounds=Yes
+K15 (prime=53): Frac=0.756286, Predicted Center=0.947933, Width=0.481350, Within Bounds=Yes
+Summary for Round Constants (Circular): 10/16 within predicted bounds (62.5% coverage)
+
+Note: Bounds are centered on predicted fractional parts using a simple m*log(m) approximation.
+This adapts the hash-bounds.py approach (theta_prime = phi * (((m % phi)/phi) ** k_star)).
+Summary: Through the geometric lens with k*, we test if SHA-256 constants fall within predictable bounds.
+
+=== Conclusion ===
+- Standard View (A): SHA-256 constants appear random, ensuring cryptographic strength.
+- Geometric Lens (B): Using k* = 0.03000 and width_factor = 0.300, bounds coverage is optimized,
+This appetizer demo explores whether even random constants may have hidden geometric properties.

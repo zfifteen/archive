@@ -1,0 +1,41 @@
+SHA-256 State Machine Classifier
+================================
+
+Input: 1
+Coverage: 1/8 (12.5%)
+8-bit Alignment Pattern: 00000010
+Classification: Not Aligned
+State Transition: Not Aligned -> Not Aligned
+
+Input: 11
+Coverage: 5/8 (62.5%)
+8-bit Alignment Pattern: 01101101
+Classification: Aligned
+State Transition: Not Aligned -> Aligned
+
+Input: 111
+Coverage: 5/8 (62.5%)
+8-bit Alignment Pattern: 11101001
+Classification: Aligned
+State Transition: Aligned -> Aligned
+
+Input: 1111
+Coverage: 4/8 (50.0%)
+8-bit Alignment Pattern: 00101110
+Classification: Not Aligned
+State Transition: Aligned -> Not Aligned
+
+Input: 11111
+Coverage: 4/8 (50.0%)
+8-bit Alignment Pattern: 10011010
+Classification: Not Aligned
+State Transition: Not Aligned -> Not Aligned
+
+Input: 111111
+Coverage: 4/8 (50.0%)
+8-bit Alignment Pattern: 10110010
+Classification: Not Aligned
+State Transition: Not Aligned -> Not Aligned
+
+=== Conclusion ===
+State machine tracks transitions based on geometric alignment of SHA-256 outputs.

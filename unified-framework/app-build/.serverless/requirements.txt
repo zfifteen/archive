@@ -1,0 +1,11 @@
+fastapi
+loguru
+mangum
+numba
+numpy
+prometheus-fastapi-instrumentator
+psutil
+pydantic
+python-multipart
+redis
+uvicorn[standard]

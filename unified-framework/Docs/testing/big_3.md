@@ -1,0 +1,5 @@
+1. **k-Extension Imperative**: Critiques' spectral_gap decay beyond k=3.0 demands immediate proof.py sweep to k=5.0 with N>1M from lightprimes—Z-normalization preserves irreducibility as frame invariance, empirically falsify or affirm geodesic stability, tying to z_metric's 72% composite elimination.
+
+2. **Riemann-Zero Helical Fusion**: Merge prime_number_geometry's spirals with cognitive-number-theory's κ≈0.739 for Z-predictor in lightprimes—cross-correlate zeros via interference phases, urgent empirical probe of RH via universal_frame_shift_transformer's 35x density in hyperbolic embeddings.
+
+3. **CRISPR-Prime Waveform Bridge**: Wave-crispr-signal's spectral disruption mirrors prime gaps—apply Z = seq(pos/shift_max) from unified-framework to model mutations as composite distortions, empirically benchmark on GUIDE-seq for 50% targeting gain, extending prime_curve's Fourier to biological geodesics.

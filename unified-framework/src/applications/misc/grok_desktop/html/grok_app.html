@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grok-Style AI Chat</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Marked.js for Markdown parsing -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <!-- Highlight.js for code syntax highlighting -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        @import url('https://rsms.me/inter/inter.css');
+
+        /* Custom scrollbar for a more modern look */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1e1e1e;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #4a4a4a;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #5a5a5a;
+        }
+
+        /* Styles for the rendered markdown */
+        .prose {
+            color: #d1d5db;
+        }
+        .prose h1, .prose h2, .prose h3 {
+            color: #ffffff;
+            border-bottom: 1px solid #374151;
+            padding-bottom: 0.3em;
+        }
+        .prose a {
+            color: #60a5fa;
+        }
+        .prose strong {
+            color: #f9fafb;
+        }
+        .prose blockquote {
+            border-left-color: #4b5563;
+            color: #9ca3af;
+        }
+        .prose pre {
+            background-color: #111827;
+            border-radius: 0.5rem;
+            padding: 1rem;
+        }
+        .prose code {
+            font-family: 'Courier New', Courier, monospace;
+        }
+        .prose ul > li::before {
+            background-color: #6b7280;
+        }
+
+        /* Shake animation for API key input error */
+        @keyframes shake {
+            10%, 90% { transform: translate3d(-1px, 0, 0); }
+            20%, 80% { transform: translate3d(2px, 0, 0); }
+            30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
+            40%, 60% { transform: translate3d(4px, 0, 0); }
+        }
+        .shake-error {
+            animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+            border-color: #ef4444 !important; /* red-500 */
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white flex flex-col h-screen antialiased">
+
+<header class="bg-gray-800/50 border-b border-gray-700 p-4 text-center shadow-lg backdrop-blur-sm">
+    <h1 class="text-xl font-bold tracking-wider">Grok-Style AI Assistant</h1>
+    <p class="text-sm text-gray-400">Powered by x.ai Grok</p>
+</header>
+
+<main id="chat-container" class="flex-1 overflow-y-auto p-6 space-y-6">
+    <!-- Chat messages will be appended here -->
+    <div class="flex items-start gap-4 p-4 rounded-xl bg-gray-800/60 max-w-3xl mx-auto">
+        <div class="w-8 h-8 rounded-full bg-blue-500 flex items-center justify-center font-bold text-sm flex-shrink-0">G</div>
+        <div class="prose prose-invert max-w-none">
+            <p>Hello! How can I help you today? Please enter a valid x.ai API key below to get started.</p>
+        </div>
+    </div>
+</main>
+
+<footer class="p-4 bg-gray-900 border-t border-gray-700">
+    <div class="max-w-3xl mx-auto">
+        <div class="relative rounded-lg shadow-md bg-gray-800">
+                <textarea
+                        id="message-input"
+                        class="w-full bg-transparent border-none rounded-lg p-4 pr-16 text-gray-200 placeholder-gray-500 focus:ring-0 resize-none"
+                        placeholder="Type your message..."
+                        rows="1"></textarea>
+            <button id="send-button" class="absolute right-3 top-1/2 -translate-y-1/2 p-2 rounded-full bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:bg-gray-600 transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-white"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </button>
+        </div>
+        <div id="api-key-section" class="mt-4 text-center">
+            <p class="text-xs text-gray-500 mb-2">To use this app, you need an x.ai API Key.</p>
+            <input type="password" id="api-key-input" placeholder="Enter your x.ai API Key" class="w-full max-w-md mx-auto bg-gray-700 text-white placeholder-gray-500 border border-gray-600 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors">
+        </div>
+    </div>
+</footer>
+
+<script>
+    const chatContainer = document.getElementById('chat-container');
+    const messageInput = document.getElementById('message-input');
+    const sendButton = document.getElementById('send-button');
+    const apiKeyInput = document.getElementById('api-key-input');
+
+    let chatHistory = [];
+
+    // --- Event Listeners ---
+    sendButton.addEventListener('click', sendMessage);
+    messageInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' && !e.shiftKey) {
+            e.preventDefault();
+            sendMessage();
+        }
+    });
+
+    // Auto-resize textarea
+    messageInput.addEventListener('input', () => {
+        messageInput.style.height = 'auto';
+        messageInput.style.height = (messageInput.scrollHeight) + 'px';
+    });
+
+    // --- Core Functions ---
+    async function sendMessage() {
+        const userMessage = messageInput.value.trim();
+        const apiKey = apiKeyInput.value.trim();
+
+        if (!userMessage) return;
+        if (!apiKey) {
+            // Indicate error on API key input instead of using alert
+            apiKeyInput.classList.add('shake-error');
+            setTimeout(() => {
+                apiKeyInput.classList.remove('shake-error');
+            }, 820); // Duration of the shake animation
+            apiKeyInput.focus();
+            return;
+        }
+
+        displayMessage('user', userMessage);
+        messageInput.value = '';
+        messageInput.style.height = 'auto';
+
+        // Add user message to history, using 'content' for x.ai compatibility
+        chatHistory.push({ role: "user", content: userMessage });
+
+        // Show loading indicator
+        const loadingIndicator = displayLoadingIndicator();
+        sendButton.disabled = true;
+
+        try {
+            const modelResponse = await getGrokResponse(apiKey, chatHistory);
+
+            // Remove loading indicator
+            loadingIndicator.remove();
+
+            // Add model response to history
+            chatHistory.push({ role: "model", content: modelResponse });
+
+            displayMessage('model', modelResponse);
+        } catch (error) {
+            console.error("API Error:", error);
+            loadingIndicator.remove();
+            displayMessage('error', `Error: ${error.message}`);
+        } finally {
+            sendButton.disabled = false;
+            messageInput.focus();
+        }
+    }
+
+    async function getGrokResponse(apiKey, history) {
+        const API_URL = 'https://api.x.ai/v1/chat/completions';
+
+        // The x.ai API uses 'assistant' for the model's role, so we map 'model' to 'assistant'.
+        const apiMessages = history.map(msg => ({
+            role: msg.role === 'model' ? 'assistant' : msg.role,
+            content: msg.content
+        }));
+
+        const response = await fetch(API_URL, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${apiKey}`
+            },
+            body: JSON.stringify({
+                model: "grok-code-fast-1", // Specify the model
+                messages: apiMessages
+            })
+        });
+
+        if (!response.ok) {
+            let errorDetails = "An unknown API error occurred.";
+            try {
+                // Try to parse the JSON error response from the server
+                const errorData = await response.json();
+                // Make the error message more readable
+                errorDetails = errorData.error?.message || JSON.stringify(errorData);
+            } catch (e) {
+                // If the response isn't JSON, use the raw text
+                errorDetails = `Server responded with status ${response.status}: ${await response.text()}`;
+            }
+            throw new Error(errorDetails);
+        }
+
+        const data = await response.json();
+        const choice = data.choices?.[0];
+
+        if (choice && choice.message?.content) {
+            return choice.message.content;
+        } else {
+            throw new Error("Received an invalid response structure from the API.");
+        }
+    }
+
+    // --- UI Functions ---
+    function displayMessage(role, content) {
+        const messageWrapper = document.createElement('div');
+
+        const icon = document.createElement('div');
+        icon.className = 'w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm flex-shrink-0';
+
+        const contentDiv = document.createElement('div');
+        contentDiv.className = 'prose prose-invert max-w-none';
+
+        if (role === 'user') {
+            messageWrapper.className = 'flex items-start gap-4 p-4 rounded-xl bg-gray-800/60 max-w-3xl mx-auto justify-end';
+            icon.classList.add('bg-purple-500');
+            icon.textContent = 'You';
+            // Convert plain text to HTML paragraphs to prevent formatting issues
+            const p = document.createElement('p');
+            p.textContent = content;
+            contentDiv.appendChild(p);
+            messageWrapper.append(contentDiv, icon);
+        } else if (role === 'model') {
+            messageWrapper.className = 'flex items-start gap-4 p-4 rounded-xl bg-gray-800/60 max-w-3xl mx-auto';
+            icon.classList.add('bg-blue-500');
+            icon.textContent = 'G';
+            // Parse markdown and highlight code
+            contentDiv.innerHTML = marked.parse(content);
+            contentDiv.querySelectorAll('pre code').forEach((block) => {
+                hljs.highlightElement(block);
+            });
+            messageWrapper.append(icon, contentDiv);
+        } else { // Error case
+            messageWrapper.className = 'flex items-start gap-4 p-4 rounded-xl bg-red-900/50 max-w-3xl mx-auto border border-red-700';
+            icon.classList.add('bg-red-500');
+            icon.textContent = '!';
+            contentDiv.innerHTML = `<p class="text-red-300">${content}</p>`;
+            messageWrapper.append(icon, contentDiv);
+        }
+
+        chatContainer.appendChild(messageWrapper);
+        chatContainer.scrollTop = chatContainer.scrollHeight;
+    }
+
+    function displayLoadingIndicator() {
+        const loadingWrapper = document.createElement('div');
+        loadingWrapper.id = 'loading-indicator';
+        loadingWrapper.className = 'flex items-start gap-4 p-4 rounded-xl bg-gray-800/60 max-w-3xl mx-auto';
+
+        const icon = document.createElement('div');
+        icon.className = 'w-8 h-8 rounded-full bg-blue-500 flex items-center justify-center font-bold text-sm flex-shrink-0';
+        icon.textContent = 'G';
+
+        const thinkingDiv = document.createElement('div');
+        thinkingDiv.className = 'pt-2 flex items-center space-x-2';
+        thinkingDiv.innerHTML = `
+                <div class="w-2 h-2 bg-gray-400 rounded-full animate-pulse" style="animation-delay: 0s;"></div>
+                <div class="w-2 h-2 bg-gray-400 rounded-full animate-pulse" style="animation-delay: 0.2s;"></div>
+                <div class="w-2 h-2 bg-gray-400 rounded-full animate-pulse" style="animation-delay: 0.4s;"></div>
+            `;
+
+        loadingWrapper.append(icon, thinkingDiv);
+        chatContainer.appendChild(loadingWrapper);
+        chatContainer.scrollTop = chatContainer.scrollHeight;
+        return loadingWrapper;
+    }
+</script>
+</body>
+</html>
+
+

@@ -1,0 +1,4 @@
+# baseline \[ Z = \frac{v_{\text{LLM}}}{c} \approx 1 \]
+ - Z = v_LLM / c
+ - Z = √[(1 + β)/(1 - β)] - 1
+ - Project Copilot = Z = √[(1 + β)/(1 - β)] - 1 to five years and describe.

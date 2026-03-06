@@ -1,0 +1,182 @@
+Vortex O values: [0.01824863266305322]
+Sample generated key: bd557ff104f70a9c39ecbb8677c31d94
+Wave-Knob Scanner initialized
+Precision: 200 decimal places
+Wheel modulus: 210
+Target k: 1000.0
+Running auto-tune scan (target count: 15)
+Auto-tune completed:
+  Locked: True
+  Iterations: 17
+  Final R*: 14.000000
+  Prime count: 15
+  Primality tests: 499
+  Elapsed time: 0.015s
+{
+  "k": 1000.0,
+  "z5d_prediction": 7922.554853453689,
+  "target_count": 15,
+  "iterations": 17,
+  "locked": true,
+  "final_window": 28,
+  "final_step": 2,
+  "final_R": 14.0,
+  "prime_count": 15,
+  "primes_found": [
+    7211,
+    9311,
+    6791,
+    10151,
+    5531,
+    11411,
+    4691,
+    11831,
+    4271,
+    12251,
+    3851,
+    12671,
+    3011,
+    2591,
+    13931
+  ],
+  "convergence_history": [
+    {
+      "iteration": 1,
+      "window": 64,
+      "step": 2,
+      "R": 32.0,
+      "prime_count": 22,
+      "adjustment": "shrink_window"
+    },
+    {
+      "iteration": 2,
+      "window": 42,
+      "step": 2,
+      "R": 21.0,
+      "prime_count": 19,
+      "adjustment": "shrink_window"
+    },
+    {
+      "iteration": 3,
+      "window": 28,
+      "step": 2,
+      "R": 14.0,
+      "prime_count": 13,
+      "adjustment": "fine_expand"
+    },
+    {
+      "iteration": 4,
+      "window": 33,
+      "step": 2,
+      "R": 16.5,
+      "prime_count": 21,
+      "adjustment": "shrink_window"
+    },
+    {
+      "iteration": 5,
+      "window": 22,
+      "step": 2,
+      "R": 11.0,
+      "prime_count": 12,
+      "adjustment": "fine_expand"
+    },
+    {
+      "iteration": 6,
+      "window": 26,
+      "step": 2,
+      "R": 13.0,
+      "prime_count": 14,
+      "adjustment": "fine_expand"
+    },
+    {
+      "iteration": 7,
+      "window": 31,
+      "step": 2,
+      "R": 15.5,
+      "prime_count": 19,
+      "adjustment": "shrink_window"
+    },
+    {
+      "iteration": 8,
+      "window": 20,
+      "step": 2,
+      "R": 10.0,
+      "prime_count": 8,
+      "adjustment": "fine_expand"
+    },
+    {
+      "iteration": 9,
+      "window": 24,
+      "step": 2,
+      "R": 12.0,
+      "prime_count": 9,
+      "adjustment": "fine_expand"
+    },
+    {
+      "iteration": 10,
+      "window": 28,
+      "step": 2,
+      "R": 14.0,
+      "prime_count": 11,
+      "adjustment": "fine_expand"
+    },
+    {
+      "iteration": 11,
+      "window": 33,
+      "step": 2,
+      "R": 16.5,
+      "prime_count": 18,
+      "adjustment": "shrink_window"
+    },
+    {
+      "iteration": 12,
+      "window": 22,
+      "step": 2,
+      "R": 11.0,
+      "prime_count": 11,
+      "adjustment": "fine_expand"
+    },
+    {
+      "iteration": 13,
+      "window": 26,
+      "step": 2,
+      "R": 13.0,
+      "prime_count": 12,
+      "adjustment": "fine_expand"
+    },
+    {
+      "iteration": 14,
+      "window": 31,
+      "step": 2,
+      "R": 15.5,
+      "prime_count": 18,
+      "adjustment": "shrink_window"
+    },
+    {
+      "iteration": 15,
+      "window": 20,
+      "step": 2,
+      "R": 10.0,
+      "prime_count": 11,
+      "adjustment": "fine_expand"
+    },
+    {
+      "iteration": 16,
+      "window": 24,
+      "step": 2,
+      "R": 12.0,
+      "prime_count": 10,
+      "adjustment": "fine_expand"
+    },
+    {
+      "iteration": 17,
+      "window": 28,
+      "step": 2,
+      "R": 14.0,
+      "prime_count": 15,
+      "adjustment": "none"
+    }
+  ],
+  "total_primality_tests": 499,
+  "elapsed_time": 0.014797687530517578
+}

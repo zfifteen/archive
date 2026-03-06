@@ -1,0 +1,48 @@
+Double SHA-256 Geometric Predictability Test
+=============================================
+
+Input: "test" (Double SHA-256 output analyzed)
+
+=== Double SHA-256 Output Values ===
+Values as uint32_t (big-endian):
+---------------------------------
+H0: 0xdffd6021
+H1: 0xbb2bd5b0
+H2: 0xaf676290
+H3: 0x809ec3a5
+H4: 0x3191dd81
+H5: 0xc7f70a4b
+H6: 0x28688a36
+H7: 0x2182986f
+Note: Derived from SHA-256(SHA-256("test"))
+
+=== Geometric Lens Analysis (k* = 0.03000, width_factor = 0.350) ===
+-------------------------------------------------------
+H0 (prime=2): Frac=0.874960, Predicted Center=0.177410, Width=0.542309, Within Bounds=No
+H1 (prime=3): Frac=0.731138, Predicted Center=0.815444, Width=0.563639, Within Bounds=Yes
+H2 (prime=5): Frac=0.685171, Predicted Center=0.836757, Width=0.526875, Within Bounds=Yes
+H3 (prime=7): Frac=0.502423, Predicted Center=0.690714, Width=0.547598, Within Bounds=Yes
+H4 (prime=11): Frac=0.193632, Predicted Center=0.135840, Width=0.562499, Within Bounds=Yes
+H5 (prime=13): Frac=0.781113, Predicted Center=0.774456, Width=0.511880, Within Bounds=Yes
+H6 (prime=17): Frac=0.157845, Predicted Center=0.940074, Width=0.554875, Within Bounds=No
+H7 (prime=19): Frac=0.130899, Predicted Center=0.479595, Width=0.561279, Within Bounds=No
+
+Fractional Parts and Predicted Bounds (Circular Distance):
+--------------------------------------------------------
+H0 (prime=2): Frac=0.874960, Predicted Center=0.177410, Width=0.542309, Within Bounds=No
+H1 (prime=3): Frac=0.731138, Predicted Center=0.815444, Width=0.563639, Within Bounds=Yes
+H2 (prime=5): Frac=0.685171, Predicted Center=0.836757, Width=0.526875, Within Bounds=Yes
+H3 (prime=7): Frac=0.502423, Predicted Center=0.690714, Width=0.547598, Within Bounds=Yes
+H4 (prime=11): Frac=0.193632, Predicted Center=0.135840, Width=0.562499, Within Bounds=Yes
+H5 (prime=13): Frac=0.781113, Predicted Center=0.774456, Width=0.511880, Within Bounds=Yes
+H6 (prime=17): Frac=0.157845, Predicted Center=0.940074, Width=0.554875, Within Bounds=Yes
+H7 (prime=19): Frac=0.130899, Predicted Center=0.479595, Width=0.561279, Within Bounds=No
+Coverage (Circular): 6/8 values within predicted bounds (75.0%)
+
+Note: Bounds centered on predicted fractional parts using m*log(m) approximation.
+Method adapted from hash-bounds.py (theta_prime = phi * (((m % phi)/phi) ** k_star)).
+
+=== Conclusion ===
+Baseline SHA-256 Constants Coverage: 75.0% (Hash Values)
+Double SHA-256 Coverage (Circular): 75.0%
+Comparison indicates whether geometric effect persists in Double SHA-256 output.

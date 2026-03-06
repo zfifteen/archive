@@ -1,0 +1,114 @@
+[
+  {
+    "power": 8.0,
+    "z5d": {
+      "method": "Z5D",
+      "num_rays": 100,
+      "power": 8.0,
+      "elapsed_time": 0.21208643913269043,
+      "rays_per_second": 471.5058652921967,
+      "hit_rate": 1.0,
+      "avg_iterations": 24.04,
+      "max_iterations": 114,
+      "avg_step_size": 0.18924955496558662,
+      "speedup_vs_max": 4.7420965058236275
+    },
+    "standard": {
+      "method": "Standard",
+      "num_rays": 100,
+      "power": 8.0,
+      "elapsed_time": 0.184495210647583,
+      "rays_per_second": 542.0194900940647,
+      "hit_rate": 1.0,
+      "avg_iterations": 35.18,
+      "max_iterations": 157,
+      "avg_step_size": 0.07422028883214887,
+      "speedup_vs_max": 4.462762933484934
+    },
+    "speedup": 1.4633943427620633
+  },
+  {
+    "power": 12.0,
+    "z5d": {
+      "method": "Z5D",
+      "num_rays": 100,
+      "power": 12.0,
+      "elapsed_time": 0.25043535232543945,
+      "rays_per_second": 399.3046471731775,
+      "hit_rate": 1.0,
+      "avg_iterations": 27.19,
+      "max_iterations": 115,
+      "avg_step_size": 0.18691773341514623,
+      "speedup_vs_max": 4.229496138286135
+    },
+    "standard": {
+      "method": "Standard",
+      "num_rays": 100,
+      "power": 12.0,
+      "elapsed_time": 0.1848125457763672,
+      "rays_per_second": 541.0888074720058,
+      "hit_rate": 1.0,
+      "avg_iterations": 36.77,
+      "max_iterations": 158,
+      "avg_step_size": 0.07265525746258696,
+      "speedup_vs_max": 4.296981234702202
+    },
+    "speedup": 1.3523354174328799
+  },
+  {
+    "power": 16.0,
+    "z5d": {
+      "method": "Z5D",
+      "num_rays": 100,
+      "power": 16.0,
+      "elapsed_time": 0.14076900482177734,
+      "rays_per_second": 710.383653891753,
+      "hit_rate": 1.0,
+      "avg_iterations": 20.24,
+      "max_iterations": 103,
+      "avg_step_size": 0.24502371948161308,
+      "speedup_vs_max": 5.088932806324111
+    },
+    "standard": {
+      "method": "Standard",
+      "num_rays": 100,
+      "power": 16.0,
+      "elapsed_time": 0.1380159854888916,
+      "rays_per_second": 724.553751116378,
+      "hit_rate": 1.0,
+      "avg_iterations": 31.96,
+      "max_iterations": 142,
+      "avg_step_size": 0.08093943931436089,
+      "speedup_vs_max": 4.443053817271589
+    },
+    "speedup": 1.5790513833992097
+  },
+  {
+    "power": 20.0,
+    "z5d": {
+      "method": "Z5D",
+      "num_rays": 100,
+      "power": 20.0,
+      "elapsed_time": 0.17946362495422363,
+      "rays_per_second": 557.2159819323126,
+      "hit_rate": 1.0,
+      "avg_iterations": 21.85,
+      "max_iterations": 88,
+      "avg_step_size": 0.2455801887894064,
+      "speedup_vs_max": 4.027459954233409
+    },
+    "standard": {
+      "method": "Standard",
+      "num_rays": 100,
+      "power": 20.0,
+      "elapsed_time": 0.12201261520385742,
+      "rays_per_second": 819.5873830990429,
+      "hit_rate": 1.0,
+      "avg_iterations": 30.63,
+      "max_iterations": 122,
+      "avg_step_size": 0.0805832902046609,
+      "speedup_vs_max": 3.9830231798889977
+    },
+    "speedup": 1.4018306636155604
+  }
+]

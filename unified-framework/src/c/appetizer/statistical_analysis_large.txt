@@ -1,0 +1,146 @@
+=== Basic Statistics for Coverage Percentages ===
+count    535.000000
+mean      48.364486
+std       20.173356
+min        0.000000
+25%       37.500000
+50%       50.000000
+75%       62.500000
+max      100.000000
+Name: CoveragePercent, dtype: float64
+
+=== Classification Distribution (Threshold 37.5%) ===
+Classification
+Aligned        430
+Not Aligned    105
+Name: count, dtype: int64
+
+=== Coverage Distribution by Count ===
+AlignedCount
+0      2
+1     61
+2     42
+3     86
+4    158
+5    111
+6     47
+7     26
+8      2
+Name: count, dtype: int64
+
+=== Percentage of Times Each Bit (H0-H7) is Set (Aligned) ===
+H0    51.401869
+H1    28.971963
+H2    25.420561
+H3    24.485981
+H4    30.654206
+H5    27.850467
+H6    31.962617
+H7    17.757009
+dtype: float64
+
+=== Top 10 Most Common Alignment Patterns ===
+AlignmentPattern
+10          51
+10001110    24
+11100110     8
+1011000      8
+11111110     7
+11110010     7
+1001011      6
+1101010      6
+11110        6
+1101011      5
+Name: count, dtype: int64
+
+=== Correlation between Input Length and Coverage Percent ===
+Correlation Coefficient: 0.130
+
+=== Average Coverage by Input Length Range ===
+Length Range | Average Coverage % | Count
+-------------|-------------------|------
+0-5 | 42.3 | 213
+6-10 | 52.8 | 282
+11-15 | 37.5 | 1
+16-20 | 52.3 | 32
+21-25 | 31.2 | 2
+26-30 | 37.5 | 1
+31-35 | 37.5 | 1
+36-40 | 0.0 | 1
+41-45 | 62.5 | 1
+46-50 | 50.0 | 1
+51+ | nan | 0
+
+=== Classification Counts by Input Length Range ===
+Classification  Aligned  Not Aligned
+LengthRange                         
+0-5                 144           69
+6-10                252           30
+11-15                 1            0
+16-20                28            4
+21-25                 1            1
+26-30                 1            0
+31-35                 1            0
+36-40                 0            1
+41-45                 1            0
+46-50                 1            0
+51+                   0            0
+
+=== Top 10 Most Common States (Hex) ===
+StateHex
+0x0202020202020202    51
+0x8e8e8e8e8e8e8e8e    24
+0xe6e6e6e6e6e6e6e6     8
+0x5858585858585858     8
+0xfefefefefefefefe     7
+0xf2f2f2f2f2f2f2f2     7
+0x4b4b4b4b4b4b4b4b     6
+0x6a6a6a6a6a6a6a6a     6
+0x1e1e1e1e1e1e1e1e     6
+0x6b6b6b6b6b6b6b6b     5
+Name: count, dtype: int64
+
+=== Visualizations Generated ===
+- coverage_distribution_large.png: Histogram of coverage percentages
+- bit_frequency_large.png: Bar chart of alignment frequency per bit position
+- coverage_vs_length_large.png: Scatter plot of coverage vs. input length
+
+=== Top 10 Most Common State Transitions (Hex) ===
+(0x0202020202020202, 0x0202020202020202)    49
+(0x8e8e8e8e8e8e8e8e, 0x8e8e8e8e8e8e8e8e)    19
+(0x5858585858585858, 0x7a7a7a7a7a7a7a7a)     2
+(0xc1c1c1c1c1c1c1c1, 0x5858585858585858)     2
+(0xd6d6d6d6d6d6d6d6, 0xd3d3d3d3d3d3d3d3)     1
+(0x0e0e0e0e0e0e0e0e, 0xacacacacacacacac)     1
+(0x6464646464646464, 0x0e0e0e0e0e0e0e0e)     1
+(0x6666666666666666, 0x6464646464646464)     1
+(0xe5e5e5e5e5e5e5e5, 0x6666666666666666)     1
+(0x2424242424242424, 0xe5e5e5e5e5e5e5e5)     1
+Name: count, dtype: int64
+
+=== Correlation between Input Entropy and Coverage Percent ===
+Correlation Coefficient: 0.268
+
+=== Average Coverage by Input Entropy Range ===
+Entropy Range | Average Coverage % | Count
+--------------|-------------------|------
+0-1 | 39.3 | 169
+1-2 | 53.0 | 59
+2-3 | 53.0 | 185
+3-4 | 51.7 | 122
+4-5 | nan | 0
+5+ | nan | 0
+
+=== Correlation Matrix for Bit Positions (H0-H7 Alignment) ===
+          H0        H1        H2        H3        H4        H5        H6        H7
+H0  1.000000  0.621004  0.567680  0.553688  0.646480  0.604115  0.666450  0.451810
+H1  0.621004  1.000000  0.403117  0.441234  0.370756  0.310981  0.419330  0.350170
+H2  0.567680  0.403117  1.000000  0.386342  0.291525  0.384245  0.354697  0.290388
+H3  0.553688  0.441234  0.386342  1.000000  0.253075  0.266824  0.355413  0.292765
+H4  0.646480  0.370756  0.291525  0.253075  1.000000  0.382787  0.474504  0.306360
+H5  0.604115  0.310981  0.384245  0.266824  0.382787  1.000000  0.468326  0.245964
+H6  0.666450  0.419330  0.354697  0.355413  0.474504  0.468326  1.000000  0.258392
+H7  0.451810  0.350170  0.290388  0.292765  0.306360  0.245964  0.258392  1.000000
+
+=== Additional Visualization Generated ===
+- bit_correlation_heatmap.png: Heatmap of bit position correlations

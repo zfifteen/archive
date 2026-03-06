@@ -1,0 +1,110 @@
+Vortex O values: [0.01824863266305322]
+Sample generated key: bd557ff104f70a9c39ecbb8677c31d94
+Wave-Knob Scanner initialized
+Precision: 200 decimal places
+Wheel modulus: 210
+Target k: 1000000000.0
+Running auto-tune scan (target count: 15)
+Auto-tune completed:
+  Locked: True
+  Iterations: 8
+  Final R*: 34.000000
+  Prime count: 15
+  Primality tests: 580
+  Elapsed time: 0.038s
+{
+  "k": 1000000000.0,
+  "z5d_prediction": 22801797575.92889,
+  "target_count": 15,
+  "iterations": 8,
+  "locked": true,
+  "final_window": 68,
+  "final_step": 2,
+  "final_R": 34.0,
+  "prime_count": 15,
+  "primes_found": [
+    22801799401,
+    22801799821,
+    22801794781,
+    22801801081,
+    22801794361,
+    22801792681,
+    22801792261,
+    22801805701,
+    22801806541,
+    22801788481,
+    22801787641,
+    22801786801,
+    22801810741,
+    22801784281,
+    22801812001
+  ],
+  "convergence_history": [
+    {
+      "iteration": 1,
+      "window": 64,
+      "step": 2,
+      "R": 32.0,
+      "prime_count": 9,
+      "adjustment": "fine_expand"
+    },
+    {
+      "iteration": 2,
+      "window": 76,
+      "step": 2,
+      "R": 38.0,
+      "prime_count": 9,
+      "adjustment": "fine_expand"
+    },
+    {
+      "iteration": 3,
+      "window": 91,
+      "step": 2,
+      "R": 45.5,
+      "prime_count": 20,
+      "adjustment": "shrink_window"
+    },
+    {
+      "iteration": 4,
+      "window": 60,
+      "step": 2,
+      "R": 30.0,
+      "prime_count": 12,
+      "adjustment": "fine_expand"
+    },
+    {
+      "iteration": 5,
+      "window": 72,
+      "step": 2,
+      "R": 36.0,
+      "prime_count": 11,
+      "adjustment": "fine_expand"
+    },
+    {
+      "iteration": 6,
+      "window": 86,
+      "step": 2,
+      "R": 43.0,
+      "prime_count": 19,
+      "adjustment": "shrink_window"
+    },
+    {
+      "iteration": 7,
+      "window": 57,
+      "step": 2,
+      "R": 28.5,
+      "prime_count": 11,
+      "adjustment": "fine_expand"
+    },
+    {
+      "iteration": 8,
+      "window": 68,
+      "step": 2,
+      "R": 34.0,
+      "prime_count": 15,
+      "adjustment": "none"
+    }
+  ],
+  "total_primality_tests": 580,
+  "elapsed_time": 0.03752017021179199
+}

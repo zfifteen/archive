@@ -1,0 +1,142 @@
+#!/bin/bash
+
+# GrokChat macOS App Launcher
+# Handles environment setup and Flask server startup
+
+# Get the directory where this script is located
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+APP_DIR="$(dirname "$(dirname "$SCRIPT_DIR")")"
+FLASK_DIR="$(dirname "$APP_DIR")"
+
+# Set up environment
+export PYTHONPATH="$FLASK_DIR:$PYTHONPATH"
+
+# Check if GROK_API_KEY is set
+if [ -z "$GROK_API_KEY" ]; then
+    # Try to load from user's shell profile
+    if [ -f "$HOME/.zshrc" ]; then
+        source "$HOME/.zshrc"
+    elif [ -f "$HOME/.bash_profile" ]; then
+        source "$HOME/.bash_profile"
+    elif [ -f "$HOME/.bashrc" ]; then
+        source "$HOME/.bashrc"
+    fi
+
+    # If still not set, open Terminal for secure input
+    if [ -z "$GROK_API_KEY" ]; then
+        # Create a script for Terminal to run
+        TEMP_SCRIPT="/tmp/grok_setup.sh"
+
+        cat > "$TEMP_SCRIPT" << 'EOF'
+#!/bin/bash
+
+echo "🤖 Grok Chat Setup"
+echo "=================="
+echo ""
+echo "Please enter your x.ai API Key:"
+echo "(Input will be hidden for security)"
+echo ""
+
+# Read the API key securely
+read -s -p "API Key: " API_KEY
+echo ""
+
+if [ -z "$API_KEY" ]; then
+    echo "Error: API key cannot be empty"
+    read -p "Press Enter to exit..."
+    exit 1
+fi
+
+# Ask if user wants to save it
+echo ""
+read -p "Save API key to ~/.zshrc for future use? (y/n): " SAVE_CHOICE
+
+if [ "$SAVE_CHOICE" = "y" ] || [ "$SAVE_CHOICE" = "Y" ]; then
+    # Check if key already exists in .zshrc
+    if grep -q "GROK_API_KEY" "$HOME/.zshrc" 2>/dev/null; then
+        echo "Updating existing GROK_API_KEY in ~/.zshrc..."
+        sed -i '' '/GROK_API_KEY/d' "$HOME/.zshrc"
+    fi
+
+    echo "export GROK_API_KEY=\"$API_KEY\"" >> "$HOME/.zshrc"
+    echo "✓ API key saved to ~/.zshrc"
+else
+    echo "API key will only be used for this session"
+fi
+
+# Export for current session
+export GROK_API_KEY="$API_KEY"
+
+echo ""
+echo "✓ Setup complete! Starting Grok Chat..."
+echo ""
+
+# Write the API key to a temp file for the parent process
+echo "$API_KEY" > /tmp/grok_api_key.tmp
+
+read -p "Press Enter to continue..."
+EOF
+
+        chmod +x "$TEMP_SCRIPT"
+
+        # Open Terminal with the script
+        osascript -e "tell application \"Terminal\" to do script \"$TEMP_SCRIPT; exit\""
+
+        # Wait for the API key file to appear
+        echo "Waiting for API key setup..."
+        TIMEOUT=300  # 5 minutes
+        COUNTER=0
+
+        while [ $COUNTER -lt $TIMEOUT ] && [ ! -f "/tmp/grok_api_key.tmp" ]; do
+            sleep 1
+            COUNTER=$((COUNTER + 1))
+        done
+
+        # Read the API key from the temp file
+        if [ -f "/tmp/grok_api_key.tmp" ]; then
+            API_KEY=$(cat /tmp/grok_api_key.tmp)
+            export GROK_API_KEY="$API_KEY"
+            rm -f /tmp/grok_api_key.tmp
+        fi
+
+        # Clean up
+        rm -f "$TEMP_SCRIPT"
+
+        # Final check
+        if [ -z "$GROK_API_KEY" ]; then
+            osascript -e 'display alert "Setup was cancelled or timed out. Grok Chat requires an API key to function." with title "Setup Cancelled" buttons {"OK"}' 2>/dev/null
+            exit 1
+        fi
+    fi
+fi
+
+# Kill any existing Flask processes on port 5001
+lsof -ti:5001 | xargs kill -9 2>/dev/null || true
+
+# Start Flask server in background
+cd "$FLASK_DIR"
+python3 app.py > /tmp/grokchat.log 2>&1 &
+FLASK_PID=$!
+
+# Wait a moment for server to start
+sleep 2
+
+# Check if Flask started successfully
+if ! lsof -i:5001 > /dev/null 2>&1; then
+    osascript -e 'display alert "Failed to start Grok Chat server. Check /tmp/grokchat.log for details." with title "Error" buttons {"OK"}' 2>/dev/null
+    exit 1
+fi
+
+# Open browser to the chat interface
+open "http://127.0.0.1:5001"
+
+# Show success notification
+osascript -e 'display notification "Grok Chat is running on port 5001" with title "Grok Chat Started"' 2>/dev/null
+
+# Keep the app alive by monitoring the Flask process
+while kill -0 $FLASK_PID 2>/dev/null; do
+    sleep 5
+done
+
+# Clean up when Flask process dies
+osascript -e 'display notification "Grok Chat has stopped" with title "Grok Chat"' 2>/dev/null

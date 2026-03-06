@@ -1,0 +1,47 @@
+name: Narrative Guard
+on:
+  pull_request:
+    branches: [ main ]
+jobs:
+  guard:
+    runs-on: self-hosted
+    steps:
+      - uses: actions/checkout@v4
+      - name: Block legacy narrative patterns
+        run: |
+          set -euo pipefail
+          # Check for specific root-level legacy narrative files
+          disallowed_files=(
+            "COMPREHENSIVE_EXPERIMENT_FINDINGS_AND_CONCLUSIONS.md"
+            "COMPREHENSIVE_MEASUREMENT_METHODOLOGY_AUDIT.md"
+            "COMPREHENSIVE_REGRESSION_TESTING_WHITE_PAPER.md"
+            "CRISPR_IMPLEMENTATION_SUMMARY.md"
+            "EFFICIENCY_THROUGH_SYMMETRY_FINAL_REPORT.md"
+            "ENHANCED_SIEVE_FALSIFICATION_CONCLUSIONS.md"
+            "FALSIFICATION_SUMMARY.md"
+            "FINDINGS_REPORT.md"
+            "HUMAN_DNA_IMPLEMENTATION.md"
+            "K_PARAMETER_OPTIMIZATION_FIX_SUMMARY.md"
+            "LATEST_FINDINGS_SUMMARY.md"
+            "REGRESSION_TESTING_EXECUTIVE_SUMMARY.md"
+            "RIEMANN_Z5D_IMPLEMENTATION_SUMMARY.md"
+            "TESLA_MATH_EXPERIMENT_README.md"
+            "WHITE_PAPER_EFFICIENCY_THROUGH_SYMMETRY.md"
+            "WHITE_PAPER_RIEMANN_Z5D_SYMMETRY_FALSIFICATION.md"
+            "Z5D_IMPLEMENTATION_SUMMARY.md"
+            "ZETA_INTEGRATION_SUMMARY.md"
+            "docs/FINAL_DOCUMENTATION_UPDATE_SUMMARY.md"
+            "docs/WHITE_PAPER_DRAFT.md"
+          )
+          
+          found=false
+          for file in "${disallowed_files[@]}"; do
+            if [[ -f "$file" ]]; then
+              echo "Disallowed legacy narrative file detected: $file"
+              found=true
+            fi
+          done
+          
+          if [[ "$found" == "true" ]]; then
+            exit 1
+          fi

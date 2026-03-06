@@ -1,0 +1,78 @@
+# Configuration for CRISPR Spectral Resonance Optimization
+# k* = 0.300, α = 0.95 (default optimal parameters)
+
+# DNA encoding: A/T/C/G -> complex values
+encoding:
+  A: "1+0j"
+  T: "-1+0j"
+  C: "0+1j"
+  G: "0-1j"
+
+# Window function for FFT
+window: hann
+
+# FFT size (will be padded to next power of 2)
+N: 256
+
+# φ-phase transform parameters
+phi_phase:
+  enabled: true
+  k: 0.300  # Optimal k* value (empirically determined)
+  k_min: 0.20  # For k-sweep
+  k_max: 0.40
+  k_step: 0.005
+
+# Arcsin bridge parameters
+arcsin_bridge:
+  enabled: true
+  alpha: 0.95  # Compression factor (0.85-0.98 recommended range)
+
+# FFT options
+fft:
+  pad_to_pow2: true
+  apply_window: true
+
+# Spectral features to compute
+metrics:
+  include:
+    - delta_entropy
+    - delta_f1
+    - sidelobe_ratio
+    - msc
+    - wasserstein
+    - sas
+
+# GC-quartile analysis
+gc_analysis:
+  enabled: true
+  quartiles: [25, 50, 75]  # Percentile thresholds
+
+# Bootstrap configuration for statistical validation
+bootstrap:
+  n_draws: 10000
+  stratify_by: locus
+  confidence_level: 0.95
+
+# Random seeds for reproducibility
+random_seeds:
+  python: 1337
+  numpy: 1337
+  torch: 1337
+
+# Baseline comparison
+baseline:
+  ruleset3:
+    provider: rs3
+    version: pinned
+    enabled: true
+
+# Output configuration
+outputs_dir: results/
+save_spectra: false  # Set to true to save full spectra (large files)
+save_per_guide_features: true
+
+# Validation options
+validation:
+  min_sequence_length: 20
+  max_sequence_length: 30
+  allowed_bases: "ATCG"

@@ -1,0 +1,30 @@
+================================================================================
+COMPREHENSIVE NUMERICAL INSTABILITY TEST REPORT
+================================================================================
+
+SUMMARY STATISTICS:
+Number of tests: 4
+Enhancement range: [5.4540, 5.7941]
+Mean enhancement: 5.6241 ± 0.1701
+Discrepancy range: [0.421667, 0.432393]
+Total computation time: 1.98 seconds
+
+DETAILED RESULTS:
+       N      k    Precision  Enhancement  Discrepancy     KS_p     Time
+--------------------------------------------------------------------------------
+   1,000   0.30      float64       5.7941     0.421667   0.0000      0.1
+   1,000   0.30 high_precision       5.7941     0.421667   0.0000      0.3
+   5,000   0.30      float64       5.4540     0.432393   0.0000      0.5
+   5,000   0.30 high_precision       5.4540     0.432393   0.0000      1.1
+
+NUMERICAL STABILITY ANALYSIS:
+N=1,000, k=0.3: Enhancement diff=0.000000, Discrepancy diff=0.000000
+N=5,000, k=0.3: Enhancement diff=0.000000, Discrepancy diff=0.000000
+
+WEYL BOUND ANALYSIS:
+N=1,000, k=0.3: D_N=0.421667, O(1/√N)=0.077152, Ratio=5.47
+N=1,000, k=0.3: D_N=0.421667, O(1/√N)=0.077152, Ratio=5.47
+N=5,000, k=0.3: D_N=0.432393, O(1/√N)=0.038662, Ratio=11.18
+N=5,000, k=0.3: D_N=0.432393, O(1/√N)=0.038662, Ratio=11.18
+
+================================================================================

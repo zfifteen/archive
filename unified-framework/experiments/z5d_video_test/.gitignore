@@ -1,0 +1,20 @@
+# Z5D Video Test Experiment - Generated Files
+# 
+# This .gitignore excludes generated video files from version control
+# as they are reproducible outputs of the experiment
+
+# Generated video files
+*.mp4
+*.avi
+*.mov
+*.mkv
+
+# MoviePy temporary files
+*.temp.mp4
+moviepy_*.txt
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd

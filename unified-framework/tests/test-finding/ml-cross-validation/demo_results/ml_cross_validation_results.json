@@ -1,0 +1,59 @@
+{
+  "timestamp": "2025-08-09 03:59:32",
+  "validation_results": {
+    "quantum_chaos": {
+      "accuracy": 0.9666666666666667,
+      "cv_mean": 0.9571428571428571,
+      "cv_std": 0.05714285714285716,
+      "n_samples": 100,
+      "n_features": 14
+    },
+    "biological": {
+      "accuracy": 1.0,
+      "cv_mean": 1.0,
+      "cv_std": 0.0,
+      "n_samples": 100,
+      "n_features": 14
+    }
+  },
+  "cross_domain_results": {
+    "quantum_to_biological": 1.0,
+    "biological_to_quantum": 0.31,
+    "average_cross_accuracy": 0.655,
+    "min_features_used": 14
+  },
+  "feature_importance": {
+    "quantum": {
+      "D": 0.07199209766748596,
+      "E": 0.0216194374078876,
+      "F": 0.07091955117348592,
+      "I": 0.1333714261154431,
+      "O": 0.3885755762508279,
+      "amplitude": 0.033137827784463676,
+      "curvature": 0.03609490731017525,
+      "theta_transform": 0.021953305758728062,
+      "universal_invariance": 0.03345505090384932,
+      "level_spacing": 0.025958607361144217,
+      "log_n": 0.050730045118902854,
+      "sqrt_n": 0.07404388882837969,
+      "n_mod_10": 0.02622522867619623,
+      "divisor_count": 0.011923049643030079
+    },
+    "biological": {
+      "length": 0.0,
+      "gc_content": 0.0,
+      "unique_dimers": 0.0,
+      "unique_trimers": 0.0,
+      "freq_A": 0.0,
+      "freq_T": 0.0,
+      "freq_G": 0.0,
+      "freq_C": 0.0,
+      "quantum_bridge": 0.0,
+      "log_length": 0.0,
+      "sqrt_length": 0.0,
+      "length_mod_10": 0.0,
+      "high_gc": 0.0,
+      "n_sequence": 0.0
+    }
+  }
+}

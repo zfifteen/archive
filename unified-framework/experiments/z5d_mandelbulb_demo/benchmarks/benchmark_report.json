@@ -1,0 +1,111 @@
+{
+  "power_scaling": [
+    {
+      "power": 8.0,
+      "z5d_iterations": 26.098,
+      "std_iterations": 36.97,
+      "speedup": 1.416583646256418,
+      "z5d_hit_rate": 1.0,
+      "std_hit_rate": 1.0,
+      "z5d_avg_step": 0.21461502297024082,
+      "std_avg_step": 0.0707157951071067
+    },
+    {
+      "power": 12.0,
+      "z5d_iterations": 24.348,
+      "std_iterations": 35.132,
+      "speedup": 1.4429111220634139,
+      "z5d_hit_rate": 1.0,
+      "std_hit_rate": 1.0,
+      "z5d_avg_step": 0.23250536367695993,
+      "std_avg_step": 0.0733902882460834
+    },
+    {
+      "power": 16.0,
+      "z5d_iterations": 24.106,
+      "std_iterations": 33.564,
+      "speedup": 1.3923504521695842,
+      "z5d_hit_rate": 1.0,
+      "std_hit_rate": 1.0,
+      "z5d_avg_step": 0.2211537642910608,
+      "std_avg_step": 0.07630875489065318
+    },
+    {
+      "power": 20.0,
+      "z5d_iterations": 22.534,
+      "std_iterations": 31.6,
+      "speedup": 1.4023253749889057,
+      "z5d_hit_rate": 1.0,
+      "std_hit_rate": 1.0,
+      "z5d_avg_step": 0.24182807613414584,
+      "std_avg_step": 0.07935265607741937
+    }
+  ],
+  "resolution_scaling": [
+    {
+      "resolution": "1280\u00d7720",
+      "width": 1280,
+      "height": 720,
+      "z5d_fps_estimate": 0.0004574999930749513,
+      "std_fps_estimate": 0.0005638426382373245,
+      "fps_improvement": 0.8113965884261258,
+      "z5d_iterations": 26.098,
+      "std_iterations": 36.97
+    },
+    {
+      "resolution": "1920\u00d71080",
+      "width": 1920,
+      "height": 1080,
+      "z5d_fps_estimate": 0.00020351119160634586,
+      "std_fps_estimate": 0.00025040060428708333,
+      "fps_improvement": 0.8127424140439415,
+      "z5d_iterations": 26.098,
+      "std_iterations": 36.97
+    },
+    {
+      "resolution": "2560\u00d71440",
+      "width": 2560,
+      "height": 1440,
+      "z5d_fps_estimate": 0.00011458842211116097,
+      "std_fps_estimate": 0.00014041875395579104,
+      "fps_improvement": 0.8160478489022741,
+      "z5d_iterations": 26.098,
+      "std_iterations": 36.97
+    }
+  ],
+  "geodesic_multiplier": [
+    {
+      "multiplier": 5.0,
+      "avg_iterations": 52.196,
+      "avg_step_size": 0.10730751148512041,
+      "hit_rate": 1.0
+    },
+    {
+      "multiplier": 10.0,
+      "avg_iterations": 26.098,
+      "avg_step_size": 0.21461502297024082,
+      "hit_rate": 1.0
+    },
+    {
+      "multiplier": 20.0,
+      "avg_iterations": 13.049,
+      "avg_step_size": 0.42923004594048164,
+      "hit_rate": 1.0
+    }
+  ],
+  "curvature_distribution": {
+    "total_samples": 10000,
+    "kappa_mean": 0.0903422798421039,
+    "kappa_std": 0.5915138322899511,
+    "kappa_min": -1.9312107622105363,
+    "kappa_max": 10.0,
+    "near_surface_kappa_mean": -0.08100153384044573,
+    "far_surface_kappa_mean": 0.13078348242653917,
+    "correlation": 0.06610948346577927
+  },
+  "metadata": {
+    "timestamp": "2025-11-20 06:43:22",
+    "python_version": "3.12.3 (main, Aug 14 2025, 17:47:21) [GCC 13.3.0]",
+    "numpy_version": "2.3.5"
+  }
+}

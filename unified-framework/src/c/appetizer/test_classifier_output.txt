@@ -1,0 +1,38 @@
+SHA-256 Classifier for input: test_input
+=============================================
+
+=== SHA-256 Output Values ===
+Values as uint32_t (big-endian):
+---------------------------------
+H0: 0x952822de
+H1: 0x6a627ea4
+H2: 0x59e1e7a8
+H3: 0x964191c7
+H4: 0x9fccfb14
+H5: 0xea545d93
+H6: 0x741b5cf3
+H7: 0xed71a09a
+Note: Derived from SHA-256("test_input")
+
+=== Geometric Lens Analysis (k* = 0.03000, width_factor = 0.350) ===
+
+Fractional Parts and Predicted Bounds (Circular Distance):
+--------------------------------------------------------
+H0 (prime=2): Frac=0.582644, Predicted Center=0.935749, Width=0.542309, Within Bounds=No
+H1 (prime=3): Frac=0.415565, Predicted Center=0.906234, Width=0.563639, Within Bounds=No
+H2 (prime=5): Frac=0.351103, Predicted Center=0.552547, Width=0.526875, Within Bounds=Yes
+H3 (prime=7): Frac=0.586938, Predicted Center=0.185936, Width=0.547598, Within Bounds=No
+H4 (prime=11): Frac=0.624222, Predicted Center=0.983988, Width=0.562499, Within Bounds=No
+H5 (prime=13): Frac=0.915350, Predicted Center=0.806856, Width=0.511880, Within Bounds=Yes
+H6 (prime=17): Frac=0.453543, Predicted Center=0.749984, Width=0.554875, Within Bounds=No
+H7 (prime=19): Frac=0.927515, Predicted Center=0.547996, Width=0.561279, Within Bounds=No
+Coverage (Circular): 2/8 values within predicted bounds (25.0%)
+
+8-bit Alignment Pattern: 00100100
+Classification: Not Aligned (Threshold >= 5/8 bits set)
+
+Note: Bounds centered on predicted fractional parts using m*log(m) approximation.
+Method adapted from hash-bounds.py (theta_prime = phi * (((m % phi)/phi) ** k_star)).
+
+=== Conclusion ===
+This classifier checks if SHA-256 output shows geometric predictability tied to prime roots.

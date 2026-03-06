@@ -1,0 +1,147 @@
+{
+  "gene_name": "CFTR_Human",
+  "description": "Cystic fibrosis transmembrane conductance regulator (RefSeq: NM_000492.4) - AUTHENTIC HUMAN",
+  "clinical_relevance": "Mutations cause cystic fibrosis",
+  "sequence_length": 490,
+  "analysis_results": [
+    {
+      "position": 400,
+      "original_base": "G",
+      "mutated_base": "C",
+      "delta_f1": -8.326762209327086,
+      "delta_peaks": 53,
+      "delta_entropy": 5.00168753381157,
+      "composite_score": 58.001689524771045,
+      "z_factor": 2.391036784159696e-07,
+      "zeta_shift": 0.9474725073709251,
+      "spectral_order_base": 281.46674191094417,
+      "spectral_order_mut": 311.44666406005086
+    },
+    {
+      "position": 400,
+      "original_base": "G",
+      "mutated_base": "A",
+      "delta_f1": -9.197754506195558,
+      "delta_peaks": 53,
+      "delta_entropy": 4.986115031214787,
+      "composite_score": 57.986117230431724,
+      "z_factor": 2.391036784159696e-07,
+      "zeta_shift": 0.9474725073709251,
+      "spectral_order_base": 281.46674191094417,
+      "spectral_order_mut": 311.3533230801591
+    },
+    {
+      "position": 280,
+      "original_base": "G",
+      "mutated_base": "A",
+      "delta_f1": 13.970522351405938,
+      "delta_peaks": 54,
+      "delta_entropy": 3.8176658118896754,
+      "composite_score": 57.81766735834796,
+      "z_factor": 1.1069437814869975e-07,
+      "zeta_shift": 0.9803537583503195,
+      "spectral_order_base": 281.46674191094417,
+      "spectral_order_mut": 302.99209576736814
+    },
+    {
+      "position": 200,
+      "original_base": "G",
+      "mutated_base": "T",
+      "delta_f1": -35.98404959705044,
+      "delta_peaks": 47,
+      "delta_entropy": 6.6648208143316126,
+      "composite_score": 53.66482297067531,
+      "z_factor": 5.992498673517443e-08,
+      "zeta_shift": 0.9520368760020991,
+      "spectral_order_base": 281.46674191094417,
+      "spectral_order_mut": 316.8123188469233
+    },
+    {
+      "position": 400,
+      "original_base": "G",
+      "mutated_base": "T",
+      "delta_f1": -14.353040594074319,
+      "delta_peaks": 48,
+      "delta_entropy": 4.703651760977621,
+      "composite_score": 52.703655192842426,
+      "z_factor": 2.391036784159696e-07,
+      "zeta_shift": 0.9474725073709251,
+      "spectral_order_base": 281.46674191094417,
+      "spectral_order_mut": 309.66024913372667
+    },
+    {
+      "position": 260,
+      "original_base": "G",
+      "mutated_base": "A",
+      "delta_f1": -13.476891646169404,
+      "delta_peaks": 48,
+      "delta_entropy": 4.221047900158844,
+      "composite_score": 52.22104926344017,
+      "z_factor": 1.0115695522012281e-07,
+      "zeta_shift": 0.9172567857627693,
+      "spectral_order_base": 281.46674191094417,
+      "spectral_order_mut": 304.95484909166464
+    },
+    {
+      "position": 260,
+      "original_base": "G",
+      "mutated_base": "C",
+      "delta_f1": -18.884564327098644,
+      "delta_peaks": 48,
+      "delta_entropy": 4.20661924182388,
+      "composite_score": 52.20662115212891,
+      "z_factor": 1.0115695522012281e-07,
+      "zeta_shift": 0.9172567857627693,
+      "spectral_order_base": 281.46674191094417,
+      "spectral_order_mut": 304.87456052790947
+    },
+    {
+      "position": 280,
+      "original_base": "G",
+      "mutated_base": "C",
+      "delta_f1": 19.76184084394371,
+      "delta_peaks": 48,
+      "delta_entropy": 3.979762736548288,
+      "composite_score": 51.979764924072974,
+      "z_factor": 1.1069437814869975e-07,
+      "zeta_shift": 0.9803537583503195,
+      "spectral_order_base": 281.46674191094417,
+      "spectral_order_mut": 303.90605571940165
+    },
+    {
+      "position": 200,
+      "original_base": "G",
+      "mutated_base": "C",
+      "delta_f1": -30.131050848006048,
+      "delta_peaks": 45,
+      "delta_entropy": 6.940664431361199,
+      "composite_score": 51.94066623696402,
+      "z_factor": 5.992498673517443e-08,
+      "zeta_shift": 0.9520368760020991,
+      "spectral_order_base": 281.46674191094417,
+      "spectral_order_mut": 318.27520165497305
+    },
+    {
+      "position": 200,
+      "original_base": "G",
+      "mutated_base": "A",
+      "delta_f1": -31.61352489227288,
+      "delta_peaks": 43,
+      "delta_entropy": 7.0381475261390065,
+      "composite_score": 50.03814942057907,
+      "z_factor": 5.992498673517443e-08,
+      "zeta_shift": 0.9520368760020991,
+      "spectral_order_base": 281.46674191094417,
+      "spectral_order_mut": 318.792184229961
+    }
+  ],
+  "summary_statistics": {
+    "total_mutations": 75,
+    "score_range": [
+      -30.536897083525947,
+      58.001689524771045
+    ],
+    "mean_score": 16.7097840879596,
+    "score_std": 24.438144454078007
+  }
+}

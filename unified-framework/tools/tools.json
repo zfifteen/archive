@@ -1,0 +1,20 @@
+[
+  {
+    "name": "intellij",
+    "description": "Interact with IntelliJ IDEA via MCP server for IDE-specific actions like file reading, code search, or refactoring",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "action": {
+          "type": "string",
+          "description": "The MCP tool action to perform (e.g., 'read_file', 'search_code')"
+        },
+        "args": {
+          "type": "object",
+          "description": "Arguments for the action, e.g., {'filepath': '/path/to/file'}"
+        }
+      },
+      "required": ["action", "args"]
+    }
+  }
+]

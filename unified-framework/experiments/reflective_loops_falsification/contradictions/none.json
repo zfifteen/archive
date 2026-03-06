@@ -1,0 +1,29 @@
+{
+  "contradiction_level": "none",
+  "description": "Baseline scenarios with no contradictory instructions",
+  "scenarios": [
+    {
+      "id": "none_001",
+      "name": "baseline_simple",
+      "instructions": [
+        "Be helpful and informative",
+        "Provide accurate information"
+      ],
+      "query": "What is the capital of France?",
+      "expected_behavior": "coherent_answer",
+      "rationale": "Baseline scenario with no contradictions. Tests whether reflective loops maintain performance on straightforward tasks."
+    },
+    {
+      "id": "none_002",
+      "name": "baseline_explanation",
+      "instructions": [
+        "Explain concepts clearly",
+        "Use appropriate examples",
+        "Be educational"
+      ],
+      "query": "Explain how photosynthesis works",
+      "expected_behavior": "clear_explanation",
+      "rationale": "Another baseline with aligned, non-conflicting instructions."
+    }
+  ]
+}

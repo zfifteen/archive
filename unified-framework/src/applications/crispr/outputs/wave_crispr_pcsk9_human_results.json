@@ -1,0 +1,147 @@
+{
+  "gene_name": "PCSK9_Human",
+  "description": "Proprotein convertase subtilisin/kexin type 9 (RefSeq: NM_174936.4) - AUTHENTIC HUMAN",
+  "clinical_relevance": "Mutations affect LDL cholesterol levels, cardiovascular disease risk",
+  "sequence_length": 466,
+  "analysis_results": [
+    {
+      "position": 420,
+      "original_base": "C",
+      "mutated_base": "T",
+      "delta_f1": 41.0405559648978,
+      "delta_peaks": 11,
+      "delta_entropy": 4.162059471322152,
+      "composite_score": 15.162070845936434,
+      "z_factor": 2.7715546279928875e-07,
+      "zeta_shift": 0.9427061076129469,
+      "spectral_order_base": 203.76837561931382,
+      "spectral_order_mut": 228.9181728364638
+    },
+    {
+      "position": 420,
+      "original_base": "C",
+      "mutated_base": "A",
+      "delta_f1": 55.54475994722098,
+      "delta_peaks": 11,
+      "delta_entropy": 4.129985904568983,
+      "composite_score": 15.130001299102632,
+      "z_factor": 2.7715546279928875e-07,
+      "zeta_shift": 0.9427061076129469,
+      "spectral_order_base": 203.76837561931382,
+      "spectral_order_mut": 228.7243640489078
+    },
+    {
+      "position": 420,
+      "original_base": "C",
+      "mutated_base": "G",
+      "delta_f1": 43.43448231980795,
+      "delta_peaks": 11,
+      "delta_entropy": 4.105242598132357,
+      "composite_score": 15.105254636236406,
+      "z_factor": 2.7715546279928875e-07,
+      "zeta_shift": 0.9427061076129469,
+      "spectral_order_base": 203.76837561931382,
+      "spectral_order_mut": 228.57484933301998
+    },
+    {
+      "position": 380,
+      "original_base": "G",
+      "mutated_base": "C",
+      "delta_f1": 41.36675129097683,
+      "delta_peaks": 6,
+      "delta_entropy": 5.7396843207570925,
+      "composite_score": 11.739693708302362,
+      "z_factor": 2.2693455437213565e-07,
+      "zeta_shift": 0.9822892754923289,
+      "spectral_order_base": 203.76837561931382,
+      "spectral_order_mut": 237.8781680141336
+    },
+    {
+      "position": 380,
+      "original_base": "G",
+      "mutated_base": "T",
+      "delta_f1": 49.32091523605345,
+      "delta_peaks": 6,
+      "delta_entropy": 5.610237500166086,
+      "composite_score": 11.610248692786007,
+      "z_factor": 2.2693455437213565e-07,
+      "zeta_shift": 0.9822892754923289,
+      "spectral_order_base": 203.76837561931382,
+      "spectral_order_mut": 237.1088915296132
+    },
+    {
+      "position": 400,
+      "original_base": "G",
+      "mutated_base": "T",
+      "delta_f1": 3.0868951448984334,
+      "delta_peaks": 7,
+      "delta_entropy": 4.336115819423853,
+      "composite_score": 11.336116595524953,
+      "z_factor": 2.514180309524144e-07,
+      "zeta_shift": 0.9474725073709251,
+      "spectral_order_base": 203.76837561931382,
+      "spectral_order_mut": 229.75888658527418
+    },
+    {
+      "position": 400,
+      "original_base": "G",
+      "mutated_base": "C",
+      "delta_f1": -1.9670963620789474,
+      "delta_peaks": 6,
+      "delta_entropy": 4.38464102924646,
+      "composite_score": 10.384641523809954,
+      "z_factor": 2.514180309524144e-07,
+      "zeta_shift": 0.9474725073709251,
+      "spectral_order_base": 203.76837561931382,
+      "spectral_order_mut": 230.04974482120284
+    },
+    {
+      "position": 380,
+      "original_base": "G",
+      "mutated_base": "A",
+      "delta_f1": 51.369497067559806,
+      "delta_peaks": 4,
+      "delta_entropy": 5.730420136426233,
+      "composite_score": 9.73043179394016,
+      "z_factor": 2.2693455437213565e-07,
+      "zeta_shift": 0.9822892754923289,
+      "spectral_order_base": 203.76837561931382,
+      "spectral_order_mut": 237.82311282528107
+    },
+    {
+      "position": 400,
+      "original_base": "G",
+      "mutated_base": "A",
+      "delta_f1": -13.48088034579597,
+      "delta_peaks": 5,
+      "delta_entropy": 4.409923392485155,
+      "composite_score": 9.409926781821547,
+      "z_factor": 2.514180309524144e-07,
+      "zeta_shift": 0.9474725073709251,
+      "spectral_order_base": 203.76837561931382,
+      "spectral_order_mut": 230.20128633124676
+    },
+    {
+      "position": 340,
+      "original_base": "A",
+      "mutated_base": "T",
+      "delta_f1": 44.924622167966845,
+      "delta_peaks": 2,
+      "delta_entropy": 4.992043301225358,
+      "composite_score": 6.992051465353001,
+      "z_factor": 1.8172946701136485e-07,
+      "zeta_shift": 0.9594396955393848,
+      "spectral_order_base": 203.76837561931382,
+      "spectral_order_mut": 232.88138547357053
+    }
+  ],
+  "summary_statistics": {
+    "total_mutations": 72,
+    "score_range": [
+      -5.952321561916278,
+      15.162070845936434
+    ],
+    "mean_score": 2.3607713635188508,
+    "score_std": 5.054042922502603
+  }
+}

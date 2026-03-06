@@ -1,0 +1,20 @@
+{
+  "mean_savings_percent": 26.0,
+  "savings_ci_95": [
+    26.0,
+    26.0
+  ],
+  "mean_baseline_ops": 1000.0,
+  "mean_exclusion_ops": 740.0,
+  "detection_precision_mean": 1.0,
+  "detection_recall_mean": 1.0,
+  "rsa_like_percentage": 100.0,
+  "per_rsa_savings": 40.0,
+  "pass_criteria": {
+    "per_candidate_reduction_40_percent": true,
+    "overall_savings_reasonable": true,
+    "ci_reasonable": true,
+    "precision_good": true,
+    "recall_good": true
+  }
+}

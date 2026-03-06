@@ -1,0 +1,158 @@
+Vortex O values: [0.01824863266305322]
+Sample generated key: bd557ff104f70a9c39ecbb8677c31d94
+Wave-Knob Scanner initialized
+Precision: 200 decimal places
+Wheel modulus: 30
+Target k: 100000000000000000000000000000000000000000000000000.0
+Running auto-tune scan (target count: 15)
+Auto-tune completed:
+  Locked: True
+  Iterations: 14
+  Final R*: 235.000000
+  Prime count: 15
+  Primality tests: 3516
+  Elapsed time: 0.245s
+{
+  "k": 1e+50,
+  "z5d_prediction": 1.1889897249303564e+52,
+  "target_count": 15,
+  "iterations": 14,
+  "locked": true,
+  "final_window": 470,
+  "final_step": 2,
+  "final_R": 235.0,
+  "prime_count": 15,
+  "primes_found": [
+    11889897249303564263748046585557285393434246603821549,
+    11889897249303564263748046585557285393434246603822089,
+    11889897249303564263748046585557285393434246603823289,
+    11889897249303564263748046585557285393434246603824669,
+    11889897249303564263748046585557285393434246603814709,
+    11889897249303564263748046585557285393434246603827189,
+    11889897249303564263748046585557285393434246603828569,
+    11889897249303564263748046585557285393434246603830189,
+    11889897249303564263748046585557285393434246603811229,
+    11889897249303564263748046585557285393434246603830669,
+    11889897249303564263748046585557285393434246603810749,
+    11889897249303564263748046585557285393434246603808589,
+    11889897249303564263748046585557285393434246603808349,
+    11889897249303564263748046585557285393434246603808229,
+    11889897249303564263748046585557285393434246603807329
+  ],
+  "convergence_history": [
+    {
+      "iteration": 1,
+      "window": 64,
+      "step": 2,
+      "R": 32.0,
+      "prime_count": 0,
+      "adjustment": "expand_window"
+    },
+    {
+      "iteration": 2,
+      "window": 96,
+      "step": 2,
+      "R": 48.0,
+      "prime_count": 3,
+      "adjustment": "fine_expand"
+    },
+    {
+      "iteration": 3,
+      "window": 115,
+      "step": 2,
+      "R": 57.5,
+      "prime_count": 4,
+      "adjustment": "fine_expand"
+    },
+    {
+      "iteration": 4,
+      "window": 138,
+      "step": 2,
+      "R": 69.0,
+      "prime_count": 8,
+      "adjustment": "fine_expand"
+    },
+    {
+      "iteration": 5,
+      "window": 165,
+      "step": 2,
+      "R": 82.5,
+      "prime_count": 4,
+      "adjustment": "fine_expand"
+    },
+    {
+      "iteration": 6,
+      "window": 198,
+      "step": 2,
+      "R": 99.0,
+      "prime_count": 4,
+      "adjustment": "fine_expand"
+    },
+    {
+      "iteration": 7,
+      "window": 237,
+      "step": 2,
+      "R": 118.5,
+      "prime_count": 7,
+      "adjustment": "fine_expand"
+    },
+    {
+      "iteration": 8,
+      "window": 284,
+      "step": 2,
+      "R": 142.0,
+      "prime_count": 14,
+      "adjustment": "fine_expand"
+    },
+    {
+      "iteration": 9,
+      "window": 340,
+      "step": 2,
+      "R": 170.0,
+      "prime_count": 6,
+      "adjustment": "fine_expand"
+    },
+    {
+      "iteration": 10,
+      "window": 408,
+      "step": 2,
+      "R": 204.0,
+      "prime_count": 16,
+      "adjustment": "shrink_window"
+    },
+    {
+      "iteration": 11,
+      "window": 273,
+      "step": 2,
+      "R": 136.5,
+      "prime_count": 12,
+      "adjustment": "fine_expand"
+    },
+    {
+      "iteration": 12,
+      "window": 327,
+      "step": 2,
+      "R": 163.5,
+      "prime_count": 13,
+      "adjustment": "fine_expand"
+    },
+    {
+      "iteration": 13,
+      "window": 392,
+      "step": 2,
+      "R": 196.0,
+      "prime_count": 7,
+      "adjustment": "fine_expand"
+    },
+    {
+      "iteration": 14,
+      "window": 470,
+      "step": 2,
+      "R": 235.0,
+      "prime_count": 15,
+      "adjustment": "none"
+    }
+  ],
+  "total_primality_tests": 3516,
+  "elapsed_time": 0.24503612518310547
+}

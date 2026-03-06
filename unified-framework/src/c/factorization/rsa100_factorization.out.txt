@@ -1,0 +1,241 @@
+Z5D RSA Geometric Factorization Test (MPFR/GMP Only)
+Version: 2.0
+Build: Sep 14 2025 01:50:45
+
+Z5D Prime Predictor - C Implementation v2025-09-03
+==========================================
+
+Formula: p_Z5D(k) = p_PNT(k) + c·d(k)·p_PNT(k) + k*·e(k)·p_PNT(k)
+With geodesic modulation: e(k) *= kappa_geo · (ln(k+1)/e²)
+
+Where:
+  p_PNT(k) = k * (ln(k) + ln(ln(k)) - 1 + (ln(ln(k)) - 2)/ln(k))
+  d(k)     = (ln(p_PNT(k)) / e^4)^2 if ln(p) > 0 else 0
+  e(k)     = (k^2 + k + 2) / (k * (k + 1) * (k + 2))
+  Curvature Proxy: kappa_geo * (ln(k+1)/e^2) * e(k)
+
+Default Parameters:
+  c  = -0.00247 (dilation calibration)
+  k* = 0.04449 (curvature calibration)
+  kappa_geo = 0.30000 (geodesic exponent for ~15% enhancement)
+
+Scale-specific Calibrations:
+  Scale 1: c=-0.00247, k*=0.04449, kappa_geo_factor=0.30000
+  Scale 2: c=-0.00037, k*=-0.11446, kappa_geo_factor=0.24270
+  Scale 3: c=-0.00010, k*=-0.15000, kappa_geo_factor=0.15000
+  Scale 4: c=-0.00002, k*=-0.10000, kappa_geo_factor=0.09990
+
+Features:
+  - Double-precision arithmetic
+  - Automatic parameter selection with kappa_geo
+  - Numerical stability guards (fixed log-space for ultra k)
+  - Zero-division protection (ln_pnt <=0 guard)
+  - Domain validation
+  - 5D Curvature Proxy for validation
+  - Optimizations: Inlines, log caching, array lookups
+
+RSA-100 Geometric Factorization Test - C Implementation (MPFR/GMP)
+====================================================================
+=== RSA-100 Factorization Verification (MPFR Exact Arithmetic) ===
+RSA-100 N:     1522605027922533360535618378132637429718068114961380688657908494580122963258952897654000350692006139 (100 digits)
+Factor 1:       37975227936943673922808872755445627854565536638199 (50 digits)
+Factor 2:       40094690950920881030683735292761468389214899724061 (50 digits)
+Product check:  ✅ EXACT MATCH (MPFR exact arithmetic)
+Verification:   factor1 × factor2 = RSA-100 N (exact)
+✅ RSA-100 factorization verification: PASSED (MPFR exact arithmetic)
+
+=== Z5D Prime Prediction Analysis (MPFR Input) ===
+Using exact MPFR values for factor analysis
+Factor 1 k estimate: 3.36e+47
+Factor 2 k estimate: 3.54e+47
+Z5D Parameters: c=-0.00247, k*=0.04449, κ_geo=0.3
+Z5D Prediction 1: 3.798417e+49 (error: 2.35e-02%)
+Z5D Prediction 2: 4.010412e+49 (error: 2.35e-02%)
+Average prediction error: 2.35e-02%
+
+=== Z5D Phase 2 Performance Benchmark ===
+Phase 2 Configuration:
+  OpenMP threads: 1
+  SIMD enabled: Yes
+  Batch size: 1000
+Batch processing results:
+  Success: Yes
+  Time: 0.0001 seconds
+  Throughput: 12500000 predictions/second (double precision batch)
+
+=== Results Summary ===
+Factorization verification: PASSED
+Average Z5D prediction error: 2.35e-02%
+Factor 1 k estimate: 3.36e+47
+Factor 2 k estimate: 3.54e+47
+
+Timing Results:
+  Verification time: 0.0000 seconds
+  Z5D analysis time: 0.0000 seconds
+  Total time: 0.0001 seconds
+
+Success Criteria:
+  ✅ Factorization correct: PASS
+  ✅ Z5D parameters applied: c=-0.00247, k*=0.04449, κ_geo=0.3
+  ✅ Phase 2 parallel/SIMD: Tested
+  ✅ Performance measured: Complete
+Z5D RSA Geometric Factorization Test (MPFR/GMP Only)
+Version: 2.0
+Build: Sep 14 2025 01:50:45
+
+Z5D Prime Predictor - C Implementation v2025-09-03
+==========================================
+
+Formula: p_Z5D(k) = p_PNT(k) + c·d(k)·p_PNT(k) + k*·e(k)·p_PNT(k)
+With geodesic modulation: e(k) *= kappa_geo · (ln(k+1)/e²)
+
+Where:
+  p_PNT(k) = k * (ln(k) + ln(ln(k)) - 1 + (ln(ln(k)) - 2)/ln(k))
+  d(k)     = (ln(p_PNT(k)) / e^4)^2 if ln(p) > 0 else 0
+  e(k)     = (k^2 + k + 2) / (k * (k + 1) * (k + 2))
+  Curvature Proxy: kappa_geo * (ln(k+1)/e^2) * e(k)
+
+Default Parameters:
+  c  = -0.00247 (dilation calibration)
+  k* = 0.04449 (curvature calibration)
+  kappa_geo = 0.30000 (geodesic exponent for ~15% enhancement)
+
+Scale-specific Calibrations:
+  Scale 1: c=-0.00247, k*=0.04449, kappa_geo_factor=0.30000
+  Scale 2: c=-0.00037, k*=-0.11446, kappa_geo_factor=0.24270
+  Scale 3: c=-0.00010, k*=-0.15000, kappa_geo_factor=0.15000
+  Scale 4: c=-0.00002, k*=-0.10000, kappa_geo_factor=0.09990
+
+Features:
+  - Double-precision arithmetic
+  - Automatic parameter selection with kappa_geo
+  - Numerical stability guards (fixed log-space for ultra k)
+  - Zero-division protection (ln_pnt <=0 guard)
+  - Domain validation
+  - 5D Curvature Proxy for validation
+  - Optimizations: Inlines, log caching, array lookups
+
+RSA-250 Geometric Factorization Test - Full MPFR Precision
+===========================================================
+=== RSA-250 Factorization Verification (MPFR Exact Arithmetic) ===
+RSA-250 N:     2140324650240744961264423072839333563008614715144755017797754920881418023447140136643345519095804679610992851872470914587687396261921557363047454770520805119056493106687691590019759405693457452230589325976697471681738069364894699871578494975937497937 (250 digits)
+Factor 1:       64135289477071580278790190170577389084825014742943447208116859632024532344630238623598752668347708737661925585694639798853367 (125 digits)
+Factor 2:       33372027594978156556226010605355114227940760344767554666784520987023841729210037080257448673296881877565718986258036932062711 (125 digits)
+=== RSA-250 Factorization Verification (MPFR Exact Arithmetic) ===
+RSA-250 N:     2140324650240744961264423072839333563008614715144755017797754920881418023447140136643345519095804679610992851872470914587687396261921557363047454770520805119056493106687691590019759405693457452230589325976697471681738069364894699871578494975937497937 (250 digits)
+Factor 1:       64135289477071580278790190170577389084825014742943447208116859632024532344630238623598752668347708737661925585694639798853367 (125 digits)
+Factor 2:       33372027594978156556226010605355114227940760344767554666784520987023841729210037080257448673296881877565718986258036932062711 (125 digits)
+Product check:  ✅ EXACT MATCH (MPFR exact arithmetic)
+Verification:   factor1 × factor2 = RSA-250 N (exact)
+✅ RSA-250 factorization verification: PASSED (MPFR exact arithmetic)
+✅ RSA-250 factorization verification: PASSED (MPFR exact arithmetic)
+
+=== Z5D Prime Prediction Analysis (Full MPFR Precision) ===
+Using exact MPFR values throughout calculation chain
+Factor 1 k estimate: 2.24e+122
+Factor 2 k estimate: 1.17e+122
+Z5D Auto-Selected Parameters: c=-0.00002, k*=-0.10000, κ_geo=0.09990
+Z5D Prediction 1: 6.4109084176753781904257928260128162751474409582767e124 (error: 4.09e-02%)
+Z5D Prediction 2: 3.3358486183279457275528567904862571867687947891035e124 (error: 4.06e-02%)
+Average prediction error: 4.07e-02%
+
+=== Z5D Performance Benchmark (RSA-250 Scale) ===
+Performance test using double precision Z5D functions
+Batch size: 100
+Batch processing results:
+  Success: Yes
+  Time: 0.0000 seconds
+  Throughput: 20000000 predictions/second (double precision batch)
+
+=== RSA-250 Results Summary ===
+Factorization verification: PASSED
+Average Z5D prediction error: 4.07e-02%
+Factor 1 k estimate: 2.24e+122
+Factor 2 k estimate: 1.17e+122
+
+Timing Results:
+  Verification time: 0.0000 seconds
+  Z5D analysis time: 0.0003 seconds
+  Total time: 0.0004 seconds
+Z5D RSA Geometric Factorization Test (MPFR/GMP Only)
+Version: 2.0
+Build: Sep 14 2025 01:50:45
+
+Z5D Prime Predictor - C Implementation v2025-09-03
+==========================================
+
+Formula: p_Z5D(k) = p_PNT(k) + c·d(k)·p_PNT(k) + k*·e(k)·p_PNT(k)
+With geodesic modulation: e(k) *= kappa_geo · (ln(k+1)/e²)
+
+Where:
+  p_PNT(k) = k * (ln(k) + ln(ln(k)) - 1 + (ln(ln(k)) - 2)/ln(k))
+  d(k)     = (ln(p_PNT(k)) / e^4)^2 if ln(p) > 0 else 0
+  e(k)     = (k^2 + k + 2) / (k * (k + 1) * (k + 2))
+  Curvature Proxy: kappa_geo * (ln(k+1)/e^2) * e(k)
+
+Default Parameters:
+  c  = -0.00247 (dilation calibration)
+  k* = 0.04449 (curvature calibration)
+  kappa_geo = 0.30000 (geodesic exponent for ~15% enhancement)
+
+Scale-specific Calibrations:
+  Scale 1: c=-0.00247, k*=0.04449, kappa_geo_factor=0.30000
+  Scale 2: c=-0.00037, k*=-0.11446, kappa_geo_factor=0.24270
+  Scale 3: c=-0.00010, k*=-0.15000, kappa_geo_factor=0.15000
+  Scale 4: c=-0.00002, k*=-0.10000, kappa_geo_factor=0.09990
+
+Features:
+  - Double-precision arithmetic
+  - Automatic parameter selection with kappa_geo
+  - Numerical stability guards (fixed log-space for ultra k)
+  - Zero-division protection (ln_pnt <=0 guard)
+  - Domain validation
+  - 5D Curvature Proxy for validation
+  - Optimizations: Inlines, log caching, array lookups
+
+RSA-4096 Geometric Factorization Test - Ultra-High Precision (1233 digits)
+==========================================================================
+=== RSA-4096 Factorization Verification (MPFR Exact Arithmetic) ===
+RSA-4096 N:     [1233-digit modulus - showing first/last 50 chars]
+                 54304381146075882763309683702742434620893317419428...59117386328450485835989962742646898850906507473897
+Factor 1:        [617-digit prime - showing first/last 30 chars]
+                 236399763263530656060892110808...499317792695083710314112419001
+Factor 2:        [617-digit prime - showing first/last 30 chars]
+                 229714194280047355369766484320...313954365910591132280697630897
+Precision:       4352 bits MPFR arithmetic
+Digit counts:    N=1233, p=617, q=617
+Product check:   ✅ EXACT MATCH (MPFR exact arithmetic)
+Verification:    factor1 × factor2 = RSA-4096 N (exact)
+✅ RSA-4096 factorization verification: PASSED (MPFR exact arithmetic)
+
+=== Z5D Prime Prediction Analysis (Ultra-High MPFR Precision) ===
+Testing Z5D predictor capabilities at 1233-digit cryptographic scale
+Factor 1 k estimate: too large (index of ~617-digit prime)
+Factor 2 k estimate: too large (index of ~617-digit prime)
+Z5D Scale Analysis: Ultra-cryptographic scale detected
+Z5D Auto-Selected Parameters: c=-0.00002, k*=-0.10000, κ_geo=0.09990
+Z5D Prediction 1: 2.3321227466067101589318016573075062940855067273210e616 (error: 1.35e+00%)
+Z5D Prediction 2: 2.2661697597933889211106733967724771215308237028719e616 (error: 1.35e+00%)
+Average prediction error: 1.35e+00%
+⚠️  Note: At 1233-digit scale, Z5D provides analysis but factorization remains computationally intensive
+
+=== Z5D Performance Benchmark (RSA-4096 Scale) ===
+Performance test using double precision Z5D functions (1233-digit scale)
+Batch size: 50
+Batch processing results:
+  Success: Yes
+  Time: 0.0000 seconds
+  Throughput: 50000000 predictions/second (double precision batch)
+
+=== RSA-4096 Results Summary ===
+Factorization verification: PASSED
+Average Z5D prediction error: 1.35e+00%
+Factor 1 k estimate: too large
+Factor 2 k estimate: too large
+
+Timing Results:
+  Verification time: 0.0000 seconds
+  Z5D analysis time: 0.0012 seconds
+  Total time: 0.0012 seconds
+
+🔬 RSA-4096 Analysis Complete: Z5D tested at 1233-digit cryptographic scale

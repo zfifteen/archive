@@ -1,0 +1,67 @@
+# SHA-256 Output Classifier and 64-bit State Machine White Paper
+*Generated on: $(date)*
+
+## Introduction
+This white paper explores the SHA-256 Output Classifier, a novel tool for detecting geometric patterns in SHA-256 hash outputs based on prime-root predictability. We refine this into a 64-bit state machine, where each state encapsulates alignment patterns tied to SHA-256 seed constants (both initial hash values H0-H7 and round constants K0-K63, derived from primes). This live document includes dynamic results generated on Apple M1 Max hardware for optimal performance.
+
+## Methodology
+The classifier computes the SHA-256 hash of an input, splits it into 8 32-bit words (H0-H7), and assesses each word’s fractional part against predicted geometric bounds using frac(sqrt(m * log(m))) as the center, adjusted by phi and k*=0.03. An 8-bit alignment pattern (1 for aligned, 0 otherwise) is generated, with a threshold of >=3/8 bits (37.5%) for 'Aligned' classification, matching the baseline coverage of round constants. Additionally, alignment for a subset of round constants (K0-K7) is shown for baseline comparison. The 64-bit state machine encodes the H0-H7 pattern into a 64-bit state value (replicated across bytes for readability), tracking transitions over sequential inputs.
+
+## 64-bit State Machine Design
+The state machine uses a 64-bit integer to represent states, with each 8-bit segment reflecting the alignment pattern of the latest input’s hash (H0-H7). States transition with each input based on new patterns, providing up to 256 unique states. This ties to SHA-256 seed constants through the prime-based geometric model for both initial hash values and round constants, offering a detailed view of alignment behavior over input sequences.
+
+## Live Results
+Below are dynamic results from running the state machine on a sequence of test inputs. These are generated in real-time to demonstrate the classifier’s behavior and state transitions, incorporating analysis of both initial hash values and a subset of round constants.
+
+### Test Sequence: Incremental Digit Strings and Diverse Inputs
+
+```bash
+SHA-256 64-bit State Machine Classifier (All Constants Demo)
+=============================================================
+
+=== Baseline: SHA-256 Round Constants (First 8 for Demo) ===
+Coverage for Round Constants (K0-K7): 3/8 (37.5%)
+8-bit Alignment Pattern for Round Constants: 01000110
+
+Input: 1
+Coverage for Hash Values (H0-H7): 1/8 (12.5%)
+8-bit Alignment Pattern for Hash Values: 00000010
+Classification: Not Aligned
+State Transition (Hex): 0x0000000000000000 -> 0x0202020202020202
+
+Input: 11
+Coverage for Hash Values (H0-H7): 5/8 (62.5%)
+8-bit Alignment Pattern for Hash Values: 01101101
+Classification: Aligned
+State Transition (Hex): 0x0202020202020202 -> 0x6d6d6d6d6d6d6d6d
+
+Input: 111
+Coverage for Hash Values (H0-H7): 5/8 (62.5%)
+8-bit Alignment Pattern for Hash Values: 11101001
+Classification: Aligned
+State Transition (Hex): 0x6d6d6d6d6d6d6d6d -> 0xe9e9e9e9e9e9e9e9
+
+Input: CallMeIshmael
+Coverage for Hash Values (H0-H7): 3/8 (37.5%)
+8-bit Alignment Pattern for Hash Values: 00111000
+Classification: Aligned
+State Transition (Hex): 0xe9e9e9e9e9e9e9e9 -> 0x3838383838383838
+
+Input: RandomString
+Coverage for Hash Values (H0-H7): 1/8 (12.5%)
+8-bit Alignment Pattern for Hash Values: 01000000
+Classification: Not Aligned
+State Transition (Hex): 0x3838383838383838 -> 0x4040404040404040
+
+=== Conclusion ===
+64-bit state machine tracks geometric alignment patterns of SHA-256 outputs tied to seed constants, with demo of round constants.
+```
+
+## Analysis of Results
+The live results above illustrate how the 64-bit state machine transitions between states based on alignment patterns for H0-H7, with baseline alignment shown for a subset of round constants (K0-K7). Each state (displayed in hex) reflects the geometric predictability of SHA-256 outputs, with 'Aligned' classifications indicating significant matches (>=3/8 bits set, or 37.5%) to predicted bounds tied to seed constants, matching the round constants' baseline. Variability in state transitions, even for related inputs, highlights SHA-256’s pseudo-random nature, while recurring high-coverage states may suggest underlying structures worth further cryptanalytic exploration.
+
+## Conclusion
+The SHA-256 Output Classifier and its 64-bit state machine provide a novel framework for analyzing hash outputs through a geometric lens. Running on Apple M1 Max hardware ensures efficient computation, leveraging native cryptographic libraries. This live white paper demonstrates the tool’s ability to track alignment behavior dynamically, incorporating both initial hash values and round constants. Future work could refine state encoding, correlate input features with states, or visualize transitions for deeper insights. This approach remains exploratory, with potential applications in cryptographic pattern detection.
+
+*End of Live White Paper. Re-run this script to refresh results.*
+White paper generated as sha256_white_paper_output.md and script made executable.

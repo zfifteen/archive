@@ -1,0 +1,103 @@
+{
+  "timestamp": "2025-08-09 03:57:50",
+  "models_trained": [
+    "quantum_chaos_random_forest",
+    "quantum_chaos_logistic_regression",
+    "quantum_chaos_svm",
+    "quantum_chaos_neural_network",
+    "biological_random_forest",
+    "biological_neural_network",
+    "quantum_to_biological",
+    "biological_to_quantum"
+  ],
+  "training_results": {
+    "quantum_chaos": {
+      "random_forest": {
+        "cv_mean": 0.8266666666666668,
+        "cv_std": 0.2823709144606316,
+        "best_params": {},
+        "n_features": 14,
+        "n_samples": 150
+      },
+      "logistic_regression": {
+        "cv_mean": 0.8266666666666665,
+        "cv_std": 0.15549205052920803,
+        "best_params": {
+          "C": 10
+        },
+        "n_features": 14,
+        "n_samples": 150
+      },
+      "svm": {
+        "cv_mean": 0.8466666666666667,
+        "cv_std": 0.12927146286443544,
+        "best_params": {
+          "C": 10,
+          "kernel": "linear"
+        },
+        "n_features": 14,
+        "n_samples": 150
+      },
+      "neural_network": {
+        "cv_mean": 0.8333333333333334,
+        "cv_std": 0.17256238807393048,
+        "best_params": {
+          "hidden_layer_sizes": [
+            50,
+            25
+          ]
+        },
+        "n_features": 14,
+        "n_samples": 150
+      }
+    },
+    "biological": {
+      "random_forest": {
+        "cv_mean": 1.0,
+        "cv_std": 0.0,
+        "best_params": {},
+        "n_features": 14,
+        "n_samples": 150
+      },
+      "neural_network": {
+        "cv_mean": 1.0,
+        "cv_std": 0.0,
+        "best_params": {
+          "hidden_layer_sizes": [
+            50
+          ]
+        },
+        "n_features": 14,
+        "n_samples": 150
+      }
+    },
+    "cross_domain": {
+      "quantum_to_biological": {
+        "accuracy": 1.0,
+        "n_features": 14
+      },
+      "biological_to_quantum": {
+        "accuracy": 0.25333333333333335,
+        "n_features": 14
+      }
+    }
+  },
+  "model_files": [
+    "biological_to_quantum.pkl",
+    "biological_scaler.pkl",
+    "quantum_chaos_logistic_regression.pkl",
+    "quantum_chaos_random_forest.pkl",
+    "quantum_chaos_scaler.pkl",
+    "biological_neural_network.pkl",
+    "quantum_to_biological.pkl",
+    "biological_random_forest.pkl",
+    "quantum_chaos_neural_network.pkl",
+    "quantum_chaos_svm.pkl"
+  ],
+  "summary_statistics": {
+    "mean_performance": 0.888888888888889,
+    "std_performance": 0.07884975555204521,
+    "n_models": 8,
+    "best_model": "quantum_chaos_svm"
+  }
+}

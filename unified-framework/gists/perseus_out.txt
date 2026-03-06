@@ -1,0 +1,59 @@
+Obfuscation is not Security
+============================================================
+m= 1, p=   2, frac_true=0.414214
+  frac_pred=0.414214, circular_diff=0.000000, width=0.791881
+  within_bounds: True, SHA-256 word: 0x6a09e667
+
+m= 2, p=   3, frac_true=0.732051
+  frac_pred=0.177410, circular_diff=0.445359, width=0.758689
+  within_bounds: True, SHA-256 word: 0xbb67ae85
+
+m= 3, p=   5, frac_true=0.236068
+  frac_pred=0.815444, circular_diff=0.420624, width=0.803361
+  within_bounds: True, SHA-256 word: 0x3c6ef372
+
+m= 4, p=   7, frac_true=0.645751
+  frac_pred=0.354820, circular_diff=0.290931, width=0.782451
+  within_bounds: True, SHA-256 word: 0xa54ff53a
+
+m= 5, p=  11, frac_true=0.316625
+  frac_pred=0.836757, circular_diff=0.479868, width=0.726889
+  within_bounds: True, SHA-256 word: 0x510e527f
+
+m= 6, p=  13, frac_true=0.605551
+  frac_pred=0.278804, circular_diff=0.326747, width=0.796693
+  within_bounds: True, SHA-256 word: 0x9b05688c
+
+m= 7, p=  17, frac_true=0.123106
+  frac_pred=0.690714, circular_diff=0.432391, width=0.769688
+  within_bounds: True, SHA-256 word: 0x1f83d9ab
+
+m= 8, p=  19, frac_true=0.358899
+  frac_pred=0.078668, circular_diff=0.280231, width=0.806956
+  within_bounds: True, SHA-256 word: 0x5be0cd19
+
+m= 9, p=  23, frac_true=0.795832
+  frac_pred=0.446911, circular_diff=0.348920, width=0.788559
+  within_bounds: True, SHA-256 word: 0xcbbb9d5d
+
+m=10, p=  29, frac_true=0.385165
+  frac_pred=0.798526, circular_diff=0.413361, width=0.749655
+  within_bounds: True, SHA-256 word: 0x629a292a
+
+m=20, p=  71, frac_true=0.426150
+  frac_pred=0.740455, circular_diff=0.314305, width=0.773133
+  within_bounds: True, SHA-256 word: 0x6d1826ca
+
+m=30, p= 113, frac_true=0.630146
+  frac_pred=0.101283, circular_diff=0.471137, width=0.787206
+  within_bounds: True, SHA-256 word: 0xa1513c69
+
+m=40, p= 173, frac_true=0.152946
+  frac_pred=0.147229, circular_diff=0.005717, width=0.797346
+  within_bounds: True, SHA-256 word: 0x27277f6d
+
+m=50, p= 229, frac_true=0.132746
+  frac_pred=0.985748, circular_diff=0.146998, width=0.805301
+  within_bounds: True, SHA-256 word: 0x21fba37b
+
+Summary: 50/50 (100.0%) within predicted bounds

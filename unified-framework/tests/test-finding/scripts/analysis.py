@@ -1,0 +1,181 @@
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
+
+from mpmath import zetazero
+from sympy import divisor_count, isprime
+
+# Fix: import GaussianMixture directly
+from sklearn.mixture import GaussianMixture
+
+# Fix: import ECDF
+from statsmodels.distributions.empirical_distribution import ECDF
+
+from scipy.stats import ks_2samp, linregress
+
+# ----------------------------------------------------------------------
+# 1. Load and preprocess data
+# ----------------------------------------------------------------------
+df = pd.read_csv("zeta_shifts_1_to_6000.csv")
+df["kappa"] = df["n"].apply(divisor_count) * np.log(df["n"] + 1) / np.exp(2)
+df["is_prime"] = df["n"].apply(isprime)
+primes = df.loc[df["is_prime"], "n"].values
+gaps = np.diff(primes)
+gap_map = {p: g for p, g in zip(primes[:-1], gaps)}
+df["prime_gap"] = df["n"].map(gap_map).fillna(0).astype(int)
+
+features = df[["z", "kappa", "prime_gap"]].fillna(0)
+gmm = GaussianMixture(n_components=3, random_state=42).fit(features)
+df["cluster"] = gmm.predict(features)
+cluster2 = df[df["cluster"] == 2].copy()
+n_vals = np.sort(cluster2["n"].values)
+Z_vals = np.sort(cluster2["z"].values)
+
+print(f"Cluster 2 size: {len(n_vals)}")
+print(f"Cluster 2 median Z: {cluster2['z'].median():.1f}")
+
+# Instead of float(zetazero(k)), do:
+zeros = np.array([float(zetazero(k).imag) for k in range(1, 21)])
+
+min_n, max_n = n_vals.min(), n_vals.max()
+scale = (max_n - min_n) / (zeros.max() - zeros.min())
+zeros_scaled = zeros * scale + (min_n - zeros.min() * scale)
+dists = np.min(np.abs(n_vals[:, None] - zeros_scaled[None, :]), axis=1)
+print(f"Nearest‐zero distances: min={dists.min():.4f}, mean={dists.mean():.4f}, max={dists.max():.4f}")
+
+# ----------------------------------------------------------------------
+# 3. Spacing distribution & KS test vs. GUE
+# ----------------------------------------------------------------------
+spacings = np.diff(n_vals)
+sp_norm = spacings / spacings.mean()
+u = np.random.rand(200_000)
+s_gue = np.sqrt(-4/np.pi * np.log(1 - u))
+stat, pval = ks_2samp(sp_norm, s_gue)
+print(f"KS statistic={stat:.4f}, p‐value={pval:.2e}")
+
+ecdf_emp = ECDF(sp_norm)
+ecdf_gue = ECDF(s_gue)
+
+plt.figure(figsize=(8,5))
+plt.step(ecdf_emp.x, ecdf_emp.y, label="Cluster 2", lw=2)
+plt.step(ecdf_gue.x, ecdf_gue.y, label="GUE Wigner", alpha=0.7, lw=2)
+plt.xlabel("s / ⟨s⟩")
+plt.ylabel("ECDF")
+plt.title("Cluster 2 Spacings vs. GUE Surmise")
+plt.legend()
+plt.tight_layout()
+plt.savefig("ecdf_spacings.png")
+plt.close()
+
+# ----------------------------------------------------------------------
+# 4. Parameter sweep: k* → SFF & R₂(s)
+# ----------------------------------------------------------------------
+phi = (1 + np.sqrt(5)) / 2
+n = np.arange(len(n_vals))
+
+def compute_sff(Zarr, taus):
+    Nloc = len(Zarr)
+    return np.array([
+        np.abs(np.sum(np.exp(1j * tau * Zarr)))**2 / Nloc
+        for tau in taus
+    ])
+
+def empirical_r2(sp, s_max=5, bins=100):
+    hist, edges = np.histogram(sp, bins=bins, range=(0, s_max), density=True)
+    centers = (edges[:-1] + edges[1:]) / 2
+    return centers, hist
+
+k_values = np.linspace(0.1, 0.5, 21)
+taus = np.linspace(0.01, 3, 100)
+s_edges = np.linspace(0, 5, 101)
+
+K_grid = np.zeros((len(k_values), len(taus)))
+R2_grid = np.zeros((len(k_values), len(s_edges)-1))
+
+for i, k in enumerate(k_values):
+    theta_k = phi * ((n % phi) / phi) ** k
+    thresh = np.quantile(theta_k, 0.739)
+    idxs = np.where(theta_k <= thresh)[0]
+    Zk = np.sort(Z_vals[idxs])
+
+    # Unfold to unit mean spacing
+    sp = np.diff(Zk)
+    Zk_unfold = (Zk - Zk.min()) / sp.mean()
+
+    # SFF
+    K_grid[i, :] = compute_sff(Zk_unfold, taus)
+
+    # R₂(s)
+    s_norm = sp / sp.mean()
+    _, hist = empirical_r2(s_norm, s_max=5, bins=100)
+    R2_grid[i, :] = hist
+
+# ----------------------------------------------------------------------
+# 5. Four 3D plots
+# ----------------------------------------------------------------------
+# Extract pure-float numpy arrays
+n_arr     = cluster2["n"]     .astype(float).values
+z_arr     = cluster2["z"]     .astype(float).values
+kappa_arr = cluster2["kappa"] .astype(float).values
+gap_arr   = cluster2["prime_gap"].astype(float).values
+
+# Plot 1: 3D scatter (n, z, kappa)
+fig = plt.figure(figsize=(8,6))
+ax  = fig.add_subplot(111, projection="3d")
+ax.scatter(n_arr, z_arr, kappa_arr, c=gap_arr, cmap="plasma", s=20)
+ax.set_xlabel("n")
+ax.set_ylabel("Z(n)")
+ax.set_zlabel("κ(n)")
+ax.set_title("Cluster2: (n, Z, κ) colored by prime gap")
+plt.tight_layout()
+plt.savefig("3d_cluster2_scatter.png")
+plt.close()
+
+# Plot 2: 3D helical embedding of Riemann zeros
+theta_zero = 2 * np.pi * zeros_scaled / phi
+radii = zeros_scaled
+theta_prime = phi * ((np.arange(len(zeros)) % phi) / phi)**0.3
+
+x = radii * np.cos(theta_zero)
+y = radii * np.sin(theta_zero)
+z = theta_prime
+
+fig = plt.figure(figsize=(8,6))
+ax = fig.add_subplot(111, projection='3d')
+ax.plot(x, y, z, '-o', c='teal')
+ax.set_xlabel("x")
+ax.set_ylabel("y")
+ax.set_zlabel("θ'(zero, k*=0.3)")
+ax.set_title("3D Helical Embedding of First 20 Zeros")
+plt.tight_layout()
+plt.savefig("3d_helical_embedding.png")
+plt.close()
+
+# Plot 3: SFF surface over (τ, k*)
+T, Kp = np.meshgrid(taus, k_values)
+fig = plt.figure(figsize=(8,6))
+ax = fig.add_subplot(111, projection='3d')
+surf1 = ax.plot_surface(T, Kp, K_grid, cmap='viridis', edgecolor='none', alpha=0.8)
+ax.set_xlabel("τ")
+ax.set_ylabel("k*")
+ax.set_zlabel("K(τ)/N")
+ax.set_title("Spectral Form Factor Surface")
+fig.colorbar(surf1, pad=0.1, label="K(τ)/N")
+plt.tight_layout()
+plt.savefig("3d_sff_surface.png")
+plt.close()
+
+# Plot 4: R₂(s) surface over (s, k*)
+S, KK = np.meshgrid((s_edges[:-1] + s_edges[1:]) / 2, k_values)
+fig = plt.figure(figsize=(8,6))
+ax = fig.add_subplot(111, projection='3d')
+surf2 = ax.plot_surface(S, KK, R2_grid, cmap='inferno', edgecolor='none', alpha=0.8)
+ax.set_xlabel("s (normalized spacing)")
+ax.set_ylabel("k*")
+ax.set_zlabel("R₂(s)")
+ax.set_title("Two-Point Correlation Surface")
+fig.colorbar(surf2, pad=0.1, label="R₂(s)")
+plt.tight_layout()
+plt.savefig("3d_r2_surface.png")
+plt.close()

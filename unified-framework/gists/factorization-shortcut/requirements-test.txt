@@ -1,0 +1,3 @@
+# Test dependencies for Z5D Factorization Shortcut
+pytest>=7.0.0
+pytest-timeout>=2.1.0

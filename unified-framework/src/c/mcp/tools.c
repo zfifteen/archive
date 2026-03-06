@@ -1,0 +1,1 @@
+// Currently no standalone tool handlers; handlers are in http.c. Remove this file when splitting handlers.

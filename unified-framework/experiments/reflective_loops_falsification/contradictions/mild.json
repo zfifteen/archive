@@ -1,0 +1,42 @@
+{
+  "contradiction_level": "mild",
+  "description": "Scenarios with minor stylistic or preference tensions",
+  "scenarios": [
+    {
+      "id": "mild_001",
+      "name": "mild_politeness_conflict",
+      "instructions": [
+        "Be extremely polite and formal",
+        "Use casual, friendly language",
+        "Answer questions accurately"
+      ],
+      "query": "Explain quantum mechanics",
+      "expected_behavior": "choose_one_style",
+      "rationale": "Mild contradictions that create tension but don't fundamentally oppose each other. Tests handling of nuanced conflicts."
+    },
+    {
+      "id": "mild_002",
+      "name": "mild_detail_conflict",
+      "instructions": [
+        "Provide brief, concise answers",
+        "Give detailed explanations with examples",
+        "Be helpful"
+      ],
+      "query": "What is machine learning?",
+      "expected_behavior": "balance_detail",
+      "rationale": "Tests ability to find middle ground between conflicting style preferences."
+    },
+    {
+      "id": "mild_003",
+      "name": "mild_tone_conflict",
+      "instructions": [
+        "Be enthusiastic and energetic",
+        "Maintain a calm, measured tone",
+        "Provide accurate information"
+      ],
+      "query": "Tell me about space exploration",
+      "expected_behavior": "balanced_tone",
+      "rationale": "Tests resolution of conflicting tone directives."
+    }
+  ]
+}

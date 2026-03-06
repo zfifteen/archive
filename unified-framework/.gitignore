@@ -1,0 +1,167 @@
+/.venv/
+/.idea/
+*.csv
+/findings-load-data/run-2/output.txt
+/findings-load-data/run-4/output.txt
+/findings-load-data/run-2/zeta_shifts.csv
+/findings-load-data/run-4/zeta_shifts.csv
+/findings-load-data/run-5/output.txt
+*.pkl
+*.bak
+
+/applications/wave-crispr-signal/.idea/misc.xml
+/applications/wave-crispr-signal/.idea/modules.xml
+/applications/wave-crispr-signal/.idea/inspectionProfiles/profiles_settings.xml
+/applications/wave-crispr-signal/.idea/vcs.xml
+/applications/wave-crispr-signal/.idea/wave-crispr-signal.iml
+/core/domain.py.txt
+/experiments/Geometric–Wave Text Encoding/codec.py.txt
+/experiments/Geometric–Wave Text Encoding/codec_usages.py.txt
+__pycache__/
+
+# Reflective loops experiment - real LLM results
+experiments/reflective_loops_falsification/real_experiment_results/
+!experiments/reflective_loops_falsification/real_experiment_results/.gitkeep
+
+# Simplex-anchor experiment results (keep structure, ignore data)
+results/keygen_simplex_anchor/*/*.csv
+results/keygen_simplex_anchor/*/*.json
+results/keygen_simplex_anchor/*/*.png
+results/resonance_simplex_anchor/*/*.csv
+results/resonance_simplex_anchor/*/*.json
+results/resonance_simplex_anchor/*/*.png
+
+# Keep directory structure
+!results/keygen_simplex_anchor/.gitkeep
+!results/resonance_simplex_anchor/.gitkeep
+
+# C build artifacts
+src/c/z5d_prime_gen
+src/c/*.o
+src/c/build/
+src/c/bin/
+src/c/lib/
+src/c/include/
+z5d_pascal_filter_c/z5d_pascal_filter
+*.pyc
+*.pyo
+
+# Generated files from testing
+*.npy
+*.png
+!charge_vw_motion_summary.png
+!tests/plots/z5d_*.png
+helical_*.json
+helical_*.csv
+
+# Benchmark results
+benchmarks/benchmark_results.txt
+data/test_results/
+
+# Z5D Pascal Filter build artifacts
+z5d_pascal_filter_c/z5d_pascal_filter
+debug_*.png
+test_harness_*
+/experiments/z_embeddings.db
+/applications/z_embeddings.db
+
+# Test outputs that shouldn't be committed
+tests/test_output_*.txt
+tests/output/*.csv
+
+# White paper compilation outputs
+whitepaper_compilation_*.json
+*.tex
+*.pdf
+*.aux
+*.log
+*.out
+*.toc
+*.fls
+*.fdb_latexmk
+/.venv-3-12/
+
+
+# Test files that we should keep 
+test_minimal_efficiency.py
+test_mpmath_conversion_fix.py
+
+# Small test data files (keep these)
+!zeta_test.txt
+
+# Large data files for experiments
+zeta.txt
+
+# Z5D benchmark temporary files
+*_benchmark_results.csv
+*_validation_data.csv
+clean_validation_data.csv
+validation_results.csv
+small_benchmark_results.csv
+create_zeta_file.py
+
+# C/C++ build artifacts  
+*.o
+*.a
+*.so
+*.dylib
+*.dll
+*.exe
+/src/c/build/
+/src/c/bin/
+/src/c/lib/
+/src/c/include/
+
+
+# Build output directories
+build/
+bin/
+
+# Gradle files
+.gradle/
+gradle/
+gradlew
+gradlew.bat
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Generated result files from cryptographic optimization demo
+results/err_vs_scale.png
+results/opt_params_bar.png
+results/rsa_opt.csv
+
+# Crypto-friendly primes test artifacts
+unified_framework.egg-info/
+metrics/
+results/
+REPORT.md
+/actions-runner/
+
+/src/c/4096-pipeline/generated
+
+/src/c/grok-github-mcp/NO_COMMIT.sh
+/src/c/grok-github-mcp/test-repos/
+/src/c/grok-github-mcp/grok-workspace/
+
+*.bak*
+
+/mcp_interact.sh
+/NOOPE.md
+.snapshots/
+
+# Adaptive Stride Ring Search experiment outputs
+gists/adaptive-stride-ring-search/output/
+gists/adaptive-stride-ring-search/*.json
+!gists/adaptive-stride-ring-search/README.md
+experiments/factorization_results/
+*.factorization.json
+factorization_benchmark_*.csv

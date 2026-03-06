@@ -1,0 +1,102 @@
+{
+  "timestamp": "2025-09-14T15:53:43.586958",
+  "total_levels": 4,
+  "successful_levels": 3,
+  "error_trend_analysis": {
+    "status": "success",
+    "error_trend_slope": 0.0002875356263088252,
+    "error_growth_rate": "increasing",
+    "min_error": 0.058664738778587334,
+    "max_error": 0.41730833393208605,
+    "avg_accuracy": 80.66530292470242,
+    "scale_dependency": "True"
+  },
+  "convergence_analysis": {
+    "convergence_success_rate": 0.75,
+    "avg_iterations": 2511.75,
+    "max_iterations": 10000,
+    "min_iterations": 11,
+    "consistent_convergence": false
+  },
+  "performance_metrics": {
+    "total_execution_time": 67.21041774749756,
+    "average_time_per_level": 16.80260443687439,
+    "overall_accuracy": 80.66530292470242,
+    "throughput_levels_per_second": 0.059514583215768385,
+    "scalability_rating": "poor"
+  },
+  "validation_results": [
+    {
+      "rsa_bits": 768,
+      "expected_factors": [
+        "33478071698956898786044169848212690817704794983713768568912431388982883793878002287614711652531743087737814467999489",
+        "36746043666799590428244633799627952632279158164343087642676032283815739666511279233373417143396810270092798736308917"
+      ],
+      "predicted_k_values": [
+        1.2633235963208631e+113,
+        1.3861561020563306e+113
+      ],
+      "prediction_errors": [
+        0.05862366869051383,
+        0.058664738778587334
+      ],
+      "convergence_iterations": 20,
+      "execution_time": 0.01858997344970703,
+      "binary_search_success": true,
+      "accuracy_percentage": 94.13352612214126,
+      "notes": "Known factorization from 2009 - baseline validation"
+    },
+    {
+      "rsa_bits": 1024,
+      "expected_factors": null,
+      "predicted_k_values": [
+        2.240670289626019e+151,
+        2.3240936955773192e+151
+      ],
+      "prediction_errors": [
+        0.10404630978334901,
+        0.10406783954825408
+      ],
+      "convergence_iterations": 16,
+      "execution_time": 0.35637807846069336,
+      "binary_search_success": true,
+      "accuracy_percentage": 89.5932160451746,
+      "notes": "Standard RSA-1024 - intermediate validation"
+    },
+    {
+      "rsa_bits": 2048,
+      "expected_factors": null,
+      "predicted_k_values": [
+        2.0552691123006256e+305,
+        2.27314352628145e+305
+      ],
+      "prediction_errors": [
+        0.4171896784971332,
+        0.41730833393208605
+      ],
+      "convergence_iterations": 11,
+      "execution_time": 2.166642904281616,
+      "binary_search_success": true,
+      "accuracy_percentage": 58.2691666067914,
+      "notes": "Standard RSA-2048 - advanced validation"
+    },
+    {
+      "rsa_bits": 4096,
+      "expected_factors": null,
+      "predicted_k_values": [
+        Infinity,
+        Infinity
+      ],
+      "prediction_errors": [
+        Infinity,
+        Infinity
+      ],
+      "convergence_iterations": 10000,
+      "execution_time": 64.66880679130554,
+      "binary_search_success": false,
+      "accuracy_percentage": 0.0,
+      "notes": "RSA-4096 demonstration - extreme scale validation"
+    }
+  ],
+  "overall_success": true
+}

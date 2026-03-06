@@ -1,0 +1,74 @@
+{
+  "16bit": {
+    "bits": 16,
+    "n_str": "19043",
+    "factors": [
+      137,
+      139
+    ],
+    "factor_found": null,
+    "success": false,
+    "runtime": 0.002549886703491211,
+    "refinement_stats": {
+      "curvature_biasing_used": 1,
+      "multiresolution_levels": 3,
+      "invariant_bounds_applied": 1,
+      "scale_adaptive_corrections": 49,
+      "parallel_computations": 49
+    }
+  },
+  "32bit": {
+    "bits": 32,
+    "n_str": "1079122139",
+    "factors": [
+      32831,
+      32869
+    ],
+    "factor_found": null,
+    "success": false,
+    "runtime": 0.0017938613891601562,
+    "refinement_stats": {
+      "curvature_biasing_used": 2,
+      "multiresolution_levels": 6,
+      "invariant_bounds_applied": 2,
+      "scale_adaptive_corrections": 98,
+      "parallel_computations": 98
+    }
+  },
+  "64bit": {
+    "bits": 64,
+    "n_str": "4611756013772227469",
+    "factors": [
+      2147498279,
+      2147501611
+    ],
+    "factor_found": null,
+    "success": false,
+    "runtime": 0.0017611980438232422,
+    "refinement_stats": {
+      "curvature_biasing_used": 3,
+      "multiresolution_levels": 9,
+      "invariant_bounds_applied": 3,
+      "scale_adaptive_corrections": 147,
+      "parallel_computations": 147
+    }
+  },
+  "128bit": {
+    "bits": 128,
+    "n_str": "85070591791790261561238012870176118209",
+    "factors": [
+      9223372039601093047,
+      9223372040782335047
+    ],
+    "factor_found": null,
+    "success": false,
+    "runtime": 0.00012087821960449219,
+    "refinement_stats": {
+      "curvature_biasing_used": 4,
+      "multiresolution_levels": 12,
+      "invariant_bounds_applied": 4,
+      "scale_adaptive_corrections": 148,
+      "parallel_computations": 148
+    }
+  }
+}

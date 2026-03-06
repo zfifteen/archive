@@ -1,0 +1,41 @@
+{
+  "metadata": {
+    "seed": 42,
+    "threads": 4,
+    "timestamp": "2025-09-06T22:18:27.645344",
+    "git_commit": "5981198",
+    "total_tests": 100
+  },
+  "metrics": {
+    "total_tests": 100,
+    "pass_rate_pct": 0.0,
+    "mr_saved_pct": 0.0,
+    "td_saved_pct": 0.0,
+    "fn_rate": 0.0,
+    "error_envelope": {
+      "mean_ppm": 47434.6872357135,
+      "max_ppm": 98700.26568301822,
+      "p95_ppm": 90972.40710228203,
+      "within_200ppm_pct": 0.0
+    },
+    "timing": {
+      "mean_ns": 38450.14,
+      "median_ns": 35942.0,
+      "p95_ns": 55597.0,
+      "min_ns": 34023,
+      "max_ns": 96390
+    },
+    "gates": {
+      "G1_Correctness": true,
+      "G2_Materiality": false,
+      "G3_Overhead": false,
+      "G4_Density_Integrity": false,
+      "G5_Reproducibility": true,
+      "G6_Policy": false
+    },
+    "all_gates_pass": false,
+    "total_runtime_seconds": 0.02086925506591797,
+    "throughput_tests_per_second": 4791.73787871864
+  },
+  "promotion_status": "HYPOTHESIS"
+}

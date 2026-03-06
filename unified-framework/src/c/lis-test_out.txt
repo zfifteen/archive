@@ -1,0 +1,78 @@
+"OpenMP detected via Homebrew for macOS."
+"Primesieve not found - Z5D benchmark will use fallback implementations"
+Building LIS Corrector CLI...
+LIS-Corrector CLI using detected MPFR/GMP dependencies
+make[1]: Nothing to be done for `all'.
+Building LIS Metric CLI...
+LIS-Metric CLI using detected MPFR/GMP dependencies
+make[1]: Nothing to be done for `all'.
+Building LIS Phase A CLI...
+LIS-Phase-A CLI using detected MPFR/GMP dependencies
+make[1]: Nothing to be done for `all'.
+All LIS CLI tools built successfully
+Testing LIS CLI tools...
+LIS-Corrector CLI using detected MPFR/GMP dependencies
+Testing LIS-Corrector CLI...
+Test 1: n=10
+10,21,1142,685,40.02
+Test 2: n=100 with custom window
+100,513,1142,685,40.02
+Test 3: Help message
+Usage: ./bin/lis_corrector_cli <n> [--window <size>]
+
+LIS-Corrector: Z5D seeded nth prime with Lucas pre-filter
+
+Arguments:
+  n              Prime index to find (1-indexed)
+
+Options:
+  --window SIZE  Search window size (default: fixed per-band)
+  --help         Show this help message
+
+Output format (CSV):
+  n,p_true,baseline,mr_calls,reduction_pct
+
+Fixed windows (0% failure target):
+  [1e3..1e4]:   5,000
+  [1e4..1e5]:   5,000
+  [1e5..1e6]:   10,000
+  [1e6..1e7]:   100,000
+  [1e7..1e8]:   1,000,000
+
+Examples:
+  ./bin/lis_corrector_cli 1000000
+  ./bin/lis_corrector_cli 25000000 --window 1000000
+LIS-Metric CLI using detected MPFR/GMP dependencies
+Testing LIS-Metric CLI...
+Test 1: Small range (3-10000)
+start,end,baseline,lis_survivors,reduction_pct,elapsed_s
+3,10000,2284,288,87.39,0.000808
+Test 2: Medium range (100001-110000)
+start,end,baseline,lis_survivors,reduction_pct,elapsed_s
+100001,110000,2286,45,98.03,0.000900
+Test 3: Help message
+Usage: ./bin/lis_metric <start> <end>
+
+LIS Metric: Range-based filtering performance measurement
+
+Arguments:
+  start          Start of range (inclusive, must be >= 3)
+  end            End of range (inclusive)
+
+Output format (CSV):
+  start,end,baseline,lis_survivors,reduction_pct,elapsed_s
+
+Description:
+  Counts wheel-210 baseline candidates and LIS filter survivors
+  across the specified range. No Miller-Rabin verification.
+  Provides quick filtering efficiency measurement.
+
+Examples:
+  ./bin/lis_metric 1 200000 > lis_metric_out.csv
+  ./bin/lis_metric 1000000 2000000
+LIS-Phase-A CLI using detected MPFR/GMP dependencies
+Testing LIS-Phase-A CLI...
+Test 1: width_factor=0.155
+width_factor,samples,mean_reduction,ci_lower,ci_upper,std_dev,elapsed_s\n0.155000,1000,30.1160,25.1535,34.7937,2.9083,0.000465\nTest 2: width_factor=0.183
+width_factor,samples,mean_reduction,ci_lower,ci_upper,std_dev,elapsed_s\n0.183000,1000,32.9160,27.9535,37.5937,2.9083,0.000181\nTest 3: Help message
+Usage: ./bin/lis_phase_a <width_factor> [--samples <n>]\n\nLIS-Phase-A: Bootstrap confidence interval analysis\n\nArguments:\n  width_factor       Width factor parameter (0.001 - 1.000)\n\nOptions:\n  --samples N        Bootstrap samples (default: 1000)\n  --help             Show this help message\n\nOutput format (CSV):\n  width_factor,samples,mean_reduction,ci_lower,ci_upper,std_dev,elapsed_s\n\nDescription:\n  Performs bootstrap confidence interval analysis of width_factor\n  parameter optimization for hash bounds reduction performance.\n  Uses 256-bit MPFR precision for statistical calculations.\n\nExamples:\n  ./bin/lis_phase_a 0.155              # Baseline analysis\n  ./bin/lis_phase_a 0.183 --samples 2000 # Optimized analysis\nAll LIS CLI tools tested successfully

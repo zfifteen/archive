@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "/home/runner/work/unified-framework/unified-framework/src/applications/wave_crispr_human_analysis.py", line 28, in <module>
+    from wave_crispr_metrics import WaveCRISPRMetrics
+  File "/home/runner/work/unified-framework/unified-framework/src/applications/wave_crispr_metrics.py", line 24, in <module>
+    from core.axioms import universal_invariance, curvature
+  File "/home/runner/work/unified-framework/unified-framework/src/core/__init__.py", line 9, in <module>
+    from .z_baseline import BaselineZFramework, baseline_z_predictor
+  File "/home/runner/work/unified-framework/unified-framework/src/core/z_baseline.py", line 10, in <module>
+    import mpmath as mp
+ModuleNotFoundError: No module named 'mpmath'

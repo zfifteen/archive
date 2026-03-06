@@ -1,0 +1,187 @@
+{
+  "experiment": "Divisor-Based Curvature Hypothesis",
+  "parameters": {
+    "n_min": 2,
+    "n_max": 49,
+    "n_bootstrap": 1000
+  },
+  "data": {
+    "n_primes": 15,
+    "n_composites": 33,
+    "primes": [
+      [
+        2,
+        0.1876
+      ],
+      [
+        3,
+        0.2974
+      ],
+      [
+        5,
+        0.4356
+      ],
+      [
+        7,
+        0.5267
+      ],
+      [
+        11,
+        0.649
+      ],
+      [
+        13,
+        0.6943
+      ],
+      [
+        17,
+        0.7669
+      ],
+      [
+        19,
+        0.797
+      ],
+      [
+        23,
+        0.8487
+      ],
+      [
+        29,
+        0.9114
+      ],
+      [
+        31,
+        0.9295
+      ],
+      [
+        37,
+        0.9774
+      ],
+      [
+        41,
+        1.0052
+      ],
+      [
+        43,
+        1.018
+      ],
+      [
+        47,
+        1.0421
+      ]
+    ],
+    "composites": [
+      [
+        4,
+        0.5628
+      ],
+      [
+        6,
+        0.97
+      ],
+      [
+        8,
+        1.1257
+      ],
+      [
+        9,
+        0.8921
+      ],
+      [
+        10,
+        1.2465
+      ],
+      [
+        12,
+        2.0178
+      ],
+      [
+        14,
+        1.4286
+      ],
+      [
+        15,
+        1.466
+      ],
+      [
+        16,
+        1.8761
+      ],
+      [
+        18,
+        2.347
+      ]
+    ]
+  },
+  "statistics": {
+    "primes": {
+      "mean": 0.7391150530901279,
+      "median": 0.7969729664368259,
+      "std": 0.26151615427086694,
+      "min": 0.18761454001147945,
+      "max": 1.0421216323603917
+    },
+    "composites": {
+      "mean": 2.2522583140606045,
+      "median": 1.9246561476256467,
+      "std": 1.0759085806496544,
+      "min": 0.5628436200344383,
+      "max": 5.239100852770808
+    },
+    "separation_ratio": 3.047236427731047
+  },
+  "classification": {
+    "optimal_threshold": 1.1256872400688767,
+    "accuracy": 0.9375,
+    "accuracy_percent": 93.75
+  },
+  "bootstrap": {
+    "n_bootstrap": 1000,
+    "confidence": 0.95,
+    "prime_ci": [
+      0.6031536562238834,
+      0.8678913354900488
+    ],
+    "composite_ci": [
+      1.9058489759151067,
+      2.6469901536584497
+    ],
+    "prime_mean_bootstrap": 0.7408540016533035,
+    "composite_mean_bootstrap": 2.2568867796206837
+  },
+  "golden_ratio": {
+    "n_samples": 100,
+    "n_bins": 10,
+    "bins": [
+      10,
+      10,
+      10,
+      10,
+      10,
+      10,
+      9,
+      11,
+      10,
+      10
+    ],
+    "expected_per_bin": 10.0,
+    "chi_square": 0.2,
+    "std_dev": 0.4472135954999579,
+    "sequence_mean": 0.5007164318696928,
+    "sequence_std": 0.28742302394822944
+  },
+  "hypothesis_validation": {
+    "prime_mean_target": 0.74,
+    "prime_mean_observed": 0.7391150530901279,
+    "prime_mean_matches": true,
+    "composite_mean_target": 2.25,
+    "composite_mean_observed": 2.2522583140606045,
+    "composite_mean_matches": true,
+    "separation_target": 3.0,
+    "separation_observed": 3.047236427731047,
+    "separation_matches": true,
+    "accuracy_target": 0.83,
+    "accuracy_observed": 0.9375,
+    "accuracy_matches": true
+  }
+}
