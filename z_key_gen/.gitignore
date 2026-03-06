@@ -1,0 +1,16 @@
+# Build artifacts
+z5d_secure_key_gen
+*.o
+
+# Generated keys and certificates
+generated/
+*.key
+*.crt
+
+# macOS
+.DS_Store
+
+# Temporary files
+*.tmp
+*.log
+/z_key_gen.iml
