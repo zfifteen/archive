@@ -1,0 +1,108 @@
+# Java
+/build/
+.gradle/
+*.class
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+dist/
+*.so
+
+# Hyper-rotation CLI artifacts
+apps/hr_cli/*.log
+apps/hr_cli/*.sock
+
+# Sandbox outputs
+/data/
+out/
+
+# Visualization outputs (plots are tracked in git)
+# but exclude test plots
+plots/test*.png
+plots/test*.html
+
+# Factorization artifacts (security: never commit actual targets/factors)
+python/targets_256bit.json
+python/factorization_results_256bit.json
+python/batch_run_log.txt
+python/*_targets.json
+python/*_results.json
+
+# ECM checkpoint files (binary state files)
+ckpts/
+*.sav
+
+# OS
+.DS_Store
+
+### IntelliJ IDEA ###
+.idea/modules.xml
+.idea/jarRepositories.xml
+.idea/compiler.xml
+.idea/libraries/
+*.iws
+*.iml
+*.ipr
+!gradle/wrapper/gradle-wrapper.jar
+!**/src/main/**/build/
+!**/src/test/**/build/
+!**/src/main/**/out/
+!**/src/test/**/out/
+.kotlin
+
+### Eclipse ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+bin/
+!**/src/main/**/bin/
+!**/src/test/**/bin/
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+### VS Code ###
+.vscode/
+
+/.idea/
+# 100-sample workflow artifacts
+python/checkpoint_*.json
+python/*checkpoint*.json
+ckpts/
+ckpts/**/*.sav
+python/ANALYSIS_*.md
+python/targets_256bit_z5d_test.json
+
+# TSVF generated metrics and logs
+logs/tsvf_metrics.csv
+logs/tsvf_metrics.jsonl
+logs/tsvf_summary.md
+
+# RSA-260 run logs
+logs/rsa260_run_*.log
+
+# Line-intersection multiplication demo outputs
+intersection_factor_demo_*.png
+integration_demo_*.png
+
+# Gist demo outputs
+pollard_paths.png
+action-runner/
+.aider*
+.codex/
+*.log*
+factor_recovery_*.log
+.snapshots/
+*/__pycache__/

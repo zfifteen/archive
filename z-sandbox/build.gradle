@@ -1,0 +1,136 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'jacoco'  // Code coverage
+    id 'me.champeau.jmh' version '0.7.2'  // JMH for microbenchmarking
+}
+
+group = 'org.zfifteen'
+version = '0.0.1'
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.11.0'
+    implementation 'org.apache.commons:commons-math3:3.6.1'
+    implementation 'ch.obermuhlner:big-math:2.3.2'
+    testImplementation 'junit:junit:4.13.2'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.10.0'
+    jmh 'org.openjdk.jmh:jmh-core:1.37'
+    jmh 'org.openjdk.jmh:jmh-generator-annprocess:1.37'
+    testImplementation 'com.fasterxml.jackson.core:jackson-core:2.15.2'
+    testImplementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-csv:2.15.2'
+}
+
+application {
+    mainClass = 'org.zfifteen.sandbox.GeometricResonanceFactorizer'
+}
+
+test {
+    useJUnitPlatform()
+    finalizedBy jacocoTestReport
+    jvmArgs "-Dfile.encoding=UTF-8"
+    // run all tests by default; to include only a tag: ./gradlew test -Pgroups=bigdecimal
+    if (project.hasProperty("groups")) {
+        systemProperty "junit.jupiter.tags", project.property("groups")
+    }
+}
+
+jacocoTestReport {
+    reports {
+        xml.required = true
+        html.required = true
+    }
+}
+
+
+tasks.register('integrationTest', Test) {
+    group = 'verification'
+    description = 'Run long RSA integration experiments (opt-in)'
+    testClassesDirs = sourceSets.test.output.classesDirs
+    classpath = sourceSets.test.runtimeClasspath
+    systemProperty 'integration', 'true'
+    useJUnitPlatform {
+        includeTags 'integration'
+    }
+    // increase heap/timeouts for long runs
+    jvmArgs '-Xmx8g', '-XX:+UseG1GC'
+}
+
+tasks.register('ladder') {
+    doLast {
+        // run rungs 200..260, log CSV
+        exec {
+            workingDir projectDir
+            commandLine 'java', '-cp', sourceSets.main.runtimeClasspath.asPath, 'tools.BenchLadder', '--ladder', '--builder', 'ResidueFilter'
+        }
+    }
+}
+
+tasks.register('rsa260') {
+    doLast {
+        // run best builder on RSA-260 with checkpointing
+        exec {
+            workingDir projectDir
+            commandLine 'java', '-cp', sourceSets.main.runtimeClasspath.asPath, 'tools.BenchLadder', '--rsa260'
+        }
+    }
+}
+
+tasks.register('demo') {
+    doLast {
+        // run ultra-high scale demo
+        exec {
+            workingDir projectDir
+            commandLine 'java', '-cp', sourceSets.main.runtimeClasspath.asPath, 'unifiedframework.UltraHighScaleExample'
+        }
+    }
+}
+
+tasks.register('demofull') {
+    doLast {
+        // run full ultra-high scale demonstration with timings
+        exec {
+            workingDir projectDir
+            commandLine 'java', '-cp', sourceSets.main.runtimeClasspath.asPath, 'unifiedframework.demo_ultra_high_scale'
+        }
+    }
+}
+
+tasks.register('gva') {
+    doLast {
+        // run Java GVA factorization demo
+        exec {
+            workingDir projectDir
+            commandLine 'java', '-cp', sourceSets.main.runtimeClasspath.asPath, 'unifiedframework.GVAFactorizerDemo'
+        }
+    }
+}
+
+tasks.register('geometric') {
+    doLast {
+        // run Java geometric resonance factorization demo
+        exec {
+            workingDir projectDir
+            commandLine 'java', '-cp', sourceSets.main.runtimeClasspath.asPath, 'org.zfifteen.sandbox.GeometricResonanceFactorizer', '137524771864208156028430259349934309717', '--samples=1000', '--m-span=20', '--J=8', '--threshold=0.85', '--bias=0.5'
+        }
+    }
+}
+
+tasks.register('zeroBiasRun') {
+    doLast {
+        // run zero-bias resonance validation
+        exec {
+            workingDir projectDir
+            commandLine 'java', '-cp', sourceSets.main.runtimeClasspath.asPath, 'org.zfifteen.sandbox.GeometricResonanceFactorizer', '137524771864208156028430259349934309717', '--mc-digits=320', '--samples=1800', '--k-lo=0.24', '--k-hi=0.32', '--k-step=0.0001', '--m-span=7', '--J=6', '--threshold=0.972'
+        }
+    }
+}

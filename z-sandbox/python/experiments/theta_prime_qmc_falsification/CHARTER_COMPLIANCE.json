@@ -1,0 +1,120 @@
+{
+  "manifest_version": "1.0.0",
+  "deliverable_id": "theta-prime-qmc-falsification-2025-11-19",
+  "deliverable_type": "experiment",
+  "timestamp": "2025-11-19T17:52:00Z",
+  "author": "Z-Sandbox Agent",
+  "experiment_status": "COMPLETE",
+  "hypothesis_result": "FALSIFIED",
+  "charter_compliance": {
+    "first_principles": {
+      "present": true,
+      "location": "EXPERIMENT_SETUP.md Section 1",
+      "completeness": 1.0,
+      "notes": "Z=A(B/c), κ(n), θ′(n,k), mean-one retiming all defined"
+    },
+    "ground_truth": {
+      "present": true,
+      "location": "EXPERIMENT_SETUP.md Section 2; EXECUTIVE_SUMMARY.md",
+      "completeness": 1.0,
+      "notes": "N=899 (29×31), executed 2025-11-19, full provenance"
+    },
+    "reproducibility": {
+      "present": true,
+      "location": "EXPERIMENT_SETUP.md Section 3",
+      "completeness": 1.0,
+      "notes": "Fixed seed=42, exact commands, 2-minute runtime"
+    },
+    "failure_knowledge": {
+      "present": true,
+      "location": "EXPERIMENT_SETUP.md Section 4",
+      "completeness": 1.0,
+      "notes": "4 failure modes documented with diagnostics"
+    },
+    "constraints": {
+      "present": true,
+      "location": "EXPERIMENT_SETUP.md Section 5",
+      "completeness": 1.0,
+      "notes": "Academic research, honest negative result reporting"
+    },
+    "context": {
+      "present": true,
+      "location": "EXPERIMENT_SETUP.md Section 6; EXECUTIVE_SUMMARY.md",
+      "completeness": 1.0,
+      "notes": "Research question, stakeholders, motivation clear"
+    },
+    "models_limits": {
+      "present": true,
+      "location": "EXPERIMENT_SETUP.md Section 7",
+      "completeness": 1.0,
+      "notes": "3 models with assumptions and falsified assumption documented"
+    },
+    "interfaces": {
+      "present": true,
+      "location": "EXPERIMENT_SETUP.md Section 8",
+      "completeness": 1.0,
+      "notes": "Commands, I/O paths, no secrets"
+    },
+    "calibration": {
+      "present": true,
+      "location": "EXPERIMENT_SETUP.md Section 9",
+      "completeness": 0.8,
+      "notes": "α swept [0.05-0.20]; k=0.3 adopted but not ablated"
+    },
+    "purpose": {
+      "present": true,
+      "location": "EXPERIMENT_SETUP.md Section 10; EXECUTIVE_SUMMARY.md",
+      "completeness": 1.0,
+      "notes": "Primary goal: test >5% lift hypothesis (FALSIFIED)"
+    }
+  },
+  "validation_result": {
+    "is_compliant": true,
+    "missing_elements": [],
+    "warnings": [
+      "Calibration: Only α parameter swept; k and n_samples not tuned",
+      "Test case: N=899 is 10-bit demo, not cryptographically relevant"
+    ]
+  },
+  "key_results": {
+    "hypothesis": "θ′-biased QMC with mean-one retiming yields >5% lift in unique candidates",
+    "conclusion": "FALSIFIED (0% lift observed)",
+    "unique_candidates_mc": 0.20,
+    "unique_candidates_sobol": 0.20,
+    "lift_percent": 0.0,
+    "statistical_significance": false,
+    "p_value": "NaN (zero variance)",
+    "discrepancy_improvement": 96.7,
+    "mean_one_property_verified": true
+  },
+  "artifacts": {
+    "raw_data": "results/unique_candidates.json",
+    "analysis": "results/deltas.json",
+    "discrepancy": "results/discrepancy_results.json",
+    "plots": ["plots/bias_adaptive_example.png"],
+    "scripts": [
+      "scripts/mean_one_retiming.py",
+      "scripts/qmc_factorization_analysis.py",
+      "scripts/discrepancy_test.py",
+      "scripts/bias_adaptive_example.py",
+      "scripts/generate_synthetic_semiprimes.py"
+    ]
+  },
+  "reproducibility": {
+    "command": "cd scripts && python3 qmc_factorization_analysis.py",
+    "runtime_seconds": 120,
+    "seed": 42,
+    "environment": {
+      "python": "3.12.3",
+      "numpy": "1.26.4",
+      "scipy": "1.11.4",
+      "matplotlib": "3.10.7"
+    }
+  },
+  "next_steps": [
+    "Scale test to 64-bit, 128-bit semiprimes",
+    "Test combined Z=κ(n)·θ′(n,k) weight (not just θ′ alone)",
+    "Analyze candidate quality (factor proximity) not just count",
+    "Measure computational overhead of Sobol+Owen vs MC"
+  ]
+}

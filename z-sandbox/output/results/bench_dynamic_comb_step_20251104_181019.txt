@@ -1,0 +1,32 @@
+Dynamic Comb Step Benchmark Results
+================================================================================
+Date: 2025-11-04T18:10:19.301200
+Precision (mp.dps): 512
+
+Results by Scale:
+--------------------------------------------------------------------------------
+64-bit (64 bits):
+  log2(N): 64.00
+  comb_step: 0.0015625000
+  sampling_density: ~640 samples/unit
+
+128-bit (128 bits):
+  log2(N): 128.00
+  comb_step: 0.0007812500
+  sampling_density: ~1280 samples/unit
+
+256-bit (256 bits):
+  log2(N): 256.00
+  comb_step: 0.0003906250
+  sampling_density: ~2560 samples/unit
+
+512-bit (512 bits):
+  log2(N): 512.00
+  comb_step: 0.0001953125
+  sampling_density: ~5120 samples/unit
+
+
+Validation:
+--------------------------------------------------------------------------------
+Sampling density increases with scale: True
+All comb_steps are fractional (< 1): True

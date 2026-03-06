@@ -1,0 +1,47 @@
+{
+  "run_metadata": {
+    "date": "2025-11-06",
+    "target_N": "137524771864208156028430259349934309717",
+    "N_bits": 127,
+    "method": "geometric_resonance",
+    "protocol_version": "1.0"
+  },
+  "precision": {
+    "mp_dps": 200,
+    "description": "High-precision arithmetic for 127-bit factorization"
+  },
+  "qmc_sampling": {
+    "sampler": "golden_ratio_qmc",
+    "num_samples": 801,
+    "description": "Quasi-Monte Carlo sampling using golden ratio conjugate for low-discrepancy k-space coverage"
+  },
+  "k_parameter": {
+    "k_lo": 0.25,
+    "k_hi": 0.45,
+    "description": "Resonance parameter range for factor prediction"
+  },
+  "mode_scanning": {
+    "m_span": 180,
+    "m_center": "computed",
+    "description": "Scan ±180 modes around central mode m0 for each k value"
+  },
+  "dirichlet_kernel": {
+    "J": 6,
+    "threshold_factor": 0.92,
+    "threshold_value": 11.96,
+    "description": "Dirichlet kernel order and threshold for resonance detection: |D_J(θ)| ≥ 0.92 × (2J+1)"
+  },
+  "bias_correction": {
+    "bias_form": "zero",
+    "description": "No phase bias correction applied (pure geometric)"
+  },
+  "verification": {
+    "no_ecm": true,
+    "no_nfs": true,
+    "no_pollard": true,
+    "no_gcd_cycles": true,
+    "no_library_factoring": true,
+    "divisibility_check_only": "final stage",
+    "description": "Method uses only geometric resonance - no classical factoring operations"
+  }
+}

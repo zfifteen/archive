@@ -1,0 +1,18 @@
+{
+  "experiment_config": {
+    "target": 18446736050711510819,
+    "range_radius": 10000000
+  },
+  "results": {
+    "success": true,
+    "factors": [
+      4294966297,
+      4294966427
+    ],
+    "geodesic_distance": 0.04301005511556773,
+    "execution_time": 4.26508903503418,
+    "target": 18446736050711510819,
+    "range_radius": 10000000
+  },
+  "timestamp": "1762506854.573385"
+}

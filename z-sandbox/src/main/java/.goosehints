@@ -1,0 +1,18 @@
+Java kernel hints for z-sandbox
+
+Context to load immediately
+@build.gradle
+
+Scope
+- High-precision kernels live here. Use BigDecimal for precision-critical math; BigInteger for integer ops.
+
+Standards
+- Keep methods pure and testable. Throw IllegalArgumentException for invalid inputs (n ≤ 0). Log approximations.
+- Maintain invariants and precision. Add JUnit tests in src/test/java and run via ./gradlew test.
+- Prefer efficient search strategies; avoid naive O(N) scans in production paths. Use streams sparingly in hot paths.
+
+Build & Test
+- ./gradlew build && ./gradlew test (must pass before PRs).
+
+Interop
+- Exchange data via CSV with python/; document schema in docs/.

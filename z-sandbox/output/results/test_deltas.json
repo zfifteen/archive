@@ -1,0 +1,51 @@
+{
+  "baseline": "test_mc",
+  "n_bootstrap": 1000,
+  "comparisons": {
+    "test_z_qmc": {
+      "test": "test_z_qmc",
+      "metrics": {
+        "unique_count": {
+          "metric": "unique_count",
+          "baseline": {
+            "mean": 10.0,
+            "std": 0.0,
+            "lower": 10.0,
+            "upper": 10.0
+          },
+          "test": {
+            "mean": 31.3,
+            "std": 1.3453624047073711,
+            "lower": 30.5,
+            "upper": 32.1
+          },
+          "delta_percent": 213.0,
+          "delta_ci_95": {
+            "lower": 204.0,
+            "upper": 222.025
+          }
+        },
+        "trials": {
+          "metric": "trials",
+          "baseline": {
+            "mean": 10.0,
+            "std": 0.0,
+            "lower": 10.0,
+            "upper": 10.0
+          },
+          "test": {
+            "mean": 31.3,
+            "std": 1.3453624047073711,
+            "lower": 30.4,
+            "upper": 32.2
+          },
+          "delta_percent": 213.0,
+          "delta_ci_95": {
+            "lower": 204.99999999999997,
+            "upper": 221.0
+          }
+        }
+      }
+    }
+  }
+}

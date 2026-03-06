@@ -1,0 +1,61 @@
+{
+  "variance_analysis": {
+    "baseline_mean": 0.0719243224411847,
+    "baseline_std": 0.0010684075294314795,
+    "categorical_mean": 0.07139690186690983,
+    "categorical_std": 3.925231146709438e-17,
+    "ratio": 0.992667006704079,
+    "reduction_percent": 0.7332993295920964,
+    "t_statistic": 0.7734026695720528,
+    "p_value": 0.45911503715496005,
+    "significant": false,
+    "n_baseline": 8,
+    "n_categorical": 3
+  },
+  "timing_comparison": {
+    "embedding": {
+      "baseline_us_mean": 278.4041484999804,
+      "baseline_us_std": 36.58813307504264,
+      "categorical_us_mean": 702.1011260000023,
+      "categorical_us_std": 9.717523737321235,
+      "overhead_ratio": 2.5218773850277296
+    },
+    "distance": {
+      "baseline_us_mean": 78.8390317500074,
+      "baseline_us_std": 1.8562603718834678,
+      "categorical_us_mean": 93.93036466667581,
+      "categorical_us_std": 0.393841524911071,
+      "overhead_ratio": 1.1914195618804895
+    }
+  },
+  "convergence_metrics": {
+    "min_distance_to_p": {
+      "baseline_mean": 0.001969108247135876,
+      "categorical_mean": 0.001772329601147294,
+      "improvement_percent": 9.99328738147341
+    },
+    "min_distance_to_q": {
+      "baseline_mean": 0.0003258663489031851,
+      "categorical_mean": 0.00021580918925201818,
+      "improvement_percent": 33.77371122289921
+    }
+  },
+  "verdict": {
+    "verdict": "FALSIFIED",
+    "confidence": "HIGH",
+    "falsified_reasons": [
+      "Variance ratio 0.993 > 0.95 (less than 5% reduction)",
+      "No significant variance difference (p=0.4591 > 0.05)",
+      "Computational overhead 2.52\u00d7 > 2.0\u00d7"
+    ],
+    "proven_evidence": [
+      "Categorical decomposition shows dimensional structure"
+    ],
+    "criteria_summary": {
+      "variance_reduction": false,
+      "statistical_significance": false,
+      "acceptable_overhead": false,
+      "dimensional_insights": true
+    }
+  }
+}

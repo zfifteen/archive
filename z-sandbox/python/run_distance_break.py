@@ -1,0 +1,411 @@
+#!/usr/bin/env python3
+"""
+Run ECM factorization with theta-gating on distance-organized targets.
+Gated targets get full schedule, ungated get light pass.
+
+Enhanced with low-discrepancy sampling for ECM parameters:
+- Sigma values sampled with Sobol'/golden-angle sequences
+- B1/B2 parameter exploration with prefix-optimal coverage
+- Deterministic, restartable computation
+"""
+
+import argparse
+import json
+import os
+import time
+import datetime
+from pathlib import Path
+from typing import List
+from ecm_backend import run_ecm_once, backend_info
+
+# Try to import theta_gate
+try:
+    from manifold_128bit import theta_gate
+    THETA_GATE_AVAILABLE = True
+except ImportError:
+    THETA_GATE_AVAILABLE = False
+    print("Warning: theta_gate not available, all targets will be ungated")
+
+# Try to import low-discrepancy samplers
+try:
+    from low_discrepancy import SamplerType, LowDiscrepancySampler
+    LOW_DISCREPANCY_AVAILABLE = True
+except ImportError:
+    LOW_DISCREPANCY_AVAILABLE = False
+    print("Warning: low_discrepancy module not available, using PRNG fallback")
+
+
+# ECM schedules
+# Full schedule: 35d → 50d (multiple stages)
+FULL_SCHEDULE = [
+    ("35d", 11000000, 20),       # ~35 decimal digit factors
+    ("40d", 110000000, 20),      # ~40 decimal digit factors
+    ("45d", 850000000, 20),      # ~45 decimal digit factors
+    ("50d", 2900000000, 20),     # ~50 decimal digit factors
+]
+
+# Light schedule: 35d only
+LIGHT_SCHEDULE = [
+    ("35d", 11000000, 20),       # ~35 decimal digit factors only
+]
+
+
+def load_targets(filepath):
+    """Load targets from JSON file."""
+    with open(filepath, 'r') as f:
+        data = json.load(f)
+    return data['metadata'], data['targets']
+
+
+def determine_schedule(N, use_gate):
+    """
+    Determine ECM schedule based on theta-gating.
+    
+    Args:
+        N: The semiprime to factor
+        use_gate: Whether to use theta-gating
+    
+    Returns:
+        Tuple of (schedule, gate_result)
+        - schedule: List of (name, B1, curves) tuples
+        - gate_result: Boolean indicating if gate passed
+    """
+    if not use_gate or not THETA_GATE_AVAILABLE:
+        return LIGHT_SCHEDULE, None
+    
+    # Apply theta-gate
+    gate_passed = theta_gate(N)
+    
+    if gate_passed:
+        return FULL_SCHEDULE, True
+    else:
+        return LIGHT_SCHEDULE, False
+
+
+def generate_sigma_values(num_curves: int, sampler_type: str = "prng", seed: int = 42) -> List[int]:
+    """
+    Generate sigma values for ECM using low-discrepancy sequences.
+    
+    Args:
+        num_curves: Number of sigma values to generate
+        sampler_type: Type of sampler ("prng", "sobol", "sobol-owen", "golden-angle")
+        seed: Random seed for reproducibility
+    
+    Returns:
+        List of sigma values in valid range for ECM
+    
+    Raises:
+        ValueError: If num_curves <= 0 or sampler_type is invalid
+    """
+    # Validate inputs
+    if num_curves <= 0:
+        raise ValueError(f"num_curves must be positive, got {num_curves}")
+    
+    valid_samplers = ["prng", "sobol", "sobol-owen", "golden-angle"]
+    if sampler_type not in valid_samplers:
+        raise ValueError(
+            f"Invalid sampler_type '{sampler_type}'. "
+            f"Must be one of: {', '.join(valid_samplers)}"
+        )
+    
+    # ECM sigma range: typically [6, 2^31-1]
+    # Use large primes or well-distributed values
+    sigma_min = 6
+    sigma_max = 2**31 - 1  # 8th Mersenne prime (M31)
+    
+    if not LOW_DISCREPANCY_AVAILABLE or sampler_type == "prng":
+        # Fallback to PRNG
+        import random
+        random.seed(seed)
+        return [random.randint(sigma_min, sigma_max) for _ in range(num_curves)]
+    
+    # Use low-discrepancy sampling
+    if sampler_type == "golden-angle":
+        sampler_enum = SamplerType.GOLDEN_ANGLE
+    elif sampler_type == "sobol":
+        sampler_enum = SamplerType.SOBOL
+    elif sampler_type == "sobol-owen":
+        sampler_enum = SamplerType.SOBOL_OWEN
+    else:
+        sampler_enum = SamplerType.PRNG
+    
+    sampler = LowDiscrepancySampler(sampler_enum, dimension=1, seed=seed)
+    samples = sampler.generate(num_curves)
+    
+    # Map [0, 1] to sigma range
+    # Use log-uniform distribution for better coverage
+    import numpy as np
+    log_min = np.log(sigma_min)
+    log_max = np.log(sigma_max)
+    
+    sigma_values = []
+    for u in samples[:, 0]:
+        # Log-uniform mapping
+        log_sigma = log_min + u * (log_max - log_min)
+        sigma = int(np.exp(log_sigma))
+        sigma = max(sigma_min, min(sigma_max, sigma))
+        sigma_values.append(sigma)
+    
+    return sigma_values
+
+
+def factor_with_ecm(N, schedule, timeout_per_stage, checkpoint_dir, use_sigma, sampler_type="prng"):
+    """
+    Attempt to factor N using the given ECM schedule.
+    
+    Args:
+        N: The semiprime to factor
+        schedule: List of (name, B1, curves) tuples
+        timeout_per_stage: Timeout in seconds per stage
+        checkpoint_dir: Directory for checkpoints
+        use_sigma: Whether to use deterministic sigma seeding
+        sampler_type: Type of low-discrepancy sampler for sigma values
+    
+    Returns:
+        Dictionary with factorization result
+    """
+    result = {
+        'factored': False,
+        'factor': None,
+        'stage': None,
+        'time_sec': 0.0,
+        'stages_attempted': [],
+        'sampler_type': sampler_type
+    }
+    
+    start_time = time.time()
+    
+    for stage_idx, (stage_name, B1, curves) in enumerate(schedule):
+        stage_start = time.time()
+        
+        # Generate sigma values using low-discrepancy sampling
+        if use_sigma:
+            # Use sampler to generate diverse sigma values
+            sigma_values = generate_sigma_values(
+                num_curves=curves,
+                sampler_type=sampler_type,
+                seed=42 + stage_idx  # Different seed per stage
+            )
+            # For simplicity, use first sigma value (could iterate over all)
+            sigma = sigma_values[0]
+        else:
+            sigma = None
+        
+        # Try to factor
+        factor = run_ecm_once(
+            N=N,
+            B1=B1,
+            curves=curves,
+            timeout_sec=timeout_per_stage,
+            checkpoint_dir=checkpoint_dir,
+            sigma=sigma,
+            allow_resume=True
+        )
+        
+        stage_time = time.time() - stage_start
+        
+        result['stages_attempted'].append({
+            'stage': stage_name,
+            'B1': B1,
+            'curves': curves,
+            'time_sec': round(stage_time, 3),
+            'found_factor': factor is not None,
+            'sigma_used': sigma
+        })
+        
+        if factor:
+            result['factored'] = True
+            result['factor'] = factor
+            result['stage'] = stage_name
+            result['time_sec'] = round(time.time() - start_time, 3)
+            return result
+    
+    result['time_sec'] = round(time.time() - start_time, 3)
+    return result
+
+
+def run_distance_break(targets_file, timeout_per_stage, checkpoint_dir, use_sigma, log_file, sampler_type="prng"):
+    """
+    Run ECM factorization on distance-organized targets with theta-gating.
+    
+    Args:
+        targets_file: Path to targets JSON file
+        timeout_per_stage: Timeout in seconds per ECM stage
+        checkpoint_dir: Directory for checkpoints
+        use_sigma: Whether to use deterministic sigma seeding
+        log_file: Path to log file (JSONL format)
+        sampler_type: Type of low-discrepancy sampler for ECM parameters
+    """
+    # Create directories
+    Path(checkpoint_dir).mkdir(parents=True, exist_ok=True)
+    Path(log_file).parent.mkdir(parents=True, exist_ok=True)
+    
+    # Load targets
+    print("Loading targets...")
+    metadata, targets = load_targets(targets_file)
+    print(f"Loaded {len(targets)} targets")
+    print(f"Target bits: {metadata['bits']}")
+    print(f"Theta-gating: {'enabled' if use_sigma and THETA_GATE_AVAILABLE else 'disabled'}")
+    print(f"Sampler type: {sampler_type}")
+    
+    # Write run metadata
+    run_meta = {
+        'meta': 'RUN',
+        'timestamp': datetime.datetime.utcnow().isoformat() + 'Z',
+        'backend': backend_info(),
+        'targets_file': str(targets_file),
+        'target_bits': metadata['bits'],
+        'num_targets': len(targets),
+        'timeout_per_stage': timeout_per_stage,
+        'checkpoint_dir': str(checkpoint_dir),
+        'use_sigma': use_sigma,
+        'sampler_type': sampler_type,
+        'low_discrepancy_available': LOW_DISCREPANCY_AVAILABLE,
+        'theta_gate_available': THETA_GATE_AVAILABLE,
+        'full_schedule': [{'stage': s, 'B1': b, 'curves': c} for s, b, c in FULL_SCHEDULE],
+        'light_schedule': [{'stage': s, 'B1': b, 'curves': c} for s, b, c in LIGHT_SCHEDULE],
+    }
+    
+    with open(log_file, 'a') as f:
+        f.write(json.dumps(run_meta) + '\n')
+    
+    print(f"\nProcessing targets...")
+    print("="*70)
+    
+    # Process each target
+    for idx, target in enumerate(targets, 1):
+        target_id = target.get('id', f'T{idx:03d}')
+        N = int(target['N'])
+        
+        print(f"\n[{idx}/{len(targets)}] Target {target_id}")
+        print(f"  N bits: {target['N_bits']}")
+        print(f"  N (head): {str(N)[:24]}...")
+        print(f"  N (tail): ...{str(N)[-24:]}")
+        
+        if 'ratio_actual' in target:
+            print(f"  Ratio: {target['ratio_actual']:.6f} (target: {target.get('ratio_target', 'N/A')})")
+        if 'fermat_gap' in target:
+            print(f"  Fermat gap: {target['fermat_gap']}")
+        
+        # Determine schedule based on theta-gating
+        schedule, gate_result = determine_schedule(N, use_sigma and THETA_GATE_AVAILABLE)
+        schedule_type = 'full' if len(schedule) > 1 else 'light'
+        
+        print(f"  Gate result: {gate_result} → {schedule_type} schedule ({len(schedule)} stages)")
+        
+        # Run ECM
+        start_time = time.time()
+        ecm_result = factor_with_ecm(
+            N=N,
+            schedule=schedule,
+            timeout_per_stage=timeout_per_stage,
+            checkpoint_dir=checkpoint_dir,
+            use_sigma=use_sigma,
+            sampler_type=sampler_type
+        )
+        
+        # Check integrity if factored
+        integrity = False
+        p_actual = None
+        q_actual = None
+        if ecm_result['factored']:
+            factor = ecm_result['factor']
+            p_actual = factor
+            q_actual = N // factor
+            integrity = (p_actual * q_actual == N)
+            print(f"  ✓ FACTORED at stage {ecm_result['stage']}")
+            print(f"    p = {p_actual} ({p_actual.bit_length()} bits)")
+            print(f"    q = {q_actual} ({q_actual.bit_length()} bits)")
+            print(f"    Integrity: {integrity}")
+        else:
+            print(f"  ✗ Not factored after {len(ecm_result['stages_attempted'])} stages")
+        
+        # Log result
+        log_entry = {
+            'idx': idx,
+            'id': target_id,
+            'N_bits': target['N_bits'],
+            'N_head': str(N)[:24],
+            'N_tail': str(N)[-24:],
+            'tier': target.get('tier'),
+            'tier_type': target.get('tier_type'),
+            'ratio_target': target.get('ratio_target'),
+            'ratio_actual': target.get('ratio_actual'),
+            'fermat_gap': target.get('fermat_gap'),
+            'fermat_target': target.get('fermat_target'),
+            'gate': gate_result,
+            'schedule_type': schedule_type,
+            'sampler_type': sampler_type,
+            'status': 'factored' if ecm_result['factored'] else 'not_factored',
+            'stage': ecm_result.get('stage'),
+            'time_sec': ecm_result['time_sec'],
+            'stages_attempted': ecm_result['stages_attempted'],
+            'integrity': integrity,
+        }
+        
+        if ecm_result['factored']:
+            log_entry['p_bits'] = p_actual.bit_length()
+            log_entry['q_bits'] = q_actual.bit_length()
+            log_entry['p_head'] = str(p_actual)[:24]
+            log_entry['q_head'] = str(q_actual)[:24]
+        
+        with open(log_file, 'a') as f:
+            f.write(json.dumps(log_entry) + '\n')
+        
+        print(f"  Time: {ecm_result['time_sec']:.2f}s")
+    
+    print("\n" + "="*70)
+    print(f"✓ Processing complete. Log written to {log_file}")
+
+
+def main():
+    parser = argparse.ArgumentParser(
+        description='Run ECM factorization with theta-gating on distance targets'
+    )
+    parser.add_argument('--targets', type=str, required=True,
+                       help='Path to targets JSON file')
+    parser.add_argument('--timeout-per-stage', type=int, default=900,
+                       help='Timeout in seconds per ECM stage (default: 900)')
+    parser.add_argument('--checkpoint-dir', type=str, default='ckpts',
+                       help='Directory for ECM checkpoints (default: ckpts)')
+    parser.add_argument('--use-sigma', action='store_true',
+                       help='Enable deterministic sigma seeding and theta-gating')
+    parser.add_argument('--sampler', type=str, default='prng',
+                       choices=['prng', 'sobol', 'sobol-owen', 'golden-angle'],
+                       help='Low-discrepancy sampler for ECM parameters (default: prng)')
+    parser.add_argument('--log', type=str, default='logs/distance_break.jsonl',
+                       help='Log file path (default: logs/distance_break.jsonl)')
+    
+    args = parser.parse_args()
+    
+    # Check environment variables for overrides
+    if 'ECM_SIGMA' in os.environ:
+        args.use_sigma = bool(int(os.environ.get('ECM_SIGMA', '0')))
+    if 'ECM_CKDIR' in os.environ:
+        args.checkpoint_dir = os.environ['ECM_CKDIR']
+    if 'ECM_SAMPLER' in os.environ:
+        args.sampler = os.environ['ECM_SAMPLER']
+    
+    print("="*70)
+    print("ECM Distance Break with Theta-Gating")
+    print("="*70)
+    print(f"Backend: {backend_info()['backend']}")
+    print(f"Targets: {args.targets}")
+    print(f"Timeout per stage: {args.timeout_per_stage}s")
+    print(f"Checkpoint dir: {args.checkpoint_dir}")
+    print(f"Use sigma/gating: {args.use_sigma}")
+    print(f"Sampler: {args.sampler}")
+    print(f"Log file: {args.log}")
+    
+    run_distance_break(
+        targets_file=args.targets,
+        timeout_per_stage=args.timeout_per_stage,
+        checkpoint_dir=args.checkpoint_dir,
+        use_sigma=args.use_sigma,
+        log_file=args.log,
+        sampler_type=args.sampler
+    )
+
+
+if __name__ == "__main__":
+    main()

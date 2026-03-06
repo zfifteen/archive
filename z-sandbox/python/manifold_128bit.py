@@ -1,0 +1,181 @@
+# DEPRECATED: This Python prototype has been superseded by the Java BigDecimal implementation in unifiedframework.* classes.
+#!/usr/bin/env python3
+"""
+128-Bit Balanced Semiprime Factorization via Geodesic Validation Assault (GVA)
+Scaled with A* pathfinding, adaptive threshold, parallelization.
+"""
+
+import math
+import heapq
+import multiprocessing
+from mpmath import *
+import sympy
+
+# High precision for 128-bit
+mp.dps = 50
+
+phi = (1 + sqrt(5)) / 2
+c = math.exp(2)
+
+def adaptive_threshold(N):
+    """
+    Adaptive threshold for GVA based on curvature.
+    ε = 0.2 / (1 + κ)
+    """
+    kappa = 4 * math.log(N + 1) / c
+    return 0.2 / (1 + kappa)
+
+def embed_torus_geodesic(n, dims):
+    """
+    Torus geodesic embedding for GVA.
+    Z = A(B / c) with c = e², iterative θ'(n, k)
+    """
+    x = mpf(n) / c
+    k = 0.3 / math.log2(math.log2(float(n) + 1))  # adaptive k for 128-bit scaling
+    coords = []
+    for _ in range(dims):
+        x = phi * power(frac(x / phi), k)
+        coords.append(frac(x))
+    return tuple(coords)
+
+def riemannian_distance(coords1, coords2, N):
+    """
+    Riemannian distance on torus with domain-specific curvature.
+    κ(n) = 4 · ln(n+1) / e²
+    """
+    kappa = 4 * math.log(N + 1) / c
+    deltas = [min(abs(c1 - c2), 1 - abs(c1 - c2)) for c1, c2 in zip(coords1, coords2)]
+    dist_sq = sum((delta * (1 + kappa * delta))**2 for delta in deltas)
+    return math.sqrt(dist_sq)
+
+def check_balance(p, q):
+    """
+    Check if p and q are balanced: |ln(p/q)| <= ln(2)
+    """
+    if p == 0 or q == 0:
+        return False
+    ratio = abs(math.log2(p / q))
+    return ratio <= 1
+
+def gva_factorize_128bit(N, dims, R=1000000, K=256):
+    """
+    GVA for 128-bit balanced semiprimes with true geometry-guided search.
+    Computes Riemannian distances for all candidates in [-R, R] before checking divisibility,
+    ranks by distance, and tests modulus on top-K candidates.
+    """
+    # Precompute outside loops
+    epsilon = adaptive_threshold(N)
+    emb_N = embed_torus_geodesic(N, dims)
+    sqrtN = int(mpf(N).sqrt())
+    
+    # Generate all candidates and compute distances without modulus checks
+    candidates = []
+    for offset in range(-R, R+1):
+        p = sqrtN + offset
+        if p <= 1 or p >= N:
+            continue
+        emb_p = embed_torus_geodesic(p, dims)
+        dist = riemannian_distance(emb_N, emb_p, N)
+        candidates.append((dist, p))
+    
+    # Sort candidates by distance ascending (geometry-guided ranking)
+    candidates.sort()
+    
+    # Test divisibility only on top-K closest by distance
+    for dist, p in candidates[:K]:
+        if N % p != 0:
+            continue
+        q = N // p
+        if not sympy.isprime(p) or not sympy.isprime(q) or not check_balance(p, q):
+            continue
+        
+        # Compute distance for q and check combined condition
+        emb_q = embed_torus_geodesic(q, dims)
+        dist_q = riemannian_distance(emb_N, emb_q, N)
+        min_dist = min(dist, dist_q)
+        
+        if min_dist < epsilon:
+            return p, q, min_dist
+    
+    return None, None, None
+
+if __name__ == "__main__":
+    # Sample 128-bit N
+    p = int(sympy.nextprime(2**63 + 42))
+    q = int(sympy.nextprime(p + 100))
+    N = p * q
+    print(f"Sample 128-bit N = {N} ({N.bit_length()} bits)")
+
+    import time
+    start = time.time()
+    for dims in [5, 7, 9, 11, 13, 15, 17, 21]:
+        print(f"Testing dims={dims}")
+        result = gva_factorize_128bit(N, dims)
+        print(f"Time: {end - start:.2f}s")
+    end = time.time()
+
+
+def theta_prime(n, k=mpf('0.3')):
+    if n < 2: raise ValueError('n must be >=2')
+    mod_phi = fmod(n, phi)
+    return phi * (mod_phi / phi) ** k
+
+
+def theta_gate(N, width_factor=0.155, k=0.3):
+    """
+    Geometric gate function: returns True if N's geometry suggests
+    it's worth full ECM schedule, False otherwise.
+    
+    The gate checks if factors are likely close to sqrt(N) based on
+    theta-prime geometry.
+    
+    Args:
+        N: The semiprime to evaluate
+        width_factor: Width of the acceptance region (default: 0.155)
+        k: Exponent for theta_prime (default: 0.3)
+    
+    Returns:
+        True if geometry suggests full schedule, False for light pass only
+    """
+    if N < 4:
+        return False
+    
+    try:
+        # Convert to mpmath for precision
+        n_mp = mpf(N)
+        k_mp = mpf(k)
+        
+        # Compute theta_prime
+        theta = theta_prime(n_mp, k_mp)
+        
+        # Compute bounds
+        width = mpf(width_factor)
+        bound_lower = theta - width / 2
+        bound_upper = theta + width / 2
+        
+        # Check if sqrt(N) falls within theta bounds
+        # This is a proxy for "factors are close to sqrt(N)"
+        sqrt_n = n_mp.sqrt()
+        
+        # Normalize sqrt_n to [0, phi) range like theta_prime does
+        sqrt_n_norm = fmod(sqrt_n, phi)
+        
+        # Check if normalized sqrt(N) is within bounds
+        in_bounds = bound_lower <= sqrt_n_norm <= bound_upper
+        
+        return bool(in_bounds)
+    
+    except Exception:
+        # On any error, default to False (no special treatment)
+        return False
+
+
+if __name__ == '__main__':
+    # Example: Bound for GVA embedding
+    n_example = mpf(1000)
+    theta = theta_prime(n_example)
+    width_factor = mpf('0.226')
+    bound_lower = theta - width_factor / 2
+    bound_upper = theta + width_factor / 2
+    print(f'Bound for n=1000: [{bound_lower}, {bound_upper}]')
+

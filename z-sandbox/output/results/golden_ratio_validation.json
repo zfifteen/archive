@@ -1,0 +1,111 @@
+{
+  "method": "Golden Ratio Geometric Factorization",
+  "embedding": "11D Pentagonal \u03c6\u207f Scaling with Z5D Axioms",
+  "algorithm": "Distance-Guided Gradient Descent + Adaptive Exhaustive Check",
+  "test_range": "10-100 bits",
+  "total_tests": 10,
+  "successes": 10,
+  "success_rate": "100.0%",
+  "results": [
+    {
+      "bits": "10-bit",
+      "N": "899",
+      "p": "29",
+      "q": "31",
+      "success": true,
+      "time_seconds": 0.0,
+      "p_found": "29",
+      "q_found": "31"
+    },
+    {
+      "bits": "14-bit",
+      "N": "10403",
+      "p": "101",
+      "q": "103",
+      "success": true,
+      "time_seconds": 0.0,
+      "p_found": "101",
+      "q_found": "103"
+    },
+    {
+      "bits": "20-bit",
+      "N": "1022117",
+      "p": "1009",
+      "q": "1013",
+      "success": true,
+      "time_seconds": 0.025,
+      "p_found": "1009",
+      "q_found": "1013"
+    },
+    {
+      "bits": "27-bit",
+      "N": "100160063",
+      "p": "10007",
+      "q": "10009",
+      "success": true,
+      "time_seconds": 0.001,
+      "p_found": "10007",
+      "q_found": "10009"
+    },
+    {
+      "bits": "30-bit",
+      "N": "304081243",
+      "p": "17387",
+      "q": "17489",
+      "success": true,
+      "time_seconds": 0.147,
+      "p_found": "17387",
+      "q_found": "17489"
+    },
+    {
+      "bits": "40-bit",
+      "N": "275996822291",
+      "p": "525299",
+      "q": "525409",
+      "success": true,
+      "time_seconds": 0.205,
+      "p_found": "525299",
+      "q_found": "525409"
+    },
+    {
+      "bits": "50-bit",
+      "N": "281511082433039",
+      "p": "16778227",
+      "q": "16778357",
+      "success": true,
+      "time_seconds": 0.793,
+      "p_found": "16778227",
+      "q_found": "16778357"
+    },
+    {
+      "bits": "60-bit",
+      "N": "288241168431670469",
+      "p": "536880593",
+      "q": "536881333",
+      "success": true,
+      "time_seconds": 1.823,
+      "p_found": "536880593",
+      "q_found": "536881333"
+    },
+    {
+      "bits": "80-bit",
+      "N": "302231462301171570362407",
+      "p": "549755820109",
+      "q": "549755821123",
+      "success": true,
+      "time_seconds": 2.697,
+      "p_found": "549755820109",
+      "q_found": "549755821123"
+    },
+    {
+      "bits": "100-bit",
+      "N": "316912650067013683250463306601",
+      "p": "562949953430023",
+      "q": "562949953430287",
+      "success": true,
+      "time_seconds": 6.116,
+      "p_found": "562949953430023",
+      "q_found": "562949953430287"
+    }
+  ]
+}

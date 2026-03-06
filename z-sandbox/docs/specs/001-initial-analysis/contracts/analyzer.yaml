@@ -1,0 +1,119 @@
+openapi: 3.0.3
+info:
+  title: Initial Analysis Service
+  version: 0.1.0
+  description: >
+    CLI-accessible service definition documenting inputs/outputs for the initial
+    analyzer that inspects spec/plan/tasks artifacts and emits readiness reports.
+servers:
+  - url: file://specs/001-initial-analysis/analysis
+    description: Local CLI execution; results stored under feature directory.
+paths:
+  /analysis/run:
+    post:
+      summary: Execute analyzer for a feature directory
+      operationId: runAnalysis
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AnalysisRequest'
+      responses:
+        '200':
+          description: Analyzer completed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnalysisResponse'
+        '422':
+          description: Missing artifact or Constitution violation detected
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FailureResponse'
+components:
+  schemas:
+    AnalysisRequest:
+      type: object
+      required:
+        - featureId
+        - specificationPath
+        - planPath
+        - tasksPath
+      properties:
+        featureId:
+          type: string
+          description: Feature directory identifier (e.g., 001-initial-analysis)
+        specificationPath:
+          type: string
+          description: Absolute path to spec.md being analyzed
+        planPath:
+          type: string
+        tasksPath:
+          type: string
+        outputDir:
+          type: string
+          description: Target directory for analyzer outputs
+        maxFindings:
+          type: integer
+          default: 50
+        seed:
+          type: integer
+          default: 42
+    AnalysisResponse:
+      type: object
+      required:
+        - manifestPath
+        - reportPath
+        - findings
+      properties:
+        manifestPath:
+          type: string
+        reportPath:
+          type: string
+        coverageSummaryPath:
+          type: string
+        findings:
+          type: array
+          items:
+            $ref: '#/components/schemas/Finding'
+    FailureResponse:
+      type: object
+      required:
+        - severity
+        - message
+      properties:
+        severity:
+          type: string
+          enum: [CRITICAL, HIGH, MEDIUM, LOW]
+        message:
+          type: string
+        missingArtifacts:
+          type: array
+          items:
+            type: string
+    Finding:
+      type: object
+      required:
+        - id
+        - category
+        - severity
+        - summary
+      properties:
+        id:
+          type: string
+        category:
+          type: string
+          enum: [Duplication, Ambiguity, Underspecification, Constitution, Coverage, Inconsistency]
+        severity:
+          type: string
+          enum: [CRITICAL, HIGH, MEDIUM, LOW]
+        locations:
+          type: array
+          items:
+            type: string
+        summary:
+          type: string
+        recommendation:
+          type: string

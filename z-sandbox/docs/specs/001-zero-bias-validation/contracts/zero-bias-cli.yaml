@@ -1,0 +1,180 @@
+openapi: 3.0.3
+info:
+  title: Zero-Bias Geometric Resonance CLI
+  version: 0.1.0
+servers:
+  - url: file://$REPO_ROOT
+paths:
+  /gradle/zero-bias-run:
+    post:
+      summary: Execute zero-bias factorization
+      operationId: runZeroBias
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ZeroBiasRequest'
+      responses:
+        '200':
+          description: Factors found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ZeroBiasResponse'
+        '417':
+          description: No factor found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FailureResponse'
+  /gradle/control-run:
+    post:
+      summary: Execute control scenario (expected failure)
+      operationId: runControl
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ControlRequest'
+      responses:
+        '200':
+          description: Control executed (failure documented)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ControlResponse'
+  /audit/novelty:
+    post:
+      summary: Run repo-wide novelty audit
+      operationId: runNoveltyAudit
+      responses:
+        '200':
+          description: Audit complete
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NoveltyAuditResponse'
+components:
+  schemas:
+    ZeroBiasRequest:
+      type: object
+      required:
+        - N
+        - precision
+        - samples
+        - mSpan
+        - biasPresent
+      # Zero-bias invariant: No bias input allowed; biasPresent must be false
+      properties:
+        N:
+          type: string
+          description: Semiprime modulus
+        precision:
+          type: integer
+          minimum: 300
+        samples:
+          type: integer
+          minimum: 1
+        kLo:
+          type: number
+          default: 0.24
+        kHi:
+          type: number
+          default: 0.32
+        kStep:
+          type: number
+          default: 0.0001
+        mSpan:
+          type: integer
+          default: 7
+        J:
+          type: integer
+          default: 6
+        threshold:
+          type: number
+          description: Fraction of (2J+1)
+        dirichletNormalized:
+          type: boolean
+          const: true
+        snapMode:
+          type: string
+          enum: [phase_corrected_nint]
+        biasPresent:
+          type: boolean
+          const: false
+    ZeroBiasResponse:
+      type: object
+      required:
+        - runId
+        - factors
+        - artifacts
+        - provenance
+      properties:
+        runId:
+          type: string
+        factors:
+          type: object
+          properties:
+            p:
+              type: string
+            q:
+              type: string
+            verification:
+              type: boolean
+        artifacts:
+          type: array
+          items:
+            type: string
+        provenance:
+          type: object
+          properties:
+            biasPresent:
+              type: boolean
+              const: false
+            commitSha:
+              type: string
+            dirichletNormalized:
+              type: boolean
+            snapMode:
+              type: string
+    ControlRequest:
+      allOf:
+        - $ref: '#/components/schemas/ZeroBiasRequest'
+        - type: object
+          properties:
+            controlId:
+              type: string
+              enum: [gate_tight, snap_disabled]
+    ControlResponse:
+      type: object
+      required:
+        - controlId
+        - outcome
+        - artifacts
+      properties:
+        controlId:
+          type: string
+        outcome:
+          type: string
+        artifacts:
+          type: array
+          items:
+            type: string
+    FailureResponse:
+      type: object
+      properties:
+        reason:
+          type: string
+        diagnostics:
+          type: string
+    NoveltyAuditResponse:
+      type: object
+      properties:
+        hits:
+          type: array
+          items:
+            type: string
+        outputPath:
+          type: string

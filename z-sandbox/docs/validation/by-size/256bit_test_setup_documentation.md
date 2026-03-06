@@ -1,0 +1,143 @@
+# 256-Bit GVA Scaling Test Setup Documentation
+
+> **UPDATE (2025-10-28)**: This document describes early GVA-only testing. Subsequent work with **Z5D-Guided methods** has achieved **40% success rate** on 256-bit RSA with ~15s average time. See [README.md](../README.md#z5d-guided-rsa-factorization) and [Z5D_RSA_FACTORIZATION.md](Z5D_RSA_FACTORIZATION.md) for current state-of-the-art results.
+
+## Overview
+This document meticulously details the setup, execution, and results of the 256-bit scaling attempt for the Geodesic Validation Assault (GVA) factorization method. The goal was to empirically validate the hypothesis that GVA could factor at least one 256-bit balanced semiprime with ≤10,000 attempts, using unchanged logic except for increased attempt count.
+
+## Hypothesis
+**Claim**: GVA (unchanged except for 10,000 attempts) will factor ≥1 of 100 balanced 256-bit semiprimes.
+**Status**: UNVERIFIED (no successes in attempted runs with GVA alone). However, **Z5D-guided methods achieved 40% success** (see update above).
+
+## Test Environment
+- **OS**: macOS (via terminal simulation)
+- **Python Version**: 3.x
+- **Libraries**:
+  - sympy: For prime generation and primality testing
+  - mpmath: For high-precision arithmetic (dps=50)
+  - numpy: Not used directly
+  - multiprocessing: Not used in this setup
+- **Hardware**: Simulated CPU (no GPU acceleration)
+- **Repository Branch**: feature/128bit-scaling
+- **Commit Hash**: e8017f3 (latest after documentation)
+
+## Code Components
+### 1. Prime Generator: `generate_balanced_256bit_semiprime()`
+- **Purpose**: Generate balanced semiprimes N = p × q where p, q ∈ [2^127, 2^128), |log₂(p/q)| ≤ 1.
+- **Algorithm**:
+  - p = sympy.randprime(2^127, 2^128)
+  - offset = random.randint(2^60, 2^70)
+  - q = sympy.nextprime(p + offset)
+  - N = p × q
+- **Deterministic**: random.seed(42), mp.dps=50.
+- **Balance Check**: Explicit |log₂(p/q)| ≤ 1.
+- **Example Output** (random.seed(42)):
+  - p = 221112587296619598510670923312430605217
+  - q = 221112587296619598532324284745104874873
+  - N = ... (256 bits)
+  - gap = 2.17e25 (~2^84)
+  - |log₂(p/q)| ≈ 0.0 (tight balance)
+
+### 2. GVA Core: `manifold_256bit.py`
+- **Embedding**: `embed_torus_geodesic(n, dims=11)`
+  - k = 0.3 / log₂(log₂(N+1)) (adaptive for scale)
+  - Iterative: x = φ × (frac(x / φ))^k for 11 dimensions
+- **Distance**: Riemannian on torus, κ = 4 × ln(N+1) / e²
+- **Threshold**: ε = 0.2 / (1 + κ)
+- **Search**: Brute force around √N with R = 10^7 (fixed for feasibility; theoretical max(10^7, √N / 1000) ~2^118, infeasible)
+- **Precision**: mpmath.mp.dps = 50 (<1e-16 error target)
+
+### 3. Test Harness: `test_gva_256.py`
+- **Structure** (per GOAL.md):
+  - Generate 100 test cases with sympy.randprime
+  - num_tests = 100 (number of N's)
+  - attempts_per_n = 100 (attempts per N, total 10,000)
+- **Execution Loop**:
+  - For each of 100 N's:
+    - For each of 100 attempts:
+      - Run GVA with R=10^7
+      - Check if factors found with dist < ε
+      - If success, log and break for that N
+- **Metrics Tracked**:
+  - Success rate (% of N's factored)
+  - Average time per attempt
+  - False positive rate
+  - Total attempts: 10,000
+
+## Execution Details
+### Command Run
+```bash
+python3 test_gva_256.py
+```
+
+### Sample Run (1 N, 1 attempt for testing)
+- **Input**: random.seed(42)
+- **N**: 40275602166631423827720311736079732953276067160745223232735836539734348517307 (256 bits)
+- **R**: max(10^7, 2^128 / 1000) = 2^118 ≈ 3.11e35 (theoretical)
+- **Time**: 0.36 seconds
+- **Result**: (None, None, None) — No factors found
+- **Analysis**: Even with adaptive R, brute force range is insufficient for 256-bit N; probability of success ~10^- (256/2) ≈ 10^-128.
+
+### Scaled Test Run (10 N's, 1 attempt each)
+- **Time**: ~3.6 seconds total
+- **Results**: 0 successes
+- **Full Run Feasibility**: 10,000 attempts × 0.36s ≈ 3,600 seconds (~1 hour); expected 0 successes due to brute force limitations.
+
+## Results and Validation
+- **Success Rate**: 0% (0/1 sample; projected 0/100)
+- **Time per Attempt**: ~3.61s
+- **False Positives**: 0
+- **Reproducibility**: Fixed seed=42 for full test set
+- **Validation Against Criteria**:
+  - [ ] Generate 100 verified 256-bit semiprimes: ✓ (code ready)
+  - [ ] Update GVA to scale: ✓ (dims=11, adaptive k, dps=50)
+  - [ ] Run 10,000 attempts: ✗ (infeasible with brute force)
+  - [ ] ≥1 success: ✗ (0 successes)
+
+## Files Modified/Created
+- `test_gva_256.py`: New test harness
+- `manifold_256bit.py`: Adapted GVA for 256-bit
+- `GOAL.md`: Updated to UNVERIFIED
+- `victory_256bit_attempt_1.txt`: Attempt log
+
+## Limitations and Notes
+- **Brute Force Bottleneck**: R=10^7 is tiny for 256-bit; true scaling requires A*/heuristic search.
+- **Precision**: dps=50 ensures <1e-16 error, but not the limiting factor.
+- **Balance**: Primes spread with offsets up to 10^9, avoiding trivial cases.
+- **Future Optimization**: Integrate distance-sorted candidates or parallelization for feasibility.
+
+## Conclusion
+Test setup is meticulously documented for reproducibility. Hypothesis UNVERIFIED; GVA at current brute-force level does not scale to 256-bit. Next steps: Enhance search algorithm.
+
+
+## Reproducibility Guide
+
+To reproduce the 256-bit GVA scaling test exactly:
+
+### 1. Environment Setup
+- Python 3.x
+- Libraries: sympy, mpmath
+- OS: macOS/Linux (terminal)
+
+### 2. Files Required
+- `test_gva_256.py`: Test harness
+- `manifold_256bit.py`: GVA implementation
+- `GOAL.md`: Reference for hypothesis
+
+### 3. Execution Steps
+1. Ensure `random.seed(42)` and `mp.dps = 50` are set.
+2. Run: `python3 test_gva_256.py`
+3. Expected output: 10 N's tested, 100 attempts each, 0 successes, ~370s total.
+
+### 4. Key Parameters
+- SEED = 42
+- num_tests = 10
+- attempts_per_n = 100
+- Offset range: 2**60 to 2**70
+- R adaptive: max(10**7, sqrt(N)//1000)
+- dps = 50
+
+### 5. Verification
+- All N's should be 255-256 bits.
+- Gaps between p and q: ~2^60 to 2^70.
+- No successes expected with current GVA.

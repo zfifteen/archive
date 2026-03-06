@@ -1,0 +1,27 @@
+{
+  "target": {
+    "N": "137524771864208156028430259349934309717",
+    "bit_length": 127,
+    "description": "Balanced 127-bit semiprime for zero-bias validation"
+  },
+  "parameters": {
+    "mc_digits": 320,
+    "samples": 1800,
+    "k_lo": 0.24,
+    "k_hi": 0.32,
+    "k_step": 0.0001,
+    "m_span": 7,
+    "J": 6,
+    "threshold": 0.972,
+    "seed": 42
+  },
+  "expected_factors": {
+    "p": "123456789012345678901234567890123456789012345678901234567890",
+    "q": "1111111111111111111111111111111111111111111111111111111111111"
+  },
+  "validation": {
+    "bias_present": false,
+    "dirichlet_normalized": true,
+    "snap_mode": "phase_corrected_nint"
+  }
+}

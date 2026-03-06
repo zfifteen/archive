@@ -1,0 +1,22 @@
+name: ci
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+jobs:
+  build:
+    runs-on: self-hosted
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build & test (Gradle)
+        run: ./gradlew -q test jacocoTestReport
+      # Optional: upload perf log if present
+      - name: Upload perf log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: perf-log
+          path: z5d_performance_log.csv
+          if-no-files-found: ignore
+          retention-days: 7
+

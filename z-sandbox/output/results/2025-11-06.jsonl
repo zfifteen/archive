@@ -1,0 +1,2 @@
+{"_comment":"commit 80cccf34771693b3310fe594e456b2105c0707b3, python 3.12.4, mpmath 1.3.0"}
+{"abs_distance": "", "mechanism": "interval_snap", "notes": {"checked": 415583, "cofactor": null, "factor": null, "found": false}, "params": {"centers": 1, "dm": "0.0005", "dps": 256, "intervals": 2440061, "k_max": "0.33", "k_min": "0.27", "k_step": "0.001", "m_range": "10.0", "min_k_cluster": 3, "snap_radius": 1000000}, "rel_distance": "", "runtime_s": 81.40033316612244, "timestamp": "2025-11-06T06:41:05Z"}

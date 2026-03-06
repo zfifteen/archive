@@ -1,0 +1,50 @@
+{
+  "mc_baseline": {
+    "mean": 0.19999999999999996,
+    "ci_lower": 0.19999999999999996,
+    "ci_upper": 0.19999999999999996,
+    "n": 50
+  },
+  "sobol_configs": {
+    "0.05": {
+      "mean": 0.19999999999999996,
+      "ci_lower": 0.19999999999999996,
+      "ci_upper": 0.19999999999999996,
+      "lift_pct": 0.0,
+      "t_stat": NaN,
+      "p_value": NaN,
+      "significant": false,
+      "n": 50
+    },
+    "0.1": {
+      "mean": 0.19999999999999996,
+      "ci_lower": 0.19999999999999996,
+      "ci_upper": 0.19999999999999996,
+      "lift_pct": 0.0,
+      "t_stat": NaN,
+      "p_value": NaN,
+      "significant": false,
+      "n": 50
+    },
+    "0.15": {
+      "mean": 0.19999999999999996,
+      "ci_lower": 0.19999999999999996,
+      "ci_upper": 0.19999999999999996,
+      "lift_pct": 0.0,
+      "t_stat": NaN,
+      "p_value": NaN,
+      "significant": false,
+      "n": 50
+    },
+    "0.2": {
+      "mean": 0.19999999999999996,
+      "ci_lower": 0.19999999999999996,
+      "ci_upper": 0.19999999999999996,
+      "lift_pct": 0.0,
+      "t_stat": NaN,
+      "p_value": NaN,
+      "significant": false,
+      "n": 50
+    }
+  }
+}

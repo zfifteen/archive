@@ -1,0 +1,17 @@
+{
+  "mp.dps": 200,
+  "k_range": {
+    "lo": 0.25,
+    "hi": 0.45,
+    "sampler": "golden_ratio_qmc"
+  },
+  "m_span": 180,
+  "J": 6,
+  "bias_form": "zero",
+  "num_samples": 801,
+  "dirichlet_threshold": 0.92,
+  "method": "geometric_resonance",
+  "N": "137524771864208156028430259349934309717",
+  "N_bits": 127,
+  "description": "Geometric resonance factorization with Dirichlet kernel sharpening and golden-ratio QMC sampling"
+}

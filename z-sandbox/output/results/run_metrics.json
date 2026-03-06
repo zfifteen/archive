@@ -1,0 +1,21 @@
+{
+  "success": false,
+  "candidates_generated": 73477,
+  "candidates_checked": 73477,
+  "total_positions_tested": 289161,
+  "kept_to_tested_ratio": 0.2541041150085938,
+  "scan_time_seconds": 115.9465389251709,
+  "check_time_seconds": 0.005273103713989258,
+  "total_time_seconds": 115.95182418823242,
+  "config": {
+    "mp_dps": 200,
+    "num_samples": 801,
+    "k_lo": 0.25,
+    "k_hi": 0.45,
+    "m_span": 180,
+    "J": 6,
+    "dirichlet_threshold": 0.92,
+    "bias_form": "zero",
+    "sampler": "golden_ratio_qmc"
+  }
+}

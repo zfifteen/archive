@@ -1,0 +1,62 @@
+title: Java Reference Implementation of Geometric Resonance Factorization for 127-bit Target
+description: |
+  This recipe provides a platform-independent Java implementation of the geometric resonance factorization method,
+  addressing the platform-specific numerical sensitivity issue described in GitHub issue #227.
+  By using a big-math library for deterministic high-precision arithmetic (sin, exp, log), this reference implementation ensures reproducible results
+  across architectures, avoiding floating-point discrepancies. Surgical fixes include corrected θ/m math, normalized Dirichlet kernel, recurrence-based QMC, and edge-case guards.
+
+hypothesis: |
+  Implementing the geometric resonance factorization in Java with locked MathContext (220-260 digits, HALF_EVEN rounding) will produce consistent,
+  reproducible factorization results for the 127-bit target N = 137524771864208156028430259349934309717,
+  yielding the expected factors p = 10508623501177419659 and q = 13086849276577416863, regardless of platform or JDK.
+
+experiment_design: |
+  - Create a new Java class `GeometricResonanceFactorizer` in the `java/` package using a big-math lib (e.g., BigDecimalMath).
+  - Implement QMC with recurrence: u += φ_inv; if u >=1 u -=1.
+  - Compute θ_m = k·ln N - 2π m; m0 = round(k·ln N / 2π); m ∈ [m0 - m_span, m0 + m_span].
+  - Evaluate A(θ) = |sin((2J+1)θ/2) / sin(θ/2)| / (2J+1) with θ reduced mod 2π to [-π,π].
+  - If A(θ) > threshold, compute p̂ = exp((ln N - 2π m / k)/2), round to BigInteger, test N % p == 0 (check p±1).
+  - Params: J=6 (opt 8), threshold=0.92, k_lo=0.25, k_hi=0.45, m_span=180, MathContext DECIMAL128+ (≥220 digits).
+  - Guard singularities: skip if |sin(θ/2)| < 1e-100.
+  - Cache 1/(2π), k·ln N; optional double prefilter for speed.
+
+steps:
+  - step_1: Analyze existing Python implementation in python/geometric_resonance_127bit.py for logic and parameters.
+  - step_2: Add big-math dependency to build.gradle (e.g., 'ch.obermuhlner:big-math:2.3.2'); pin versions; set MathContext globally.
+  - step_3: Precompute constants: π, 2π, ln N, φ_inv = (√5−1)/2 at full precision.
+  - step_4: Implement QMC recurrence for uniform u in [0,1).
+  - step_5: For each u, compute k = k_lo + u*(k_hi - k_lo).
+  - step_6: For each k, compute theta_base = k * lnN; m0 = round(theta_base / (2π)); scan m ∈ [m0−m_span, m0+m_span]; set theta = theta_base − 2π*m (reduce mod 2π); if |sin(theta/2)| > 1e-100, compute A(theta); if A > threshold, compute p_hat and test factors.
+  - step_7: Use closed-form kernel: D_J = sin((2J+1)*theta/2) / sin(theta/2); A = |D_J| / (2J+1).
+  - step_8: Collect valid p as BigInteger candidates.
+  - step_9: Build and run on target N.
+  - step_10: Unit test: assert factors p and q recovered; determinism across runs/platforms.
+
+conduct_tests: |
+  - Run on N = 137524771864208156028430259349934309717; assert factors found (p=10508623501177419659, q=13086849276577416863), p*q==N, and candidate count ~73k (diagnostic).
+  - CI matrix: Java 21 on Ubuntu x86_64 and macOS ARM64; log (k,m) for accepted candidates and hash for determinism check.
+  - Performance: measure QMC/kernel eval time; expose --mc-digits, --samples, --m-span, --J, --threshold CLI flags.
+  - Sanity levers if misses: bump digits 256-320; try J=8; widen m_span +20-40; threshold 0.90-0.94.
+
+analysis: |
+  - If factors match expected and deterministic (same hash across runs/platforms), hypothesis confirmed.
+  - If not, adjust per sanity levers; compare with Python.
+  - Document precision impact, rounding choices, and platform diffs.
+
+commands:
+  - Analyze Python code: developer__text_editor view python/geometric_resonance_127bit.py
+  - Add dep: edit build.gradle with 'ch.obermuhlner:big-math:2.3.2'; pin Java 21; set global MathContext (≥220 digits, HALF_EVEN)
+  - Precompute constants: π, 2π, 1/(2π), lnN, φ_inv in code
+  - Build Java: ./gradlew build
+  - Test Java: ./gradlew test
+  - Run factorization: java -cp build/libs/z-sandbox.jar com.example.GeometricResonanceFactorizer --n 137524771864208156028430259349934309717 --j 6 --threshold 0.92 --k-lo 0.25 --k-hi 0.45 --m-span 180 --mc-digits 220 --samples 801
+  - Unit assert: java -ea -cp ... com.example.GeometricResonanceFactorizerTest (check p, q, product, hash)
+
+retries: 0
+
+preflight_notes: |
+  - Pin versions: Java 21, big-math:2.3.2, MathContext ≥220 digits HALF_EVEN.
+  - Rounding: m0 = round(k·lnN / 2π) nearest; p̂ to nearest BigInteger, test p, p-1, p+1 (p>1).
+  - Dirichlet: closed form with θ mod 2π to [-π,π]; normalize /(2J+1); guard |sin(θ/2)| < 1e-100 → skip or A=1.
+  - QMC: recurrence u += φ_inv; if u>=1 u-=1; log (k,m) for determinism hash.
+  - CLI/CI: Expose flags; matrix test and assert equality of candidate stream hash.

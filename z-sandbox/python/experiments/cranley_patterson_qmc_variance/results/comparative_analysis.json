@@ -1,0 +1,127 @@
+{
+  "comparisons": {
+    "RSA-100": {
+      "CP-Static": {
+        "treatment": "CP-Static",
+        "variance": {
+          "baseline_mean": 0.019084403436991106,
+          "baseline_std": 0.0011572975591025148,
+          "treatment_mean": 0.0189959155757189,
+          "treatment_std": 0.0011599287139051877,
+          "reduction_factor": 1.0046582572405889,
+          "reduction_pct": 0.4658257240588881
+        },
+        "statistics": {
+          "t_statistic": 0.290823148127094,
+          "p_value": 0.7722240074388422,
+          "cohens_d": 0.07637390034720683,
+          "significant": false
+        },
+        "timing": {
+          "baseline_mean_sec": 0.0008423313999855964,
+          "treatment_mean_sec": 0.0007875181333398966,
+          "overhead_factor": 0.9349267204729195,
+          "overhead_pct": -6.507327952708053
+        },
+        "falsification_criteria": {
+          "variance_reduction_below_1.3x": true,
+          "not_significant": true,
+          "overhead_above_2x": false
+        },
+        "verdict": {
+          "status": "FALSIFIED",
+          "confidence": "HIGH",
+          "criteria_met": 2,
+          "total_criteria": 3
+        }
+      }
+    },
+    "RSA-129": {
+      "CP-Static": {
+        "treatment": "CP-Static",
+        "variance": {
+          "baseline_mean": 0.055406355917551935,
+          "baseline_std": 0.0028552530982623777,
+          "treatment_mean": 0.05490001394997493,
+          "treatment_std": 0.003102222199140834,
+          "reduction_factor": 1.0092229843154208,
+          "reduction_pct": 0.922298431542079
+        },
+        "statistics": {
+          "t_statistic": 0.6467297132597472,
+          "p_value": 0.520358120139036,
+          "cohens_d": 0.16983954334505724,
+          "significant": false
+        },
+        "timing": {
+          "baseline_mean_sec": 0.0008802091666742247,
+          "treatment_mean_sec": 0.0008920904333156917,
+          "overhead_factor": 1.013498230978847,
+          "overhead_pct": 1.3498230978846948
+        },
+        "falsification_criteria": {
+          "variance_reduction_below_1.3x": true,
+          "not_significant": true,
+          "overhead_above_2x": false
+        },
+        "verdict": {
+          "status": "FALSIFIED",
+          "confidence": "HIGH",
+          "criteria_met": 2,
+          "total_criteria": 3
+        }
+      }
+    },
+    "RSA-155": {
+      "CP-Static": {
+        "treatment": "CP-Static",
+        "variance": {
+          "baseline_mean": 3.2701135461102186e+41,
+          "baseline_std": 0.0,
+          "treatment_mean": 3.2701135461102186e+41,
+          "treatment_std": 0.0,
+          "reduction_factor": 1.0,
+          "reduction_pct": 0.0
+        },
+        "statistics": {
+          "t_statistic": NaN,
+          "p_value": 1.0,
+          "cohens_d": 0.0,
+          "significant": false
+        },
+        "timing": {
+          "baseline_mean_sec": 0.0007799205666363681,
+          "treatment_mean_sec": 0.0008112360666852207,
+          "overhead_factor": 1.0401521659877617,
+          "overhead_pct": 4.015216598776172
+        },
+        "falsification_criteria": {
+          "variance_reduction_below_1.3x": true,
+          "not_significant": true,
+          "overhead_above_2x": false
+        },
+        "verdict": {
+          "status": "FALSIFIED",
+          "confidence": "HIGH",
+          "criteria_met": 2,
+          "total_criteria": 3
+        }
+      }
+    }
+  },
+  "summary": {
+    "total_comparisons": 3,
+    "falsified_count": 3,
+    "falsified_percentage": 100.0,
+    "overall_verdict": "HYPOTHESIS DEFINITIVELY FALSIFIED",
+    "overall_confidence": "HIGH"
+  },
+  "hypothesis": {
+    "claim": "Cranley-Patterson rotations yield 1.3-1.8\u00d7 variance reductions",
+    "falsification_criteria": [
+      "Variance reduction < 1.3\u00d7 (claimed lower bound)",
+      "p-value > 0.05 (not statistically significant)",
+      "Computational overhead > 2.0\u00d7 baseline"
+    ]
+  }
+}

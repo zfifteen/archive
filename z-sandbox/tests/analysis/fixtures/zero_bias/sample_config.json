@@ -1,0 +1,18 @@
+{
+  "run_id": "test_run_001",
+  "commit_sha": "test_commit_sha",
+  "jvm_version": "17.0.1",
+  "gradle_version": "8.14",
+  "precision_digits": 320,
+  "dirichlet_normalized": true,
+  "snap_mode": "phase_corrected_nint",
+  "bias_present": false,
+  "threshold": 0.972,
+  "J": 6,
+  "k_lo": 0.24,
+  "k_hi": 0.32,
+  "k_step": 0.0001,
+  "m_span": 7,
+  "samples": 1800,
+  "seed": 42
+}

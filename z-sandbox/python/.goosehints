@@ -1,0 +1,27 @@
+Python layer hints for z-sandbox (RSA-scale factorization orchestration)
+
+Context to load immediately
+@README.md
+
+Scope
+- Python orchestrates generation, orchestration, validation, analytics. Java hosts kernels.
+
+Standards
+- Use mpmath, sympy, numpy, pandas. Set mp.dps explicitly for runs. Seed RNG=42.
+- CSV interchange with Java; keep schemas stable. Store outputs in results/, logs/; visuals in plots/.
+- Respect invariants: Z=A(B/e²), κ(n)=d(n)·ln(n+1)/e², θ'(n,k)=φ*((n mod φ)/φ)^k (k≈0.3); verify via mpmath (<1e-16).
+
+Runbook
+- Install deps: pip install mpmath sympy numpy pandas pytest pytest-cov
+- Tests: python -m pytest -q (add --maxfail=1) and key integrations:
+  - PYTHONPATH=python python3 tests/test_lorentz_dilation.py
+  - PYTHONPATH=python python3 tests/test_gva_128.py
+- Demo sanity: python3 python/rsa260_z5d_runner.py --dps 2000 --k 0.30 --use-z5d-prior --adaptive-step --line-search
+
+Conventions
+- Keep modules under python/. Fix imports with explicit PYTHONPATH when invoking.
+- Use GMP-ECM via subprocess if needed; gate behind a flag; document in docs/.
+- Do not check large artifacts; write to results/ and reference paths.
+
+Safety
+- Avoid network unless requested. Prefer vectorized operations; mind battery/thermals on M1.

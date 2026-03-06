@@ -1,0 +1,55 @@
+Focus
+- Single-target geometric resonance factorization ONLY.
+- Target N = 137524771864208156028430259349934309717.
+- Goal: find p and q such that p*q == N using PURE GEOMETRIC RESONANCE (no classical fallbacks).
+
+Operating mode
+- Geometric-only: Dirichlet kernel sharpening + k-grid sweep + fractional comb around m0 = round(k*ln N / 2π) + intersection filtering.
+- BANNED unless explicitly requested: ECM, Pollard’s Rho, QS/SIQS, NFS, sieves, random restarts that are not resonance-driven.
+- Deterministic runs with explicit precision and seeds; zero network; minimal dependencies.
+
+Repro & calibration (defaults — override per run as needed)
+- mp.dps = 512
+- k-range: center ~0.30, ±10% window (0.27–0.33) unless specified
+- Dirichlet order J = 6 (try 8 only if requested)
+- comb_range = 80–100; fine step ≤ 1e-4
+- samples = 1500 (calibration), thresholds: amplitude ≥ 0.98 (tighten only when asked)
+- CPU/threads guard: confirm if > 5 minutes expected or > 8 threads requested
+- RNG: seed all sources and echo seeds in output
+
+Outputs & artifacts
+- STDOUT: minimal.
+  - Always print parameters first (N, k-range, J, mp.dps, seeds).
+  - On success print ONLY: p, q, and “verified: p*q==N” (with the literal N shown).
+- Logs → ./runs/
+- JSON/CSV summaries → ./results/ (include filename prefix N-137524771864208156028430259349934309717-yyyy-mm-ddThhmmss)
+
+Validation checklist (ALWAYS)
+1) Echo N exactly: 137524771864208156028430259349934309717
+2) Show params (mp.dps, k-range, J, samples, m-span, thresholds, seeds).
+3) On hit: print p, q, and assert p*q==N; show the full equality line p*q==137524771864208156028430259349934309717.
+4) Save config + summary metrics to ./results/; keep raw logs in ./runs/.
+5) No claims of success without the equality line.
+
+Commands (use these templates)
+- Python (example):
+  python3 python/demo_z5d_rsa.py 137524771864208156028430259349934309717 --dps 512 --samples 1500 --m-span 80 --J 6 --threshold 0.98 --k-lo 0.27 --k-hi 0.33 --bias 0 --out ./results/
+
+- Gradle (example):
+  ./gradlew run --args="137524771864208156028430259349934309717 --mc-digits=260 --samples=1500 --m-span=80 --J=6 --threshold=0.98 --k-lo=0.27 --k-hi=0.33 --bias=0" \    -Djava.util.concurrent.ForkJoinPool.common.parallelism=8
+
+House rules
+- No edits outside targeted files; when editing code, provide exact patch/diff.
+- No dependency upgrades unless explicitly requested.
+- Keep code changes surgical and reversible; prefer flags over rewrites.
+- Prefer stdlib + mpmath/numpy for Python; minimal Gradle deps for Java.
+
+References (load if present; inline only small files)
+@README.md
+python/
+java/
+docs/
+runs/
+results/
+
+Last-updated: 2025-11-08T02:16:39Z

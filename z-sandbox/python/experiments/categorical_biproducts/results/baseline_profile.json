@@ -1,0 +1,410 @@
+[
+  {
+    "modulus": 15347627614375828701,
+    "p_true": 3919199423,
+    "q_true": 3916429453,
+    "sqrt_n": 3917604831,
+    "radius": 10000,
+    "dimensions": 5,
+    "k_parameter": 0.3,
+    "n_samples": 1000,
+    "timing": {
+      "embed_single_sec": 0.0010147075000190853,
+      "embed_batch_sec": 0.25915461599998935,
+      "embed_per_candidate_sec": 0.00025915461599998935,
+      "distance_batch_sec": 0.0807617050000431,
+      "distance_per_candidate_sec": 8.07617050000431e-05,
+      "total_sec": 0.33991632100003244
+    },
+    "variance": {
+      "per_dimension": [
+        0.05272872799526484,
+        0.015663666086734966,
+        0.0018393874717452963,
+        0.0001785000164327478,
+        1.6438361186632117e-05
+      ],
+      "total": 0.07042671993136448,
+      "mean": 0.014085343986272897,
+      "max_dim": 0,
+      "min_dim": 4,
+      "dimension_ratio": 3207.6631112401515
+    },
+    "distances": {
+      "min_to_p": 0.00022613777545382765,
+      "min_to_q": 4.7953395582641974e-05,
+      "nearest_candidate_to_p": 3917598250,
+      "nearest_candidate_to_q": 3917601630,
+      "p_error": 1601173,
+      "q_error": 1172177,
+      "mean_dist_to_p": 1.624902746585938,
+      "std_dist_to_p": 1.7903559481523743,
+      "mean_dist_to_q": 2.696643026335114,
+      "std_dist_to_q": 2.1150479004754184
+    },
+    "found_factors": {
+      "p_in_sample": false,
+      "q_in_sample": false
+    },
+    "test_case": 1,
+    "bit_length": 64
+  },
+  {
+    "modulus": 15347627614375828701,
+    "p_true": 3919199423,
+    "q_true": 3916429453,
+    "sqrt_n": 3917604831,
+    "radius": 10000,
+    "dimensions": 7,
+    "k_parameter": 0.3,
+    "n_samples": 1000,
+    "timing": {
+      "embed_single_sec": 0.00035718050000355106,
+      "embed_batch_sec": 0.31273958599996377,
+      "embed_per_candidate_sec": 0.00031273958599996375,
+      "distance_batch_sec": 0.08180163800000173,
+      "distance_per_candidate_sec": 8.180163800000173e-05,
+      "total_sec": 0.3945412239999655
+    },
+    "variance": {
+      "per_dimension": [
+        0.05272872799526484,
+        0.015663666086734966,
+        0.0018393874717452963,
+        0.0001785000164327478,
+        1.6438361186632117e-05,
+        1.4897355049435286e-06,
+        1.3435550402676033e-07
+      ],
+      "total": 0.07042834402237345,
+      "mean": 0.010061192003196207,
+      "max_dim": 0,
+      "min_dim": 6,
+      "dimension_ratio": 392453.8553396912
+    },
+    "distances": {
+      "min_to_p": 0.0002261386711780417,
+      "min_to_q": 4.795367714918793e-05,
+      "nearest_candidate_to_p": 3917598250,
+      "nearest_candidate_to_q": 3917601630,
+      "p_error": 1601173,
+      "q_error": 1172177,
+      "mean_dist_to_p": 1.6249030709411927,
+      "std_dist_to_p": 1.7903562760222576,
+      "mean_dist_to_q": 2.6966433172611404,
+      "std_dist_to_q": 2.1150479885262543
+    },
+    "found_factors": {
+      "p_in_sample": false,
+      "q_in_sample": false
+    },
+    "test_case": 1,
+    "bit_length": 64
+  },
+  {
+    "modulus": 18446736050711510819,
+    "p_true": 4294948663,
+    "q_true": 4294941307,
+    "sqrt_n": 4294966361,
+    "radius": 10000,
+    "dimensions": 5,
+    "k_parameter": 0.3,
+    "n_samples": 1000,
+    "timing": {
+      "embed_single_sec": 0.000276837000001251,
+      "embed_batch_sec": 0.23269654999995737,
+      "embed_per_candidate_sec": 0.00023269654999995737,
+      "distance_batch_sec": 0.07821001499996783,
+      "distance_per_candidate_sec": 7.821001499996782e-05,
+      "total_sec": 0.3109065649999252
+    },
+    "variance": {
+      "per_dimension": [
+        0.05523913920084164,
+        0.014324832851862396,
+        0.0016580411450547211,
+        0.00016016042816172118,
+        1.4728240989381276e-05
+      ],
+      "total": 0.07139690186690986,
+      "mean": 0.014279380373381972,
+      "max_dim": 0,
+      "min_dim": 4,
+      "dimension_ratio": 3750.558908569522
+    },
+    "distances": {
+      "min_to_p": 0.001720120799366602,
+      "min_to_q": 0.00021582818125173272,
+      "nearest_candidate_to_p": 4294966226,
+      "nearest_candidate_to_q": 4294972643,
+      "p_error": 17563,
+      "q_error": 31336,
+      "mean_dist_to_p": 3.1660250695947907,
+      "std_dist_to_p": 2.1244920677635206,
+      "mean_dist_to_q": 2.3366795199214194,
+      "std_dist_to_q": 2.032885588773488
+    },
+    "found_factors": {
+      "p_in_sample": false,
+      "q_in_sample": false
+    },
+    "test_case": 2,
+    "bit_length": 64
+  },
+  {
+    "modulus": 18446736050711510819,
+    "p_true": 4294948663,
+    "q_true": 4294941307,
+    "sqrt_n": 4294966361,
+    "radius": 10000,
+    "dimensions": 7,
+    "k_parameter": 0.3,
+    "n_samples": 1000,
+    "timing": {
+      "embed_single_sec": 0.0003637304999983826,
+      "embed_batch_sec": 0.31604942599994956,
+      "embed_per_candidate_sec": 0.00031604942599994956,
+      "distance_batch_sec": 0.08062620300000845,
+      "distance_per_candidate_sec": 8.062620300000844e-05,
+      "total_sec": 0.396675628999958
+    },
+    "variance": {
+      "per_dimension": [
+        0.05523913920084164,
+        0.014324832851862396,
+        0.0016580411450547211,
+        0.00016016042816172118,
+        1.4728240989381276e-05,
+        1.3341724181559394e-06,
+        1.2030984831446196e-07
+      ],
+      "total": 0.07139835634917634,
+      "mean": 0.010199765192739477,
+      "max_dim": 0,
+      "min_dim": 6,
+      "dimension_ratio": 459136.8108091182
+    },
+    "distances": {
+      "min_to_p": 0.0017201321172470422,
+      "min_to_q": 0.00021582883302371318,
+      "nearest_candidate_to_p": 4294966226,
+      "nearest_candidate_to_q": 4294972643,
+      "p_error": 17563,
+      "q_error": 31336,
+      "mean_dist_to_p": 3.1660253764257704,
+      "std_dist_to_p": 2.124492138217104,
+      "mean_dist_to_q": 2.3366799367576543,
+      "std_dist_to_q": 2.032885881546947
+    },
+    "found_factors": {
+      "p_in_sample": false,
+      "q_in_sample": false
+    },
+    "test_case": 2,
+    "bit_length": 64
+  },
+  {
+    "modulus": 1208907267445695453279,
+    "p_true": 34778071079,
+    "q_true": 34756162171,
+    "sqrt_n": 34769343787,
+    "radius": 10000,
+    "dimensions": 5,
+    "k_parameter": 0.3,
+    "n_samples": 1000,
+    "timing": {
+      "embed_single_sec": 0.00028290200000924415,
+      "embed_batch_sec": 0.23502267100002427,
+      "embed_per_candidate_sec": 0.00023502267100002428,
+      "distance_batch_sec": 0.07646737599998232,
+      "distance_per_candidate_sec": 7.646737599998233e-05,
+      "total_sec": 0.3114900470000066
+    },
+    "variance": {
+      "per_dimension": [
+        0.05550326630245256,
+        0.015317315439857083,
+        0.0019307488070757506,
+        0.0001882499800207757,
+        1.7362877662983103e-05
+      ],
+      "total": 0.07295694340706915,
+      "mean": 0.01459138868141383,
+      "max_dim": 0,
+      "min_dim": 4,
+      "dimension_ratio": 3196.6626836356977
+    },
+    "distances": {
+      "min_to_p": 0.00040579474529279114,
+      "min_to_q": 0.0006149830772271654,
+      "nearest_candidate_to_p": 34769347965,
+      "nearest_candidate_to_q": 34769338429,
+      "p_error": 8723114,
+      "q_error": 13176258,
+      "mean_dist_to_p": 1.841393912835952,
+      "std_dist_to_p": 2.0399779948336065,
+      "mean_dist_to_q": 2.629914476886819,
+      "std_dist_to_q": 2.1005686161800114
+    },
+    "found_factors": {
+      "p_in_sample": false,
+      "q_in_sample": false
+    },
+    "test_case": 3,
+    "bit_length": 71
+  },
+  {
+    "modulus": 1208907267445695453279,
+    "p_true": 34778071079,
+    "q_true": 34756162171,
+    "sqrt_n": 34769343787,
+    "radius": 10000,
+    "dimensions": 7,
+    "k_parameter": 0.3,
+    "n_samples": 1000,
+    "timing": {
+      "embed_single_sec": 0.0003649585000005118,
+      "embed_batch_sec": 0.314652518999992,
+      "embed_per_candidate_sec": 0.000314652518999992,
+      "distance_batch_sec": 0.07686514600004557,
+      "distance_per_candidate_sec": 7.686514600004557e-05,
+      "total_sec": 0.3915176650000376
+    },
+    "variance": {
+      "per_dimension": [
+        0.05550326630245256,
+        0.015317315439857083,
+        0.0019307488070757506,
+        0.0001882499800207757,
+        1.7362877662983103e-05,
+        1.574263114171708e-06,
+        1.4199908971081761e-07
+      ],
+      "total": 0.07295865966927303,
+      "mean": 0.010422665667039005,
+      "max_dim": 0,
+      "min_dim": 6,
+      "dimension_ratio": 390867.8256153545
+    },
+    "distances": {
+      "min_to_p": 0.0004057963085024014,
+      "min_to_q": 0.0006149848460043981,
+      "nearest_candidate_to_p": 34769347965,
+      "nearest_candidate_to_q": 34769338429,
+      "p_error": 8723114,
+      "q_error": 13176258,
+      "mean_dist_to_p": 1.8413942577827211,
+      "std_dist_to_p": 2.039978304827481,
+      "mean_dist_to_q": 2.6299149517782134,
+      "std_dist_to_q": 2.100568964543145
+    },
+    "found_factors": {
+      "p_in_sample": false,
+      "q_in_sample": false
+    },
+    "test_case": 3,
+    "bit_length": 71
+  },
+  {
+    "modulus": 79226642649640146386194717763,
+    "p_true": 281419970353,
+    "q_true": 281530802053,
+    "sqrt_n": 281472276875787,
+    "radius": 10000,
+    "dimensions": 5,
+    "k_parameter": 0.3,
+    "n_samples": 1000,
+    "timing": {
+      "embed_single_sec": 0.00029672899998445246,
+      "embed_batch_sec": 0.24340316399997164,
+      "embed_per_candidate_sec": 0.00024340316399997164,
+      "distance_batch_sec": 0.07747053100001722,
+      "distance_per_candidate_sec": 7.747053100001722e-05,
+      "total_sec": 0.32087369499998886
+    },
+    "variance": {
+      "per_dimension": [
+        0.05521386687770177,
+        0.015531696643877092,
+        0.0019591695378403952,
+        0.00019109596305224853,
+        1.7626917538751456e-05
+      ],
+      "total": 0.07291345594001027,
+      "mean": 0.014582691188002053,
+      "max_dim": 0,
+      "min_dim": 4,
+      "dimension_ratio": 3132.36069913855
+    },
+    "distances": {
+      "min_to_p": 0.00552435157444561,
+      "min_to_q": 0.00042469853246863255,
+      "nearest_candidate_to_p": 281472276879021,
+      "nearest_candidate_to_q": 281472276868266,
+      "p_error": 281190856908668,
+      "q_error": 281190746066213,
+      "mean_dist_to_p": 4.809549506088056,
+      "std_dist_to_p": 2.6501608682933147,
+      "mean_dist_to_q": 2.353973003327775,
+      "std_dist_to_q": 2.5108641688160045
+    },
+    "found_factors": {
+      "p_in_sample": false,
+      "q_in_sample": false
+    },
+    "test_case": 4,
+    "bit_length": 96
+  },
+  {
+    "modulus": 79226642649640146386194717763,
+    "p_true": 281419970353,
+    "q_true": 281530802053,
+    "sqrt_n": 281472276875787,
+    "radius": 10000,
+    "dimensions": 7,
+    "k_parameter": 0.3,
+    "n_samples": 1000,
+    "timing": {
+      "embed_single_sec": 0.0003684720000194375,
+      "embed_batch_sec": 0.3135146559999953,
+      "embed_per_candidate_sec": 0.0003135146559999953,
+      "distance_batch_sec": 0.07850963999999294,
+      "distance_per_candidate_sec": 7.850963999999295e-05,
+      "total_sec": 0.3920242959999882
+    },
+    "variance": {
+      "per_dimension": [
+        0.05521386687770177,
+        0.015531696643877092,
+        0.0019591695378403952,
+        0.00019109596305224853,
+        1.7626917538751456e-05,
+        1.5982404659096244e-06,
+        1.4416282481758467e-07
+      ],
+      "total": 0.07291519834330099,
+      "mean": 0.010416456906185855,
+      "max_dim": 0,
+      "min_dim": 6,
+      "dimension_ratio": 382993.90951624466
+    },
+    "distances": {
+      "min_to_p": 0.00552439398560069,
+      "min_to_q": 0.00042470024851800893,
+      "nearest_candidate_to_p": 281472276879021,
+      "nearest_candidate_to_q": 281472276868266,
+      "p_error": 281190856908668,
+      "q_error": 281190746066213,
+      "mean_dist_to_p": 4.809549993726709,
+      "std_dist_to_p": 2.650160876275543,
+      "mean_dist_to_q": 2.3539732730345087,
+      "std_dist_to_q": 2.5108644217791523
+    },
+    "found_factors": {
+      "p_in_sample": false,
+      "q_in_sample": false
+    },
+    "test_case": 4,
+    "bit_length": 96
+  }
+]

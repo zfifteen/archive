@@ -1,0 +1,186 @@
+{
+  "baseline": "comp_mc_baseline",
+  "n_bootstrap": 5000,
+  "comparisons": {
+    "comp_qmc_sobol": {
+      "test": "comp_qmc_sobol",
+      "metrics": {
+        "unique_count": {
+          "metric": "unique_count",
+          "baseline": {
+            "mean": 10.0,
+            "std": 0.0,
+            "lower": 10.0,
+            "upper": 10.0
+          },
+          "test": {
+            "mean": 10.0,
+            "std": 0.0,
+            "lower": 10.0,
+            "upper": 10.0
+          },
+          "delta_percent": 0.0,
+          "delta_ci_95": {
+            "lower": 0.0,
+            "upper": 0.0
+          }
+        },
+        "trials": {
+          "metric": "trials",
+          "baseline": {
+            "mean": 10.0,
+            "std": 0.0,
+            "lower": 10.0,
+            "upper": 10.0
+          },
+          "test": {
+            "mean": 10.0,
+            "std": 0.0,
+            "lower": 10.0,
+            "upper": 10.0
+          },
+          "delta_percent": 0.0,
+          "delta_ci_95": {
+            "lower": 0.0,
+            "upper": 0.0
+          }
+        }
+      }
+    },
+    "comp_rank1_lattice": {
+      "test": "comp_rank1_lattice",
+      "metrics": {
+        "unique_count": {
+          "metric": "unique_count",
+          "baseline": {
+            "mean": 10.0,
+            "std": 0.0,
+            "lower": 10.0,
+            "upper": 10.0
+          },
+          "test": {
+            "mean": 2.0,
+            "std": 0.0,
+            "lower": 2.0,
+            "upper": 2.0
+          },
+          "delta_percent": -80.0,
+          "delta_ci_95": {
+            "lower": -80.0,
+            "upper": -80.0
+          }
+        },
+        "trials": {
+          "metric": "trials",
+          "baseline": {
+            "mean": 10.0,
+            "std": 0.0,
+            "lower": 10.0,
+            "upper": 10.0
+          },
+          "test": {
+            "mean": 2.0,
+            "std": 0.0,
+            "lower": 2.0,
+            "upper": 2.0
+          },
+          "delta_percent": -80.0,
+          "delta_ci_95": {
+            "lower": -80.0,
+            "upper": -80.0
+          }
+        }
+      }
+    },
+    "comp_z_lattice": {
+      "test": "comp_z_lattice",
+      "metrics": {
+        "unique_count": {
+          "metric": "unique_count",
+          "baseline": {
+            "mean": 10.0,
+            "std": 0.0,
+            "lower": 10.0,
+            "upper": 10.0
+          },
+          "test": {
+            "mean": 23.0,
+            "std": 0.0,
+            "lower": 23.0,
+            "upper": 23.0
+          },
+          "delta_percent": 130.0,
+          "delta_ci_95": {
+            "lower": 130.0,
+            "upper": 130.0
+          }
+        },
+        "trials": {
+          "metric": "trials",
+          "baseline": {
+            "mean": 10.0,
+            "std": 0.0,
+            "lower": 10.0,
+            "upper": 10.0
+          },
+          "test": {
+            "mean": 23.0,
+            "std": 0.0,
+            "lower": 23.0,
+            "upper": 23.0
+          },
+          "delta_percent": 130.0,
+          "delta_ci_95": {
+            "lower": 130.0,
+            "upper": 130.0
+          }
+        }
+      }
+    },
+    "comp_z_qmc_sobol": {
+      "test": "comp_z_qmc_sobol",
+      "metrics": {
+        "unique_count": {
+          "metric": "unique_count",
+          "baseline": {
+            "mean": 10.0,
+            "std": 0.0,
+            "lower": 10.0,
+            "upper": 10.0
+          },
+          "test": {
+            "mean": 31.98,
+            "std": 1.435130656072819,
+            "lower": 31.58,
+            "upper": 32.38
+          },
+          "delta_percent": 219.79999999999998,
+          "delta_ci_95": {
+            "lower": 215.79999999999998,
+            "upper": 223.59999999999997
+          }
+        },
+        "trials": {
+          "metric": "trials",
+          "baseline": {
+            "mean": 10.0,
+            "std": 0.0,
+            "lower": 10.0,
+            "upper": 10.0
+          },
+          "test": {
+            "mean": 31.98,
+            "std": 1.435130656072819,
+            "lower": 31.58,
+            "upper": 32.38
+          },
+          "delta_percent": 219.79999999999998,
+          "delta_ci_95": {
+            "lower": 216.0,
+            "upper": 223.80000000000004
+          }
+        }
+      }
+    }
+  }
+}

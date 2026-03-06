@@ -1,0 +1,19 @@
+# Ingestion rules for loose root-level Markdown files
+# Files matching exclude_globs are never ingested
+exclude_globs:
+  - README.md
+  - CLAUDE.md
+  - GEMINI.md
+  - TODO.md
+
+# Destination mapping rules (first match wins)
+destination_map:
+  - pattern: "SECURITY*.md"
+    dest: "docs/security/"
+  - pattern: "CONTRIBUTING*.md"
+    dest: "docs/project/"
+  - pattern: "RFC*.md"
+    dest: "docs/research/"
+
+# Default destination if no rule matches
+default_dest: "docs/misc/"

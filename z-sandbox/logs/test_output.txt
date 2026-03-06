@@ -1,0 +1,51 @@
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by net.rubygrapefruit.platform.internal.NativeLibraryLoader in an unnamed module (file:/Users/velocityworks/.gradle/wrapper/dists/gradle-8.14-bin/38aieal9i53h9rfe7vjup95b9/gradle-8.14/lib/native-platform-0.22-milestone-28.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+> Task :compileJava UP-TO-DATE
+> Task :processResources NO-SOURCE
+> Task :classes UP-TO-DATE
+
+> Task :compileTestJava FAILED
+/Users/velocityworks/IdeaProjects/z-sandbox/src/test/java/unifiedframework/TestGVA.java:22: error: not a statement
+        "Should find factor 3 or 5",
+        ^
+/Users/velocityworks/IdeaProjects/z-sandbox/src/test/java/unifiedframework/TestGVA.java:22: error: ';' expected
+        "Should find factor 3 or 5",
+                                   ^
+/Users/velocityworks/IdeaProjects/z-sandbox/src/test/java/unifiedframework/TestGVA.java:23: error: not a statement
+        factors.contains(BigInteger.valueOf(3)) || factors.contains(BigInteger.valueOf(5)));
+                                                ^
+/Users/velocityworks/IdeaProjects/z-sandbox/src/test/java/unifiedframework/TestGVA.java:23: error: ';' expected
+        factors.contains(BigInteger.valueOf(3)) || factors.contains(BigInteger.valueOf(5)));
+                                                                                          ^
+4 errors
+
+[Incubating] Problems report is available at: file:///Users/velocityworks/IdeaProjects/z-sandbox/build/reports/problems/problems-report.html
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':compileTestJava'.
+> Compilation failed; see the compiler output below.
+  /Users/velocityworks/IdeaProjects/z-sandbox/src/test/java/unifiedframework/TestGVA.java:22: error: not a statement
+          "Should find factor 3 or 5",
+          ^
+  /Users/velocityworks/IdeaProjects/z-sandbox/src/test/java/unifiedframework/TestGVA.java:23: error: not a statement
+          factors.contains(BigInteger.valueOf(3)) || factors.contains(BigInteger.valueOf(5)));
+                                                  ^
+  /Users/velocityworks/IdeaProjects/z-sandbox/src/test/java/unifiedframework/TestGVA.java:22: error: ';' expected
+          "Should find factor 3 or 5",
+                                     ^
+  /Users/velocityworks/IdeaProjects/z-sandbox/src/test/java/unifiedframework/TestGVA.java:23: error: ';' expected
+          factors.contains(BigInteger.valueOf(3)) || factors.contains(BigInteger.valueOf(5)));
+                                                                                            ^
+  4 errors
+
+* Try:
+> Check your code and dependencies to fix the compilation error(s)
+> Run with --scan to get full insights.
+
+BUILD FAILED in 504ms
+2 actionable tasks: 1 executed, 1 up-to-date
