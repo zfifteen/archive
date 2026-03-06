@@ -1,0 +1,1 @@
+AMX-Lab: A research repository for Apple Matrix Extension (AMX) on Apple Silicon (M1-M4). Implements AMX-accelerated mathematical algorithms using tiled outer products and matrix operations. Repository-agnostic agent definitions for math-heavy code optimization.
