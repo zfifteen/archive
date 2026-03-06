@@ -1,0 +1,43 @@
+[
+  {
+    "range_id": "100000:200000",
+    "band_id": 0,
+    "p_min": 100000.0,
+    "p_max": 200000.00000000003,
+    "n_train": 5134,
+    "n_test": 2201,
+    "exp_metrics": {
+      "name": "exponential",
+      "params": {
+        "scale": 13.77210751850409,
+        "lambda": 0.07261052810228269
+      },
+      "log_likelihood": -7899.204788928993,
+      "aic": 15800.409577857987,
+      "bic": 15806.106244939514,
+      "ks_stat": 0.1450772031584007,
+      "ks_pvalue": 6.836881663621571e-41,
+      "ad_stat": null,
+      "ad_pvalue": null
+    },
+    "ln_metrics": {
+      "name": "lognormal",
+      "params": {
+        "s": 0.8703667342976041,
+        "scale": 9.865668349667438,
+        "mu": 2.289060886765836,
+        "sigma": 0.8703667342976041
+      },
+      "log_likelihood": -7760.564975692661,
+      "aic": 15525.129951385323,
+      "bic": 15536.523285548375,
+      "ks_stat": 0.1054717787156203,
+      "ks_pvalue": 8.96658616217669e-22,
+      "ad_stat": null,
+      "ad_pvalue": null
+    },
+    "winner": "lognormal",
+    "delta_bic": 269.5829593911385,
+    "delta_logl": 138.63981323633197
+  }
+]

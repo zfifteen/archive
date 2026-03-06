@@ -1,0 +1,34 @@
+{
+  "N": "85065147212363892189230678941569931741",
+  "p": "8264141345021879351",
+  "q": "10293283193129930891",
+  "num_candidates": 1000000,
+  "num_requested": 1000000,
+  "generation_time": 2.632777690887451,
+  "scoring_time": 1.3316571712493896,
+  "enrichment_results": {
+    "near_p_count": 8369,
+    "near_q_count": 6072,
+    "total_near_p": 20002,
+    "total_near_q": 20002,
+    "near_p_enrichment": 4.1845,
+    "near_q_enrichment": 3.036,
+    "asymmetry_ratio": 0.725534711435058,
+    "p_offset_percent": 10.397132662367063,
+    "q_offset_percent": 11.603571371426748,
+    "score_threshold": 0.5251180489831339,
+    "total_high_scoring": 100000,
+    "expected_in_window": 2000.0
+  },
+  "uniformity_results": {
+    "ks_statistic": 0.9999999999999998,
+    "ks_pvalue": 0.0,
+    "chi_square": 9900000.0,
+    "chi_pvalue": 0.0,
+    "num_duplicates": 0,
+    "max_discrepancy": 0.9999999999999998,
+    "num_raw_candidates": 100000,
+    "num_unique_candidates": 100000
+  },
+  "hypothesis_supported": false
+}

@@ -1,0 +1,23 @@
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Data cache files (can be regenerated)
+data/*.npy
+data/*.npz
+
+# Result files (can be regenerated - large images excluded)
+#results/*.png
+
+# Log files
+*.log
+
+# Keep small result files
+!results/results.json
+
+# Keep structure
+!data/.gitkeep
+!results/.gitkeep

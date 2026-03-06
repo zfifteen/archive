@@ -1,0 +1,267 @@
+/usr/local/bin/python3.13 /Users/velocityworks/IdeaProjects/playground/experiments/023-z-spectral-operator/023_experiment_01.py
+System: Generic Linux / Sandbox Mode
+Device: cpu
+----------------------------------------
+Initializing Waveform for N=1157...
+Solving Hidden PDE over up to 2000 steps...
+.Step 100: Mean Resonance = 0.6288, Delta = 0.628806
+.Step 200: Mean Resonance = 0.6267, Delta = 0.002067
+.Step 300: Mean Resonance = 0.6300, Delta = 0.003274
+.Step 400: Mean Resonance = 0.6295, Delta = 0.000498
+.Step 500: Mean Resonance = 0.6290, Delta = 0.000470
+.Step 600: Mean Resonance = 0.6283, Delta = 0.000772
+.Step 700: Mean Resonance = 0.6274, Delta = 0.000865
+.Step 800: Mean Resonance = 0.6279, Delta = 0.000535
+.Step 900: Mean Resonance = 0.6281, Delta = 0.000173
+.Step 1000: Mean Resonance = 0.6290, Delta = 0.000872
+.Step 1100: Mean Resonance = 0.6291, Delta = 0.000106
+.Step 1200: Mean Resonance = 0.6299, Delta = 0.000834
+.Step 1300: Mean Resonance = 0.6299, Delta = 0.000034
+Converged at step 1300.
+
+Evolution Complete.
+
+[Resonance Landscape for N=1157]
+|▄                     ▄    ▄     ▄       ▄         ▄█▄            ▄▄▄           |
+|█     █         █  ▄  █    █    ▄█      ███        ███           ▄████          |
+|██  ▄ █    █    █ ▄█  █▄  ▄█    ███     ███       █████          ██████         |
+|██  █ █    █    █ ██  ██  ██▄   ███    ▄████      █████         ████████        |
+|██ ▄█ █    ██▄▄ █ ██  ██  ███   ███    █████     ▄██████       ▄████████▄      ▄|
+|██ ██▄█    ████ █ ██  ██  ███   ███    █████     ███████       ██████████      █|
+|██ ████    ████▄█ ██  ██  ███  █████   █████▄    ███████▄      ██████████▄     █|
+|██ ████ ▄  ██████ ██ ███  ███  █████   ██████   ▄████████     ████████████     █|
+|██ ████ █  ██████ ██ ███  ███  █████  ███████   █████████     ████████████▄    █|
+|██ ████ █▄ ██████ ██ ███ ▄███  █████  ███████   ██████████   ▄█████████████    █|
+|██▄████ ██ ██████ ██ ███ █████ █████  ███████▄  ██████████   ██████████████▄   █|
+|███████ ██ ██████ ████████████ █████▄ ████████ ▄██████████   ███████████████   █|
+|███████ ██▄██████ ████████████ ██████ ████████ ████████████ ▄███████████████▄  █|
+|███████ █████████ ████████████████████████████ ████████████ █████████████████ ▄█|
+|███████▄██████████████████████████████████████ ████████████ █████████████████ ██|
++--------------------------------------------------------------------------------+
+Low (2.0)                                                                      High (578)
+
+Diagnostics: Peaks Detected = 358, Mean Resonance = 0.6299
+
+--- Detected Resonance Attractors ---
+Candidate x ≈ 2
+Candidate x ≈ 3
+Candidate x ≈ 4
+Candidate x ≈ 8
+Candidate x ≈ 9
+Candidate x ≈ 11
+Candidate x ≈ 12
+Candidate x ≈ 13 <<< RESONANCE MATCH
+Candidate x ≈ 16
+Candidate x ≈ 17
+Candidate x ≈ 18
+Candidate x ≈ 19
+Candidate x ≈ 22
+Candidate x ≈ 24
+Candidate x ≈ 26
+Candidate x ≈ 27
+Candidate x ≈ 28
+Candidate x ≈ 29
+Candidate x ≈ 31
+Candidate x ≈ 34
+Candidate x ≈ 37
+Candidate x ≈ 40
+Candidate x ≈ 41
+Candidate x ≈ 44
+Candidate x ≈ 45
+Candidate x ≈ 49
+Candidate x ≈ 50
+Candidate x ≈ 55
+Candidate x ≈ 56
+Candidate x ≈ 57
+Candidate x ≈ 61
+Candidate x ≈ 62
+Candidate x ≈ 63
+Candidate x ≈ 69
+Candidate x ≈ 70
+Candidate x ≈ 71
+Candidate x ≈ 72
+Candidate x ≈ 79
+Candidate x ≈ 80
+Candidate x ≈ 81
+Candidate x ≈ 82
+Candidate x ≈ 90
+Candidate x ≈ 91
+Candidate x ≈ 92
+Candidate x ≈ 93
+Candidate x ≈ 94
+Candidate x ≈ 98
+Candidate x ≈ 99
+Candidate x ≈ 100
+Candidate x ≈ 101
+Candidate x ≈ 102
+Candidate x ≈ 103
+Candidate x ≈ 114
+Candidate x ≈ 115
+Candidate x ≈ 116
+Candidate x ≈ 117
+Candidate x ≈ 118
+Candidate x ≈ 119
+Candidate x ≈ 120
+Candidate x ≈ 134
+Candidate x ≈ 135
+Candidate x ≈ 136
+Candidate x ≈ 137
+Candidate x ≈ 138
+Candidate x ≈ 139
+Candidate x ≈ 140
+Candidate x ≈ 141
+Candidate x ≈ 159
+Candidate x ≈ 160
+Candidate x ≈ 161
+Candidate x ≈ 162
+Candidate x ≈ 163
+Candidate x ≈ 164
+Candidate x ≈ 165
+Candidate x ≈ 166
+Candidate x ≈ 167
+Candidate x ≈ 168
+Candidate x ≈ 169
+Candidate x ≈ 191
+Candidate x ≈ 192
+Candidate x ≈ 193
+Candidate x ≈ 194
+Candidate x ≈ 195
+Candidate x ≈ 196
+Candidate x ≈ 197
+Candidate x ≈ 198
+Candidate x ≈ 199
+Candidate x ≈ 200
+Candidate x ≈ 201
+Candidate x ≈ 202
+Candidate x ≈ 203
+Candidate x ≈ 204
+Candidate x ≈ 233
+Candidate x ≈ 234
+Candidate x ≈ 235
+Candidate x ≈ 236
+Candidate x ≈ 237
+Candidate x ≈ 238
+Candidate x ≈ 239
+Candidate x ≈ 240
+Candidate x ≈ 241
+Candidate x ≈ 242
+Candidate x ≈ 243
+Candidate x ≈ 244
+Candidate x ≈ 245
+Candidate x ≈ 246
+Candidate x ≈ 247
+Candidate x ≈ 248
+Candidate x ≈ 249
+Candidate x ≈ 250
+Candidate x ≈ 251
+Candidate x ≈ 289
+Candidate x ≈ 290
+Candidate x ≈ 291
+Candidate x ≈ 292
+Candidate x ≈ 293
+Candidate x ≈ 294
+Candidate x ≈ 295
+Candidate x ≈ 296
+Candidate x ≈ 297
+Candidate x ≈ 298
+Candidate x ≈ 299
+Candidate x ≈ 300
+Candidate x ≈ 301
+Candidate x ≈ 302
+Candidate x ≈ 303
+Candidate x ≈ 304
+Candidate x ≈ 305
+Candidate x ≈ 306
+Candidate x ≈ 307
+Candidate x ≈ 308
+Candidate x ≈ 309
+Candidate x ≈ 310
+Candidate x ≈ 311
+Candidate x ≈ 312
+Candidate x ≈ 313
+Candidate x ≈ 365
+Candidate x ≈ 366
+Candidate x ≈ 367
+Candidate x ≈ 368
+Candidate x ≈ 369
+Candidate x ≈ 370
+Candidate x ≈ 371
+Candidate x ≈ 372
+Candidate x ≈ 373
+Candidate x ≈ 374
+Candidate x ≈ 375
+Candidate x ≈ 376
+Candidate x ≈ 377
+Candidate x ≈ 378
+Candidate x ≈ 379
+Candidate x ≈ 380
+Candidate x ≈ 381
+Candidate x ≈ 382
+Candidate x ≈ 383
+Candidate x ≈ 384
+Candidate x ≈ 385
+Candidate x ≈ 386
+Candidate x ≈ 387
+Candidate x ≈ 388
+Candidate x ≈ 389
+Candidate x ≈ 390
+Candidate x ≈ 391
+Candidate x ≈ 392
+Candidate x ≈ 393
+Candidate x ≈ 394
+Candidate x ≈ 395
+Candidate x ≈ 396
+Candidate x ≈ 397
+Candidate x ≈ 398
+Candidate x ≈ 470
+Candidate x ≈ 471
+Candidate x ≈ 472
+Candidate x ≈ 473
+Candidate x ≈ 474
+Candidate x ≈ 475
+Candidate x ≈ 476
+Candidate x ≈ 477
+Candidate x ≈ 478
+Candidate x ≈ 479
+Candidate x ≈ 480
+Candidate x ≈ 481
+Candidate x ≈ 482
+Candidate x ≈ 483
+Candidate x ≈ 484
+Candidate x ≈ 485
+Candidate x ≈ 486
+Candidate x ≈ 487
+Candidate x ≈ 488
+Candidate x ≈ 489
+Candidate x ≈ 490
+Candidate x ≈ 491
+Candidate x ≈ 492
+Candidate x ≈ 493
+Candidate x ≈ 494
+Candidate x ≈ 495
+Candidate x ≈ 496
+Candidate x ≈ 497
+Candidate x ≈ 498
+Candidate x ≈ 499
+Candidate x ≈ 500
+Candidate x ≈ 501
+Candidate x ≈ 502
+Candidate x ≈ 503
+Candidate x ≈ 504
+Candidate x ≈ 505
+Candidate x ≈ 506
+Candidate x ≈ 507
+Candidate x ≈ 508
+Candidate x ≈ 509
+Candidate x ≈ 510
+Candidate x ≈ 511
+Candidate x ≈ 512
+Candidate x ≈ 513
+Candidate x ≈ 514
+Candidate x ≈ 515
+Candidate x ≈ 516
+Candidate x ≈ 517
+
+[+] SUCCESS: Recovered factors [13] from the spectral continuum.
+
+Process finished with exit code 0

@@ -1,0 +1,52 @@
+/home/runner/work/playground/playground/experiments/asymmetric_resonance_bias_test/z5d_scoring.py:93: UserWarning: The balance properties of Sobol' points require n to be a power of 2.
+  samples = sampler.random(n=num_candidates)
+/home/runner/work/playground/playground/experiments/asymmetric_resonance_bias_test/z5d_scoring.py:235: UserWarning: The balance properties of Sobol' points require n to be a power of 2.
+  samples = sampler.random(n=num_candidates)
+================================================================================
+Asymmetric Resonance Bias in Semiprime Factorization
+Experimental Validation of Z5D Scoring Hypothesis
+================================================================================
+
+PARAMETERS:
+  Candidates to generate: 1,000,000
+  Score threshold: 90th percentile
+  Proximity window: ±2% of factor
+
+Testing N₁₂₇ semiprime:
+  N = 85065147212363892189230678941569931741
+  p = 8264141345021879351 (63 bits)
+  q = 10293283193129930891 (64 bits)
+  N bits: 126
+
+Generating 1,000,000 candidates using 106-bit QMC...
+  Generated 1,000,000 unique candidates in 2.63s
+
+Scoring candidates with Z5D...
+  Scored 1,000,000 candidates in 1.37s
+
+Computing enrichment metrics...
+  Near-p enrichment: 4.18x
+  Near-q enrichment: 3.04x
+  Asymmetry ratio: 0.73
+
+Validating QMC uniformity...
+  KS p-value: 0.0000
+  Chi-square p-value: 0.0000
+  Max discrepancy: 1.000000
+
+Writing findings to FINDINGS.md...
+  ✓ FINDINGS.md created
+
+Saving detailed results to results.json...
+  ✓ results.json created
+
+================================================================================
+EXPERIMENT COMPLETE
+================================================================================
+RESULT: HYPOTHESIS FALSIFIED ✗
+  Asymmetry ratio: 0.73 (threshold: 5.0)
+
+Near-p enrichment: 4.18x
+Near-q enrichment: 3.04x
+
+See FINDINGS.md for full analysis.

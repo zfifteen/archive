@@ -1,0 +1,7 @@
+# Data files (cached primes)
+data/*.npy
+data/*.npz
+
+# Results
+results/*.json
+results/figures/*.png

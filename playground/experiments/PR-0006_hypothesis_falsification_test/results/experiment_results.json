@@ -1,0 +1,1106 @@
+{
+  "experiment_id": "experiment_20251226_063932",
+  "start_time": "2025-12-26 06:39:32.742889",
+  "end_time": "2025-12-26 06:39:33.974094",
+  "config": {
+    "experiment": {
+      "name": "hypothesis_falsification_test",
+      "base_dir": "/home/runner/work/playground/playground/experiments/PR-0006_hypothesis_falsification_test"
+    },
+    "directories": {
+      "results": "/home/runner/work/playground/playground/experiments/PR-0006_hypothesis_falsification_test/results",
+      "data": "/home/runner/work/playground/playground/experiments/PR-0006_hypothesis_falsification_test/data",
+      "src": "/home/runner/work/playground/playground/experiments/PR-0006_hypothesis_falsification_test/src"
+    },
+    "parameters": {
+      "seed": 42,
+      "num_trials": 3,
+      "prime_ranges": [
+        [
+          100000,
+          1000000
+        ],
+        [
+          1000000,
+          5000000
+        ]
+      ]
+    },
+    "thresholds": {
+      "false_positive_threshold": 0.05,
+      "confidence_level": 0.95
+    }
+  },
+  "all_trials": [
+    {
+      "trial_id": 1,
+      "prime_range": [
+        100000,
+        1000000
+      ],
+      "n_gaps": 68905,
+      "status": "success",
+      "exponential_test": {
+        "distribution": "exponential",
+        "scale": 13.06117117770844,
+        "ks_statistic": 0.16698769170032593,
+        "ks_pvalue": 0.0,
+        "ad_statistic": 2091.498130771957,
+        "ad_critical_values": [
+          0.922,
+          1.078,
+          1.341,
+          1.606,
+          1.957
+        ],
+        "log_likelihood": -245966.3057997662,
+        "aic": 491934.6115995324,
+        "bic": 491943.75208355574,
+        "n_samples": 68905
+      },
+      "lognormal_test": {
+        "distribution": "lognormal",
+        "shape": 0.8218153186797114,
+        "scale": 9.572709620259177,
+        "loc": 0,
+        "ks_statistic": 0.08494710045792275,
+        "ks_pvalue": 0.0,
+        "ad_statistic": 619.0325867786596,
+        "ad_critical_values": [
+          0.576,
+          0.656,
+          0.787,
+          0.918,
+          1.092
+        ],
+        "log_likelihood": -239900.69902169387,
+        "aic": 479805.39804338774,
+        "bic": 479823.6790114344,
+        "n_samples": 68905
+      },
+      "distribution_comparison": {
+        "delta_aic": 12129.213556144678,
+        "delta_bic": 12120.073072121362,
+        "winner": "lognormal",
+        "confidence": "strong",
+        "better_ks": "exponential",
+        "exp_ks_pvalue": 0.0,
+        "lognorm_ks_pvalue": 0.0
+      },
+      "fractal_cascade": {
+        "fractal_detected": "False",
+        "hurst_exponent": 12.367694894847732,
+        "hurst_std_err": 5.482739414642113,
+        "r_squared": 0.6290990377393653,
+        "p_value": 0.10935464775988586,
+        "intercept": -34.774182286074385,
+        "in_expected_range": "False",
+        "expected_range": [
+          0.7,
+          0.9
+        ],
+        "n_strata": 5,
+        "strata_results": [
+          {
+            "stratum": 0,
+            "lower": 2.0,
+            "upper": 4.0,
+            "n_samples": 6945,
+            "mu": 0.6931471805599454,
+            "sigma": 1.1103029629213054e-16,
+            "exp_mu": 2.0
+          },
+          {
+            "stratum": 1,
+            "lower": 4.0,
+            "upper": 8.0,
+            "n_samples": 18537,
+            "mu": 1.6402213417547116,
+            "sigma": 0.19616751795368217,
+            "exp_mu": 5.156310692791149
+          },
+          {
+            "stratum": 2,
+            "lower": 8.0,
+            "upper": 12.0,
+            "n_samples": 10959,
+            "mu": 2.204930519392171,
+            "sigma": 0.11070542413199791,
+            "exp_mu": 9.069621383157376
+          },
+          {
+            "stratum": 3,
+            "lower": 12.0,
+            "upper": 20.0,
+            "n_samples": 17726,
+            "mu": 2.659295563078094,
+            "sigma": 0.16506377225157184,
+            "exp_mu": 14.286221811091101
+          },
+          {
+            "stratum": 4,
+            "lower": 20.0,
+            "upper": 114.0,
+            "n_samples": 14738,
+            "mu": 3.333520892652113,
+            "sigma": 0.28437333028408224,
+            "exp_mu": 28.0368829800817
+          }
+        ]
+      },
+      "bottom_up_analysis": {
+        "approach": "bottom_up",
+        "moments": {
+          "1": 13.06117117770844,
+          "2": 281.2298672084754,
+          "3": 8605.320136419708,
+          "4": 342160.18181554315
+        },
+        "moment_deviations": {
+          "1": 0.17240607772342198,
+          "2": 0.1329828235342816,
+          "3": 0.03729814401158604,
+          "4": -0.07444552332265875
+        },
+        "abs_deviations": {
+          "1": 0.17240607772342198,
+          "2": 0.1329828235342816,
+          "3": 0.03729814401158604,
+          "4": 0.07444552332265875
+        },
+        "reversed_hierarchy": "False",
+        "hypothesis": "exponential_or_mixed",
+        "confidence": "low",
+        "n_samples": 68905,
+        "log_n_estimate": 11.140484023309245
+      },
+      "top_down_analysis": {
+        "approach": "top_down",
+        "initial_assumption": "exponential",
+        "exponential_fits": "False",
+        "iterations_required": 2,
+        "final_hypothesis": "exponential_forced",
+        "ks_pvalue": 0.0,
+        "false_positive_risk": 0,
+        "n_samples": 68905
+      },
+      "approach_comparison": {
+        "bottom_up_hypothesis": "exponential_or_mixed",
+        "top_down_hypothesis": "exponential_forced",
+        "approaches_agree": true,
+        "bottom_up_score": 0,
+        "top_down_score": 1,
+        "winner": "top_down",
+        "bottom_up_advantages": {
+          "reversed_hierarchy_detected": "False",
+          "confidence_provided": "low",
+          "direct_from_data": true
+        },
+        "top_down_disadvantages": {
+          "iterations_required": 2,
+          "false_positive_risk": 0,
+          "assumption_based": true
+        }
+      }
+    },
+    {
+      "trial_id": 2,
+      "prime_range": [
+        100000,
+        1000000
+      ],
+      "n_gaps": 68905,
+      "status": "success",
+      "exponential_test": {
+        "distribution": "exponential",
+        "scale": 13.06117117770844,
+        "ks_statistic": 0.16698769170032593,
+        "ks_pvalue": 0.0,
+        "ad_statistic": 2091.498130771957,
+        "ad_critical_values": [
+          0.922,
+          1.078,
+          1.341,
+          1.606,
+          1.957
+        ],
+        "log_likelihood": -245966.3057997662,
+        "aic": 491934.6115995324,
+        "bic": 491943.75208355574,
+        "n_samples": 68905
+      },
+      "lognormal_test": {
+        "distribution": "lognormal",
+        "shape": 0.8218153186797114,
+        "scale": 9.572709620259177,
+        "loc": 0,
+        "ks_statistic": 0.08494710045792275,
+        "ks_pvalue": 0.0,
+        "ad_statistic": 619.0325867786596,
+        "ad_critical_values": [
+          0.576,
+          0.656,
+          0.787,
+          0.918,
+          1.092
+        ],
+        "log_likelihood": -239900.69902169387,
+        "aic": 479805.39804338774,
+        "bic": 479823.6790114344,
+        "n_samples": 68905
+      },
+      "distribution_comparison": {
+        "delta_aic": 12129.213556144678,
+        "delta_bic": 12120.073072121362,
+        "winner": "lognormal",
+        "confidence": "strong",
+        "better_ks": "exponential",
+        "exp_ks_pvalue": 0.0,
+        "lognorm_ks_pvalue": 0.0
+      },
+      "fractal_cascade": {
+        "fractal_detected": "False",
+        "hurst_exponent": 12.367694894847732,
+        "hurst_std_err": 5.482739414642113,
+        "r_squared": 0.6290990377393653,
+        "p_value": 0.10935464775988586,
+        "intercept": -34.774182286074385,
+        "in_expected_range": "False",
+        "expected_range": [
+          0.7,
+          0.9
+        ],
+        "n_strata": 5,
+        "strata_results": [
+          {
+            "stratum": 0,
+            "lower": 2.0,
+            "upper": 4.0,
+            "n_samples": 6945,
+            "mu": 0.6931471805599454,
+            "sigma": 1.1103029629213054e-16,
+            "exp_mu": 2.0
+          },
+          {
+            "stratum": 1,
+            "lower": 4.0,
+            "upper": 8.0,
+            "n_samples": 18537,
+            "mu": 1.6402213417547116,
+            "sigma": 0.19616751795368217,
+            "exp_mu": 5.156310692791149
+          },
+          {
+            "stratum": 2,
+            "lower": 8.0,
+            "upper": 12.0,
+            "n_samples": 10959,
+            "mu": 2.204930519392171,
+            "sigma": 0.11070542413199791,
+            "exp_mu": 9.069621383157376
+          },
+          {
+            "stratum": 3,
+            "lower": 12.0,
+            "upper": 20.0,
+            "n_samples": 17726,
+            "mu": 2.659295563078094,
+            "sigma": 0.16506377225157184,
+            "exp_mu": 14.286221811091101
+          },
+          {
+            "stratum": 4,
+            "lower": 20.0,
+            "upper": 114.0,
+            "n_samples": 14738,
+            "mu": 3.333520892652113,
+            "sigma": 0.28437333028408224,
+            "exp_mu": 28.0368829800817
+          }
+        ]
+      },
+      "bottom_up_analysis": {
+        "approach": "bottom_up",
+        "moments": {
+          "1": 13.06117117770844,
+          "2": 281.2298672084754,
+          "3": 8605.320136419708,
+          "4": 342160.18181554315
+        },
+        "moment_deviations": {
+          "1": 0.17240607772342198,
+          "2": 0.1329828235342816,
+          "3": 0.03729814401158604,
+          "4": -0.07444552332265875
+        },
+        "abs_deviations": {
+          "1": 0.17240607772342198,
+          "2": 0.1329828235342816,
+          "3": 0.03729814401158604,
+          "4": 0.07444552332265875
+        },
+        "reversed_hierarchy": "False",
+        "hypothesis": "exponential_or_mixed",
+        "confidence": "low",
+        "n_samples": 68905,
+        "log_n_estimate": 11.140484023309245
+      },
+      "top_down_analysis": {
+        "approach": "top_down",
+        "initial_assumption": "exponential",
+        "exponential_fits": "False",
+        "iterations_required": 2,
+        "final_hypothesis": "exponential_forced",
+        "ks_pvalue": 0.0,
+        "false_positive_risk": 0,
+        "n_samples": 68905
+      },
+      "approach_comparison": {
+        "bottom_up_hypothesis": "exponential_or_mixed",
+        "top_down_hypothesis": "exponential_forced",
+        "approaches_agree": true,
+        "bottom_up_score": 0,
+        "top_down_score": 1,
+        "winner": "top_down",
+        "bottom_up_advantages": {
+          "reversed_hierarchy_detected": "False",
+          "confidence_provided": "low",
+          "direct_from_data": true
+        },
+        "top_down_disadvantages": {
+          "iterations_required": 2,
+          "false_positive_risk": 0,
+          "assumption_based": true
+        }
+      }
+    },
+    {
+      "trial_id": 3,
+      "prime_range": [
+        100000,
+        1000000
+      ],
+      "n_gaps": 68905,
+      "status": "success",
+      "exponential_test": {
+        "distribution": "exponential",
+        "scale": 13.06117117770844,
+        "ks_statistic": 0.16698769170032593,
+        "ks_pvalue": 0.0,
+        "ad_statistic": 2091.498130771957,
+        "ad_critical_values": [
+          0.922,
+          1.078,
+          1.341,
+          1.606,
+          1.957
+        ],
+        "log_likelihood": -245966.3057997662,
+        "aic": 491934.6115995324,
+        "bic": 491943.75208355574,
+        "n_samples": 68905
+      },
+      "lognormal_test": {
+        "distribution": "lognormal",
+        "shape": 0.8218153186797114,
+        "scale": 9.572709620259177,
+        "loc": 0,
+        "ks_statistic": 0.08494710045792275,
+        "ks_pvalue": 0.0,
+        "ad_statistic": 619.0325867786596,
+        "ad_critical_values": [
+          0.576,
+          0.656,
+          0.787,
+          0.918,
+          1.092
+        ],
+        "log_likelihood": -239900.69902169387,
+        "aic": 479805.39804338774,
+        "bic": 479823.6790114344,
+        "n_samples": 68905
+      },
+      "distribution_comparison": {
+        "delta_aic": 12129.213556144678,
+        "delta_bic": 12120.073072121362,
+        "winner": "lognormal",
+        "confidence": "strong",
+        "better_ks": "exponential",
+        "exp_ks_pvalue": 0.0,
+        "lognorm_ks_pvalue": 0.0
+      },
+      "fractal_cascade": {
+        "fractal_detected": "False",
+        "hurst_exponent": 12.367694894847732,
+        "hurst_std_err": 5.482739414642113,
+        "r_squared": 0.6290990377393653,
+        "p_value": 0.10935464775988586,
+        "intercept": -34.774182286074385,
+        "in_expected_range": "False",
+        "expected_range": [
+          0.7,
+          0.9
+        ],
+        "n_strata": 5,
+        "strata_results": [
+          {
+            "stratum": 0,
+            "lower": 2.0,
+            "upper": 4.0,
+            "n_samples": 6945,
+            "mu": 0.6931471805599454,
+            "sigma": 1.1103029629213054e-16,
+            "exp_mu": 2.0
+          },
+          {
+            "stratum": 1,
+            "lower": 4.0,
+            "upper": 8.0,
+            "n_samples": 18537,
+            "mu": 1.6402213417547116,
+            "sigma": 0.19616751795368217,
+            "exp_mu": 5.156310692791149
+          },
+          {
+            "stratum": 2,
+            "lower": 8.0,
+            "upper": 12.0,
+            "n_samples": 10959,
+            "mu": 2.204930519392171,
+            "sigma": 0.11070542413199791,
+            "exp_mu": 9.069621383157376
+          },
+          {
+            "stratum": 3,
+            "lower": 12.0,
+            "upper": 20.0,
+            "n_samples": 17726,
+            "mu": 2.659295563078094,
+            "sigma": 0.16506377225157184,
+            "exp_mu": 14.286221811091101
+          },
+          {
+            "stratum": 4,
+            "lower": 20.0,
+            "upper": 114.0,
+            "n_samples": 14738,
+            "mu": 3.333520892652113,
+            "sigma": 0.28437333028408224,
+            "exp_mu": 28.0368829800817
+          }
+        ]
+      },
+      "bottom_up_analysis": {
+        "approach": "bottom_up",
+        "moments": {
+          "1": 13.06117117770844,
+          "2": 281.2298672084754,
+          "3": 8605.320136419708,
+          "4": 342160.18181554315
+        },
+        "moment_deviations": {
+          "1": 0.17240607772342198,
+          "2": 0.1329828235342816,
+          "3": 0.03729814401158604,
+          "4": -0.07444552332265875
+        },
+        "abs_deviations": {
+          "1": 0.17240607772342198,
+          "2": 0.1329828235342816,
+          "3": 0.03729814401158604,
+          "4": 0.07444552332265875
+        },
+        "reversed_hierarchy": "False",
+        "hypothesis": "exponential_or_mixed",
+        "confidence": "low",
+        "n_samples": 68905,
+        "log_n_estimate": 11.140484023309245
+      },
+      "top_down_analysis": {
+        "approach": "top_down",
+        "initial_assumption": "exponential",
+        "exponential_fits": "False",
+        "iterations_required": 2,
+        "final_hypothesis": "exponential_forced",
+        "ks_pvalue": 0.0,
+        "false_positive_risk": 0,
+        "n_samples": 68905
+      },
+      "approach_comparison": {
+        "bottom_up_hypothesis": "exponential_or_mixed",
+        "top_down_hypothesis": "exponential_forced",
+        "approaches_agree": true,
+        "bottom_up_score": 0,
+        "top_down_score": 1,
+        "winner": "top_down",
+        "bottom_up_advantages": {
+          "reversed_hierarchy_detected": "False",
+          "confidence_provided": "low",
+          "direct_from_data": true
+        },
+        "top_down_disadvantages": {
+          "iterations_required": 2,
+          "false_positive_risk": 0,
+          "assumption_based": true
+        }
+      }
+    },
+    {
+      "trial_id": 4,
+      "prime_range": [
+        1000000,
+        5000000
+      ],
+      "n_gaps": 270014,
+      "status": "success",
+      "exponential_test": {
+        "distribution": "exponential",
+        "scale": 14.814031865014407,
+        "ks_statistic": 0.1535726971481582,
+        "ks_pvalue": 0.0,
+        "ad_statistic": 6689.809591470053,
+        "ad_critical_values": [
+          0.922,
+          1.078,
+          1.341,
+          1.606,
+          1.957
+        ],
+        "log_likelihood": -997856.9423084301,
+        "aic": 1995715.8846168602,
+        "bic": 1995726.3908459486,
+        "n_samples": 270014
+      },
+      "lognormal_test": {
+        "distribution": "lognormal",
+        "shape": 0.852218638956365,
+        "scale": 10.637812198326253,
+        "loc": 0,
+        "ks_statistic": 0.08048880552816978,
+        "ks_pvalue": 0.0,
+        "ad_statistic": 2125.281555893831,
+        "ad_critical_values": [
+          0.576,
+          0.656,
+          0.787,
+          0.918,
+          1.092
+        ],
+        "log_likelihood": -978379.8545899147,
+        "aic": 1956763.7091798293,
+        "bic": 1956784.7216380064,
+        "n_samples": 270014
+      },
+      "distribution_comparison": {
+        "delta_aic": 38952.17543703085,
+        "delta_bic": 38941.66920794221,
+        "winner": "lognormal",
+        "confidence": "strong",
+        "better_ks": "exponential",
+        "exp_ks_pvalue": 0.0,
+        "lognorm_ks_pvalue": 0.0
+      },
+      "fractal_cascade": {
+        "fractal_detected": "False",
+        "hurst_exponent": -0.08589760139901216,
+        "hurst_std_err": 0.33997417352177856,
+        "r_squared": 0.020835532795978835,
+        "p_value": 0.8168542235875407,
+        "intercept": -1.5239021695399604,
+        "in_expected_range": "False",
+        "expected_range": [
+          0.7,
+          0.9
+        ],
+        "n_strata": 5,
+        "strata_results": [
+          {
+            "stratum": 0,
+            "lower": 2.0,
+            "upper": 6.0,
+            "n_samples": 48458,
+            "mu": 1.0387910055434468,
+            "sigma": 0.34657591918336533,
+            "exp_mu": 2.825798573519216
+          },
+          {
+            "stratum": 1,
+            "lower": 6.0,
+            "upper": 10.0,
+            "n_samples": 58335,
+            "mu": 1.8772676453528758,
+            "sigma": 0.1314831452661718,
+            "exp_mu": 6.535622803913771
+          },
+          {
+            "stratum": 2,
+            "lower": 10.0,
+            "upper": 14.0,
+            "n_samples": 49079,
+            "mu": 2.4024516430723257,
+            "sigma": 0.09074505408699497,
+            "exp_mu": 11.050234429436346
+          },
+          {
+            "stratum": 3,
+            "lower": 14.0,
+            "upper": 24.0,
+            "n_samples": 59298,
+            "mu": 2.851640698715537,
+            "sigma": 0.15219827058212004,
+            "exp_mu": 17.316169163181854
+          },
+          {
+            "stratum": 4,
+            "lower": 24.0,
+            "upper": 154.0,
+            "n_samples": 54844,
+            "mu": 3.493006568651888,
+            "sigma": 0.2863485187647643,
+            "exp_mu": 32.884669240998
+          }
+        ]
+      },
+      "bottom_up_analysis": {
+        "approach": "bottom_up",
+        "moments": {
+          "1": 14.814031865014407,
+          "2": 370.5442828890354,
+          "3": 13294.359196189827,
+          "4": 621713.5924507618
+        },
+        "moment_deviations": {
+          "1": 0.18453226469764727,
+          "2": 0.18456081362265597,
+          "3": 0.13275768921700726,
+          "4": 0.05894548128400934
+        },
+        "abs_deviations": {
+          "1": 0.18453226469764727,
+          "2": 0.18456081362265597,
+          "3": 0.13275768921700726,
+          "4": 0.05894548128400934
+        },
+        "reversed_hierarchy": "False",
+        "hypothesis": "exponential_or_mixed",
+        "confidence": "low",
+        "n_samples": 270014,
+        "log_n_estimate": 12.506229088488103
+      },
+      "top_down_analysis": {
+        "approach": "top_down",
+        "initial_assumption": "exponential",
+        "exponential_fits": "False",
+        "iterations_required": 2,
+        "final_hypothesis": "exponential_forced",
+        "ks_pvalue": 0.0,
+        "false_positive_risk": 0,
+        "n_samples": 270014
+      },
+      "approach_comparison": {
+        "bottom_up_hypothesis": "exponential_or_mixed",
+        "top_down_hypothesis": "exponential_forced",
+        "approaches_agree": true,
+        "bottom_up_score": 0,
+        "top_down_score": 1,
+        "winner": "top_down",
+        "bottom_up_advantages": {
+          "reversed_hierarchy_detected": "False",
+          "confidence_provided": "low",
+          "direct_from_data": true
+        },
+        "top_down_disadvantages": {
+          "iterations_required": 2,
+          "false_positive_risk": 0,
+          "assumption_based": true
+        }
+      }
+    },
+    {
+      "trial_id": 5,
+      "prime_range": [
+        1000000,
+        5000000
+      ],
+      "n_gaps": 270014,
+      "status": "success",
+      "exponential_test": {
+        "distribution": "exponential",
+        "scale": 14.814031865014407,
+        "ks_statistic": 0.1535726971481582,
+        "ks_pvalue": 0.0,
+        "ad_statistic": 6689.809591470053,
+        "ad_critical_values": [
+          0.922,
+          1.078,
+          1.341,
+          1.606,
+          1.957
+        ],
+        "log_likelihood": -997856.9423084301,
+        "aic": 1995715.8846168602,
+        "bic": 1995726.3908459486,
+        "n_samples": 270014
+      },
+      "lognormal_test": {
+        "distribution": "lognormal",
+        "shape": 0.852218638956365,
+        "scale": 10.637812198326253,
+        "loc": 0,
+        "ks_statistic": 0.08048880552816978,
+        "ks_pvalue": 0.0,
+        "ad_statistic": 2125.281555893831,
+        "ad_critical_values": [
+          0.576,
+          0.656,
+          0.787,
+          0.918,
+          1.092
+        ],
+        "log_likelihood": -978379.8545899147,
+        "aic": 1956763.7091798293,
+        "bic": 1956784.7216380064,
+        "n_samples": 270014
+      },
+      "distribution_comparison": {
+        "delta_aic": 38952.17543703085,
+        "delta_bic": 38941.66920794221,
+        "winner": "lognormal",
+        "confidence": "strong",
+        "better_ks": "exponential",
+        "exp_ks_pvalue": 0.0,
+        "lognorm_ks_pvalue": 0.0
+      },
+      "fractal_cascade": {
+        "fractal_detected": "False",
+        "hurst_exponent": -0.08589760139901216,
+        "hurst_std_err": 0.33997417352177856,
+        "r_squared": 0.020835532795978835,
+        "p_value": 0.8168542235875407,
+        "intercept": -1.5239021695399604,
+        "in_expected_range": "False",
+        "expected_range": [
+          0.7,
+          0.9
+        ],
+        "n_strata": 5,
+        "strata_results": [
+          {
+            "stratum": 0,
+            "lower": 2.0,
+            "upper": 6.0,
+            "n_samples": 48458,
+            "mu": 1.0387910055434468,
+            "sigma": 0.34657591918336533,
+            "exp_mu": 2.825798573519216
+          },
+          {
+            "stratum": 1,
+            "lower": 6.0,
+            "upper": 10.0,
+            "n_samples": 58335,
+            "mu": 1.8772676453528758,
+            "sigma": 0.1314831452661718,
+            "exp_mu": 6.535622803913771
+          },
+          {
+            "stratum": 2,
+            "lower": 10.0,
+            "upper": 14.0,
+            "n_samples": 49079,
+            "mu": 2.4024516430723257,
+            "sigma": 0.09074505408699497,
+            "exp_mu": 11.050234429436346
+          },
+          {
+            "stratum": 3,
+            "lower": 14.0,
+            "upper": 24.0,
+            "n_samples": 59298,
+            "mu": 2.851640698715537,
+            "sigma": 0.15219827058212004,
+            "exp_mu": 17.316169163181854
+          },
+          {
+            "stratum": 4,
+            "lower": 24.0,
+            "upper": 154.0,
+            "n_samples": 54844,
+            "mu": 3.493006568651888,
+            "sigma": 0.2863485187647643,
+            "exp_mu": 32.884669240998
+          }
+        ]
+      },
+      "bottom_up_analysis": {
+        "approach": "bottom_up",
+        "moments": {
+          "1": 14.814031865014407,
+          "2": 370.5442828890354,
+          "3": 13294.359196189827,
+          "4": 621713.5924507618
+        },
+        "moment_deviations": {
+          "1": 0.18453226469764727,
+          "2": 0.18456081362265597,
+          "3": 0.13275768921700726,
+          "4": 0.05894548128400934
+        },
+        "abs_deviations": {
+          "1": 0.18453226469764727,
+          "2": 0.18456081362265597,
+          "3": 0.13275768921700726,
+          "4": 0.05894548128400934
+        },
+        "reversed_hierarchy": "False",
+        "hypothesis": "exponential_or_mixed",
+        "confidence": "low",
+        "n_samples": 270014,
+        "log_n_estimate": 12.506229088488103
+      },
+      "top_down_analysis": {
+        "approach": "top_down",
+        "initial_assumption": "exponential",
+        "exponential_fits": "False",
+        "iterations_required": 2,
+        "final_hypothesis": "exponential_forced",
+        "ks_pvalue": 0.0,
+        "false_positive_risk": 0,
+        "n_samples": 270014
+      },
+      "approach_comparison": {
+        "bottom_up_hypothesis": "exponential_or_mixed",
+        "top_down_hypothesis": "exponential_forced",
+        "approaches_agree": true,
+        "bottom_up_score": 0,
+        "top_down_score": 1,
+        "winner": "top_down",
+        "bottom_up_advantages": {
+          "reversed_hierarchy_detected": "False",
+          "confidence_provided": "low",
+          "direct_from_data": true
+        },
+        "top_down_disadvantages": {
+          "iterations_required": 2,
+          "false_positive_risk": 0,
+          "assumption_based": true
+        }
+      }
+    },
+    {
+      "trial_id": 6,
+      "prime_range": [
+        1000000,
+        5000000
+      ],
+      "n_gaps": 270014,
+      "status": "success",
+      "exponential_test": {
+        "distribution": "exponential",
+        "scale": 14.814031865014407,
+        "ks_statistic": 0.1535726971481582,
+        "ks_pvalue": 0.0,
+        "ad_statistic": 6689.809591470053,
+        "ad_critical_values": [
+          0.922,
+          1.078,
+          1.341,
+          1.606,
+          1.957
+        ],
+        "log_likelihood": -997856.9423084301,
+        "aic": 1995715.8846168602,
+        "bic": 1995726.3908459486,
+        "n_samples": 270014
+      },
+      "lognormal_test": {
+        "distribution": "lognormal",
+        "shape": 0.852218638956365,
+        "scale": 10.637812198326253,
+        "loc": 0,
+        "ks_statistic": 0.08048880552816978,
+        "ks_pvalue": 0.0,
+        "ad_statistic": 2125.281555893831,
+        "ad_critical_values": [
+          0.576,
+          0.656,
+          0.787,
+          0.918,
+          1.092
+        ],
+        "log_likelihood": -978379.8545899147,
+        "aic": 1956763.7091798293,
+        "bic": 1956784.7216380064,
+        "n_samples": 270014
+      },
+      "distribution_comparison": {
+        "delta_aic": 38952.17543703085,
+        "delta_bic": 38941.66920794221,
+        "winner": "lognormal",
+        "confidence": "strong",
+        "better_ks": "exponential",
+        "exp_ks_pvalue": 0.0,
+        "lognorm_ks_pvalue": 0.0
+      },
+      "fractal_cascade": {
+        "fractal_detected": "False",
+        "hurst_exponent": -0.08589760139901216,
+        "hurst_std_err": 0.33997417352177856,
+        "r_squared": 0.020835532795978835,
+        "p_value": 0.8168542235875407,
+        "intercept": -1.5239021695399604,
+        "in_expected_range": "False",
+        "expected_range": [
+          0.7,
+          0.9
+        ],
+        "n_strata": 5,
+        "strata_results": [
+          {
+            "stratum": 0,
+            "lower": 2.0,
+            "upper": 6.0,
+            "n_samples": 48458,
+            "mu": 1.0387910055434468,
+            "sigma": 0.34657591918336533,
+            "exp_mu": 2.825798573519216
+          },
+          {
+            "stratum": 1,
+            "lower": 6.0,
+            "upper": 10.0,
+            "n_samples": 58335,
+            "mu": 1.8772676453528758,
+            "sigma": 0.1314831452661718,
+            "exp_mu": 6.535622803913771
+          },
+          {
+            "stratum": 2,
+            "lower": 10.0,
+            "upper": 14.0,
+            "n_samples": 49079,
+            "mu": 2.4024516430723257,
+            "sigma": 0.09074505408699497,
+            "exp_mu": 11.050234429436346
+          },
+          {
+            "stratum": 3,
+            "lower": 14.0,
+            "upper": 24.0,
+            "n_samples": 59298,
+            "mu": 2.851640698715537,
+            "sigma": 0.15219827058212004,
+            "exp_mu": 17.316169163181854
+          },
+          {
+            "stratum": 4,
+            "lower": 24.0,
+            "upper": 154.0,
+            "n_samples": 54844,
+            "mu": 3.493006568651888,
+            "sigma": 0.2863485187647643,
+            "exp_mu": 32.884669240998
+          }
+        ]
+      },
+      "bottom_up_analysis": {
+        "approach": "bottom_up",
+        "moments": {
+          "1": 14.814031865014407,
+          "2": 370.5442828890354,
+          "3": 13294.359196189827,
+          "4": 621713.5924507618
+        },
+        "moment_deviations": {
+          "1": 0.18453226469764727,
+          "2": 0.18456081362265597,
+          "3": 0.13275768921700726,
+          "4": 0.05894548128400934
+        },
+        "abs_deviations": {
+          "1": 0.18453226469764727,
+          "2": 0.18456081362265597,
+          "3": 0.13275768921700726,
+          "4": 0.05894548128400934
+        },
+        "reversed_hierarchy": "False",
+        "hypothesis": "exponential_or_mixed",
+        "confidence": "low",
+        "n_samples": 270014,
+        "log_n_estimate": 12.506229088488103
+      },
+      "top_down_analysis": {
+        "approach": "top_down",
+        "initial_assumption": "exponential",
+        "exponential_fits": "False",
+        "iterations_required": 2,
+        "final_hypothesis": "exponential_forced",
+        "ks_pvalue": 0.0,
+        "false_positive_risk": 0,
+        "n_samples": 270014
+      },
+      "approach_comparison": {
+        "bottom_up_hypothesis": "exponential_or_mixed",
+        "top_down_hypothesis": "exponential_forced",
+        "approaches_agree": true,
+        "bottom_up_score": 0,
+        "top_down_score": 1,
+        "winner": "top_down",
+        "bottom_up_advantages": {
+          "reversed_hierarchy_detected": "False",
+          "confidence_provided": "low",
+          "direct_from_data": true
+        },
+        "top_down_disadvantages": {
+          "iterations_required": 2,
+          "false_positive_risk": 0,
+          "assumption_based": true
+        }
+      }
+    }
+  ],
+  "summary": {
+    "total_trials": 6,
+    "successful_trials": 6,
+    "failed_trials": 0,
+    "lognormal_wins": 6,
+    "exponential_wins": 0,
+    "lognormal_win_rate": 1.0,
+    "fractal_detected_count": 0,
+    "fractal_detection_rate": 0.0,
+    "bottom_up_wins": 0,
+    "top_down_wins": 6,
+    "bottom_up_win_rate": 0.0,
+    "reversed_hierarchy_count": 0,
+    "reversed_hierarchy_rate": 0.0
+  },
+  "analysis": {
+    "overall_verdict": "FALSIFIED",
+    "confidence": "high",
+    "components": {
+      "lognormal_vs_exponential": {
+        "supported": true,
+        "win_rate": 1.0,
+        "threshold": 0.7
+      },
+      "fractal_cascade": {
+        "supported": false,
+        "detection_rate": 0.0,
+        "threshold": 0.5
+      },
+      "bottom_up_advantage": {
+        "supported": false,
+        "win_rate": 0.0,
+        "threshold": 0.5
+      },
+      "reversed_hierarchy": {
+        "supported": false,
+        "replication_rate": 0.0,
+        "threshold": 0.7
+      }
+    },
+    "components_supported": 1,
+    "total_components": 4
+  },
+  "saved_at": "2025-12-26 06:39:33.974120"
+}

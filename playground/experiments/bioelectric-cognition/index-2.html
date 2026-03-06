@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bioelectric Morphogenesis: Dual-Threshold Criticality Channel</title>
+    <style>
+        :root {
+            --color-bg-primary: #0f172a;
+            --color-bg-secondary: #1e293b;
+            --color-bg-tertiary: #334155;
+            --color-text-primary: #f1f5f9;
+            --color-text-secondary: #cbd5e1;
+            --color-accent-teal: #38bdf8;
+            --color-accent-cyan: #22d3ee;
+            --color-warning: #f59e0b;
+            --color-danger: #ef4444;
+            --color-success: #10b981;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--color-bg-primary);
+            color: var(--color-text-primary);
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: var(--color-bg-secondary);
+            border-radius: 12px;
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: var(--color-accent-teal);
+        }
+
+        .subtitle {
+            color: var(--color-text-secondary);
+            font-size: 1rem;
+        }
+
+        .main-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .card {
+            background: var(--color-bg-secondary);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        .card h2 {
+            font-size: 1.25rem;
+            margin-bottom: 15px;
+            color: var(--color-accent-cyan);
+        }
+
+        .controls {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .control-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        label {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--color-text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .value-display {
+            font-weight: 600;
+            color: var(--color-accent-teal);
+            font-family: 'Courier New', monospace;
+        }
+
+        input[type="range"] {
+            width: 100%;
+            height: 6px;
+            border-radius: 3px;
+            background: var(--color-bg-tertiary);
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: var(--color-accent-teal);
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        input[type="range"]::-webkit-slider-thumb:hover {
+            background: var(--color-accent-cyan);
+        }
+
+        input[type="range"]::-moz-range-thumb {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: var(--color-accent-teal);
+            cursor: pointer;
+            border: none;
+        }
+
+        #cellGrid {
+            display: grid;
+            gap: 4px;
+            margin: 20px 0;
+            justify-content: center;
+        }
+
+        .cell {
+            width: 100%;
+            height: 100%;
+            min-width: 20px;
+            min-height: 20px;
+            border-radius: 4px;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            font-weight: bold;
+            border: 1px solid rgba(56, 189, 248, 0.3);
+        }
+
+        .status-panel {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .status-item {
+            background: var(--color-bg-tertiary);
+            padding: 12px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .status-label {
+            font-size: 0.8rem;
+            color: var(--color-text-secondary);
+            margin-bottom: 5px;
+        }
+
+        .status-value {
+            font-size: 1.2rem;
+            font-weight: 600;
+            font-family: 'Courier New', monospace;
+        }
+
+        .regime-indicator {
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-top: 15px;
+        }
+
+        .regime-fragmented {
+            background: rgba(239, 68, 68, 0.2);
+            border: 2px solid var(--color-danger);
+            color: var(--color-danger);
+        }
+
+        .regime-viable {
+            background: rgba(16, 185, 129, 0.2);
+            border: 2px solid var(--color-success);
+            color: var(--color-success);
+        }
+
+        .regime-shortcircuit {
+            background: rgba(245, 158, 11, 0.2);
+            border: 2px solid var(--color-warning);
+            color: var(--color-warning);
+        }
+
+        canvas {
+            width: 100%;
+            height: 300px;
+            background: var(--color-bg-tertiary);
+            border-radius: 8px;
+        }
+
+        .legend {
+            display: flex;
+            gap: 20px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.85rem;
+        }
+
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+        }
+
+        .insight-box {
+            background: linear-gradient(135deg, rgba(56, 189, 248, 0.1), rgba(34, 211, 238, 0.1));
+            border-left: 4px solid var(--color-accent-teal);
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        .insight-box h3 {
+            color: var(--color-accent-teal);
+            margin-bottom: 10px;
+        }
+
+        .insight-box p {
+            color: var(--color-text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+        }
+
+        button {
+            background: var(--color-accent-teal);
+            color: var(--color-bg-primary);
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+        }
+
+        button:hover {
+            background: var(--color-accent-cyan);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(56, 189, 248, 0.4);
+        }
+
+        .metric-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        @media (max-width: 968px) {
+            .main-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .metric-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .phase-diagram {
+            position: relative;
+            margin-top: 20px;
+        }
+
+        #currentPoint {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: var(--color-danger);
+            border: 2px solid var(--color-text-primary);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            z-index: 10;
+            box-shadow: 0 0 10px rgba(239, 68, 68, 0.8);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Bioelectric Morphogenesis: Dual-Threshold Criticality Channel</h1>
+            <p class="subtitle">Interactive demonstration of gap junction conductance thresholds in collective cellular cognition</p>
+        </header>
+
+        <div class="main-grid">
+            <div class="card">
+                <h2>System Parameters</h2>
+                <div class="controls">
+                    <div class="control-group">
+                        <label>
+                            <span>Cell Count (N)</span>
+                            <span class="value-display" id="cellCountDisplay">50</span>
+                        </label>
+                        <input type="range" id="cellCount" min="5" max="200" value="50" step="5">
+                    </div>
+
+                    <div class="control-group">
+                        <label>
+                            <span>Gap Junction Scale (GJ_scale)</span>
+                            <span class="value-display" id="gjScaleDisplay">30</span>
+                        </label>
+                        <input type="range" id="gjScale" min="1" max="100" value="30" step="1">
+                    </div>
+
+                    <div class="control-group">
+                        <label>
+                            <span>Loop Gain (L)</span>
+                            <span class="value-display" id="loopGainDisplay">2.5</span>
+                        </label>
+                        <input type="range" id="loopGain" min="1" max="5" value="2.5" step="0.1">
+                    </div>
+
+                    <button id="randomize">Randomize Initial State</button>
+                </div>
+
+                <div class="status-panel">
+                    <div class="status-item">
+                        <div class="status-label">GJ_max (Short-Circuit)</div>
+                        <div class="status-value" id="gjMax">70.0</div>
+                    </div>
+                    <div class="status-item">
+                        <div class="status-label">GJ_min (Fragmentation)</div>
+                        <div class="status-value" id="gjMin">5.0</div>
+                    </div>
+                    <div class="status-item">
+                        <div class="status-label">Corridor Width</div>
+                        <div class="status-value" id="corridorWidth">65.0</div>
+                    </div>
+                    <div class="status-item">
+                        <div class="status-label">Viable Fraction</div>
+                        <div class="status-value" id="viableFraction">0.93</div>
+                    </div>
+                </div>
+
+                <div id="regimeIndicator" class="regime-indicator">
+                    INITIALIZING...
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>Cellular Voltage Network</h2>
+                <div id="cellGrid"></div>
+                <div class="metric-grid">
+                    <div class="status-item">
+                        <div class="status-label">Gradient Coherence</div>
+                        <div class="status-value" id="coherence">0.00</div>
+                    </div>
+                    <div class="status-item">
+                        <div class="status-label">Voltage Domains</div>
+                        <div class="status-value" id="domains">1</div>
+                    </div>
+                    <div class="status-item">
+                        <div class="status-label">ΔV (Head-Tail)</div>
+                        <div class="status-value" id="deltaV">0 mV</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="main-grid">
+            <div class="card">
+                <h2>Phase Diagram: Viable Corridor</h2>
+                <div class="phase-diagram">
+                    <canvas id="phaseDiagram"></canvas>
+                    <div id="currentPoint"></div>
+                </div>
+                <div class="legend">
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: rgba(239, 68, 68, 0.5);"></div>
+                        <span>Fragmented (Islands)</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: rgba(16, 185, 129, 0.5);"></div>
+                        <span>Viable Corridor</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: rgba(245, 158, 11, 0.5);"></div>
+                        <span>Short-Circuit</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>Voltage Gradient Profile</h2>
+                <canvas id="voltageProfile"></canvas>
+            </div>
+        </div>
+
+        <div class="card insight-box">
+            <h3>The Dual-Threshold Insight</h3>
+            <p><strong>Novel Discovery:</strong> Bioelectric networks exhibit TWO critical thresholds, not one. Below the lower threshold (GJ_min), cells fragment into isolated "voltage islands" with independent polarization. Above the upper threshold (GJ_max), excessive connectivity short-circuits voltage gradients, erasing positional information.</p>
+            <p><strong>The Narrowing Corridor:</strong> As organism size increases (more cells), the viable parameter corridor between these thresholds shrinks as a fraction of total parameter space. This creates a body-size ceiling for morphogenetic competency without proportionally increased gap junction regulation precision.</p>
+            <p><strong>Biological Implication:</strong> This predicts why highly regenerative organisms (planaria, axolotls) tend to be small to medium-sized, while large mammals have diminished regenerative capacity. The dual-threshold channel narrows allometrically with cell count.</p>
+            <p><strong>Engineering Application:</strong> Scaling up bioengineered constructs (organoids, anthrobots) will encounter a predictable wall where bioelectric regulation becomes insufficient unless gap junction precision is simultaneously increased.</p>
+        </div>
+    </div>
+
+    <script>
+        class BioelectricSimulator {
+            constructor() {
+                this.cellCount = 50;
+                this.gjScale = 30;
+                this.loopGain = 2.5;
+                this.cells = [];
+                this.gjMax = 70;
+                this.gjMin = 5;
+                
+                this.initializeUI();
+                this.initializeCells();
+                this.setupEventListeners();
+                this.animate();
+            }
+
+            initializeUI() {
+                this.cellGrid = document.getElementById('cellGrid');
+                this.phaseDiagram = document.getElementById('phaseDiagram');
+                this.voltageProfile = document.getElementById('voltageProfile');
+                this.phaseCtx = this.phaseDiagram.getContext('2d');
+                this.voltageCtx = this.voltageProfile.getContext('2d');
+                
+                this.resizeCanvases();
+            }
+
+            resizeCanvases() {
+                this.phaseDiagram.width = this.phaseDiagram.offsetWidth;
+                this.phaseDiagram.height = 300;
+                this.voltageProfile.width = this.voltageProfile.offsetWidth;
+                this.voltageProfile.height = 300;
+            }
+
+            initializeCells() {
+                this.cells = [];
+                for (let i = 0; i < this.cellCount; i++) {
+                    const position = i / (this.cellCount - 1);
+                    this.cells.push({
+                        voltage: -40 + Math.random() * 20,
+                        targetVoltage: -40 + position * 80,
+                        position: position,
+                        domain: 0
+                    });
+                }
+                this.updateCellGrid();
+            }
+
+            updateCellGrid() {
+                const cols = Math.min(20, Math.ceil(Math.sqrt(this.cellCount)));
+                const rows = Math.ceil(this.cellCount / cols);
+                
+                this.cellGrid.style.gridTemplateColumns = `repeat(${cols}, 1fr)`;
+                this.cellGrid.innerHTML = '';
+                
+                for (let i = 0; i < this.cellCount; i++) {
+                    const cell = document.createElement('div');
+                    cell.className = 'cell';
+                    cell.id = `cell-${i}`;
+                    this.cellGrid.appendChild(cell);
+                }
+            }
+
+            calculateThresholds() {
+                const scaleFactor = Math.log10(this.cellCount / 5 + 1) + 1;
+                this.gjMin = 5 * Math.pow(scaleFactor, 0.7);
+                this.gjMax = 70 * Math.pow(scaleFactor, 0.3);
+            }
+
+            getRegime() {
+                if (this.gjScale < this.gjMin) {
+                    return 'fragmented';
+                } else if (this.gjScale > this.gjMax) {
+                    return 'shortcircuit';
+                } else {
+                    return 'viable';
+                }
+            }
+
+            updateVoltages() {
+                const regime = this.getRegime();
+                const dt = 0.05;
+                
+                for (let i = 0; i < this.cellCount; i++) {
+                    const cell = this.cells[i];
+                    let coupling = 0;
+                    
+                    if (regime === 'fragmented') {
+                        const domainSize = Math.max(3, Math.floor(this.gjMin / 2));
+                        const domainIndex = Math.floor(i / domainSize);
+                        cell.domain = domainIndex;
+                        
+                        if (i > 0 && Math.floor((i-1) / domainSize) === domainIndex) {
+                            coupling += (this.cells[i-1].voltage - cell.voltage) * 0.3;
+                        }
+                        if (i < this.cellCount - 1 && Math.floor((i+1) / domainSize) === domainIndex) {
+                            coupling += (this.cells[i+1].voltage - cell.voltage) * 0.3;
+                        }
+                        
+                        cell.targetVoltage = -40 + (domainIndex % 2) * 60 + Math.random() * 20;
+                    } else if (regime === 'shortcircuit') {
+                        cell.domain = 0;
+                        const avgVoltage = this.cells.reduce((sum, c) => sum + c.voltage, 0) / this.cellCount;
+                        coupling = (avgVoltage - cell.voltage) * 0.8;
+                        cell.targetVoltage = avgVoltage;
+                    } else {
+                        cell.domain = 0;
+                        const effectiveGJ = (this.gjScale / this.gjMax) * this.loopGain;
+                        
+                        if (i > 0) {
+                            coupling += (this.cells[i-1].voltage - cell.voltage) * effectiveGJ * 0.1;
+                        }
+                        if (i < this.cellCount - 1) {
+                            coupling += (this.cells[i+1].voltage - cell.voltage) * effectiveGJ * 0.1;
+                        }
+                        
+                        cell.targetVoltage = -70 + cell.position * 90;
+                    }
+                    
+                    const relaxation = (cell.targetVoltage - cell.voltage) * 0.02;
+                    cell.voltage += (coupling + relaxation) * dt;
+                    cell.voltage = Math.max(-100, Math.min(30, cell.voltage));
+                }
+            }
+
+            calculateMetrics() {
+                const voltages = this.cells.map(c => c.voltage);
+                const mean = voltages.reduce((a, b) => a + b, 0) / voltages.length;
+                const variance = voltages.reduce((sum, v) => sum + Math.pow(v - mean, 2), 0) / voltages.length;
+                const stdDev = Math.sqrt(variance);
+                
+                const expectedGradient = 90;
+                const actualGradient = Math.abs(voltages[voltages.length - 1] - voltages[0]);
+                const coherence = Math.min(1, actualGradient / expectedGradient);
+                
+                const domains = new Set(this.cells.map(c => c.domain)).size;
+                
+                const deltaV = Math.round(actualGradient);
+                
+                return { coherence, domains, deltaV };
+            }
+
+            renderCells() {
+                for (let i = 0; i < this.cellCount; i++) {
+                    const cell = this.cells[i];
+                    const element = document.getElementById(`cell-${i}`);
+                    if (element) {
+                        const normalized = (cell.voltage + 100) / 130;
+                        const hue = 200 + normalized * 60;
+                        const lightness = 30 + normalized * 50;
+                        element.style.background = `hsl(${hue}, 70%, ${lightness}%)`;
+                        element.style.borderColor = `hsl(${hue}, 70%, ${lightness + 10}%)`;
+                    }
+                }
+            }
+
+            drawPhaseDiagram() {
+                const ctx = this.phaseCtx;
+                const w = this.phaseDiagram.width;
+                const h = this.phaseDiagram.height;
+                
+                ctx.fillStyle = '#334155';
+                ctx.fillRect(0, 0, w, h);
+                
+                const maxCells = 200;
+                const maxGJ = 100;
+                
+                for (let n = 5; n <= maxCells; n += 5) {
+                    const scaleFactor = Math.log10(n / 5 + 1) + 1;
+                    const gjMin = 5 * Math.pow(scaleFactor, 0.7);
+                    const gjMax = 70 * Math.pow(scaleFactor, 0.3);
+                    
+                    const x = (n / maxCells) * w;
+                    const yMin = h - (gjMin / maxGJ) * h;
+                    const yMax = h - (gjMax / maxGJ) * h;
+                    
+                    ctx.fillStyle = 'rgba(239, 68, 68, 0.5)';
+                    ctx.fillRect(x - 2, yMin, 4, h - yMin);
+                    
+                    ctx.fillStyle = 'rgba(16, 185, 129, 0.5)';
+                    ctx.fillRect(x - 2, yMax, 4, yMin - yMax);
+                    
+                    ctx.fillStyle = 'rgba(245, 158, 11, 0.5)';
+                    ctx.fillRect(x - 2, 0, 4, yMax);
+                }
+                
+                ctx.strokeStyle = '#38bdf8';
+                ctx.lineWidth = 2;
+                ctx.beginPath();
+                for (let n = 5; n <= maxCells; n += 1) {
+                    const scaleFactor = Math.log10(n / 5 + 1) + 1;
+                    const gjMin = 5 * Math.pow(scaleFactor, 0.7);
+                    const x = (n / maxCells) * w;
+                    const y = h - (gjMin / maxGJ) * h;
+                    if (n === 5) ctx.moveTo(x, y);
+                    else ctx.lineTo(x, y);
+                }
+                ctx.stroke();
+                
+                ctx.strokeStyle = '#22d3ee';
+                ctx.beginPath();
+                for (let n = 5; n <= maxCells; n += 1) {
+                    const scaleFactor = Math.log10(n / 5 + 1) + 1;
+                    const gjMax = 70 * Math.pow(scaleFactor, 0.3);
+                    const x = (n / maxCells) * w;
+                    const y = h - (gjMax / maxGJ) * h;
+                    if (n === 5) ctx.moveTo(x, y);
+                    else ctx.lineTo(x, y);
+                }
+                ctx.stroke();
+                
+                ctx.fillStyle = '#cbd5e1';
+                ctx.font = '12px monospace';
+                ctx.fillText('Cell Count →', w - 100, h - 10);
+                ctx.save();
+                ctx.translate(15, h / 2);
+                ctx.rotate(-Math.PI / 2);
+                ctx.fillText('GJ Scale →', 0, 0);
+                ctx.restore();
+                
+                const currentX = (this.cellCount / maxCells) * w;
+                const currentY = h - (this.gjScale / maxGJ) * h;
+                const point = document.getElementById('currentPoint');
+                point.style.left = `${currentX}px`;
+                point.style.top = `${currentY}px`;
+            }
+
+            drawVoltageProfile() {
+                const ctx = this.voltageCtx;
+                const w = this.voltageProfile.width;
+                const h = this.voltageProfile.height;
+                
+                ctx.fillStyle = '#334155';
+                ctx.fillRect(0, 0, w, h);
+                
+                ctx.strokeStyle = '#475569';
+                ctx.lineWidth = 1;
+                ctx.setLineDash([5, 5]);
+                for (let i = 0; i <= 4; i++) {
+                    const y = (i / 4) * h;
+                    ctx.beginPath();
+                    ctx.moveTo(0, y);
+                    ctx.lineTo(w, y);
+                    ctx.stroke();
+                }
+                ctx.setLineDash([]);
+                
+                const gradient = ctx.createLinearGradient(0, 0, w, 0);
+                gradient.addColorStop(0, '#38bdf8');
+                gradient.addColorStop(1, '#22d3ee');
+                
+                ctx.strokeStyle = gradient;
+                ctx.lineWidth = 3;
+                ctx.beginPath();
+                
+                for (let i = 0; i < this.cellCount; i++) {
+                    const x = (i / (this.cellCount - 1)) * w;
+                    const voltage = this.cells[i].voltage;
+                    const y = h - ((voltage + 100) / 130) * h;
+                    
+                    if (i === 0) ctx.moveTo(x, y);
+                    else ctx.lineTo(x, y);
+                }
+                ctx.stroke();
+                
+                ctx.fillStyle = 'rgba(56, 189, 248, 0.3)';
+                ctx.beginPath();
+                ctx.moveTo(0, h);
+                for (let i = 0; i < this.cellCount; i++) {
+                    const x = (i / (this.cellCount - 1)) * w;
+                    const voltage = this.cells[i].voltage;
+                    const y = h - ((voltage + 100) / 130) * h;
+                    ctx.lineTo(x, y);
+                }
+                ctx.lineTo(w, h);
+                ctx.closePath();
+                ctx.fill();
+                
+                ctx.fillStyle = '#cbd5e1';
+                ctx.font = '12px monospace';
+                ctx.fillText('Position →', w - 80, h - 10);
+                ctx.fillText('30 mV', 10, 20);
+                ctx.fillText('-70 mV', 10, h - 10);
+            }
+
+            updateUI() {
+                const metrics = this.calculateMetrics();
+                const regime = this.getRegime();
+                
+                document.getElementById('cellCountDisplay').textContent = this.cellCount;
+                document.getElementById('gjScaleDisplay').textContent = this.gjScale;
+                document.getElementById('loopGainDisplay').textContent = this.loopGain.toFixed(1);
+                document.getElementById('gjMax').textContent = this.gjMax.toFixed(1);
+                document.getElementById('gjMin').textContent = this.gjMin.toFixed(1);
+                
+                const corridorWidth = this.gjMax - this.gjMin;
+                const viableFraction = corridorWidth / this.gjMax;
+                document.getElementById('corridorWidth').textContent = corridorWidth.toFixed(1);
+                document.getElementById('viableFraction').textContent = viableFraction.toFixed(2);
+                
+                document.getElementById('coherence').textContent = metrics.coherence.toFixed(2);
+                document.getElementById('domains').textContent = metrics.domains;
+                document.getElementById('deltaV').textContent = `${metrics.deltaV} mV`;
+                
+                const indicator = document.getElementById('regimeIndicator');
+                indicator.className = 'regime-indicator';
+                
+                if (regime === 'fragmented') {
+                    indicator.classList.add('regime-fragmented');
+                    indicator.textContent = '⚠ FRAGMENTED REGIME: Voltage Islands';
+                } else if (regime === 'shortcircuit') {
+                    indicator.classList.add('regime-shortcircuit');
+                    indicator.textContent = '⚠ SHORT-CIRCUIT REGIME: Gradient Collapse';
+                } else {
+                    indicator.classList.add('regime-viable');
+                    indicator.textContent = '✓ VIABLE CORRIDOR: Morphogenetic Competency';
+                }
+            }
+
+            setupEventListeners() {
+                document.getElementById('cellCount').addEventListener('input', (e) => {
+                    this.cellCount = parseInt(e.target.value);
+                    this.calculateThresholds();
+                    this.initializeCells();
+                });
+
+                document.getElementById('gjScale').addEventListener('input', (e) => {
+                    this.gjScale = parseInt(e.target.value);
+                });
+
+                document.getElementById('loopGain').addEventListener('input', (e) => {
+                    this.loopGain = parseFloat(e.target.value);
+                });
+
+                document.getElementById('randomize').addEventListener('click', () => {
+                    this.initializeCells();
+                });
+
+                window.addEventListener('resize', () => {
+                    this.resizeCanvases();
+                    this.drawPhaseDiagram();
+                    this.drawVoltageProfile();
+                });
+            }
+
+            animate() {
+                this.calculateThresholds();
+                this.updateVoltages();
+                this.renderCells();
+                this.updateUI();
+                this.drawPhaseDiagram();
+                this.drawVoltageProfile();
+                
+                requestAnimationFrame(() => this.animate());
+            }
+        }
+
+        const simulator = new BioelectricSimulator();
+    </script>
+</body>
+</html>

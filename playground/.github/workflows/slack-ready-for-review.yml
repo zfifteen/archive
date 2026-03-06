@@ -1,0 +1,28 @@
+name: Slack Ready for Review Notification
+
+on:
+  pull_request:
+    types: [ready_for_review]
+
+jobs:
+  notify-slack:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send Slack notification
+        uses: slackapi/slack-github-action@v2.0.0
+        with:
+          webhook: ${{ secrets.SLACK_WEBHOOK_URL }}
+          webhook-type: incoming-webhook
+          payload: |
+            {
+              "text": "PR Ready for Review",
+              "blocks": [
+                {
+                  "type": "section",
+                  "text": {
+                    "type": "mrkdwn",
+                    "text": ":eyes: *PR Ready for Review*\n\n*<${{ github.event.pull_request.html_url }}|#${{ github.event.pull_request.number }}: ${{ github.event.pull_request.title }}>*\n\nAuthor: ${{ github.event.pull_request.user.login }}"
+                  }
+                }
+              ]
+            }

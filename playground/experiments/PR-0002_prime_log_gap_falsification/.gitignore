@@ -1,0 +1,15 @@
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Large data files (regenerable)
+data/*.npy
+data/*.csv
+
+# Results (regenerable from experiments)
+results/
+!results/.gitkeep
+
+# Jupyter checkpoints
+.ipynb_checkpoints/

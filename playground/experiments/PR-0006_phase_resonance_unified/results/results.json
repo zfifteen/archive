@@ -1,0 +1,34 @@
+{
+  "timestamp": "2025-12-26T06:19:17.422004",
+  "verdict": "FALSIFIED",
+  "verdict_detail": "The geometric resonance method completely failed to detect semiprime factors (0% success rate). While DNA analysis showed some phase structure, the claimed unification is invalidated.",
+  "number_theory": {
+    "n_semiprimes": 50,
+    "mean_precision": 0.0,
+    "mean_recall": 0.0,
+    "mean_f1_score": 0.0,
+    "mean_snr": -5.062819802856888,
+    "success_rate": 0.0
+  },
+  "molecular_biology": {
+    "n_sequences": 10,
+    "mean_coherence": 0.05287468347945863,
+    "mean_peak_ratio": 72.52332118289789
+  },
+  "cross_domain": {
+    "number_theory": {
+      "method": "\u03c6/e-based geometric resonance",
+      "success_rate": 0.0,
+      "mean_f1": 0.0,
+      "verdict": "FAILED"
+    },
+    "molecular_biology": {
+      "method": "Helical phase (10.5bp period)",
+      "phase_coherence": 0.05287468347945863,
+      "peak_ratio": 72.52332118289789,
+      "verdict": "MODERATE"
+    },
+    "cross_domain_correlation": null,
+    "unified_framework": false
+  }
+}

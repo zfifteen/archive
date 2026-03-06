@@ -1,0 +1,21 @@
+# Build artifacts
+*.o
+*.a
+*.so
+*.dylib
+
+# Binaries
+test_loglog
+benchmark_loglog
+
+# Benchmark results
+benchmark_results_*.txt
+
+# Editor and IDE files
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Debug files
+*.dSYM/

@@ -1,0 +1,44 @@
+\documentclass{article}
+\usepackage{amsmath, amssymb}
+
+\title{Theorem 2: Diffusive Leakage Signature of the Flux Diagnostic}
+\author{Dionisio Alberto Lopez III}
+\date{January 30, 2026}
+
+\begin{document}
+
+\maketitle
+
+\section{Theorem Statement}
+
+\textbf{Theorem 2 (Diffusive Leakage Signature)}. 
+When the resonance overlap criterion is exceeded and Arnold diffusion is present with an effective diffusion coefficient $D(I)$, the flux diagnostic $Z_Q = f(Q) \dot{Q} / H$ exhibits a systematic secular growth:
+
+\begin{equation}
+\langle Z_Q \rangle_T \approx \frac{1}{H} f(Q) \left( \frac{\partial Q}{\partial I} \right) D(I)
+\end{equation}
+
+where the sign of $\langle Z_Q \rangle_T$ indicates the direction of diffusion relative to the confinement boundary.
+
+\section{Proof Outline}
+
+\subsection{1. Stochastic Model of Action Drift}
+In the diffusive regime, the actions $I$ undergo a random walk driven by resonance overlap. We model the action evolution as:
+\begin{equation}
+dI = D(I) dt + \sqrt{2 D(I)} dW_t
+\end{equation}
+where $dW_t$ is a standard Wiener process.
+
+\subsection{2. Ito Lemma for the Diagnostic}
+Applying Ito's lemma to the confinement functional $Q(I)$:
+\begin{equation}
+dQ = \left( \frac{\partial Q}{\partial I} D(I) + \frac{1}{2} \frac{\partial^2 Q}{\partial I^2} D(I) \right) dt + \frac{\partial Q}{\partial I} \sqrt{2 D(I)} dW_t
+\end{equation}
+
+\subsection{3. Time Averaging and Noise Cancellation}
+When taking the time average $\langle Z_Q \rangle_T = \frac{1}{T} \int Z_Q dt$, the stochastic integral $\int dW_t$ averages to zero as $T \to \infty$. The remaining secular term is dominated by the first-order drift $D(I)$.
+
+\subsection{4. Physical Interpretation}
+The diagnostic effectively "rectifies" the chaotic fluctuations into a directional flux. If $Q$ is chosen such that it increases toward escape, then $\langle Z_Q \rangle > 0$ provides a definitive signature of a leaking system.
+
+\end{document}

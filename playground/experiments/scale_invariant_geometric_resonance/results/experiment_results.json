@@ -1,0 +1,1019 @@
+{
+  "metadata": {
+    "timestamp": "2025-12-26T06:58:09.474033",
+    "hypothesis": "Scale-Invariant Geometric Resonance in Extreme-Scale Semiprime Analysis",
+    "elapsed_time_seconds": 0.004469871520996094
+  },
+  "tests": {
+    "hypothesis_validation": {
+      "scale_invariance": {
+        "scales": [
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "z5d_scores": [
+          -0.9898777424616577,
+          0.0,
+          -0.04387561786215873,
+          -0.01103126011914799,
+          -0.0086525374829169
+        ],
+        "variances": [],
+        "scale_invariant": false,
+        "mean_score": -0.21068743158517628,
+        "variance": 0.19000840020717302,
+        "coefficient_of_variation": 2.0689394078536147
+      },
+      "asymmetric_enrichment": {
+        "balanced_analysis": {
+          "total_semiprimes": 8,
+          "total_searches": 3,
+          "factors_found": 8,
+          "p_enrichment_mean": 0,
+          "q_enrichment_mean": 0,
+          "enrichment_ratio_mean": 0,
+          "enrichment_ratio_median": 0,
+          "results": [
+            {
+              "N": 15,
+              "sqrt_N": 3.872983346207417,
+              "searches": [],
+              "factors_found": [
+                5,
+                3
+              ],
+              "enrichment_detected": true,
+              "detection_offset_pct": 0.1
+            },
+            {
+              "N": 35,
+              "sqrt_N": 5.916079783099616,
+              "searches": [],
+              "factors_found": [
+                7,
+                5
+              ],
+              "enrichment_detected": true,
+              "detection_offset_pct": 0.1
+            },
+            {
+              "N": 143,
+              "sqrt_N": 11.958260743101398,
+              "searches": [],
+              "factors_found": [
+                11,
+                13
+              ],
+              "enrichment_detected": true,
+              "detection_offset_pct": 0.1
+            },
+            {
+              "N": 323,
+              "sqrt_N": 17.97220075561143,
+              "searches": [],
+              "factors_found": [
+                19,
+                17
+              ],
+              "enrichment_detected": true,
+              "detection_offset_pct": 0.1
+            },
+            {
+              "N": 899,
+              "sqrt_N": 29.9833287011299,
+              "searches": [],
+              "factors_found": [
+                29,
+                31
+              ],
+              "enrichment_detected": true,
+              "detection_offset_pct": 0.1
+            },
+            {
+              "N": 1763,
+              "sqrt_N": 41.98809355043403,
+              "searches": [],
+              "factors_found": [
+                43,
+                41
+              ],
+              "enrichment_detected": true,
+              "detection_offset_pct": 0.1
+            },
+            {
+              "N": 3599,
+              "sqrt_N": 59.99166608788257,
+              "searches": [
+                {
+                  "offset_pct": 0.1,
+                  "radius": 7.198999930545909,
+                  "p_candidates": 0,
+                  "q_candidates": 0,
+                  "p_enrichment": 0.0,
+                  "q_enrichment": 0.0,
+                  "enrichment_ratio": 0
+                },
+                {
+                  "offset_pct": 0.15000000000000002,
+                  "radius": 10.798499895818864,
+                  "p_candidates": 0,
+                  "q_candidates": 0,
+                  "p_enrichment": 0.0,
+                  "q_enrichment": 0.0,
+                  "enrichment_ratio": 0
+                }
+              ],
+              "factors_found": [
+                59,
+                61
+              ],
+              "enrichment_detected": true,
+              "detection_offset_pct": 0.2
+            },
+            {
+              "N": 5183,
+              "sqrt_N": 71.99305522062528,
+              "searches": [
+                {
+                  "offset_pct": 0.1,
+                  "radius": 8.639166626475033,
+                  "p_candidates": 0,
+                  "q_candidates": 0,
+                  "p_enrichment": 0.0,
+                  "q_enrichment": 0.0,
+                  "enrichment_ratio": 0
+                }
+              ],
+              "factors_found": [
+                73,
+                71
+              ],
+              "enrichment_detected": true,
+              "detection_offset_pct": 0.15000000000000002
+            }
+          ],
+          "asymmetry_detected": false
+        },
+        "unbalanced_analysis": {
+          "total_semiprimes": 8,
+          "total_searches": 36,
+          "factors_found": 8,
+          "p_enrichment_mean": 0.31699045223337907,
+          "q_enrichment_mean": 0.24422109319304205,
+          "enrichment_ratio_mean": 0.85,
+          "enrichment_ratio_median": 0.8,
+          "results": [
+            {
+              "N": 291,
+              "sqrt_N": 17.05872210923198,
+              "searches": [
+                {
+                  "offset_pct": 0.1,
+                  "radius": 2.0470466531078375,
+                  "p_candidates": 1,
+                  "q_candidates": 0,
+                  "p_enrichment": 0.24425432573356218,
+                  "q_enrichment": 0.0,
+                  "enrichment_ratio": 0.0
+                },
+                {
+                  "offset_pct": 0.15000000000000002,
+                  "radius": 3.070569979661757,
+                  "p_candidates": 2,
+                  "q_candidates": 0,
+                  "p_enrichment": 0.3256724343114162,
+                  "q_enrichment": 0.0,
+                  "enrichment_ratio": 0.0
+                },
+                {
+                  "offset_pct": 0.2,
+                  "radius": 4.094093306215675,
+                  "p_candidates": 2,
+                  "q_candidates": 0,
+                  "p_enrichment": 0.24425432573356218,
+                  "q_enrichment": 0.0,
+                  "enrichment_ratio": 0.0
+                },
+                {
+                  "offset_pct": 0.25,
+                  "radius": 5.117616632769594,
+                  "p_candidates": 3,
+                  "q_candidates": 0,
+                  "p_enrichment": 0.2931051908802746,
+                  "q_enrichment": 0.0,
+                  "enrichment_ratio": 0.0
+                },
+                {
+                  "offset_pct": 0.3,
+                  "radius": 6.141139959323513,
+                  "p_candidates": 5,
+                  "q_candidates": 0,
+                  "p_enrichment": 0.40709054288927027,
+                  "q_enrichment": 0.0,
+                  "enrichment_ratio": 0.0
+                }
+              ],
+              "factors_found": [
+                3,
+                97
+              ],
+              "enrichment_detected": true,
+              "detection_offset_pct": 0.35
+            },
+            {
+              "N": 445,
+              "sqrt_N": 21.095023109728988,
+              "searches": [
+                {
+                  "offset_pct": 0.1,
+                  "radius": 2.531402773167479,
+                  "p_candidates": 0,
+                  "q_candidates": 0,
+                  "p_enrichment": 0.0,
+                  "q_enrichment": 0.0,
+                  "enrichment_ratio": 0
+                },
+                {
+                  "offset_pct": 0.15000000000000002,
+                  "radius": 3.797104159751218,
+                  "p_candidates": 0,
+                  "q_candidates": 0,
+                  "p_enrichment": 0.0,
+                  "q_enrichment": 0.0,
+                  "enrichment_ratio": 0
+                },
+                {
+                  "offset_pct": 0.2,
+                  "radius": 5.062805546334958,
+                  "p_candidates": 4,
+                  "q_candidates": 0,
+                  "p_enrichment": 0.39503788594998096,
+                  "q_enrichment": 0.0,
+                  "enrichment_ratio": 0.0
+                },
+                {
+                  "offset_pct": 0.25,
+                  "radius": 6.328506932918696,
+                  "p_candidates": 4,
+                  "q_candidates": 0,
+                  "p_enrichment": 0.31603030875998483,
+                  "q_enrichment": 0.0,
+                  "enrichment_ratio": 0.0
+                },
+                {
+                  "offset_pct": 0.3,
+                  "radius": 7.594208319502435,
+                  "p_candidates": 5,
+                  "q_candidates": 4,
+                  "p_enrichment": 0.32919823829165085,
+                  "q_enrichment": 0.2633585906333207,
+                  "enrichment_ratio": 0.8
+                },
+                {
+                  "offset_pct": 0.35,
+                  "radius": 8.859909706086174,
+                  "p_candidates": 0,
+                  "q_candidates": 4,
+                  "p_enrichment": 0.0,
+                  "q_enrichment": 0.22573593482856058,
+                  "enrichment_ratio": 0
+                }
+              ],
+              "factors_found": [
+                5,
+                89
+              ],
+              "enrichment_detected": true,
+              "detection_offset_pct": 0.39999999999999997
+            },
+            {
+              "N": 581,
+              "sqrt_N": 24.1039415863879,
+              "searches": [
+                {
+                  "offset_pct": 0.1,
+                  "radius": 2.892472990366548,
+                  "p_candidates": 0,
+                  "q_candidates": 1,
+                  "p_enrichment": 0.0,
+                  "q_enrichment": 0.1728624611760463,
+                  "enrichment_ratio": 0
+                },
+                {
+                  "offset_pct": 0.15000000000000002,
+                  "radius": 4.338709485549823,
+                  "p_candidates": 0,
+                  "q_candidates": 3,
+                  "p_enrichment": 0.0,
+                  "q_enrichment": 0.34572492235209257,
+                  "enrichment_ratio": 0
+                },
+                {
+                  "offset_pct": 0.2,
+                  "radius": 5.784945980733096,
+                  "p_candidates": 4,
+                  "q_candidates": 3,
+                  "p_enrichment": 0.3457249223520926,
+                  "q_enrichment": 0.25929369176406947,
+                  "enrichment_ratio": 0.75
+                },
+                {
+                  "offset_pct": 0.25,
+                  "radius": 7.23118247591637,
+                  "p_candidates": 0,
+                  "q_candidates": 0,
+                  "p_enrichment": 0.0,
+                  "q_enrichment": 0.0,
+                  "enrichment_ratio": 0
+                },
+                {
+                  "offset_pct": 0.3,
+                  "radius": 8.677418971099643,
+                  "p_candidates": 0,
+                  "q_candidates": 0,
+                  "p_enrichment": 0.0,
+                  "q_enrichment": 0.0,
+                  "enrichment_ratio": 0
+                }
+              ],
+              "factors_found": [
+                7,
+                83
+              ],
+              "enrichment_detected": true,
+              "detection_offset_pct": 0.35
+            },
+            {
+              "N": 869,
+              "sqrt_N": 29.478805945967352,
+              "searches": [
+                {
+                  "offset_pct": 0.1,
+                  "radius": 3.5374567135160824,
+                  "p_candidates": 0,
+                  "q_candidates": 0,
+                  "p_enrichment": 0.0,
+                  "q_enrichment": 0.0,
+                  "enrichment_ratio": 0
+                },
+                {
+                  "offset_pct": 0.15000000000000002,
+                  "radius": 5.3061850702741244,
+                  "p_candidates": 3,
+                  "q_candidates": 0,
+                  "p_enrichment": 0.2826889714803159,
+                  "q_enrichment": 0.0,
+                  "enrichment_ratio": 0.0
+                },
+                {
+                  "offset_pct": 0.2,
+                  "radius": 7.074913427032165,
+                  "p_candidates": 0,
+                  "q_candidates": 0,
+                  "p_enrichment": 0.0,
+                  "q_enrichment": 0.0,
+                  "enrichment_ratio": 0
+                },
+                {
+                  "offset_pct": 0.25,
+                  "radius": 8.843641783790206,
+                  "p_candidates": 5,
+                  "q_candidates": 0,
+                  "p_enrichment": 0.28268897148031596,
+                  "q_enrichment": 0.0,
+                  "enrichment_ratio": 0.0
+                },
+                {
+                  "offset_pct": 0.3,
+                  "radius": 10.612370140548247,
+                  "p_candidates": 0,
+                  "q_candidates": 6,
+                  "p_enrichment": 0.0,
+                  "q_enrichment": 0.28268897148031596,
+                  "enrichment_ratio": 0
+                },
+                {
+                  "offset_pct": 0.35,
+                  "radius": 12.381098497306287,
+                  "p_candidates": 0,
+                  "q_candidates": 6,
+                  "p_enrichment": 0.0,
+                  "q_enrichment": 0.2423048326974137,
+                  "enrichment_ratio": 0
+                }
+              ],
+              "factors_found": [
+                11,
+                79
+              ],
+              "enrichment_detected": true,
+              "detection_offset_pct": 0.39999999999999997
+            },
+            {
+              "N": 949,
+              "sqrt_N": 30.805843601498726,
+              "searches": [
+                {
+                  "offset_pct": 0.1,
+                  "radius": 3.696701232179847,
+                  "p_candidates": 0,
+                  "q_candidates": 0,
+                  "p_enrichment": 0.0,
+                  "q_enrichment": 0.0,
+                  "enrichment_ratio": 0
+                },
+                {
+                  "offset_pct": 0.15000000000000002,
+                  "radius": 5.545051848269772,
+                  "p_candidates": 0,
+                  "q_candidates": 3,
+                  "p_enrichment": 0.0,
+                  "q_enrichment": 0.2705114471504981,
+                  "enrichment_ratio": 0
+                },
+                {
+                  "offset_pct": 0.2,
+                  "radius": 7.393402464359694,
+                  "p_candidates": 5,
+                  "q_candidates": 5,
+                  "p_enrichment": 0.33813930893812266,
+                  "q_enrichment": 0.33813930893812266,
+                  "enrichment_ratio": 1.0
+                }
+              ],
+              "factors_found": [
+                13,
+                73
+              ],
+              "enrichment_detected": true,
+              "detection_offset_pct": 0.25
+            },
+            {
+              "N": 1139,
+              "sqrt_N": 33.74907406137241,
+              "searches": [
+                {
+                  "offset_pct": 0.1,
+                  "radius": 4.049888887364689,
+                  "p_candidates": 0,
+                  "q_candidates": 1,
+                  "p_enrichment": 0.0,
+                  "q_enrichment": 0.12346017728040828,
+                  "enrichment_ratio": 0
+                },
+                {
+                  "offset_pct": 0.15000000000000002,
+                  "radius": 6.074833331047034,
+                  "p_candidates": 0,
+                  "q_candidates": 0,
+                  "p_enrichment": 0.0,
+                  "q_enrichment": 0.0,
+                  "enrichment_ratio": 0
+                },
+                {
+                  "offset_pct": 0.2,
+                  "radius": 8.099777774729379,
+                  "p_candidates": 0,
+                  "q_candidates": 0,
+                  "p_enrichment": 0.0,
+                  "q_enrichment": 0.0,
+                  "enrichment_ratio": 0
+                }
+              ],
+              "factors_found": [
+                17,
+                67
+              ],
+              "enrichment_detected": true,
+              "detection_offset_pct": 0.25
+            },
+            {
+              "N": 1159,
+              "sqrt_N": 34.044089061098404,
+              "searches": [
+                {
+                  "offset_pct": 0.1,
+                  "radius": 4.085290687331809,
+                  "p_candidates": 0,
+                  "q_candidates": 1,
+                  "p_enrichment": 0.0,
+                  "q_enrichment": 0.1223903115512597,
+                  "enrichment_ratio": 0
+                },
+                {
+                  "offset_pct": 0.15000000000000002,
+                  "radius": 6.127936030997714,
+                  "p_candidates": 0,
+                  "q_candidates": 3,
+                  "p_enrichment": 0.0,
+                  "q_enrichment": 0.24478062310251938,
+                  "enrichment_ratio": 0
+                }
+              ],
+              "factors_found": [
+                19,
+                61
+              ],
+              "enrichment_detected": true,
+              "detection_offset_pct": 0.2
+            },
+            {
+              "N": 1357,
+              "sqrt_N": 36.837480912787726,
+              "searches": [
+                {
+                  "offset_pct": 0.1,
+                  "radius": 4.420497709534527,
+                  "p_candidates": 0,
+                  "q_candidates": 0,
+                  "p_enrichment": 0.0,
+                  "q_enrichment": 0.0,
+                  "enrichment_ratio": 0
+                },
+                {
+                  "offset_pct": 0.15000000000000002,
+                  "radius": 6.630746564301791,
+                  "p_candidates": 0,
+                  "q_candidates": 4,
+                  "p_enrichment": 0.0,
+                  "q_enrichment": 0.301625160998835,
+                  "enrichment_ratio": 0
+                },
+                {
+                  "offset_pct": 0.2,
+                  "radius": 8.840995419069055,
+                  "p_candidates": 0,
+                  "q_candidates": 4,
+                  "p_enrichment": 0.0,
+                  "q_enrichment": 0.22621887074912628,
+                  "enrichment_ratio": 0
+                },
+                {
+                  "offset_pct": 0.25,
+                  "radius": 11.051244273836318,
+                  "p_candidates": 0,
+                  "q_candidates": 0,
+                  "p_enrichment": 0.0,
+                  "q_enrichment": 0.0,
+                  "enrichment_ratio": 0
+                },
+                {
+                  "offset_pct": 0.3,
+                  "radius": 13.26149312860358,
+                  "p_candidates": 0,
+                  "q_candidates": 0,
+                  "p_enrichment": 0.0,
+                  "q_enrichment": 0.0,
+                  "enrichment_ratio": 0
+                },
+                {
+                  "offset_pct": 0.35,
+                  "radius": 15.471741983370844,
+                  "p_candidates": 0,
+                  "q_candidates": 0,
+                  "p_enrichment": 0.0,
+                  "q_enrichment": 0.0,
+                  "enrichment_ratio": 0
+                }
+              ],
+              "factors_found": [
+                23,
+                59
+              ],
+              "enrichment_detected": true,
+              "detection_offset_pct": 0.39999999999999997
+            }
+          ],
+          "asymmetry_detected": false
+        },
+        "hypothesis_supported": false
+      },
+      "prime_prediction": {
+        "tests": [
+          {
+            "n": 1,
+            "actual": 2,
+            "estimated": 2,
+            "error_pct": 0.0
+          },
+          {
+            "n": 2,
+            "actual": 3,
+            "estimated": 3,
+            "error_pct": 0.0
+          },
+          {
+            "n": 10,
+            "actual": 29,
+            "estimated": 17,
+            "error_pct": 41.37931034482759
+          },
+          {
+            "n": 100,
+            "actual": 541,
+            "estimated": 509,
+            "error_pct": 5.914972273567468
+          },
+          {
+            "n": 1000,
+            "actual": 7919,
+            "estimated": 7845,
+            "error_pct": 0.9344614218967042
+          }
+        ],
+        "mean_error_pct": 9.645748808058352,
+        "max_error_pct": 41.37931034482759,
+        "accuracy_acceptable": false
+      },
+      "all_tests_passed": false
+    },
+    "rsa_challenges": {
+      "count": 7,
+      "factors_found": 7,
+      "results": [
+        {
+          "N": 15,
+          "sqrt_N": 3.872983346207417,
+          "searches": [],
+          "factors_found": [
+            5,
+            3
+          ],
+          "enrichment_detected": true,
+          "detection_offset_pct": 0.1
+        },
+        {
+          "N": 21,
+          "sqrt_N": 4.58257569495584,
+          "searches": [],
+          "factors_found": [
+            3,
+            7
+          ],
+          "enrichment_detected": true,
+          "detection_offset_pct": 0.1
+        },
+        {
+          "N": 35,
+          "sqrt_N": 5.916079783099616,
+          "searches": [],
+          "factors_found": [
+            7,
+            5
+          ],
+          "enrichment_detected": true,
+          "detection_offset_pct": 0.1
+        },
+        {
+          "N": 77,
+          "sqrt_N": 8.774964387392123,
+          "searches": [
+            {
+              "offset_pct": 0.1,
+              "radius": 1.0529957264870549,
+              "p_candidates": 0,
+              "q_candidates": 0,
+              "p_enrichment": 0.0,
+              "q_enrichment": 0.0,
+              "enrichment_ratio": 0
+            }
+          ],
+          "factors_found": [
+            7,
+            11
+          ],
+          "enrichment_detected": true,
+          "detection_offset_pct": 0.15000000000000002
+        },
+        {
+          "N": 143,
+          "sqrt_N": 11.958260743101398,
+          "searches": [],
+          "factors_found": [
+            11,
+            13
+          ],
+          "enrichment_detected": true,
+          "detection_offset_pct": 0.1
+        },
+        {
+          "N": 323,
+          "sqrt_N": 17.97220075561143,
+          "searches": [],
+          "factors_found": [
+            19,
+            17
+          ],
+          "enrichment_detected": true,
+          "detection_offset_pct": 0.1
+        },
+        {
+          "N": 899,
+          "sqrt_N": 29.9833287011299,
+          "searches": [],
+          "factors_found": [
+            29,
+            31
+          ],
+          "enrichment_detected": true,
+          "detection_offset_pct": 0.1
+        }
+      ]
+    },
+    "unbalanced_semiprimes": {
+      "total_semiprimes": 5,
+      "total_searches": 24,
+      "factors_found": 5,
+      "p_enrichment_mean": 0.290820939952682,
+      "q_enrichment_mean": 0.2582311845404319,
+      "enrichment_ratio_mean": 0.91,
+      "enrichment_ratio_median": 1.0,
+      "results": [
+        {
+          "N": 291,
+          "sqrt_N": 17.05872210923198,
+          "searches": [
+            {
+              "offset_pct": 0.1,
+              "radius": 2.0470466531078375,
+              "p_candidates": 1,
+              "q_candidates": 0,
+              "p_enrichment": 0.24425432573356218,
+              "q_enrichment": 0.0,
+              "enrichment_ratio": 0.0
+            },
+            {
+              "offset_pct": 0.15000000000000002,
+              "radius": 3.070569979661757,
+              "p_candidates": 2,
+              "q_candidates": 0,
+              "p_enrichment": 0.3256724343114162,
+              "q_enrichment": 0.0,
+              "enrichment_ratio": 0.0
+            },
+            {
+              "offset_pct": 0.2,
+              "radius": 4.094093306215675,
+              "p_candidates": 2,
+              "q_candidates": 0,
+              "p_enrichment": 0.24425432573356218,
+              "q_enrichment": 0.0,
+              "enrichment_ratio": 0.0
+            },
+            {
+              "offset_pct": 0.25,
+              "radius": 5.117616632769594,
+              "p_candidates": 3,
+              "q_candidates": 0,
+              "p_enrichment": 0.2931051908802746,
+              "q_enrichment": 0.0,
+              "enrichment_ratio": 0.0
+            },
+            {
+              "offset_pct": 0.3,
+              "radius": 6.141139959323513,
+              "p_candidates": 5,
+              "q_candidates": 0,
+              "p_enrichment": 0.40709054288927027,
+              "q_enrichment": 0.0,
+              "enrichment_ratio": 0.0
+            }
+          ],
+          "factors_found": [
+            3,
+            97
+          ],
+          "enrichment_detected": true,
+          "detection_offset_pct": 0.35
+        },
+        {
+          "N": 623,
+          "sqrt_N": 24.95996794869737,
+          "searches": [
+            {
+              "offset_pct": 0.1,
+              "radius": 2.9951961538436844,
+              "p_candidates": 2,
+              "q_candidates": 0,
+              "p_enrichment": 0.3338679500895849,
+              "q_enrichment": 0.0,
+              "enrichment_ratio": 0.0
+            },
+            {
+              "offset_pct": 0.15000000000000002,
+              "radius": 4.492794230765527,
+              "p_candidates": 0,
+              "q_candidates": 0,
+              "p_enrichment": 0.0,
+              "q_enrichment": 0.0,
+              "enrichment_ratio": 0
+            },
+            {
+              "offset_pct": 0.2,
+              "radius": 5.990392307687369,
+              "p_candidates": 4,
+              "q_candidates": 3,
+              "p_enrichment": 0.3338679500895849,
+              "q_enrichment": 0.2504009625671887,
+              "enrichment_ratio": 0.75
+            },
+            {
+              "offset_pct": 0.25,
+              "radius": 7.48799038460921,
+              "p_candidates": 5,
+              "q_candidates": 4,
+              "p_enrichment": 0.333867950089585,
+              "q_enrichment": 0.267094360071668,
+              "enrichment_ratio": 0.8
+            },
+            {
+              "offset_pct": 0.3,
+              "radius": 8.985588461531052,
+              "p_candidates": 0,
+              "q_candidates": 4,
+              "p_enrichment": 0.0,
+              "q_enrichment": 0.22257863339305667,
+              "enrichment_ratio": 0
+            }
+          ],
+          "factors_found": [
+            7,
+            89
+          ],
+          "enrichment_detected": true,
+          "detection_offset_pct": 0.35
+        },
+        {
+          "N": 913,
+          "sqrt_N": 30.215889859476256,
+          "searches": [
+            {
+              "offset_pct": 0.1,
+              "radius": 3.6259067831371508,
+              "p_candidates": 2,
+              "q_candidates": 2,
+              "p_enrichment": 0.2757930801339563,
+              "q_enrichment": 0.2757930801339563,
+              "enrichment_ratio": 1.0
+            },
+            {
+              "offset_pct": 0.15000000000000002,
+              "radius": 5.438860174705726,
+              "p_candidates": 0,
+              "q_candidates": 3,
+              "p_enrichment": 0.0,
+              "q_enrichment": 0.2757930801339563,
+              "enrichment_ratio": 0
+            },
+            {
+              "offset_pct": 0.2,
+              "radius": 7.2518135662743015,
+              "p_candidates": 0,
+              "q_candidates": 4,
+              "p_enrichment": 0.0,
+              "q_enrichment": 0.2757930801339563,
+              "enrichment_ratio": 0
+            },
+            {
+              "offset_pct": 0.25,
+              "radius": 9.064766957842876,
+              "p_candidates": 5,
+              "q_candidates": 0,
+              "p_enrichment": 0.27579308013395637,
+              "q_enrichment": 0.0,
+              "enrichment_ratio": 0.0
+            },
+            {
+              "offset_pct": 0.3,
+              "radius": 10.877720349411451,
+              "p_candidates": 0,
+              "q_candidates": 0,
+              "p_enrichment": 0.0,
+              "q_enrichment": 0.0,
+              "enrichment_ratio": 0
+            },
+            {
+              "offset_pct": 0.35,
+              "radius": 12.690673740980026,
+              "p_candidates": 0,
+              "q_candidates": 0,
+              "p_enrichment": 0.0,
+              "q_enrichment": 0.0,
+              "enrichment_ratio": 0
+            }
+          ],
+          "factors_found": [
+            11,
+            83
+          ],
+          "enrichment_detected": true,
+          "detection_offset_pct": 0.39999999999999997
+        },
+        {
+          "N": 1027,
+          "sqrt_N": 32.046840717924134,
+          "searches": [
+            {
+              "offset_pct": 0.1,
+              "radius": 3.845620886150896,
+              "p_candidates": 0,
+              "q_candidates": 2,
+              "p_enrichment": 0.0,
+              "q_enrichment": 0.26003603308929024,
+              "enrichment_ratio": 0
+            },
+            {
+              "offset_pct": 0.15000000000000002,
+              "radius": 5.768431329226345,
+              "p_candidates": 3,
+              "q_candidates": 3,
+              "p_enrichment": 0.2600360330892902,
+              "q_enrichment": 0.2600360330892902,
+              "enrichment_ratio": 1.0
+            },
+            {
+              "offset_pct": 0.2,
+              "radius": 7.691241772301792,
+              "p_candidates": 5,
+              "q_candidates": 0,
+              "p_enrichment": 0.3250450413616128,
+              "q_enrichment": 0.0,
+              "enrichment_ratio": 0.0
+            },
+            {
+              "offset_pct": 0.25,
+              "radius": 9.61405221537724,
+              "p_candidates": 0,
+              "q_candidates": 0,
+              "p_enrichment": 0.0,
+              "q_enrichment": 0.0,
+              "enrichment_ratio": 0
+            },
+            {
+              "offset_pct": 0.3,
+              "radius": 11.536862658452689,
+              "p_candidates": 0,
+              "q_candidates": 0,
+              "p_enrichment": 0.0,
+              "q_enrichment": 0.0,
+              "enrichment_ratio": 0
+            }
+          ],
+          "factors_found": [
+            13,
+            79
+          ],
+          "enrichment_detected": true,
+          "detection_offset_pct": 0.35
+        },
+        {
+          "N": 1241,
+          "sqrt_N": 35.22782990761707,
+          "searches": [
+            {
+              "offset_pct": 0.1,
+              "radius": 4.227339588914049,
+              "p_candidates": 2,
+              "q_candidates": 0,
+              "p_enrichment": 0.2365553982515248,
+              "q_enrichment": 0.0,
+              "enrichment_ratio": 0.0
+            },
+            {
+              "offset_pct": 0.15000000000000002,
+              "radius": 6.341009383371073,
+              "p_candidates": 3,
+              "q_candidates": 0,
+              "p_enrichment": 0.2365553982515248,
+              "q_enrichment": 0.0,
+              "enrichment_ratio": 0.0
+            },
+            {
+              "offset_pct": 0.2,
+              "radius": 8.454679177828098,
+              "p_candidates": 4,
+              "q_candidates": 4,
+              "p_enrichment": 0.2365553982515248,
+              "q_enrichment": 0.2365553982515248,
+              "enrichment_ratio": 1.0
+            }
+          ],
+          "factors_found": [
+            17,
+            73
+          ],
+          "enrichment_detected": true,
+          "detection_offset_pct": 0.25
+        }
+      ],
+      "asymmetry_detected": false
+    }
+  },
+  "conclusion": {
+    "hypothesis_validated": false,
+    "timestamp": "2025-12-26T06:58:09.478503"
+  }
+}

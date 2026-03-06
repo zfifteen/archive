@@ -1,0 +1,104 @@
+{
+  "observed": [
+    {
+      "range_id": "1e6:1e7",
+      "n_gaps": 586080,
+      "h_estimate": 1.3319591283478425,
+      "h_95ci_lower": 0.39218401162470196,
+      "h_95ci_upper": 2.484563805791497,
+      "r_squared": 0.7592769466083993,
+      "n_strata_used": 5,
+      "pct_strata_pass_ks": 0.0,
+      "strata_results": [
+        {
+          "range_id": "1e6:1e7",
+          "stratum_id": 3,
+          "gap_min": 6.0,
+          "gap_max": 10.0,
+          "n_gaps": 123221,
+          "mean_gap": 6.597024857775867,
+          "std_gap": 0.9152146373593382,
+          "mu_lognormal": 1.8776361434231499,
+          "sigma_lognormal": 0.1316454218068697,
+          "ks_stat": 0.44439443516722,
+          "ks_p": 0.0,
+          "pass_ks": false
+        },
+        {
+          "range_id": "1e6:1e7",
+          "stratum_id": 6,
+          "gap_min": 14.0,
+          "gap_max": 18.0,
+          "n_gaps": 53379,
+          "mean_gap": 14.832462204237622,
+          "std_gap": 0.9858748883349148,
+          "mu_lognormal": 2.694637248334822,
+          "sigma_lognormal": 0.0658226233964535,
+          "ks_stat": 0.3845429473567741,
+          "ks_p": 0.0,
+          "pass_ks": false
+        },
+        {
+          "range_id": "1e6:1e7",
+          "stratum_id": 7,
+          "gap_min": 18.0,
+          "gap_max": 24.0,
+          "n_gaps": 75903,
+          "mean_gap": 19.429192522034704,
+          "std_gap": 1.623882695727016,
+          "mu_lognormal": 2.9633740715868986,
+          "sigma_lognormal": 0.08195277168896911,
+          "ks_stat": 0.3265273338873351,
+          "ks_p": 0.0,
+          "pass_ks": false
+        },
+        {
+          "range_id": "1e6:1e7",
+          "stratum_id": 8,
+          "gap_min": 24.0,
+          "gap_max": 32.0,
+          "n_gaps": 67410,
+          "mean_gap": 26.806616229046135,
+          "std_gap": 2.4943647242927254,
+          "mu_lognormal": 3.2843244943278753,
+          "sigma_lognormal": 0.09296266652036014,
+          "ks_stat": 0.2367822603897729,
+          "ks_p": 0.0,
+          "pass_ks": false
+        },
+        {
+          "range_id": "1e6:1e7",
+          "stratum_id": 9,
+          "gap_min": 32.0,
+          "gap_max": 154.0,
+          "n_gaps": 60018,
+          "mean_gap": 44.094038455130125,
+          "std_gap": 12.067986182472437,
+          "mu_lognormal": 3.755627650429185,
+          "sigma_lognormal": 0.2374890164829077,
+          "ks_stat": 0.14946866901517042,
+          "ks_p": 0.0,
+          "pass_ks": false
+        }
+      ]
+    }
+  ],
+  "null_models": [
+    {
+      "model_type": "cramer",
+      "range_id": "1e6:1e7",
+      "h_estimate": 1.343453045002515,
+      "r_squared": 0.7591500745467485,
+      "pct_strata_pass_ks": 0.0,
+      "delta_h": 0.011493916654672587
+    },
+    {
+      "model_type": "cascade",
+      "range_id": "1e6:1e7",
+      "h_estimate": 1.0682802129461817,
+      "r_squared": 0.6512038759070325,
+      "pct_strata_pass_ks": 80.0,
+      "delta_h": -0.2636789154016608
+    }
+  ]
+}

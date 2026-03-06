@@ -1,0 +1,8 @@
+# Results Directory
+
+Experimental results will be written to this directory by the test runner.
+
+- experiment_results.md: Final aggregated report
+- raw_timings.csv: Benchmark data  
+- iteration_analysis.csv: Per-test iteration counts
+- statistical_summary.csv: Aggregated statistics

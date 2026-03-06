@@ -1,0 +1,128 @@
+Warning: scipy not available, using simplified statistics
+Warning: gmpy2 not available, using mpmath
+======================================================================
+SCALE-INVARIANT GEOMETRIC RESONANCE EXPERIMENT
+Testing Hypothesis: Emergent scale-invariance in geometric resonance
+======================================================================
+
+
+======================================================================
+TEST SUITE 1: Core Hypothesis Validation
+======================================================================
+============================================================
+Z5D Hypothesis Comprehensive Validation
+============================================================
+
+[Test 1/3] Scale Invariance Test
+Scale 10^2: N=77, p=7, q=11, Z5D=-0.9899
+Scale 10^3: N=961, p=31, q=31, Z5D=0.0000
+Scale 10^4: N=9797, p=97, q=101, Z5D=-0.0439
+Scale 10^5: N=99221, p=313, q=317, Z5D=-0.0110
+Scale 10^6: N=1005973, p=997, q=1009, Z5D=-0.0087
+
+[Test 2/3] Asymmetric Enrichment Test
+
+Asymmetric Enrichment Hypothesis Test
+============================================================
+
+Analyzing balanced semiprimes...
+
+Analyzing unbalanced semiprimes...
+
+Balanced semiprimes: 0 q-enrichment samples
+Unbalanced semiprimes: 14 q-enrichment samples
+
+[Test 3/3] Prime Prediction Accuracy Test
+
+Prime Prediction Accuracy Test
+============================================================
+n=     1: actual=       2, estimated=       2, error=0.0000%
+n=     2: actual=       3, estimated=       3, error=0.0000%
+n=    10: actual=      29, estimated=      17, error=41.3793%
+n=   100: actual=     541, estimated=     509, error=5.9150%
+n=  1000: actual=    7919, estimated=    7845, error=0.9345%
+
+Mean error: 9.6457%
+Max error: 41.3793%
+Accuracy acceptable: False
+
+============================================================
+OVERALL ASSESSMENT
+============================================================
+Scale Invariance: ✗ FAIL
+Asymmetric Enrichment: ✗ FAIL
+Prime Prediction Accuracy: ✗ FAIL
+
+Final Verdict: ✗ HYPOTHESIS NOT VALIDATED
+
+======================================================================
+TEST SUITE 2: RSA Challenge Tests
+======================================================================
+RSA Challenge Test (Small Semiprimes)
+============================================================
+
+Testing N=15:
+  ✓ Factors found: 5 × 3
+  Detection at offset: 10.0%
+  Asymmetry: 18.86%
+  Z5D score: -1.7280
+
+Testing N=21:
+  ✓ Factors found: 3 × 7
+  Detection at offset: 10.0%
+  Asymmetry: 27.83%
+  Z5D score: -2.4553
+
+Testing N=35:
+  ✓ Factors found: 7 × 5
+  Detection at offset: 10.0%
+  Asymmetry: 9.46%
+  Z5D score: -0.9042
+
+Testing N=77:
+  ✓ Factors found: 7 × 11
+  Detection at offset: 15.0%
+  Asymmetry: 10.41%
+  Z5D score: -0.9899
+
+Testing N=143:
+  ✓ Factors found: 11 × 13
+  Detection at offset: 10.0%
+  Asymmetry: 3.37%
+  Z5D score: -0.3311
+
+Testing N=323:
+  ✓ Factors found: 19 × 17
+  Detection at offset: 10.0%
+  Asymmetry: 1.93%
+  Z5D score: -0.1907
+
+Testing N=899:
+  ✓ Factors found: 29 × 31
+  Detection at offset: 10.0%
+  Asymmetry: 0.98%
+  Z5D score: -0.0976
+
+======================================================================
+TEST SUITE 3: Unbalanced Semiprime Analysis
+======================================================================
+
+
+Unbalanced Semiprime Test
+============================================================
+
+Total semiprimes tested: 5
+Factors found: 5/5
+Mean p-enrichment: 0.290821
+Mean q-enrichment: 0.258231
+Mean enrichment ratio (q/p): 0.91
+Asymmetry detected: False
+
+======================================================================
+EXPERIMENT SUMMARY
+======================================================================
+Total elapsed time: 0.00 seconds
+
+Hypothesis Status: ✗ NOT VALIDATED
+
+✓ Results saved to results/experiment_results.json

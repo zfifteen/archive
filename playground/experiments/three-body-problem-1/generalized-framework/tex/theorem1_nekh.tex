@@ -1,0 +1,46 @@
+\documentclass{article}
+\usepackage{amsmath, amssymb}
+
+\title{Theorem 1: Exponential Stability of the Flux Diagnostic}
+\author{Dionisio Alberto Lopez III}
+\date{January 30, 2026}
+
+\begin{document}
+
+\maketitle
+
+\section{Theorem Statement}
+
+\textbf{Theorem 1 (Nekhoroshev Confinement Indicator)}. 
+For a near-integrable Hamiltonian system $H(I, \theta) = H_0(I) + \varepsilon H_1(I, \theta)$ with confinement functional $Q(I)$, if the system satisfies the Nekhoroshev steepness conditions and the perturbation parameter $\varepsilon$ is below the threshold $\varepsilon_0$, then the time-averaged flux diagnostic satisfies:
+
+\begin{equation}
+|\langle Z_Q \rangle_T| < C \cdot \exp\left(-\frac{\kappa}{\varepsilon^\alpha}\right)
+\end{equation}
+
+for all times $T < T_{Nekh} \sim \exp(\varepsilon_0/\varepsilon)^{1/2n}$, where $n$ is the number of degrees of freedom.
+
+\section{Proof Outline}
+
+\subsection{1. Bounds on Action Drift}
+From Nekhoroshev's theorem (1977), we have the bound on action variation:
+\begin{equation}
+|I(t) - I(0)| < \varepsilon^a \quad \text{for} \quad t < T_{Nekh}
+\end{equation}
+
+\subsection{2. Relation to Confinement Functional}
+Let $Q$ be a smooth function of the actions $I$. The time derivative $\dot{Q}$ is given by:
+\begin{equation}
+\dot{Q} = \nabla_I Q \cdot \dot{I} = \nabla_I Q \cdot \{I, H\}
+\end{equation}
+Since $\dot{I} \sim \mathcal{O}(\varepsilon)$, $\dot{Q}$ is also small.
+
+\subsection{3. Time Averaging}
+The diagnostic is $Z_Q = Q \dot{Q} / E$. The time average is:
+\begin{equation}
+\langle Z_Q \rangle_T = \frac{1}{T} \int_0^T \frac{Q(t) \dot{Q}(t)}{E} dt = \frac{1}{TE} \left[ \frac{1}{2} Q(t)^2 \right]_0^T
+\end{equation}
+Since $Q(t)$ is bounded by the Nekhoroshev estimate, the term in brackets is bounded. As $T \to \infty$ (or $T \sim T_{Nekh}$), the average decays.
+However, the strictly exponential bound comes from the fact that the \textit{secular} drift component of $\dot{Q}$ is exponentially small in the stable regime.
+
+\end{document}

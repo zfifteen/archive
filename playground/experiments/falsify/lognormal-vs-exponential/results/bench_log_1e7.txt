@@ -1,0 +1,27 @@
+2025-12-25 06:04:12,710 - INFO - Processing range: 10000000:20000000
+2025-12-25 06:04:15,497 - INFO -   Band 0: 530249 gaps
+2025-12-25 06:04:16,118 - INFO - Saved plot: fit_10000000_20000000_band0.png
+2025-12-25 06:04:16,120 - INFO - Results saved to results.json and results.csv
+2025-12-25 06:04:16,120 - INFO - Report generated at results/bench_1e7/report.md
+
+================================================================================
+# Falsification Test Report: Lognormal vs Exponential
+
+## Summary
+
+- Total Bands Tested: 1
+- Lognormal Wins: 1 (100.0%)
+- Exponential Wins: 0 (0.0%)
+- Ambiguous: 0 (0.0%)
+
+## Per-Range Breakdown
+
+### Range 10000000:20000000
+- Bands: 1
+- Lognormal Wins: 1 (100.0%)
+
+## Conclusion
+
+**RESULT: NOT FALSIFIED**
+The data supports the claim that lognormal distributions provide a better fit than exponential distributions.
+================================================================================

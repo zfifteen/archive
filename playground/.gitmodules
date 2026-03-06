@@ -1,0 +1,3 @@
+[submodule "experiments/PR-0003_prime_log_gap_optimized/z5d-prime-predictor"]
+	path = experiments/PR-0003_prime_log_gap_optimized/z5d-prime-predictor
+	url = https://github.com/zfifteen/z5d-prime-predictor.git

@@ -1,0 +1,24 @@
+============================================================
+EXPERIMENT SUMMARY
+============================================================
+
+Total Trials: 6
+Successful: 6
+
+Distribution Comparison:
+  Lognormal wins: 6
+  Exponential wins: 0
+  Lognormal win rate: 100.0%
+
+Fractal Cascade Detection:
+  Detected: 0
+  Detection rate: 0.0%
+
+Approach Comparison:
+  Bottom-up wins: 0
+  Top-down wins: 6
+  Bottom-up win rate: 0.0%
+
+Reversed Hierarchy:
+  Detected: 0
+  Replication rate: 0.0%

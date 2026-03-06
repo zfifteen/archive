@@ -1,0 +1,29 @@
+{
+  "experiment": {
+    "name": "hypothesis_falsification_test",
+    "base_dir": "/home/runner/work/playground/playground/experiments/PR-0006_hypothesis_falsification_test"
+  },
+  "directories": {
+    "results": "/home/runner/work/playground/playground/experiments/PR-0006_hypothesis_falsification_test/results",
+    "data": "/home/runner/work/playground/playground/experiments/PR-0006_hypothesis_falsification_test/data",
+    "src": "/home/runner/work/playground/playground/experiments/PR-0006_hypothesis_falsification_test/src"
+  },
+  "parameters": {
+    "seed": 42,
+    "num_trials": 3,
+    "prime_ranges": [
+      [
+        100000,
+        1000000
+      ],
+      [
+        1000000,
+        5000000
+      ]
+    ]
+  },
+  "thresholds": {
+    "false_positive_threshold": 0.05,
+    "confidence_level": 0.95
+  }
+}
