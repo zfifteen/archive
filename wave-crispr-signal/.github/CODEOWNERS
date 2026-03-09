@@ -1,0 +1,12 @@
+# Repository Code Ownership for wave-crispr-signal
+
+# Core GitHub configuration
+.github/* @zfifteen Dionisio Alberto Lopez III
+
+# Documentation
+docs/ @zfifteen Dionisio Alberto Lopez III
+*.md @zfifteen Dionisio Alberto Lopez III
+
+# Critical configuration files
+requirements.txt @zfifteen Dionisio Alberto Lopez III
+.pre-commit-config.yaml @zfifteen Dionisio Alberto Lopez III

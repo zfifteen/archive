@@ -1,0 +1,876 @@
+{
+  "generated_at": "2026-03-09T17:17:07.390845+00:00",
+  "protocol_version": "v3",
+  "decision": "NO-GO",
+  "decision_reason": "baseline_c_threshold_failed",
+  "decision_criteria": {
+    "hard_precondition_dev_not_materially_negative": true,
+    "primary_delta_vs_baseline_c_min_0p01": false,
+    "external_delta_vs_baseline_c_min_0p01": false
+  },
+  "preconditions": {
+    "split_integrity_clean_ok": true,
+    "comparator_self_check_ok": true,
+    "overlap_audit_clean_ok": true,
+    "holdout_min_n_ok": true,
+    "holdout_min_n_required": 200
+  },
+  "split_integrity": {
+    "clean": {
+      "ok": true,
+      "violations": [],
+      "split_counts": {
+        "aux_train_weak": 62834,
+        "dev_train": 1173,
+        "dev_val": 414,
+        "excluded_overlap_clean": 1688,
+        "primary_holdout": 529,
+        "external_holdout": 4256
+      }
+    },
+    "raw": {
+      "ok": true,
+      "violations": [],
+      "split_counts": {
+        "aux_train_weak": 62834,
+        "dev_train": 1173,
+        "dev_val": 414,
+        "primary_holdout": 2217,
+        "external_holdout": 4256
+      }
+    }
+  },
+  "overlap_audit": {
+    "clean": {
+      "ok": true,
+      "message": "no_overlap",
+      "overlap_count": 0,
+      "overlap_examples": [],
+      "holdout_counts": {
+        "primary_holdout": 529,
+        "external_holdout": 4256
+      },
+      "training_sequence_count": 4379,
+      "training_status": {
+        "available": true,
+        "status": "ready",
+        "reason": "sequence_level_training_manifest_acquired",
+        "checked_at": "2026-03-09",
+        "source_repo": "https://github.com/khaled-rahman/CRISPRpred",
+        "source_commit": "eee7ee8a9ba61c1afcb7a56d9893f8e661f41cc0",
+        "source_file": "https://raw.githubusercontent.com/khaled-rahman/CRISPRpred/master/CRISPRpred/SupplementaryFiles/Supplementary%20File1.csv",
+        "extraction_rule": "20mer = 30mer[4:24] (0-based, end-exclusive)",
+        "record_count": 5310
+      },
+      "returncode": 0,
+      "cmd": [
+        "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+        "/Users/velocityworks/IdeaProjects/wave-crispr-signal/validation/ontarget_gate/scripts/audit_overlap.py",
+        "--split-manifest",
+        "/Users/velocityworks/IdeaProjects/wave-crispr-signal/validation/ontarget_gate/outputs/decision_split_manifest_v3_clean.csv",
+        "--training-manifest",
+        "/Users/velocityworks/IdeaProjects/wave-crispr-signal/validation/ontarget_gate/comparators/crisprpred/training_manifest.fasta",
+        "--training-status",
+        "/Users/velocityworks/IdeaProjects/wave-crispr-signal/validation/ontarget_gate/comparators/crisprpred/training_manifest_status.json",
+        "--output",
+        "/var/folders/k_/spz3zlj566sc4qh29g0tk6jh0000gn/T/tmpl9sjcc3m.json"
+      ]
+    },
+    "raw": {
+      "ok": false,
+      "message": "overlap_detected",
+      "overlap_count": 1688,
+      "overlap_examples": [
+        "AAAAAACCTACCGTAAACTC",
+        "AAAAATTCTAACGTGAGGTG",
+        "AAAACCAGGGGCCGGTGCTG",
+        "AAAAGGCAAGAAATGGAATC",
+        "AAAATTAAAACGACTCCTGA",
+        "AAACAGGGGCCCGAAACCCA",
+        "AAACATAAGGAGTATAGCCC",
+        "AAACATCTCGTACAGTGACA",
+        "AAACCAGGGGCCGGTGCTGA",
+        "AAAGAAGGCCACTCGGGACT",
+        "AAAGATCTACTGCCCTCCTG",
+        "AAAGCCATATGAAATTGTAG",
+        "AAAGCTCTTGCTGGCCATGG",
+        "AAAGCTTCGTGTTAATAAGC",
+        "AAAGGAGATACTTACACAAC",
+        "AAAGGCAAGAAATGGAATCA",
+        "AAAGGCCCAGATCACCGAGG",
+        "AAAGGCTGCTGGGGAAGAAT",
+        "AAAGGGACAGCAGAAACTGG",
+        "AAAGTGCGCAAACAGGTGGC"
+      ],
+      "holdout_counts": {
+        "primary_holdout": 2217,
+        "external_holdout": 4256
+      },
+      "training_sequence_count": 4379,
+      "training_status": {
+        "available": true,
+        "status": "ready",
+        "reason": "sequence_level_training_manifest_acquired",
+        "checked_at": "2026-03-09",
+        "source_repo": "https://github.com/khaled-rahman/CRISPRpred",
+        "source_commit": "eee7ee8a9ba61c1afcb7a56d9893f8e661f41cc0",
+        "source_file": "https://raw.githubusercontent.com/khaled-rahman/CRISPRpred/master/CRISPRpred/SupplementaryFiles/Supplementary%20File1.csv",
+        "extraction_rule": "20mer = 30mer[4:24] (0-based, end-exclusive)",
+        "record_count": 5310
+      },
+      "returncode": 6,
+      "cmd": [
+        "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+        "/Users/velocityworks/IdeaProjects/wave-crispr-signal/validation/ontarget_gate/scripts/audit_overlap.py",
+        "--split-manifest",
+        "/Users/velocityworks/IdeaProjects/wave-crispr-signal/validation/ontarget_gate/outputs/exploratory_split_manifest_v3_raw.csv",
+        "--training-manifest",
+        "/Users/velocityworks/IdeaProjects/wave-crispr-signal/validation/ontarget_gate/comparators/crisprpred/training_manifest.fasta",
+        "--training-status",
+        "/Users/velocityworks/IdeaProjects/wave-crispr-signal/validation/ontarget_gate/comparators/crisprpred/training_manifest_status.json",
+        "--output",
+        "/var/folders/k_/spz3zlj566sc4qh29g0tk6jh0000gn/T/tmpog6gonnz.json"
+      ]
+    }
+  },
+  "manifest_paths": {
+    "decision_clean": "/Users/velocityworks/IdeaProjects/wave-crispr-signal/validation/ontarget_gate/outputs/decision_split_manifest_v3_clean.csv",
+    "exploratory_raw": "/Users/velocityworks/IdeaProjects/wave-crispr-signal/validation/ontarget_gate/outputs/exploratory_split_manifest_v3_raw.csv",
+    "compat_locked_split_manifest_v3": "/Users/velocityworks/IdeaProjects/wave-crispr-signal/validation/ontarget_gate/outputs/locked_split_manifest_v3.csv"
+  },
+  "sanitation": {
+    "primary_holdout_dropped_overlap": 1688,
+    "external_holdout_dropped_overlap": 0,
+    "total_decision_overlap_dropped": 1688
+  },
+  "baseline_c": {
+    "slot": "baseline_c",
+    "name": "baseline_c_crisprpred",
+    "version": "v0.1-scaffold",
+    "self_check": {
+      "ok": true,
+      "message": "ok",
+      "details": {
+        "ok": true,
+        "message": "ok",
+        "details": {
+          "checksums_path": "/Users/velocityworks/IdeaProjects/wave-crispr-signal/validation/ontarget_gate/comparators/crisprpred/checksums.sha256",
+          "provenance_path": "/Users/velocityworks/IdeaProjects/wave-crispr-signal/validation/ontarget_gate/comparators/crisprpred/PROVENANCE.md",
+          "training_manifest_path": "/Users/velocityworks/IdeaProjects/wave-crispr-signal/validation/ontarget_gate/comparators/crisprpred/training_manifest.fasta",
+          "training_manifest_status": {
+            "available": true,
+            "status": "ready",
+            "reason": "sequence_level_training_manifest_acquired",
+            "checked_at": "2026-03-09",
+            "source_repo": "https://github.com/khaled-rahman/CRISPRpred",
+            "source_commit": "eee7ee8a9ba61c1afcb7a56d9893f8e661f41cc0",
+            "source_file": "https://raw.githubusercontent.com/khaled-rahman/CRISPRpred/master/CRISPRpred/SupplementaryFiles/Supplementary%20File1.csv",
+            "extraction_rule": "20mer = 30mer[4:24] (0-based, end-exclusive)",
+            "record_count": 5310
+          },
+          "checksum_mismatches": [],
+          "fixture_result": "fixtures_ok"
+        }
+      }
+    },
+    "provenance": {
+      "name": "baseline_c_crisprpred",
+      "version": "v0.1-scaffold",
+      "provenance_path": "/Users/velocityworks/IdeaProjects/wave-crispr-signal/validation/ontarget_gate/comparators/crisprpred/PROVENANCE.md",
+      "checksums_path": "/Users/velocityworks/IdeaProjects/wave-crispr-signal/validation/ontarget_gate/comparators/crisprpred/checksums.sha256",
+      "training_manifest_path": "/Users/velocityworks/IdeaProjects/wave-crispr-signal/validation/ontarget_gate/comparators/crisprpred/training_manifest.fasta",
+      "training_manifest_status_path": "/Users/velocityworks/IdeaProjects/wave-crispr-signal/validation/ontarget_gate/comparators/crisprpred/training_manifest_status.json",
+      "venv_python": "/Users/velocityworks/IdeaProjects/wave-crispr-signal/validation/ontarget_gate/comparators/crisprpred/.venv/bin/python",
+      "training_manifest_status": {
+        "available": true,
+        "status": "ready",
+        "reason": "sequence_level_training_manifest_acquired",
+        "checked_at": "2026-03-09",
+        "source_repo": "https://github.com/khaled-rahman/CRISPRpred",
+        "source_commit": "eee7ee8a9ba61c1afcb7a56d9893f8e661f41cc0",
+        "source_file": "https://raw.githubusercontent.com/khaled-rahman/CRISPRpred/master/CRISPRpred/SupplementaryFiles/Supplementary%20File1.csv",
+        "extraction_rule": "20mer = 30mer[4:24] (0-based, end-exclusive)",
+        "record_count": 5310
+      }
+    }
+  },
+  "dataset_counts": [
+    {
+      "source": "doench2016_gecko1_lenticrispr_hg19",
+      "role_hint": "aux_weak",
+      "url": "https://raw.githubusercontent.com/maximilianh/crisporPaper/master/effData/doench2016-Gecko1-LentiCrispr_hg19.scores.tab",
+      "raw_local_path": "/Users/velocityworks/IdeaProjects/wave-crispr-signal/validation/ontarget_gate/data/doench2016_gecko1_lenticrispr_hg19.scores.tab",
+      "row_count": 62834,
+      "strong_group_rows": 0,
+      "weak_group_rows": 62834
+    },
+    {
+      "source": "doench2016_hg19",
+      "role_hint": "primary_grouped",
+      "url": "https://raw.githubusercontent.com/maximilianh/crisporPaper/master/effData/doench2016_hg19.scores.tab",
+      "raw_local_path": "/Users/velocityworks/IdeaProjects/wave-crispr-signal/validation/ontarget_gate/data/doench2016_hg19.scores.tab",
+      "row_count": 3804,
+      "strong_group_rows": 3804,
+      "weak_group_rows": 0
+    },
+    {
+      "source": "hart2016_hela_lib1_avg",
+      "role_hint": "external_holdout",
+      "url": "https://raw.githubusercontent.com/maximilianh/crisporPaper/master/effData/hart2016-HelaLib1Avg.scores.tab",
+      "raw_local_path": "/Users/velocityworks/IdeaProjects/wave-crispr-signal/validation/ontarget_gate/data/hart2016_hela_lib1_avg.scores.tab",
+      "row_count": 4256,
+      "strong_group_rows": 4256,
+      "weak_group_rows": 0
+    }
+  ],
+  "split_counts": {
+    "clean": {
+      "aux_train_weak": 62834,
+      "dev_train": 1173,
+      "dev_val": 414,
+      "excluded_overlap_clean": 1688,
+      "primary_holdout": 529,
+      "external_holdout": 4256
+    },
+    "raw": {
+      "aux_train_weak": 62834,
+      "dev_train": 1173,
+      "dev_val": 414,
+      "primary_holdout": 2217,
+      "external_holdout": 4256
+    }
+  },
+  "decision_results_clean": [
+    {
+      "split": "dev_val",
+      "source": "doench2016_hg19",
+      "n": 414,
+      "metrics": {
+        "baseline_a": {
+          "spearman": -0.04227213809817929,
+          "mse": 2.762499591358983
+        },
+        "baseline_b": {
+          "spearman": 0.014589825773247744,
+          "mse": 4.695581078974967
+        },
+        "baseline_c": {
+          "spearman": -0.047446575099324186,
+          "mse": 6.257918533770384
+        },
+        "model": {
+          "spearman": -0.040244777404174016,
+          "mse": 5.484627217672434
+        }
+      },
+      "delta_model_minus_baseline_a_spearman": 0.0020273606940052757,
+      "delta_model_minus_baseline_a_spearman_ci95": [
+        -0.10736243015023447,
+        0.10910699923691246
+      ],
+      "delta_model_minus_baseline_b_spearman": -0.05483460317742176,
+      "delta_model_minus_baseline_c_spearman": 0.007201797695150169,
+      "delta_model_minus_baseline_c_spearman_ci95": [
+        -0.08086392936117855,
+        0.0869950718463958
+      ]
+    },
+    {
+      "split": "primary_holdout",
+      "source": "doench2016_hg19",
+      "n": 529,
+      "metrics": {
+        "baseline_a": {
+          "spearman": -0.024041975057550808,
+          "mse": 5.3951244740623485
+        },
+        "baseline_b": {
+          "spearman": 0.04292526133690733,
+          "mse": 13.02353785605515
+        },
+        "baseline_c": {
+          "spearman": -0.050981760713334816,
+          "mse": 16.512466676951767
+        },
+        "model": {
+          "spearman": -0.07021112281912584,
+          "mse": 14.8311700166423
+        }
+      },
+      "delta_model_minus_baseline_a_spearman": -0.04616914776157503,
+      "delta_model_minus_baseline_a_spearman_ci95": [
+        -0.14578034719694674,
+        0.056276750472270674
+      ],
+      "delta_model_minus_baseline_b_spearman": -0.11313638415603317,
+      "delta_model_minus_baseline_c_spearman": -0.01922936210579102,
+      "delta_model_minus_baseline_c_spearman_ci95": [
+        -0.1066855746619964,
+        0.06370133799228637
+      ]
+    },
+    {
+      "split": "external_holdout",
+      "source": "hart2016_hela_lib1_avg",
+      "n": 4256,
+      "metrics": {
+        "baseline_a": {
+          "spearman": -0.043548934000384315,
+          "mse": 9.244718729508557
+        },
+        "baseline_b": {
+          "spearman": -0.004173086332216752,
+          "mse": 4.185577596818635
+        },
+        "baseline_c": {
+          "spearman": 0.012530069692070416,
+          "mse": 3.2800579302028385
+        },
+        "model": {
+          "spearman": -0.001910212700381293,
+          "mse": 3.6671860751024257
+        }
+      },
+      "delta_model_minus_baseline_a_spearman": 0.04163872130000302,
+      "delta_model_minus_baseline_a_spearman_ci95": [
+        0.00311688351752983,
+        0.08197372555201544
+      ],
+      "delta_model_minus_baseline_b_spearman": 0.002262873631835459,
+      "delta_model_minus_baseline_c_spearman": -0.014440282392451709,
+      "delta_model_minus_baseline_c_spearman_ci95": [
+        -0.0460103283673919,
+        0.01646378636700421
+      ]
+    }
+  ],
+  "decision_diagnostics_clean": {
+    "dev_val": {
+      "n": 414,
+      "score_std": {
+        "model": 0.014628525145435431,
+        "baseline_c": 0.04814876260271226
+      },
+      "tie_rate": {
+        "model": 0.0,
+        "baseline_c": 0.4227053140096618
+      },
+      "correlations": {
+        "rho_label_model_spearman": -0.040244777404174016,
+        "rho_label_baseline_c_spearman": -0.047446575099324186,
+        "rho_model_gc_pearson": -0.17389890257838828,
+        "rho_baseline_c_gc_pearson": -0.27041018143756546,
+        "rho_label_gc_pearson": 0.2284958677104482
+      },
+      "gc_strata": [
+        {
+          "bin": "[0.00,0.30)",
+          "n": 21,
+          "spearman_model": -0.11038961038961038,
+          "spearman_baseline_c": 0.21442499653265035,
+          "delta_model_minus_baseline_c": -0.3248146069222607
+        },
+        {
+          "bin": "[0.30,0.50)",
+          "n": 116,
+          "spearman_model": 0.10216430246415253,
+          "spearman_baseline_c": 0.13060253221966542,
+          "delta_model_minus_baseline_c": -0.028438229755512884
+        },
+        {
+          "bin": "[0.50,0.70)",
+          "n": 200,
+          "spearman_model": -0.051445286132153316,
+          "spearman_baseline_c": -0.07210840695817942,
+          "delta_model_minus_baseline_c": 0.02066312082602611
+        },
+        {
+          "bin": "[0.70,1.00]",
+          "n": 77,
+          "spearman_model": 0.054314106945685885,
+          "spearman_baseline_c": -0.0600172239957156,
+          "delta_model_minus_baseline_c": 0.1143313309414015
+        }
+      ],
+      "subgroup_deltas": [
+        {
+          "group": "CLDN10",
+          "n": 70,
+          "spearman_model": -0.044248097279328144,
+          "spearman_baseline_c": -0.09140467341188724,
+          "delta_model_minus_baseline_c": 0.047156576132559094
+        },
+        {
+          "group": "CUL3",
+          "n": 146,
+          "spearman_model": 0.13991883007336142,
+          "spearman_baseline_c": 0.24039834390597659,
+          "delta_model_minus_baseline_c": -0.10047951383261516
+        },
+        {
+          "group": "TADA2B",
+          "n": 198,
+          "spearman_model": 0.11506463249952269,
+          "spearman_baseline_c": 0.013414912259824162,
+          "delta_model_minus_baseline_c": 0.10164972023969852
+        }
+      ]
+    },
+    "primary_holdout": {
+      "n": 529,
+      "score_std": {
+        "model": 0.016336382336086686,
+        "baseline_c": 0.05475201696790128
+      },
+      "tie_rate": {
+        "model": 0.0,
+        "baseline_c": 0.5085066162570888
+      },
+      "correlations": {
+        "rho_label_model_spearman": -0.07021112281912584,
+        "rho_label_baseline_c_spearman": -0.050981760713334816,
+        "rho_model_gc_pearson": -0.3614003161025652,
+        "rho_baseline_c_gc_pearson": -0.4044866625115926,
+        "rho_label_gc_pearson": 0.08794196205559478
+      },
+      "gc_strata": [
+        {
+          "bin": "[0.00,0.30)",
+          "n": 14,
+          "spearman_model": -0.13406593406593406,
+          "spearman_baseline_c": -0.18722512377823863,
+          "delta_model_minus_baseline_c": 0.05315918971230457
+        },
+        {
+          "bin": "[0.30,0.50)",
+          "n": 260,
+          "spearman_model": -0.07247080350528626,
+          "spearman_baseline_c": -0.08363027071883428,
+          "delta_model_minus_baseline_c": 0.011159467213548019
+        },
+        {
+          "bin": "[0.50,0.70)",
+          "n": 183,
+          "spearman_model": 0.0005355481070529,
+          "spearman_baseline_c": -0.03842884994734232,
+          "delta_model_minus_baseline_c": 0.038964398054395215
+        },
+        {
+          "bin": "[0.70,1.00]",
+          "n": 72,
+          "spearman_model": -0.1549938902823333,
+          "spearman_baseline_c": 0.22133771409999514,
+          "delta_model_minus_baseline_c": -0.37633160438232843
+        }
+      ],
+      "subgroup_deltas": [
+        {
+          "group": "MED12",
+          "n": 26,
+          "spearman_model": 0.4274234974419847,
+          "spearman_baseline_c": 0.2797059367260348,
+          "delta_model_minus_baseline_c": 0.14771756071594994
+        },
+        {
+          "group": "MSH6",
+          "n": 407,
+          "spearman_model": -0.02670219150949374,
+          "spearman_baseline_c": -0.057724853179183154,
+          "delta_model_minus_baseline_c": 0.031022661669689415
+        },
+        {
+          "group": "PMS2",
+          "n": 88,
+          "spearman_model": -0.04166813426790181,
+          "spearman_baseline_c": 0.054838312269016566,
+          "delta_model_minus_baseline_c": -0.09650644653691837
+        }
+      ]
+    },
+    "external_holdout": {
+      "n": 4256,
+      "score_std": {
+        "model": 0.009716998633458642,
+        "baseline_c": 0.02031945362094698
+      },
+      "tie_rate": {
+        "model": 0.00046992481203012026,
+        "baseline_c": 0.9367951127819549
+      },
+      "correlations": {
+        "rho_label_model_spearman": -0.001910212700381293,
+        "rho_label_baseline_c_spearman": 0.012530069692070416,
+        "rho_model_gc_pearson": -0.32798586428911586,
+        "rho_baseline_c_gc_pearson": -0.8731829232093747,
+        "rho_label_gc_pearson": -0.0002781071142750597
+      },
+      "gc_strata": [
+        {
+          "bin": "[0.30,0.50)",
+          "n": 792,
+          "spearman_model": -0.006609414167840649,
+          "spearman_baseline_c": 0.06061030459342393,
+          "delta_model_minus_baseline_c": -0.06721971876126458
+        },
+        {
+          "bin": "[0.50,0.70)",
+          "n": 3072,
+          "spearman_model": -0.018383261036714626,
+          "spearman_baseline_c": -0.01737616949768014,
+          "delta_model_minus_baseline_c": -0.0010070915390344853
+        },
+        {
+          "bin": "[0.70,1.00]",
+          "n": 392,
+          "spearman_model": -0.08790618803113677,
+          "spearman_baseline_c": -0.015300419067298301,
+          "delta_model_minus_baseline_c": -0.07260576896383847
+        }
+      ],
+      "subgroup_deltas": []
+    }
+  },
+  "exploratory_results_raw": [
+    {
+      "split": "dev_val",
+      "source": "doench2016_hg19",
+      "n": 414,
+      "metrics": {
+        "baseline_a": {
+          "spearman": -0.04227213809817929,
+          "mse": 2.762499591358983
+        },
+        "baseline_b": {
+          "spearman": 0.014589825773247744,
+          "mse": 4.695581078974967
+        },
+        "baseline_c": {
+          "spearman": -0.047446575099324186,
+          "mse": 6.257918533770384
+        },
+        "model": {
+          "spearman": -0.040244777404174016,
+          "mse": 5.484627217672434
+        }
+      },
+      "delta_model_minus_baseline_a_spearman": 0.0020273606940052757,
+      "delta_model_minus_baseline_a_spearman_ci95": [
+        -0.10736243015023447,
+        0.10910699923691246
+      ],
+      "delta_model_minus_baseline_b_spearman": -0.05483460317742176,
+      "delta_model_minus_baseline_c_spearman": 0.007201797695150169,
+      "delta_model_minus_baseline_c_spearman_ci95": [
+        -0.08086392936117855,
+        0.0869950718463958
+      ]
+    },
+    {
+      "split": "primary_holdout",
+      "source": "doench2016_hg19",
+      "n": 2217,
+      "metrics": {
+        "baseline_a": {
+          "spearman": -0.001028689102000633,
+          "mse": 4.354734484920163
+        },
+        "baseline_b": {
+          "spearman": 0.06471991911014999,
+          "mse": 5.766665592889154
+        },
+        "baseline_c": {
+          "spearman": 0.15625861193739451,
+          "mse": 7.115713811253992
+        },
+        "model": {
+          "spearman": 0.07111486654519479,
+          "mse": 6.4274352189149635
+        }
+      },
+      "delta_model_minus_baseline_a_spearman": 0.07214355564719542,
+      "delta_model_minus_baseline_a_spearman_ci95": [
+        0.018428107043139342,
+        0.1294606233079782
+      ],
+      "delta_model_minus_baseline_b_spearman": 0.006394947435044804,
+      "delta_model_minus_baseline_c_spearman": -0.08514374539219972,
+      "delta_model_minus_baseline_c_spearman_ci95": [
+        -0.12684226010942998,
+        -0.03915195848955522
+      ]
+    },
+    {
+      "split": "external_holdout",
+      "source": "hart2016_hela_lib1_avg",
+      "n": 4256,
+      "metrics": {
+        "baseline_a": {
+          "spearman": -0.043548934000384315,
+          "mse": 9.244718729508557
+        },
+        "baseline_b": {
+          "spearman": -0.004173086332216752,
+          "mse": 4.185577596818635
+        },
+        "baseline_c": {
+          "spearman": 0.012530069692070416,
+          "mse": 3.2800579302028385
+        },
+        "model": {
+          "spearman": -0.001910212700381293,
+          "mse": 3.6671860751024257
+        }
+      },
+      "delta_model_minus_baseline_a_spearman": 0.04163872130000302,
+      "delta_model_minus_baseline_a_spearman_ci95": [
+        0.00311688351752983,
+        0.08197372555201544
+      ],
+      "delta_model_minus_baseline_b_spearman": 0.002262873631835459,
+      "delta_model_minus_baseline_c_spearman": -0.014440282392451709,
+      "delta_model_minus_baseline_c_spearman_ci95": [
+        -0.0460103283673919,
+        0.01646378636700421
+      ]
+    }
+  ],
+  "exploratory_diagnostics_raw": {
+    "dev_val": {
+      "n": 414,
+      "score_std": {
+        "model": 0.014628525145435431,
+        "baseline_c": 0.04814876260271226
+      },
+      "tie_rate": {
+        "model": 0.0,
+        "baseline_c": 0.4227053140096618
+      },
+      "correlations": {
+        "rho_label_model_spearman": -0.040244777404174016,
+        "rho_label_baseline_c_spearman": -0.047446575099324186,
+        "rho_model_gc_pearson": -0.17389890257838828,
+        "rho_baseline_c_gc_pearson": -0.27041018143756546,
+        "rho_label_gc_pearson": 0.2284958677104482
+      },
+      "gc_strata": [
+        {
+          "bin": "[0.00,0.30)",
+          "n": 21,
+          "spearman_model": -0.11038961038961038,
+          "spearman_baseline_c": 0.21442499653265035,
+          "delta_model_minus_baseline_c": -0.3248146069222607
+        },
+        {
+          "bin": "[0.30,0.50)",
+          "n": 116,
+          "spearman_model": 0.10216430246415253,
+          "spearman_baseline_c": 0.13060253221966542,
+          "delta_model_minus_baseline_c": -0.028438229755512884
+        },
+        {
+          "bin": "[0.50,0.70)",
+          "n": 200,
+          "spearman_model": -0.051445286132153316,
+          "spearman_baseline_c": -0.07210840695817942,
+          "delta_model_minus_baseline_c": 0.02066312082602611
+        },
+        {
+          "bin": "[0.70,1.00]",
+          "n": 77,
+          "spearman_model": 0.054314106945685885,
+          "spearman_baseline_c": -0.0600172239957156,
+          "delta_model_minus_baseline_c": 0.1143313309414015
+        }
+      ],
+      "subgroup_deltas": [
+        {
+          "group": "CLDN10",
+          "n": 70,
+          "spearman_model": -0.044248097279328144,
+          "spearman_baseline_c": -0.09140467341188724,
+          "delta_model_minus_baseline_c": 0.047156576132559094
+        },
+        {
+          "group": "CUL3",
+          "n": 146,
+          "spearman_model": 0.13991883007336142,
+          "spearman_baseline_c": 0.24039834390597659,
+          "delta_model_minus_baseline_c": -0.10047951383261516
+        },
+        {
+          "group": "TADA2B",
+          "n": 198,
+          "spearman_model": 0.11506463249952269,
+          "spearman_baseline_c": 0.013414912259824162,
+          "delta_model_minus_baseline_c": 0.10164972023969852
+        }
+      ]
+    },
+    "primary_holdout": {
+      "n": 2217,
+      "score_std": {
+        "model": 0.013456088072655446,
+        "baseline_c": 0.038767660768829884
+      },
+      "tie_rate": {
+        "model": 0.0,
+        "baseline_c": 0.7965719440685611
+      },
+      "correlations": {
+        "rho_label_model_spearman": 0.07111486654519479,
+        "rho_label_baseline_c_spearman": 0.15625861193739451,
+        "rho_model_gc_pearson": -0.19840696676115857,
+        "rho_baseline_c_gc_pearson": -0.24570129631409285,
+        "rho_label_gc_pearson": 0.11637762913210392
+      },
+      "gc_strata": [
+        {
+          "bin": "[0.00,0.30)",
+          "n": 41,
+          "spearman_model": 0.13519163763066205,
+          "spearman_baseline_c": 0.2886682054338723,
+          "delta_model_minus_baseline_c": -0.15347656780321023
+        },
+        {
+          "bin": "[0.30,0.50)",
+          "n": 785,
+          "spearman_model": 0.03579423844220432,
+          "spearman_baseline_c": 0.1743498688393208,
+          "delta_model_minus_baseline_c": -0.1385556303971165
+        },
+        {
+          "bin": "[0.50,0.70)",
+          "n": 1190,
+          "spearman_model": 0.00041465908836394214,
+          "spearman_baseline_c": -0.046403247996645185,
+          "delta_model_minus_baseline_c": 0.046817907085009124
+        },
+        {
+          "bin": "[0.70,1.00]",
+          "n": 201,
+          "spearman_model": 0.1350169942367371,
+          "spearman_baseline_c": 0.4373324494353832,
+          "delta_model_minus_baseline_c": -0.3023154551986461
+        }
+      ],
+      "subgroup_deltas": [
+        {
+          "group": "MED12",
+          "n": 910,
+          "spearman_model": 0.10866354890225362,
+          "spearman_baseline_c": 0.17660532382570374,
+          "delta_model_minus_baseline_c": -0.06794177492345012
+        },
+        {
+          "group": "MSH6",
+          "n": 407,
+          "spearman_model": -0.02670219150949374,
+          "spearman_baseline_c": -0.057724853179183154,
+          "delta_model_minus_baseline_c": 0.031022661669689415
+        },
+        {
+          "group": "NF1",
+          "n": 598,
+          "spearman_model": 0.12223307143250546,
+          "spearman_baseline_c": 0.10354923862492395,
+          "delta_model_minus_baseline_c": 0.018683832807581513
+        },
+        {
+          "group": "NF2",
+          "n": 214,
+          "spearman_model": 0.23838479693636716,
+          "spearman_baseline_c": 0.1076715797521672,
+          "delta_model_minus_baseline_c": 0.13071321718419995
+        },
+        {
+          "group": "PMS2",
+          "n": 88,
+          "spearman_model": -0.04166813426790181,
+          "spearman_baseline_c": 0.054838312269016566,
+          "delta_model_minus_baseline_c": -0.09650644653691837
+        }
+      ]
+    },
+    "external_holdout": {
+      "n": 4256,
+      "score_std": {
+        "model": 0.009716998633458642,
+        "baseline_c": 0.02031945362094698
+      },
+      "tie_rate": {
+        "model": 0.00046992481203012026,
+        "baseline_c": 0.9367951127819549
+      },
+      "correlations": {
+        "rho_label_model_spearman": -0.001910212700381293,
+        "rho_label_baseline_c_spearman": 0.012530069692070416,
+        "rho_model_gc_pearson": -0.32798586428911586,
+        "rho_baseline_c_gc_pearson": -0.8731829232093747,
+        "rho_label_gc_pearson": -0.0002781071142750597
+      },
+      "gc_strata": [
+        {
+          "bin": "[0.30,0.50)",
+          "n": 792,
+          "spearman_model": -0.006609414167840649,
+          "spearman_baseline_c": 0.06061030459342393,
+          "delta_model_minus_baseline_c": -0.06721971876126458
+        },
+        {
+          "bin": "[0.50,0.70)",
+          "n": 3072,
+          "spearman_model": -0.018383261036714626,
+          "spearman_baseline_c": -0.01737616949768014,
+          "delta_model_minus_baseline_c": -0.0010070915390344853
+        },
+        {
+          "bin": "[0.70,1.00]",
+          "n": 392,
+          "spearman_model": -0.08790618803113677,
+          "spearman_baseline_c": -0.015300419067298301,
+          "delta_model_minus_baseline_c": -0.07260576896383847
+        }
+      ],
+      "subgroup_deltas": []
+    }
+  },
+  "week1_checkpoint": {
+    "checkpoint": "week1",
+    "recommendation": "STOP",
+    "reason": "structural_failure_signature_detected",
+    "triggers": {
+      "preconditions_failed": false,
+      "persistent_rank_collapse": true,
+      "holdout_deltas_both_negative": true
+    },
+    "observed": {
+      "primary_model_spearman": -0.07021112281912584,
+      "external_model_spearman": -0.001910212700381293,
+      "primary_delta_vs_baseline_c": -0.01922936210579102,
+      "external_delta_vs_baseline_c": -0.014440282392451709
+    }
+  },
+  "ci_policy": {
+    "mode": "diagnostic_only",
+    "note": "CI values are computed and reported, but v3 gating uses fixed delta thresholds for baseline_c only."
+  },
+  "funding_governance": {
+    "document": "/Users/velocityworks/IdeaProjects/wave-crispr-signal/validation/ontarget_gate/BOARD_FUNDING_ADDENDUM.md",
+    "caps": {
+      "duration_weeks_max": 4,
+      "team_fte_max": 2,
+      "ablation_count_max": 4,
+      "compute_cap_placeholder": "$CAP_USD_or_GPU_HOURS_CAP"
+    },
+    "short_cycle_constraint": {
+      "max_business_days": 10,
+      "requires_reapproval": true
+    }
+  },
+  "deprecated_prior_artifacts": {
+    "gate_results.json": "historical_non_authoritative",
+    "gate_report.md": "historical_non_authoritative",
+    "gate_results_v2.json": "historical_non_authoritative_for_external_comparator_claims",
+    "gate_report_v2.md": "historical_non_authoritative_for_external_comparator_claims"
+  }
+}

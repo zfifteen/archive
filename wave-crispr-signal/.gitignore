@@ -1,0 +1,38 @@
+# IDE/editor
+.idea/
+*.swp
+*.swo
+*~
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.venv*/
+*$py.class
+*.so
+
+# OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Build/test temp
+temp/
+tmp/
+test_results/
+
+# Validation results (generated files)
+proof_pack/validation_results/
+proof_pack/__pycache__/
+bin_resonance_results.csv
+results/
+/data/labs/
+/data/get_hg38/
+.snapshots
+experiments/*/results.json

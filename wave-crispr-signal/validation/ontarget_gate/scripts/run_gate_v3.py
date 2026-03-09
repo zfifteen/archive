@@ -1,0 +1,1017 @@
+#!/usr/bin/env python3
+from __future__ import annotations
+
+import csv
+import hashlib
+import json
+import subprocess
+import sys
+import tempfile
+from dataclasses import dataclass
+from datetime import datetime, timezone
+from pathlib import Path
+from typing import Dict, Iterable, List, Sequence, Set, Tuple
+from urllib.request import urlopen
+
+import numpy as np
+from scipy.stats import spearmanr
+from sklearn.linear_model import Ridge
+
+REPO_ROOT = Path(__file__).resolve().parents[3]
+if str(REPO_ROOT) not in sys.path:
+    sys.path.insert(0, str(REPO_ROOT))
+
+from applications.crispr_guide_designer import CRISPRGuideDesigner
+from applications.genomic_disruption_api import DisruptionAnalyzer
+from validation.ontarget_gate.comparators.base import ComparatorRecord
+from validation.ontarget_gate.comparators.registry import build_required_comparators, required_comparator_slots
+
+
+PRIMARY_GROUPED_SOURCE = "doench2016_hg19"
+EXTERNAL_HOLDOUT_SOURCE = "hart2016_hela_lib1_avg"
+DECISION_SPLITS = {"dev_train", "dev_val", "primary_holdout", "external_holdout"}
+
+
+@dataclass(frozen=True)
+class SourceSpec:
+    source: str
+    url: str
+    role_hint: str
+
+
+SOURCES: List[SourceSpec] = [
+    SourceSpec(
+        source="doench2016_gecko1_lenticrispr_hg19",
+        url="https://raw.githubusercontent.com/maximilianh/crisporPaper/master/effData/doench2016-Gecko1-LentiCrispr_hg19.scores.tab",
+        role_hint="aux_weak",
+    ),
+    SourceSpec(
+        source="doench2016_hg19",
+        url="https://raw.githubusercontent.com/maximilianh/crisporPaper/master/effData/doench2016_hg19.scores.tab",
+        role_hint="primary_grouped",
+    ),
+    SourceSpec(
+        source="hart2016_hela_lib1_avg",
+        url="https://raw.githubusercontent.com/maximilianh/crisporPaper/master/effData/hart2016-HelaLib1Avg.scores.tab",
+        role_hint="external_holdout",
+    ),
+]
+
+
+def clean_seq(seq: str) -> str:
+    seq = (seq or "").upper()
+    return "".join(ch for ch in seq if ch in "ACGTN")
+
+
+def stable_hash_bucket(value: str, mod: int = 100) -> int:
+    h = int(hashlib.sha1(value.encode("utf-8")).hexdigest(), 16)
+    return h % mod
+
+
+def assign_primary_split(group: str) -> str:
+    bucket = stable_hash_bucket(group)
+    if bucket < 60:
+        return "dev_train"
+    if bucket < 80:
+        return "dev_val"
+    return "primary_holdout"
+
+
+def kmer2_features(seq: str) -> np.ndarray:
+    kmers = [a + b for a in "ACGT" for b in "ACGT"]
+    counts = {k: 0 for k in kmers}
+    for i in range(len(seq) - 1):
+        k = seq[i : i + 2]
+        if k in counts:
+            counts[k] += 1
+    denom = max(1, len(seq) - 1)
+    return np.array([counts[k] / denom for k in kmers], dtype=float)
+
+
+def max_homopolymer_run(seq: str) -> int:
+    best = 1
+    cur = 1
+    for i in range(1, len(seq)):
+        if seq[i] == seq[i - 1]:
+            cur += 1
+            if cur > best:
+                best = cur
+        else:
+            cur = 1
+    return best
+
+
+def baseline_a_features(seq: str) -> np.ndarray:
+    gc = (seq.count("G") + seq.count("C")) / len(seq)
+    hom = max_homopolymer_run(seq) / len(seq)
+    return np.concatenate([np.array([gc, hom], dtype=float), kmer2_features(seq)])
+
+
+def parse_gene_like_key(value: str) -> str | None:
+    if not value:
+        return None
+    if "-" in value:
+        token = value.split("-", 1)[0].strip()
+        return token or None
+    if "_" in value:
+        token = value.split("_", 1)[0].strip()
+        return token or None
+    return None
+
+
+def infer_group(source: str, row: dict) -> Tuple[str | None, str, str]:
+    guide = row.get("guide", "") or ""
+    name = row.get("name", "") or ""
+    context = (row.get("longSeq100Bp", "") or "").strip().upper()
+
+    if source == "doench2016_hg19":
+        group = parse_gene_like_key(guide)
+        if group:
+            return group, "strong", "guide_gene_prefix"
+    if source == "hart2016_hela_lib1_avg":
+        group = parse_gene_like_key(name) or parse_gene_like_key(guide)
+        if group:
+            return group, "strong", "name_gene_prefix"
+
+    if context:
+        ctx_hash = hashlib.sha1(context.encode("utf-8")).hexdigest()
+        return f"ctxsha1:{ctx_hash}", "weak", "context_hash"
+
+    fallback = parse_gene_like_key(guide)
+    if fallback:
+        return fallback, "weak", "guide_prefix_weak"
+
+    return None, "weak", "missing_group_metadata"
+
+
+def download_text(url: str) -> str:
+    with urlopen(url, timeout=60) as resp:
+        return resp.read().decode("utf-8", errors="replace")
+
+
+def parse_scores_tab(text: str, source: str, role_hint: str) -> List[dict]:
+    lines = [ln for ln in text.splitlines() if ln.strip()]
+    reader = csv.DictReader(lines, delimiter="\t")
+    out: List[dict] = []
+    for row in reader:
+        seq = clean_seq(row.get("seq", ""))
+        if len(seq) != 20:
+            continue
+        try:
+            label = float(row.get("modFreq", "nan"))
+        except ValueError:
+            continue
+        if np.isnan(label):
+            continue
+
+        group_key, group_strength, group_method = infer_group(source, row)
+        out.append(
+            {
+                "source": source,
+                "role_hint": role_hint,
+                "guide": row.get("guide", "") or "",
+                "guide_seq": seq,
+                "label": label,
+                "gene_or_target_group": group_key or "",
+                "group_strength": group_strength,
+                "group_method": group_method,
+                "target_context": row.get("longSeq100Bp", "") or "",
+            }
+        )
+    return out
+
+
+def assign_split(row: dict) -> str:
+    source = row["source"]
+    strength = row["group_strength"]
+    group = row["gene_or_target_group"]
+
+    if source == PRIMARY_GROUPED_SOURCE:
+        if strength != "strong" or not group:
+            return "excluded_weak_group"
+        return assign_primary_split(group)
+    if source == EXTERNAL_HOLDOUT_SOURCE:
+        if strength != "strong" or not group:
+            return "excluded_weak_group"
+        return "external_holdout"
+
+    if strength == "strong":
+        return "aux_train_strong"
+    return "aux_train_weak"
+
+
+def safe_spearman(y: np.ndarray, pred: np.ndarray) -> float:
+    rho = float(spearmanr(y, pred).correlation)
+    if np.isnan(rho):
+        return 0.0
+    return rho
+
+
+def bootstrap_delta_spearman(
+    y: np.ndarray,
+    p_model: np.ndarray,
+    p_base: np.ndarray,
+    n_boot: int = 1000,
+    seed: int = 42,
+) -> Tuple[float, float]:
+    rng = np.random.default_rng(seed)
+    n = len(y)
+    idx_all = np.arange(n)
+    deltas = np.zeros(n_boot, dtype=float)
+    for i in range(n_boot):
+        idx = rng.choice(idx_all, size=n, replace=True)
+        s_m = safe_spearman(y[idx], p_model[idx])
+        s_b = safe_spearman(y[idx], p_base[idx])
+        deltas[i] = s_m - s_b
+    lo, hi = np.percentile(deltas, [2.5, 97.5])
+    return float(lo), float(hi)
+
+
+def metrics(y: np.ndarray, pred: np.ndarray) -> Dict[str, float]:
+    return {
+        "spearman": safe_spearman(y, pred),
+        "mse": float(np.mean((y - pred) ** 2)),
+    }
+
+
+def safe_pearson(x: np.ndarray, y: np.ndarray) -> float:
+    if len(x) < 2 or len(y) < 2:
+        return 0.0
+    if float(np.std(x)) == 0.0 or float(np.std(y)) == 0.0:
+        return 0.0
+    v = float(np.corrcoef(x, y)[0, 1])
+    if np.isnan(v):
+        return 0.0
+    return v
+
+
+def tie_rate(pred: np.ndarray, decimals: int = 8) -> float:
+    if len(pred) == 0:
+        return 0.0
+    rounded = np.round(pred.astype(float), decimals=decimals)
+    unique = len(np.unique(rounded))
+    return float(1.0 - (unique / len(rounded)))
+
+
+def gc_fraction(seq: str) -> float:
+    s = clean_seq(seq)
+    if not s:
+        return 0.0
+    return float((s.count("G") + s.count("C")) / len(s))
+
+
+def gc_bin_label(gc: float) -> str:
+    if gc < 0.30:
+        return "[0.00,0.30)"
+    if gc < 0.50:
+        return "[0.30,0.50)"
+    if gc < 0.70:
+        return "[0.50,0.70)"
+    return "[0.70,1.00]"
+
+
+def split_diagnostics(rows: Sequence[dict], pred: Dict[str, np.ndarray], min_group_n: int = 10) -> dict:
+    if not rows:
+        return {
+            "n": 0,
+            "score_std": {},
+            "tie_rate": {},
+            "correlations": {},
+            "gc_strata": [],
+            "subgroup_deltas": [],
+        }
+
+    y = pred["y"]
+    p_model = pred["model"]
+    p_c = pred["baseline_c"]
+    gc = np.array([gc_fraction(r.get("guide_seq", "")) for r in rows], dtype=float)
+
+    out = {
+        "n": int(len(rows)),
+        "score_std": {
+            "model": float(np.std(p_model)),
+            "baseline_c": float(np.std(p_c)),
+        },
+        "tie_rate": {
+            "model": tie_rate(p_model),
+            "baseline_c": tie_rate(p_c),
+        },
+        "correlations": {
+            "rho_label_model_spearman": safe_spearman(y, p_model),
+            "rho_label_baseline_c_spearman": safe_spearman(y, p_c),
+            "rho_model_gc_pearson": safe_pearson(p_model, gc),
+            "rho_baseline_c_gc_pearson": safe_pearson(p_c, gc),
+            "rho_label_gc_pearson": safe_pearson(y, gc),
+        },
+        "gc_strata": [],
+        "subgroup_deltas": [],
+    }
+
+    gc_rows: Dict[str, List[int]] = {}
+    for idx, g in enumerate(gc):
+        gc_rows.setdefault(gc_bin_label(float(g)), []).append(idx)
+    for key in sorted(gc_rows.keys()):
+        idxs = np.array(gc_rows[key], dtype=int)
+        if len(idxs) < min_group_n:
+            continue
+        sm = safe_spearman(y[idxs], p_model[idxs])
+        sc = safe_spearman(y[idxs], p_c[idxs])
+        out["gc_strata"].append(
+            {
+                "bin": key,
+                "n": int(len(idxs)),
+                "spearman_model": float(sm),
+                "spearman_baseline_c": float(sc),
+                "delta_model_minus_baseline_c": float(sm - sc),
+            }
+        )
+
+    group_to_idx: Dict[str, List[int]] = {}
+    for idx, r in enumerate(rows):
+        if r.get("group_strength", "") != "strong":
+            continue
+        group = r.get("gene_or_target_group", "") or ""
+        if not group:
+            continue
+        group_to_idx.setdefault(group, []).append(idx)
+    for group, idxs_raw in sorted(group_to_idx.items()):
+        if len(idxs_raw) < min_group_n:
+            continue
+        idxs = np.array(idxs_raw, dtype=int)
+        sm = safe_spearman(y[idxs], p_model[idxs])
+        sc = safe_spearman(y[idxs], p_c[idxs])
+        out["subgroup_deltas"].append(
+            {
+                "group": group,
+                "n": int(len(idxs)),
+                "spearman_model": float(sm),
+                "spearman_baseline_c": float(sc),
+                "delta_model_minus_baseline_c": float(sm - sc),
+            }
+        )
+
+    return out
+
+
+def build_week1_checkpoint(preconditions: dict, decision_results: Sequence[dict]) -> dict:
+    by_split = {r.get("split", ""): r for r in decision_results}
+    p = by_split.get("primary_holdout")
+    e = by_split.get("external_holdout")
+
+    if p is None or e is None:
+        return {
+            "checkpoint": "week1",
+            "recommendation": "STOP",
+            "reason": "missing_decision_holdout_results",
+            "triggers": {
+                "preconditions_failed": True,
+                "persistent_rank_collapse": False,
+                "holdout_deltas_both_negative": False,
+            },
+        }
+
+    p_model_rho = float(p["metrics"]["model"]["spearman"])
+    e_model_rho = float(e["metrics"]["model"]["spearman"])
+    p_delta = float(p["delta_model_minus_baseline_c_spearman"])
+    e_delta = float(e["delta_model_minus_baseline_c_spearman"])
+
+    preconditions_failed = not all(
+        [
+            preconditions.get("split_integrity_clean_ok", False),
+            preconditions.get("comparator_self_check_ok", False),
+            preconditions.get("overlap_audit_clean_ok", False),
+            preconditions.get("holdout_min_n_ok", False),
+        ]
+    )
+    persistent_rank_collapse = p_model_rho < 0.0 and e_model_rho < 0.0
+    holdout_deltas_both_negative = p_delta < 0.0 and e_delta < 0.0
+
+    if preconditions_failed:
+        recommendation = "STOP"
+        reason = "preconditions_unresolved"
+    elif persistent_rank_collapse and holdout_deltas_both_negative:
+        recommendation = "STOP"
+        reason = "structural_failure_signature_detected"
+    else:
+        recommendation = "CONTINUE"
+        reason = "in_scope_recovery_still_plausible"
+
+    return {
+        "checkpoint": "week1",
+        "recommendation": recommendation,
+        "reason": reason,
+        "triggers": {
+            "preconditions_failed": preconditions_failed,
+            "persistent_rank_collapse": persistent_rank_collapse,
+            "holdout_deltas_both_negative": holdout_deltas_both_negative,
+        },
+        "observed": {
+            "primary_model_spearman": p_model_rho,
+            "external_model_spearman": e_model_rho,
+            "primary_delta_vs_baseline_c": p_delta,
+            "external_delta_vs_baseline_c": e_delta,
+        },
+    }
+
+
+def validate_split_integrity(rows: Sequence[dict]) -> dict:
+    violations: List[str] = []
+    group_to_splits: Dict[str, set] = {}
+    split_counts: Dict[str, int] = {}
+    weak_rows_in_decision = 0
+
+    for r in rows:
+        split = r["split"]
+        split_counts[split] = split_counts.get(split, 0) + 1
+        if split not in DECISION_SPLITS:
+            continue
+        if r["group_strength"] != "strong":
+            weak_rows_in_decision += 1
+            continue
+        group = r["gene_or_target_group"]
+        if not group:
+            violations.append(f"empty_group_in_decision_split:{split}")
+            continue
+        source_qualified_group = f"{r['source']}::{group}"
+        group_to_splits.setdefault(source_qualified_group, set()).add(split)
+
+    if weak_rows_in_decision:
+        violations.append(f"weak_rows_in_decision_splits:{weak_rows_in_decision}")
+
+    for group, splits in group_to_splits.items():
+        if len(splits) > 1:
+            violations.append(f"group_overlap:{group}:{','.join(sorted(splits))}")
+
+    for required in ["dev_train", "dev_val", "primary_holdout", "external_holdout"]:
+        if split_counts.get(required, 0) == 0:
+            violations.append(f"missing_required_split:{required}")
+
+    return {
+        "ok": len(violations) == 0,
+        "violations": violations,
+        "split_counts": split_counts,
+    }
+
+
+def run_overlap_audit(split_manifest_path: Path, comparator_provenance: Dict[str, object]) -> dict:
+    script = Path(__file__).resolve().parent / "audit_overlap.py"
+    with tempfile.NamedTemporaryFile("w", suffix=".json", delete=False, encoding="utf-8") as tmp:
+        out_path = Path(tmp.name)
+
+    training_manifest = comparator_provenance.get("training_manifest_path", "")
+    training_status = comparator_provenance.get("training_manifest_status_path", "")
+    cmd = [
+        sys.executable,
+        str(script),
+        "--split-manifest",
+        str(split_manifest_path),
+        "--training-manifest",
+        str(training_manifest),
+        "--training-status",
+        str(training_status),
+        "--output",
+        str(out_path),
+    ]
+    proc = subprocess.run(cmd, capture_output=True, text=True)
+    if not out_path.exists():
+        return {
+            "ok": False,
+            "message": "overlap_audit_output_missing",
+            "returncode": proc.returncode,
+            "stdout": proc.stdout[-1000:],
+            "stderr": proc.stderr[-1000:],
+        }
+
+    obj = json.loads(out_path.read_text(encoding="utf-8"))
+    obj["returncode"] = proc.returncode
+    obj["cmd"] = cmd
+    return obj
+
+
+def load_training_sequences_from_fasta(training_manifest_path: Path) -> Set[str]:
+    seqs: Set[str] = set()
+    if not training_manifest_path.exists():
+        return seqs
+    parts: List[str] = []
+    with training_manifest_path.open(encoding="utf-8") as f:
+        for ln in f:
+            ln = ln.strip().upper()
+            if not ln:
+                continue
+            if ln.startswith(">"):
+                if parts:
+                    seqs.add("".join(parts))
+                    parts = []
+            else:
+                parts.append("".join(ch for ch in ln if ch in "ACGT"))
+        if parts:
+            seqs.add("".join(parts))
+    return seqs
+
+
+def sanitize_decision_holdouts(
+    rows: Sequence[dict],
+    training_sequences: Set[str],
+) -> tuple[List[dict], dict]:
+    clean_rows: List[dict] = []
+    drop_counts = {
+        "primary_holdout_dropped_overlap": 0,
+        "external_holdout_dropped_overlap": 0,
+        "total_decision_overlap_dropped": 0,
+    }
+    for r in rows:
+        row = dict(r)
+        split = row.get("split", "")
+        seq = (row.get("guide_seq", "") or "").strip().upper()
+        if split in {"primary_holdout", "external_holdout"} and seq in training_sequences:
+            if split == "primary_holdout":
+                drop_counts["primary_holdout_dropped_overlap"] += 1
+            else:
+                drop_counts["external_holdout_dropped_overlap"] += 1
+            drop_counts["total_decision_overlap_dropped"] += 1
+            row["split"] = "excluded_overlap_clean"
+        clean_rows.append(row)
+    return clean_rows, drop_counts
+
+
+def evaluate_split(name: str, rows: Sequence[dict], pred: Dict[str, np.ndarray]) -> dict:
+    y = pred["y"]
+    m_a = metrics(y, pred["baseline_a"])
+    m_b = metrics(y, pred["baseline_b"])
+    m_c = metrics(y, pred["baseline_c"])
+    m_m = metrics(y, pred["model"])
+    ci_a_lo, ci_a_hi = bootstrap_delta_spearman(y, pred["model"], pred["baseline_a"], n_boot=1000, seed=42)
+    ci_c_lo, ci_c_hi = bootstrap_delta_spearman(y, pred["model"], pred["baseline_c"], n_boot=1000, seed=42)
+    delta_a = m_m["spearman"] - m_a["spearman"]
+    delta_b = m_m["spearman"] - m_b["spearman"]
+    delta_c = m_m["spearman"] - m_c["spearman"]
+    return {
+        "split": name,
+        "source": rows[0]["source"] if rows else "",
+        "n": int(len(y)),
+        "metrics": {
+            "baseline_a": m_a,
+            "baseline_b": m_b,
+            "baseline_c": m_c,
+            "model": m_m,
+        },
+        "delta_model_minus_baseline_a_spearman": float(delta_a),
+        "delta_model_minus_baseline_a_spearman_ci95": [float(ci_a_lo), float(ci_a_hi)],
+        "delta_model_minus_baseline_b_spearman": float(delta_b),
+        "delta_model_minus_baseline_c_spearman": float(delta_c),
+        "delta_model_minus_baseline_c_spearman_ci95": [float(ci_c_lo), float(ci_c_hi)],
+    }
+
+
+def decide_outcome_v3(res_dev: dict, res_primary: dict, res_external: dict, preconditions: dict) -> dict:
+    if not preconditions.get("comparator_self_check_ok", False):
+        return {
+            "decision": "INCONCLUSIVE",
+            "reason": "comparator_self_check_failed",
+            "criteria": {},
+        }
+    if not preconditions.get("overlap_audit_clean_ok", False):
+        return {
+            "decision": "INCONCLUSIVE",
+            "reason": "overlap_audit_failed_or_unavailable",
+            "criteria": {},
+        }
+    if not preconditions.get("holdout_min_n_ok", False):
+        return {
+            "decision": "INCONCLUSIVE",
+            "reason": "holdout_size_below_minimum",
+            "criteria": {},
+        }
+
+    d_ci_hi = res_dev["delta_model_minus_baseline_a_spearman_ci95"][1]
+    hard_fail_dev = d_ci_hi < -0.01
+    p_delta_c = res_primary["delta_model_minus_baseline_c_spearman"]
+    e_delta_c = res_external["delta_model_minus_baseline_c_spearman"]
+
+    criteria = {
+        "hard_precondition_dev_not_materially_negative": not hard_fail_dev,
+        "primary_delta_vs_baseline_c_min_0p01": p_delta_c >= 0.01,
+        "external_delta_vs_baseline_c_min_0p01": e_delta_c >= 0.01,
+    }
+
+    if hard_fail_dev:
+        return {"decision": "NO-GO", "reason": "dev_material_negative", "criteria": criteria}
+
+    if all(criteria.values()):
+        return {"decision": "GO", "reason": "all_v3_criteria_passed", "criteria": criteria}
+
+    return {"decision": "NO-GO", "reason": "baseline_c_threshold_failed", "criteria": criteria}
+
+
+def write_csv(path: Path, rows: Iterable[dict], fieldnames: Sequence[str]) -> None:
+    with path.open("w", newline="", encoding="utf-8") as f:
+        w = csv.DictWriter(f, fieldnames=fieldnames)
+        w.writeheader()
+        for row in rows:
+            w.writerow({k: row.get(k, "") for k in fieldnames})
+
+
+def main() -> int:
+    root = Path(__file__).resolve().parents[1]
+    data_dir = root / "data"
+    outputs_dir = root / "outputs"
+    data_dir.mkdir(parents=True, exist_ok=True)
+    outputs_dir.mkdir(parents=True, exist_ok=True)
+
+    generated_at = datetime.now(timezone.utc).isoformat()
+
+    all_rows: List[dict] = []
+    source_counts: List[dict] = []
+    for spec in SOURCES:
+        raw_text = download_text(spec.url)
+        raw_path = data_dir / f"{spec.source}.scores.tab"
+        raw_path.write_text(raw_text, encoding="utf-8")
+
+        parsed = parse_scores_tab(raw_text, spec.source, spec.role_hint)
+        all_rows.extend(parsed)
+        strong_rows = sum(1 for r in parsed if r["group_strength"] == "strong")
+        source_counts.append(
+            {
+                "source": spec.source,
+                "role_hint": spec.role_hint,
+                "url": spec.url,
+                "raw_local_path": str(raw_path),
+                "row_count": len(parsed),
+                "strong_group_rows": strong_rows,
+                "weak_group_rows": len(parsed) - strong_rows,
+            }
+        )
+
+    split_rows_raw: List[dict] = []
+    for r in all_rows:
+        row = dict(r)
+        row["split"] = assign_split(row)
+        split_rows_raw.append(row)
+
+    comparators = build_required_comparators()
+    baseline_c = comparators["baseline_c"]
+    c_self = baseline_c.self_check()
+    c_prov = baseline_c.provenance()
+    training_manifest_path = Path(str(c_prov.get("training_manifest_path", "")))
+    training_sequences = load_training_sequences_from_fasta(training_manifest_path)
+    split_rows_clean, sanitation = sanitize_decision_holdouts(split_rows_raw, training_sequences)
+
+    manifest_fields = [
+        "source",
+        "guide",
+        "guide_seq",
+        "label",
+        "gene_or_target_group",
+        "group_strength",
+        "group_method",
+        "split",
+    ]
+    raw_manifest_path = outputs_dir / "exploratory_split_manifest_v3_raw.csv"
+    clean_manifest_path = outputs_dir / "decision_split_manifest_v3_clean.csv"
+    locked_manifest_path = outputs_dir / "locked_split_manifest_v3.csv"
+    write_csv(raw_manifest_path, split_rows_raw, manifest_fields)
+    write_csv(clean_manifest_path, split_rows_clean, manifest_fields)
+    write_csv(locked_manifest_path, split_rows_clean, manifest_fields)
+
+    integrity_raw = validate_split_integrity(split_rows_raw)
+    integrity_clean = validate_split_integrity(split_rows_clean)
+
+    dataset_manifest = {
+        "generated_at": generated_at,
+        "protocol_version": "v3",
+        "schema": [
+            "guide",
+            "guide_seq",
+            "label",
+            "source",
+            "gene_or_target_group",
+            "group_strength",
+            "group_method",
+            "target_context",
+            "split",
+        ],
+        "sources": source_counts,
+        "reserved_comparator_slots": required_comparator_slots(),
+    }
+    (outputs_dir / "locked_dataset_manifest_v3.json").write_text(json.dumps(dataset_manifest, indent=2), encoding="utf-8")
+
+    schema_rows = [
+        {"field": "guide", "description": "Guide identifier from source"},
+        {"field": "guide_seq", "description": "20nt guide sequence"},
+        {"field": "label", "description": "Measured on-target activity (modFreq)"},
+        {"field": "source", "description": "Dataset source identifier"},
+        {"field": "gene_or_target_group", "description": "Grouping key for split integrity"},
+        {"field": "group_strength", "description": "strong or weak grouping metadata confidence"},
+        {"field": "group_method", "description": "Method used to derive grouping key"},
+        {"field": "target_context", "description": "Optional long context sequence"},
+        {"field": "split", "description": "Assigned split label"},
+    ]
+    write_csv(outputs_dir / "locked_schema_manifest_v3.csv", schema_rows, ["field", "description"])
+
+    train_rows_clean = [r for r in split_rows_clean if r["split"] in {"dev_train", "aux_train_weak", "aux_train_strong"}]
+    dev_rows_clean = [r for r in split_rows_clean if r["split"] == "dev_val"]
+    primary_rows_clean = [r for r in split_rows_clean if r["split"] == "primary_holdout"]
+    external_rows_clean = [r for r in split_rows_clean if r["split"] == "external_holdout"]
+    dev_rows_raw = [r for r in split_rows_raw if r["split"] == "dev_val"]
+    primary_rows_raw = [r for r in split_rows_raw if r["split"] == "primary_holdout"]
+    external_rows_raw = [r for r in split_rows_raw if r["split"] == "external_holdout"]
+
+    holdout_min_n = 200
+    holdout_min_n_ok = len(primary_rows_clean) >= holdout_min_n and len(external_rows_clean) >= holdout_min_n
+
+    X_train = np.vstack([baseline_a_features(r["guide_seq"]) for r in train_rows_clean])
+    y_train = np.array([float(r["label"]) for r in train_rows_clean], dtype=float)
+    model_a = Ridge(alpha=1.0)
+    model_a.fit(X_train, y_train)
+
+    da = DisruptionAnalyzer(k=0.3, seed=42)
+    b_model = CRISPRGuideDesigner()
+
+    overlap_raw = run_overlap_audit(raw_manifest_path, c_prov)
+    overlap_clean = run_overlap_audit(clean_manifest_path, c_prov)
+
+    preconditions = {
+        "split_integrity_clean_ok": integrity_clean["ok"],
+        "comparator_self_check_ok": c_self.ok,
+        "overlap_audit_clean_ok": bool(overlap_clean.get("ok", False)),
+        "holdout_min_n_ok": holdout_min_n_ok,
+        "holdout_min_n_required": holdout_min_n,
+    }
+
+    def predict_pack(rows: Sequence[dict], include_comparator: bool) -> Dict[str, np.ndarray]:
+        y = np.array([float(r["label"]) for r in rows], dtype=float)
+        X = np.vstack([baseline_a_features(r["guide_seq"]) for r in rows])
+        p_a = model_a.predict(X)
+        p_b = np.array([float(b_model.calculate_on_target_score(r["guide_seq"])) for r in rows], dtype=float)
+        p_m = np.array([float(da.score_guide(r["guide_seq"])["disruption_score"]) for r in rows], dtype=float)
+
+        if include_comparator:
+            c_records = [ComparatorRecord(guide_seq=r["guide_seq"], target_context=r.get("target_context", "")) for r in rows]
+            p_c = np.array(baseline_c.predict_batch(c_records), dtype=float)
+        else:
+            # Keep diagnostics numeric when comparator preconditions fail.
+            p_c = np.zeros(len(rows), dtype=float)
+
+        return {"y": y, "baseline_a": p_a, "baseline_b": p_b, "baseline_c": p_c, "model": p_m}
+
+    can_score_decision = (
+        preconditions["split_integrity_clean_ok"]
+        and preconditions["comparator_self_check_ok"]
+        and preconditions["overlap_audit_clean_ok"]
+        and preconditions["holdout_min_n_ok"]
+    )
+
+    decision_results: List[dict] = []
+    decision_diagnostics: Dict[str, dict] = {}
+    if can_score_decision:
+        pred_dev_clean = predict_pack(dev_rows_clean, include_comparator=True)
+        pred_primary_clean = predict_pack(primary_rows_clean, include_comparator=True)
+        pred_external_clean = predict_pack(external_rows_clean, include_comparator=True)
+        res_dev_clean = evaluate_split("dev_val", dev_rows_clean, pred_dev_clean)
+        res_primary_clean = evaluate_split("primary_holdout", primary_rows_clean, pred_primary_clean)
+        res_external_clean = evaluate_split("external_holdout", external_rows_clean, pred_external_clean)
+        decision_results = [res_dev_clean, res_primary_clean, res_external_clean]
+        decision_diagnostics = {
+            "dev_val": split_diagnostics(dev_rows_clean, pred_dev_clean),
+            "primary_holdout": split_diagnostics(primary_rows_clean, pred_primary_clean),
+            "external_holdout": split_diagnostics(external_rows_clean, pred_external_clean),
+        }
+        decision_pack = decide_outcome_v3(res_dev_clean, res_primary_clean, res_external_clean, preconditions)
+    else:
+        fail_reason = "unknown_precondition_failure"
+        if not preconditions["split_integrity_clean_ok"]:
+            fail_reason = "split_integrity_clean_failed"
+        elif not preconditions["comparator_self_check_ok"]:
+            fail_reason = "comparator_self_check_failed"
+        elif not preconditions["overlap_audit_clean_ok"]:
+            fail_reason = "overlap_audit_clean_failed_or_unavailable"
+        elif not preconditions["holdout_min_n_ok"]:
+            fail_reason = "holdout_size_below_minimum"
+        decision_pack = {
+            "decision": "INCONCLUSIVE",
+            "reason": fail_reason,
+            "criteria": {},
+        }
+
+    exploratory_results: List[dict] = []
+    exploratory_diagnostics: Dict[str, dict] = {}
+    if preconditions["comparator_self_check_ok"]:
+        pred_dev_raw = predict_pack(dev_rows_raw, include_comparator=True)
+        pred_primary_raw = predict_pack(primary_rows_raw, include_comparator=True)
+        pred_external_raw = predict_pack(external_rows_raw, include_comparator=True)
+        exploratory_results = [
+            evaluate_split("dev_val", dev_rows_raw, pred_dev_raw),
+            evaluate_split("primary_holdout", primary_rows_raw, pred_primary_raw),
+            evaluate_split("external_holdout", external_rows_raw, pred_external_raw),
+        ]
+        exploratory_diagnostics = {
+            "dev_val": split_diagnostics(dev_rows_raw, pred_dev_raw),
+            "primary_holdout": split_diagnostics(primary_rows_raw, pred_primary_raw),
+            "external_holdout": split_diagnostics(external_rows_raw, pred_external_raw),
+        }
+
+    week1_checkpoint = build_week1_checkpoint(preconditions, decision_results)
+
+    report_json = {
+        "generated_at": generated_at,
+        "protocol_version": "v3",
+        "decision": decision_pack["decision"],
+        "decision_reason": decision_pack["reason"],
+        "decision_criteria": decision_pack["criteria"],
+        "preconditions": preconditions,
+        "split_integrity": {
+            "clean": integrity_clean,
+            "raw": integrity_raw,
+        },
+        "overlap_audit": {
+            "clean": overlap_clean,
+            "raw": overlap_raw,
+        },
+        "manifest_paths": {
+            "decision_clean": str(clean_manifest_path),
+            "exploratory_raw": str(raw_manifest_path),
+            "compat_locked_split_manifest_v3": str(locked_manifest_path),
+        },
+        "sanitation": sanitation,
+        "baseline_c": {
+            "slot": "baseline_c",
+            "name": baseline_c.name,
+            "version": baseline_c.version,
+            "self_check": {
+                "ok": c_self.ok,
+                "message": c_self.message,
+                "details": c_self.details,
+            },
+            "provenance": c_prov,
+        },
+        "dataset_counts": source_counts,
+        "split_counts": {
+            "clean": integrity_clean["split_counts"],
+            "raw": integrity_raw["split_counts"],
+        },
+        "decision_results_clean": decision_results,
+        "decision_diagnostics_clean": decision_diagnostics,
+        "exploratory_results_raw": exploratory_results,
+        "exploratory_diagnostics_raw": exploratory_diagnostics,
+        "week1_checkpoint": week1_checkpoint,
+        "ci_policy": {
+            "mode": "diagnostic_only",
+            "note": "CI values are computed and reported, but v3 gating uses fixed delta thresholds for baseline_c only.",
+        },
+        "funding_governance": {
+            "document": str((root / "BOARD_FUNDING_ADDENDUM.md").resolve()),
+            "caps": {
+                "duration_weeks_max": 4,
+                "team_fte_max": 2,
+                "ablation_count_max": 4,
+                "compute_cap_placeholder": "$CAP_USD_or_GPU_HOURS_CAP",
+            },
+            "short_cycle_constraint": {
+                "max_business_days": 10,
+                "requires_reapproval": True,
+            },
+        },
+        "deprecated_prior_artifacts": {
+            "gate_results.json": "historical_non_authoritative",
+            "gate_report.md": "historical_non_authoritative",
+            "gate_results_v2.json": "historical_non_authoritative_for_external_comparator_claims",
+            "gate_report_v2.md": "historical_non_authoritative_for_external_comparator_claims",
+        },
+    }
+    (outputs_dir / "gate_results_v3.json").write_text(json.dumps(report_json, indent=2), encoding="utf-8")
+    (outputs_dir / "week1_checkpoint_v3.json").write_text(json.dumps(week1_checkpoint, indent=2), encoding="utf-8")
+
+    md: List[str] = []
+    md.append("# Fast Go/No-Go Validation Report v3 (On-Target)")
+    md.append("")
+    md.append(f"Generated: {generated_at}")
+    md.append("")
+    md.append(f"## Decision: **{decision_pack['decision']}**")
+    md.append(f"- reason: {decision_pack['reason']}")
+    md.append("")
+    md.append("## Preconditions")
+    for k, v in preconditions.items():
+        md.append(f"- {k}: {v}")
+    md.append("")
+    md.append("## Manifest Lineage")
+    md.append(f"- decision_clean_manifest: {clean_manifest_path}")
+    md.append(f"- exploratory_raw_manifest: {raw_manifest_path}")
+    md.append(f"- dropped_primary_overlap: {sanitation['primary_holdout_dropped_overlap']}")
+    md.append(f"- dropped_external_overlap: {sanitation['external_holdout_dropped_overlap']}")
+    md.append(f"- dropped_total_overlap: {sanitation['total_decision_overlap_dropped']}")
+    md.append("")
+    md.append("## Baseline C Comparator")
+    md.append(f"- slot: baseline_c")
+    md.append(f"- name: {baseline_c.name}")
+    md.append(f"- version: {baseline_c.version}")
+    md.append(f"- self_check_ok: {c_self.ok}")
+    md.append(f"- self_check_message: {c_self.message}")
+    md.append(f"- provenance_path: {c_prov.get('provenance_path', '')}")
+    md.append(f"- checksums_path: {c_prov.get('checksums_path', '')}")
+    md.append("")
+    md.append("## Overlap Audit")
+    md.append(f"- clean_status: {'PASS' if overlap_clean.get('ok', False) else 'FAIL'}")
+    md.append(f"- clean_message: {overlap_clean.get('message', '')}")
+    md.append(f"- clean_overlap_count: {overlap_clean.get('overlap_count', 'n/a')}")
+    md.append(f"- raw_status: {'PASS' if overlap_raw.get('ok', False) else 'FAIL'}")
+    md.append(f"- raw_message: {overlap_raw.get('message', '')}")
+    md.append(f"- raw_overlap_count: {overlap_raw.get('overlap_count', 'n/a')}")
+    md.append("")
+    md.append("## Week-1 Checkpoint Recommendation")
+    md.append(f"- recommendation: {week1_checkpoint['recommendation']}")
+    md.append(f"- reason: {week1_checkpoint['reason']}")
+    md.append(f"- triggers: {json.dumps(week1_checkpoint['triggers'], sort_keys=True)}")
+    md.append("")
+    md.append("## Decision-Grade Metrics (Clean Manifests)")
+    if decision_results:
+        for res in decision_results:
+            md.append(f"### {res['split']} ({res['source']}, n={res['n']})")
+            for key in ["baseline_a", "baseline_b", "baseline_c", "model"]:
+                m = res["metrics"][key]
+                md.append(f"- {key}: spearman={m['spearman']:.4f}, mse={m['mse']:.4f}")
+            ci_a = res["delta_model_minus_baseline_a_spearman_ci95"]
+            ci_c = res["delta_model_minus_baseline_c_spearman_ci95"]
+            md.append(f"- delta(model - baseline_a) spearman: {res['delta_model_minus_baseline_a_spearman']:.4f} (95% CI [{ci_a[0]:.4f}, {ci_a[1]:.4f}])")
+            md.append(f"- delta(model - baseline_b) spearman: {res['delta_model_minus_baseline_b_spearman']:.4f}")
+            md.append(f"- delta(model - baseline_c) spearman: {res['delta_model_minus_baseline_c_spearman']:.4f} (95% CI [{ci_c[0]:.4f}, {ci_c[1]:.4f}])")
+            md.append("")
+    else:
+        md.append("- scoring_skipped_due_to_precondition_failure: true")
+        md.append("")
+    md.append("## Exploratory Metrics (Raw Manifests, Non-Authoritative)")
+    if exploratory_results:
+        for res in exploratory_results:
+            md.append(f"### {res['split']} ({res['source']}, n={res['n']})")
+            for key in ["baseline_a", "baseline_b", "baseline_c", "model"]:
+                m = res["metrics"][key]
+                md.append(f"- {key}: spearman={m['spearman']:.4f}, mse={m['mse']:.4f}")
+            ci_a = res["delta_model_minus_baseline_a_spearman_ci95"]
+            ci_c = res["delta_model_minus_baseline_c_spearman_ci95"]
+            md.append(f"- delta(model - baseline_a) spearman: {res['delta_model_minus_baseline_a_spearman']:.4f} (95% CI [{ci_a[0]:.4f}, {ci_a[1]:.4f}])")
+            md.append(f"- delta(model - baseline_b) spearman: {res['delta_model_minus_baseline_b_spearman']:.4f}")
+            md.append(f"- delta(model - baseline_c) spearman: {res['delta_model_minus_baseline_c_spearman']:.4f} (95% CI [{ci_c[0]:.4f}, {ci_c[1]:.4f}])")
+            md.append("")
+    else:
+        md.append("- exploratory_scoring_skipped: comparator_unavailable")
+        md.append("")
+
+    md.append("## Rule Evaluation (CI Diagnostic-Only in v3)")
+    if decision_pack["criteria"]:
+        for name, passed in decision_pack["criteria"].items():
+            md.append(f"- {name}: {'PASS' if passed else 'FAIL'}")
+    else:
+        md.append("- criteria_not_evaluated_due_to_precondition_failure: true")
+    md.append("")
+    md.append("## Decision-Grade Diagnostics (Clean)")
+    if decision_diagnostics:
+        for split_name, diag in decision_diagnostics.items():
+            md.append(f"### {split_name} diagnostics")
+            md.append(f"- n: {diag['n']}")
+            md.append(
+                f"- score_std(model, baseline_c): ({diag['score_std']['model']:.6f}, {diag['score_std']['baseline_c']:.6f})"
+            )
+            md.append(
+                f"- tie_rate(model, baseline_c): ({diag['tie_rate']['model']:.6f}, {diag['tie_rate']['baseline_c']:.6f})"
+            )
+            corr = diag["correlations"]
+            md.append(
+                "- correlations: "
+                f"rho(label,model)={corr['rho_label_model_spearman']:.4f}, "
+                f"rho(label,baseline_c)={corr['rho_label_baseline_c_spearman']:.4f}, "
+                f"rho(model,gc)={corr['rho_model_gc_pearson']:.4f}, "
+                f"rho(baseline_c,gc)={corr['rho_baseline_c_gc_pearson']:.4f}, "
+                f"rho(label,gc)={corr['rho_label_gc_pearson']:.4f}"
+            )
+            if diag["gc_strata"]:
+                md.append("- gc_strata:")
+                for s in diag["gc_strata"]:
+                    md.append(
+                        f"  - {s['bin']} n={s['n']} delta(model-baseline_c)={s['delta_model_minus_baseline_c']:.4f}"
+                    )
+            if diag["subgroup_deltas"]:
+                md.append("- subgroup_deltas:")
+                for s in diag["subgroup_deltas"]:
+                    md.append(
+                        f"  - {s['group']} n={s['n']} delta(model-baseline_c)={s['delta_model_minus_baseline_c']:.4f}"
+                    )
+            md.append("")
+    else:
+        md.append("- diagnostics_unavailable_due_to_precondition_failure: true")
+
+    (outputs_dir / "gate_report_v3.md").write_text("\n".join(md) + "\n", encoding="utf-8")
+
+    print(f"decision: {decision_pack['decision']}")
+    print(f"reason: {decision_pack['reason']}")
+    print(f"wrote {outputs_dir / 'locked_dataset_manifest_v3.json'}")
+    print(f"wrote {locked_manifest_path}")
+    print(f"wrote {clean_manifest_path}")
+    print(f"wrote {raw_manifest_path}")
+    print(f"wrote {outputs_dir / 'locked_schema_manifest_v3.csv'}")
+    print(f"wrote {outputs_dir / 'gate_results_v3.json'}")
+    print(f"wrote {outputs_dir / 'gate_report_v3.md'}")
+    print(f"wrote {outputs_dir / 'week1_checkpoint_v3.json'}")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
