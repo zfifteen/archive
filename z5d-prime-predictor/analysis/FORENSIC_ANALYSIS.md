@@ -1,11 +1,10 @@
-# Forensic Analysis of z5d-prime-predictor Project
+# Forensic Analysis of z5d-prime-predictor
 
-- The Z5D algorithm employs a proprietary five-dimensional model inspired by the Riemann Hypothesis, utilizing geodesic mapping with kappa_geo=0.3 for prime-density transformations, achieving sub-0.01% error rates at k=10^5 through calibrated constants (latest large-n calibration: c≈-0.00016667, kappa_star≈0.06500).
-- Optimized exclusively for Apple Silicon, the C implementations leverage MPFR/GMP for 50-decimal precision arithmetic, with dynamic scaling thresholds (e.g., high precision below Δ_n=10^-16) to handle ultra-large k up to 10^16, validated via 1000-resample bootstrap CIs at 95% confidence.
-- The z5d-mersenne module implements a 'wave-knob' centered scanner, symmetrically searching around Z5D estimates using wheel factorization and Miller-Rabin primality testing, designed for exploratory hunts at scales like k=10^1233 without guaranteeing exact nth primes.
-- prime-generator tool supports forward walking from arbitrary starts (e.g., 10^300), employing Z5D-informed jumps and CSV logging, as evidenced by output files demonstrating discovery of 300-digit primes like 10^300 * 4501 in under 7 seconds on Apple hardware.
-- Shared z_framework_params.h standardizes parameters across modules, addressing 'k parameter overloading' with distinct variables for geodesic, Z5D, and nth-prime contexts, synchronized from original Python params.py, ensuring frame-normalized consistency via κ(n) = d(n) · ln(n+1)/e².
-- Development history via git reveals rapid evolution: initial MPFR integration for mersenne tool (commit 1290644), followed by prime-generator addition (4c32123), parameter centralization (de00db0), and recent focus on smoke tests/benchmarks (2791307), with all builds warning-free for Apple M-series.
-- Project artifacts include AI-assisted directories (.claude, .grok), suggesting hybrid human-AI development, while .snapshots indicates versioned backups, and TODO.md prioritizes empirical threshold setting post-benchmarking for X/Y/W/T metrics in BENCHMARKS.md.
-- Computational validation incorporates SHA matching with 0.85 score thresholds and Pearson correlation >0.93 for zeta-SHA consistency, enforcing 80% pass rates, highlighting rigorous statistical safeguards uncommon in open prime prediction tools.
-- Exclusive macOS dependency on Homebrew-installed MPFR/GMP, with no Linux/Windows support, positions the suite as a specialized toolkit for high-precision, hardware-accelerated prime estimation in cryptographic research contexts.
+This note records the repository's current, supportable shape rather than the broadest historical framing that appears in older drafts.
+
+- The active nth-prime predictor path is a calibrated closed-form seed plus short forward refinement to a probable prime. The C, Python, and Java implementations all follow that same high-level contract.
+- Exactness is locked on the shipped 19-point benchmark grid `10^0 ... 10^18` through committed lookup values and the cross-language parity harness.
+- Off-grid behavior is empirical. The repo supports arbitrary-size integer inputs, but current checked-in docs should not claim a proof that off-grid outputs equal exact nth primes.
+- The C build is intentionally macOS / Apple Silicon scoped and relies on Homebrew GMP / MPFR. Python uses `gmpy2`; Java uses `BigInteger`.
+- Legacy Riemann-`R(x)` / Newton helper routines still exist in the tree, but they are historical or compatibility artifacts rather than the primary predictor described by the active docs.
+- The exploratory `experiments/` and `whitepaper/` materials are useful research context, but they are not the canonical source of truth for what the active predictor currently guarantees.

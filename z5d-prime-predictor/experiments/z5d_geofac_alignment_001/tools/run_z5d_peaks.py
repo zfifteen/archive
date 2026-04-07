@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """
-Z5D Predictor Peak Extractor
+Z5D-Derived Peak Extractor
 
-Runs z5d-predictor-c for a range of k values derived from QMC seeds
-and extracts peak candidates for alignment analysis.
+Runs the repo CLI, when available, for a range of k values derived from QMC
+seeds and extracts peak candidates for exploratory alignment analysis.
 
 Usage:
     python run_z5d_peaks.py --seeds ../artifacts/seedsets/phi_qmc_001.csv \
@@ -90,8 +90,8 @@ def map_qmc_to_k(qmc_values: np.ndarray, scale_min: int, scale_max: int) -> np.n
 
 def run_z5d_predictor_mock(k: int) -> Dict[str, Any]:
     """
-    Mock Z5D predictor using Riemann R approximation.
-    Used when z5d_cli is not available (non-Apple Silicon platforms).
+    Surrogate mock path based on a simple Riemann-style approximation.
+    Used only when z5d_cli is not available.
 
     Args:
         k: Index for nth prime prediction
@@ -102,8 +102,8 @@ def run_z5d_predictor_mock(k: int) -> Dict[str, Any]:
     if not SYMPY_AVAILABLE:
         raise ImportError("sympy is required for mock predictor")
 
-    # Use Riemann R function approximation for nth prime
-    # This is a simplified version of what z5d does
+    # This is a surrogate convenience path for exploratory experiments.
+    # It is not equivalent evidence for the active predictor implementation.
     log_k = np.log(float(k))
 
     # Riemann R approximation
@@ -136,7 +136,7 @@ def run_z5d_predictor_mock(k: int) -> Dict[str, Any]:
         "score": score,
         "window": 1,
         "bin_id": None,
-        "method": "mock",  # Mark as mock for transparency
+        "method": "surrogate_mock",
     }
 
 
@@ -371,9 +371,9 @@ def main():
     use_mock = False
     if not z5d_cli_path.exists():
         print(f"WARNING: z5d_cli not found at {z5d_cli_path}", file=sys.stderr)
-        print("Using mock Z5D predictor (Riemann R approximation)", file=sys.stderr)
+        print("Using surrogate Z5D-derived mock path", file=sys.stderr)
         print(
-            "Note: This is not the full Z5D implementation but allows testing on non-Apple Silicon",
+            "Note: this path is exploratory only and is not equivalent to the active predictor implementation",
             file=sys.stderr,
         )
         use_mock = True
@@ -391,7 +391,10 @@ def main():
     k_values = map_qmc_to_k(samples, args.scale_min, args.scale_max)
 
     # Run predictions
-    print(f"Running z5d predictor{'(mock)' if use_mock else ''}...", file=sys.stderr)
+    print(
+        f"Running Z5D-derived peak pipeline{' (surrogate mock)' if use_mock else ''}...",
+        file=sys.stderr,
+    )
     results = extract_z5d_peaks(
         row_ids, k_values, z5d_cli_path, args.max_samples, use_mock
     )
@@ -421,7 +424,7 @@ def main():
         "total_samples": len(results),
         "valid_samples": len(valid_results),
         "timestamp_utc": datetime.now(timezone.utc).isoformat(),
-        "tool": "z5d-predictor-c" + (" (mock)" if use_mock else ""),
+        "tool": "z5d-predictor-c" if not use_mock else "z5d-predictor-surrogate-mock",
     }
 
     # Write output

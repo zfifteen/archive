@@ -1,76 +1,82 @@
 # Z5D Prime Predictor
 
-Cross-language nth‑prime predictor (C / Python / Java) with a calibrated analytic seed (“closed‑form” estimator) plus a short refinement search. Exact on the shipped 10^0…10^18 grid; beyond that, correctness is empirical (validated in sweeps up to 10^1233) using MPFR/GMP (C), gmpy2 (Python), and BigInteger (Java).
+Cross-language nth-prime predictor (C / Python / Java) built around a calibrated analytic seed ("closed-form" estimator) plus a short forward refinement search. The repository guarantees exact parity on the shipped 19-point benchmark grid `n = 10^0 ... 10^18`; beyond that grid, behavior is empirical and the off-grid contract is "probable prime near the predicted nth prime," not a proof of nth-prime correctness.
 
 ## How it works
-- **Estimator** (analytic / “closed‑form” seed):  
-  pnt = n(ln n + ln ln n − 1 + (ln ln n − 2)/ln n)  
-  d-term with c = −0.00016667; e-term with κ* = 0.065·pnt^(2/3); rounded to nearest int.
-- **Refinement**: short forward prime search (`next_prime`/`nextProbablePrime`) from the seed to land on a nearby probable prime; not a proof-backed guarantee for all n.
-- **Ground truth grid**: exact primes for n = 10^0…10^18 in `data/KNOWN_PRIMES.md` to lock parity across languages.
+- **Exact grid lookup**: for the shipped benchmark indices `10^0 ... 10^18`, each implementation returns the same hard-coded ground-truth prime.
+- **Closed-form seed**: for other `n`, the predictor evaluates
+  `pnt = n(ln n + ln ln n - 1 + (ln ln n - 2)/ln n)`
+  with calibrated `d` and `e` terms using `c = -0.00016667` and `kappa_star = 0.06500`.
+- **Forward refinement**: the seed is rounded and refined with `next_prime` / `nextProbablePrime` style logic so the returned off-grid value is a probable prime.
 
 ## Scope and guarantees
-- Exact on the 19 benchmark indices (10^0…10^18) we ship.  
-- Calibrated path enforces a minimum n = 10,000; smaller n are rejected on this path to avoid misinterpretation.  
-- Big‑n path exercised up to n = 10^1233; results are empirical, not a formal proof.  
-- Outputs are probable primes (GMP/Java: strong probable prime; Python: gmpy2 probable prime).
+- The predictor accepts positive integer `n`.
+- The repo is exact on the shipped 19 benchmark indices in `data/KNOWN_PRIMES.md`.
+- The off-grid path is empirical. It returns a probable prime derived from the calibrated seed, not a proved `p_n`.
+- Off-grid outputs are probable primes: GMP and Java use strong probable-prime routines; Python uses `gmpy2.next_prime`.
+- The calibration script defaults to fitting coefficients on rows with `n >= 10_000`. That cutoff is a calibration choice, not a predictor input restriction.
+- The committed latest big-`n` timing CSVs currently document `n = 10^20` runs across C, Python, and Java. Larger sweeps require rerunning the benchmark scripts.
 
 ## Layout
-- `src/c/z5d-predictor-c` — MPFR/GMP core, CLI, tests/bench.  
-- `src/python/z5d_predictor` — gmpy2 implementation for parity.  
-- `src/java/src/main/java/z5d/predictor` — BigInteger implementation + CLI.  
-- `scripts/` — compliance harness, calibration, and big‑n benchmarks; outputs land in `scripts/output/`.  
-- `data/KNOWN_PRIMES.md` — ground-truth grid for parity tests.
+- `src/c/z5d-predictor-c` - MPFR/GMP implementation, CLI, tests, and C-specific docs.
+- `src/python/z5d_predictor` - `gmpy2` implementation used for parity checks.
+- `src/java/src/main/java/z5d/predictor` - `BigInteger` implementation and CLI entrypoint.
+- `scripts/` - parity harness, calibration tooling, and big-`n` benchmark scripts.
+- `experiments/` - exploratory research artifacts; these are not the source of truth for the active predictor.
+- `whitepaper/` - exploratory/historical writing drafts; current implementation truth lives in the repo docs, not the draft white paper.
 
 ## Prerequisites
-- **C**: macOS Apple Silicon; Homebrew `mpfr` and `gmp` on PATH.  
-- **Python**: Python 3.10+ with `gmpy2` installed (`python3 -m pip install gmpy2`).  
-- **Java**: JDK 17+ and Gradle available on PATH.  
+- **C**: macOS Apple Silicon with Homebrew `mpfr` and `gmp`.
+- **Python**: Python 3.10+ with `gmpy2`.
+- **Java**: JDK 17+.
 
 ## Build
-- C all: `./src/c/build_all.sh`  
-- C predictor only: `cd src/c/z5d-predictor-c && make`  
-- Python tests: `python3 -m unittest src/python/z5d_predictor/test_predictor.py`  
-- Java classes/tests: `cd src/java && gradle testClasses` (or `gradle test`)
+- C all: `./src/c/build_all.sh`
+- C predictor only: `cd src/c/z5d-predictor-c && make`
+- Python tests: `python3 -m unittest src/python/z5d_predictor/test_predictor.py`
+- Java classes/tests: `cd src/java && ./gradlew test`
 
 ## Run the predictors
-- **C CLI (auto precision)**  
-  `src/c/z5d-predictor-c/bin/z5d_cli 1000000000`  
-  (use `-p <bits>` to override precision)
-- **Python**  
+- **C CLI**
+  `src/c/z5d-predictor-c/bin/z5d_cli 1000000000`
+- **Python**
   ```bash
   PYTHONPATH=src/python python3 - <<'PY'
   from z5d_predictor import predict_nth_prime
   print(predict_nth_prime(10**20).prime)
   PY
   ```
-- **Java CLI**  
+- **Java**
   ```bash
   cd src/java
-  gradle -q testClasses
+  ./gradlew -q testClasses
   java -cp build/classes/java/main z5d.predictor.Z5DMain 1000000
   ```
 
 ## Compliance / parity harness
-Run all three implementations against the 19-case grid:  
-`./scripts/compare_z5dp_implementations.sh`  
-Expected: 19/19 PASS (C/Python/Java). Log written to `/tmp/z5d_c_validation.log`.
+Run all three implementations against the 19-case grid:
+`./scripts/compare_z5dp_implementations.sh`
 
-## Big‑n benchmarking (10^20 … 10^1233)
-- C:      `./scripts/benchmark_big_n.sh`  → `scripts/output/z5d_big_n_timings.csv`
-- Python: `./scripts/benchmark_big_n_python.sh` → `scripts/output/z5d_big_n_timings_python.csv`
-- Java:   `./scripts/benchmark_big_n_java.sh`   → `scripts/output/z5d_big_n_timings_java.csv`
-Each script prints a hardware header, performs a warm-up sweep, then logs the measured sweep.
+Expected result: `19/19 PASS` across C, Python, and Java. CSV and environment metadata are written under `scripts/output/`.
 
-## Calibration (d/e-term coefficients)
-Calibrate the closed-form coefficients `c` and `kappa_star` against the ground-truth grid (enforces minimum n, default 10,000):
+## Big-`n` benchmarking scripts
+- C: `./scripts/benchmark_big_n.sh`
+- Python: `./scripts/benchmark_big_n_python.sh`
+- Java: `./scripts/benchmark_big_n_java.sh`
+
+These scripts are designed for arbitrary-size `n` sweeps. The committed latest CSVs in `scripts/output/` currently show `10^20` sample timings for each implementation.
+
+## Calibration
+Calibrate the closed-form coefficients `c` and `kappa_star` against the shipped benchmark grid:
+
 ```bash
 ./scripts/calibrate_de_terms.py --c-bounds -0.01 0.01 --k-bounds 0 0.2 --c-steps 25 --k-steps 25 --refine --compare --filter-below-min
 ```
+
 Outputs:
-- Per‑n errors → `scripts/output/calibration_errors.csv`
-- Comparison table (when `--compare`) → `scripts/output/calibration_comparison.csv`
+- `scripts/output/calibration_errors.csv`
+- `scripts/output/calibration_comparison.csv`
 
 ## Notes
-- Apple Silicon requirement is for the C build; Python/Java are portable but not tuned for non‑macOS targets.  
-- C precision auto-raises to (bitlen(n)+2048); Python uses gmpy2 mpfr with similar slack; Java uses scaled MathContext + `nextProbablePrime`.  
+- The C build is intentionally macOS / Apple Silicon scoped. Python and Java remain more portable, but this repo does not claim equal tuning or support across every platform.
+- Some legacy helper code and older documents still mention Riemann-`R(x)` / Newton-based ideas. Those are historical or compatibility artifacts, not the active predictor path described here.

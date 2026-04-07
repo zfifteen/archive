@@ -24,7 +24,7 @@ class Z5DPredictorTest {
 
     @Test
     void versionMatches() {
-        assertEquals("2.0.0", Z5DPredictor.getVersion());
+        assertEquals("2.1.0", Z5DPredictor.getVersion());
     }
 
     @Test
