@@ -1,5 +1,31 @@
 # Unified Framework (Z5D Geodesic Prime Toolkit)
 
+## Core formula
+
+This project starts from one formula:
+
+$$
+Z = A(B/c)
+$$
+
+The formula is domain-agnostic. It is not a physics equation and it is not a number-theory equation. It is the measurement rule that both domains use.
+
+- $A$ is a measured state of a subject in one frame. $A$ can be a number, or a function of the ratio $B/c$.
+- $B$ is a measured rate of change of that same subject, in the same unit.
+- $c$ is an invariant bound in that unit. In physical work, $c$ is the speed of light. In discrete work, $c$ is $e^2$ or $\varphi$.
+
+If $A$ is a function, compute $Z = A(B/c)$. If $A$ is a number, compute $Z = A \cdot (B/c)$.
+
+Two common specializations of the same formula:
+
+- Physical domain: $Z = T(v/c)$
+- Discrete domain: $Z = n(\Delta_n / \Delta_{\max})$
+
+These specializations are applications. They do not replace $Z = A(B/c)$.
+
+Code: `src/core/axioms.py` (`UniversalZForm.compute_z`).
+Longer statement: `Docs/README.md`.
+
 High-speed prime prediction and cross-domain invariants built on a 5-dimensional geodesic model with Stadlmann distribution integration.
 
 ## Contents
