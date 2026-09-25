@@ -1,35 +1,30 @@
-# Unified Framework (Z Framework)
-
-This project is built on one domain-agnostic formula:
-
-```
-Z = A(B/c)
-```
-
-**Z** is the normalized observation.
-**A** is what you measured in a given frame — a number, or a function of the ratio.
-**B** is the rate or frame shift in that frame.
-**c** is the invariant bound for the domain. It does not change with the frame.
-
-Read it as: take the measured state **A**, look at the change **B**, and divide that change by a bound **c** that is not allowed to move. The result is comparable across frames and across domains.
-
-When **A** is a number, `Z = A * (B/c)` is a scale.
-When **A** is a function, `Z = A(B/c)` is a frame correction.
-Those are the same glyph. The parentheses are load-bearing.
-
-The same form in two working costumes:
-
-- Physical: `Z = T(v/c)` — time against velocity over the speed of light
-- Discrete: `Z = n(Δ_n / Δ_max)` — an integer against its frame shift over the domain bound (`e²` or `φ`)
-
-Definition and code:
-- [Docs/README.md](Docs/README.md) — Universal Form
-- [Docs/framework/CORNERSTONE_INVARIANT.md](Docs/framework/CORNERSTONE_INVARIANT.md) — formalization
-- [src/core/axioms.py](src/core/axioms.py) — `UniversalZForm.compute_z`
-
----
-
 # Unified Framework (Z5D Geodesic Prime Toolkit)
+
+## Core formula
+
+This project starts from one formula:
+
+$$
+Z = A(B/c)
+$$
+
+The formula is domain-agnostic. It is not a physics equation and it is not a number-theory equation. It is the measurement rule that both domains use.
+
+- $A$ is a measured state of a subject in one frame. $A$ can be a number, or a function of the ratio $B/c$.
+- $B$ is a measured rate of change of that same subject, in the same unit.
+- $c$ is an invariant bound in that unit. In physical work, $c$ is the speed of light. In discrete work, $c$ is $e^2$ or $\varphi$.
+
+If $A$ is a function, compute $Z = A(B/c)$. If $A$ is a number, compute $Z = A \cdot (B/c)$.
+
+Two common specializations of the same formula:
+
+- Physical domain: $Z = T(v/c)$
+- Discrete domain: $Z = n(\Delta_n / \Delta_{\max})$
+
+These specializations are applications. They do not replace $Z = A(B/c)$.
+
+Code: `src/core/axioms.py` (`UniversalZForm.compute_z`).
+Longer statement: `Docs/README.md`.
 
 High-speed prime prediction and cross-domain invariants built on a 5-dimensional geodesic model with Stadlmann distribution integration.
 
