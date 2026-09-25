@@ -1,3 +1,34 @@
+# Unified Framework (Z Framework)
+
+This project is built on one domain-agnostic formula:
+
+```
+Z = A(B/c)
+```
+
+**Z** is the normalized observation.
+**A** is what you measured in a given frame — a number, or a function of the ratio.
+**B** is the rate or frame shift in that frame.
+**c** is the invariant bound for the domain. It does not change with the frame.
+
+Read it as: take the measured state **A**, look at the change **B**, and divide that change by a bound **c** that is not allowed to move. The result is comparable across frames and across domains.
+
+When **A** is a number, `Z = A * (B/c)` is a scale.
+When **A** is a function, `Z = A(B/c)` is a frame correction.
+Those are the same glyph. The parentheses are load-bearing.
+
+The same form in two working costumes:
+
+- Physical: `Z = T(v/c)` — time against velocity over the speed of light
+- Discrete: `Z = n(Δ_n / Δ_max)` — an integer against its frame shift over the domain bound (`e²` or `φ`)
+
+Definition and code:
+- [Docs/README.md](Docs/README.md) — Universal Form
+- [Docs/framework/CORNERSTONE_INVARIANT.md](Docs/framework/CORNERSTONE_INVARIANT.md) — formalization
+- [src/core/axioms.py](src/core/axioms.py) — `UniversalZForm.compute_z`
+
+---
+
 # Unified Framework (Z5D Geodesic Prime Toolkit)
 
 High-speed prime prediction and cross-domain invariants built on a 5-dimensional geodesic model with Stadlmann distribution integration.
